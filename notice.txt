@@ -21,9 +21,8 @@
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-    <!-- common -> 헤더, reset -> 기본값 -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
 
     <!-- js -->
@@ -36,11 +35,11 @@
 
 <body>
     <div class="wrap">
-        <!-- header start -->
+               <!-- header start -->
         <header>
             <div class="inner">
                 <div class="logo">
-                    <img src="./icon/logo.svg" alt="simmons">
+                    <img src="../icon/logo.svg" alt="simmons">
                 </div>
                 <nav>
                     <ul class="gnb">
@@ -61,8 +60,8 @@
                 </nav>
                 <div class="right">
                     <ul>
-                        <li><a href="#"><img src="./icon/search.svg" alt=""></a></li>
-                        <li><a href="#"><img src="./icon/menu.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
                     </ul>
                 </div>
             </div>
@@ -71,7 +70,6 @@
 
         <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
-
         </main>
         <!-- //main end -->
 
@@ -82,17 +80,17 @@
                     <ul class="sns_list">
                         <li>
                             <a href="#" aria-label="kakao">
-                                <img src="./icon/kakao.svg" alt="kakao">
+                                <img src="../icon/kakao.svg" alt="kakao">
                             </a>
                         </li>
                         <li>
                             <a href="#" aria-label="instagram">
-                                <img src="./icon/insta.svg" alt="instagram">
+                                <img src="../icon/insta.svg" alt="instagram">
                             </a>
                         </li>
                         <li>
                             <a href="#" aria-label="youtube">
-                                <img src="./icon/youtube.svg" alt="youtube">
+                                <img src="../icon/youtube.svg" alt="youtube">
                             </a>
                         </li>
                     </ul>
