@@ -11,8 +11,8 @@
   --sub_bg1_d: #2F2324;
   --sub_bg2_a: #000000;
   --sub_bg2_b: #1D1D1D;
-  --sub_bg2_c: #FFFFFF;
-  --sub_bg2_d: #2F2324;
+  --sub_bg2_c: #282828;
+  --sub_bg2_d: #FFFFFF;
   --sub_bg3_a: #333333;
   --sub_bg3_b: #4F4F4F;
   --sub_bg3_c: #7B8288;
@@ -129,7 +129,7 @@ header .right ul li img {
 footer {
   width: 100%;
   padding: 48px 80px;
-  background-color: var(--sub_bg2_c);
+  background-color: var(--sub_bg2_d);
   border-top: 1px solid var(--sub_bg2_a);
   box-sizing: border-box;
   position: relative;

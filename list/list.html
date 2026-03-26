@@ -11,375 +11,299 @@
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
   <link rel="stylesheet" as="style" crossorigin
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-  <!-- 나의 css -->
+  <!-- // 나의 css -->
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/common.css">
   <link rel="stylesheet" href="css/style.css">
-  <!-- js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <!-- 나의 js -->
-  <script src="js/main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- // 나의 js -->
+  <script src="js/list.js"></script>
 </head>
 
 <body>
   <div class="wrap">
+    <!-- header start -->
     <header>
       <div class="inner">
-        <h1 class="logo">
-          <a href="#">SIMMONS</a>
-        </h1>
+        <div class="logo">
+          <img src="../icon/logo.svg" alt="simmons">
+        </div>
+        <nav>
+          <ul class="gnb">
+            <li><a href="#">About Us</a>
+            </li>
+            <li><a href="#">Products</a>
 
-        <nav class="nav">
-          <a href="#">About Us</a>
-          <a href="#">Products</a>
-          <a href="#">Sleep Solution</a>
-          <a href="#">Visit</a>
-          <a href="#">Contact us</a>
+            </li>
+            <li><a href="#">Sleep Solution</a>
+
+            </li>
+            <li><a href="#">Visit</a>
+
+            </li>
+            <li><a href="#">Contact us</a>
+            </li>
+          </ul><!-- //.gnb -->
         </nav>
-
         <div class="right">
-          <button type="button" class="icon_btn search" aria-label="search">
-            <img src="../icon/search.svg" alt="search">
-          </button>
-          <button type="button" class="icon_btn menu" aria-label="menu">
-            <img src="../icon/menu.svg" alt="menu">
-          </button>
+          <ul>
+            <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+            <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
+          </ul>
         </div>
       </div>
     </header>
-
+    <!-- //header end -->
     <main>
       <section class="banner">
-        <div class="banner_inner">
-          <div class="txt_all">
-            <p class="banner_sub">FIND YOUR COMFORT</p>
-            <p class="banner_title">CHOICE</p>
-          </div>
-
-          <div class="banner_img">
-            <img src="../img/list_mattress.png" alt="SIMMONS mattress">
-          </div>
-
-          <p class="banner_shop">SHOP</p>
+        <div class="txt_all">
+          <p>FIND YOUR COMFORT</p>
+          <p>CHOICE</p>
+        </div>
+        <span class="shop_txt">SHOP</span>
+        <div class="img">
+          <img src="../img/list_mattress.png" alt="Simmons Mattress Banner">
         </div>
       </section>
 
-      <section class="slide slide01">
-        <div class="slide_inner">
-          <div class="slide_track">
-            <div class="slide_content">
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-            </div>
-            <div class="slide_content" aria-hidden="true">
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-            </div>
-          </div>
+      <!-- Slide 1: Banner to Signature -->
+      <section class="text_slide_banner top_banner">
+        <div class="txt_all">
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <!-- Cloned for seamless loop -->
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
         </div>
       </section>
 
       <section class="signature">
-        <div class="signature_inner">
-          <div class="img_all">
-            <img src="../img/list_signature.png" alt="Signature mattress collection">
+        <div class="txt_all">
+          <div class="txt">
+            <p>Signature Mattress<br>Collection</p>
           </div>
-
-          <div class="signature_txt_all">
-            <div class="signature_txt">
-              <p>Signature Mattress Collection</p>
-            </div>
-
-            <p class="signature_desc">
-              Explore the most distinctive Simmons mattresses thoughtfully crafted for different sleep preferences and
-              lifestyles.
-            </p>
-          </div>
+          <p>Explore the most distinctive Simmons mattresses<br>thoughtfully crafted for different sleep preferences and
+            lifestyles.</p>
+        </div>
+        <div class="img_all">
+          <img src="../img/list_signature.png" alt="Signature Mattress Collection">
         </div>
       </section>
 
-      <section class="slide slide02">
-        <div class="slide_inner">
-          <div class="slide_track">
-            <div class="slide_content">
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-            </div>
-            <div class="slide_content" aria-hidden="true">
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-              <div class="txt"><span>SIGNATURE MATTRESS</span></div>
-            </div>
-          </div>
+      <!-- Slide 2: Signature to Best -->
+      <section class="text_slide_banner bottom_banner">
+        <div class="txt_all">
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <!-- Cloned for seamless loop -->
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
+          <div class="txt">SIGNATURE MATTRESS</div>
         </div>
       </section>
 
       <section class="best">
         <div class="title_all">
-          <div class="top">
-            <p>BEST PRODUCT</p>
-          </div>
+          <div class="top">BEST PRODUCT</div>
         </div>
-
-        <div class="best_viewport">
-          <div class="best_all">
-            <div class="best_img_all best_01">
-              <img src="../img/list_mattress2.png" alt="Black Lauren mattress">
-
-              <div class="txt">
-                <p class="product_line">Beautyrest Black</p>
-                <p class="product_name">Black Lauren</p>
-              </div>
+        <div class="best_all">
+          <div class="img_all">
+            <img src="../img/list_mattress2.png" alt="Beautyrest Black">
+            <div class="txt">
+              <p>Beautyrest Black</p>
+              <p>Black Lauren</p>
             </div>
-
-            <div class="best_img_all best_02">
-              <img src="../img/list_mattress3.png" alt="Black Jasmine mattress">
-
-              <div class="txt">
-                <p class="product_line">Beautyrest Mattress</p>
-                <p class="product_name">Black Jasmine</p>
-              </div>
+          </div>
+          <div class="img_all">
+            <img src="../img/list_mattress3.png" alt="Beautyrest Mattress">
+            <div class="txt">
+              <p>Beautyrest Mattress</p>
+              <p>Black Jasmine</p>
             </div>
-
-            <div class="best_img_all best_03">
-              <img src="../img/list_mattress4.png" alt="Spring Mattress">
-
-              <div class="txt">
-                <p class="product_line">N32</p>
-                <p class="product_name">Spring Mattress</p>
-              </div>
+          </div>
+          <div class="img_all">
+            <img src="../img/list_mattress4.png" alt="N32">
+            <div class="txt">
+              <p>N32</p>
+              <p>Spring Mattress</p>
             </div>
           </div>
         </div>
       </section>
-
       <section class="more">
         <div class="title">
           <div class="title_all">
-            <p class="title_text">Compare Other Mattresses</p>
-            <p class="sub_text">Explore Beautyrest Black at a Glance</p>
+            <p>Compare Other Mattresses</p>
+            <p>Explore Beautyrest Black at a Glance</p>
           </div>
         </div>
-
         <div class="name_all">
+          <!-- 1: Beautyrest Black  -->
           <div class="name active">
-            <div class="txt">
-              <p>Beautyrest Black</p>
+            <div class="tab">
+              <div class="txt">Beautyrest Black</div>
             </div>
-            <div class="active_content">
-              <div class="icon_all left">
-                <img src="../icon/arrow-left.svg" alt="prev">
-              </div>
-              <div class="icon_all right">
-                <img src="../icon/arrow-right.svg" alt="next">
-              </div>
-
-              <div class="slide_container">
-                <div class="slide_wrap">
-                  <!-- Slide 1 -->
-                  <div class="slide_item active">
-                    <div class="m_img_box">
+            <div class="card_content">
+              <div class="icon_all prev"><span class="icon"></span></div>
+              <div class="main_area">
+                <div class="slider_viewport">
+                  <div class="slider_track">
+                    <div class="slide">
                       <img src="../img/list_mattress5.png" alt="Black Eger">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Black</p>
-                        <p class="model">Black Eger</p>
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Black</p>
+                        <p class="model_name">Black Eger</p>
+                        <p class="price">$ 6,292</p>
                       </div>
-                      <p class="price">$ 6,292</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
-                      <img src="../img/list_mattress6.png" alt="Black Lauren">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Black</p>
-                        <p class="model">Black Marion</p>
+                    <div class="slide">
+                      <img src="../img/list_mattress6.png" alt="Black Marion">
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Black</p>
+                        <p class="model_name">Black Marion</p>
+                        <p class="price">$ 8,934</p>
                       </div>
-                      <p class="price">$ 8,934</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
-                      <img src="../img/list_mattress7.png" alt="Black Vibe">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Black</p>
-                        <p class="model">Black Vibe</p>
+                    <div class="slide">
+                      <img src="../img/list_mattress7.png" alt="Black Kelly">
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Black</p>
+                        <p class="model_name">Black Devola</p>
+                        <p class="price">$ 10,268</p>
                       </div>
-                      <p class="price">$ 10,268</p>
                     </div>
                   </div>
                 </div>
+                <div class="bullet_all">
+                  <span class="bullet active"></span>
+                  <span class="bullet"></span>
+                  <span class="bullet"></span>
+                </div>
               </div>
-
-              <div class="bullet_all">
-                <span class="bullet active"></span>
-                <span class="bullet"></span>
-                <span class="bullet"></span>
-              </div>
+              <div class="icon_all next"><span class="icon"></span></div>
             </div>
           </div>
 
+          <!-- 2: Beautyrest Mattress -->
           <div class="name">
-            <div class="txt">
-              <p>Beautyrest Mattress</p>
+            <div class="tab">
+              <div class="txt">Beautyrest Mattress</div>
             </div>
-            <div class="active_content">
-              <div class="icon_all left">
-                <img src="../icon/arrow-left.svg" alt="prev">
-              </div>
-              <div class="icon_all right">
-                <img src="../icon/arrow-right.svg" alt="next">
-              </div>
-
-              <div class="slide_container">
-                <div class="slide_wrap">
-                  <!-- Slide 1 -->
-                  <div class="slide_item active">
-                    <div class="m_img_box">
+            <div class="card_content">
+              <div class="icon_all prev"><span class="icon"></span></div>
+              <div class="main_area">
+                <div class="slider_viewport">
+                  <div class="slider_track">
+                    <div class="slide">
                       <img src="../img/list_mattress8.png" alt="Beautyrest Marconi">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Mattress</p>
-                        <p class="model">Beautyrest Marconi</p>
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Mattress</p>
+                        <p class="model_name">Beautyrest Marconi</p>
+                        <p class="price">$ 1,938</p>
                       </div>
-                      <p class="price">$ 1,938</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
+                    <div class="slide">
                       <img src="../img/list_mattress9.png" alt="Beautyrest Raven">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Mattress</p>
-                        <p class="model">Beautyrest Raven</p>
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Mattress</p>
+                        <p class="model_name">Beautyrest Raven</p>
+                        <p class="price">$ 1,606</p>
                       </div>
-                      <p class="price">$ 1,606</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
+                    <div class="slide">
                       <img src="../img/list_mattress10.png" alt="Beautyrest Tangerine">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">Beautyrest Mattress</p>
-                        <p class="model">Beautyrest Tangerine</p>
+                      <div class="txt_all">
+                        <p class="brand_name">Beautyrest Mattress</p>
+                        <p class="model_name">Beautyrest Tangerine</p>
+                        <p class="price">$ 1,334</p>
                       </div>
-                      <p class="price">$ 1,334</p>
                     </div>
                   </div>
                 </div>
+                <div class="bullet_all">
+                  <span class="bullet active"></span>
+                  <span class="bullet"></span>
+                  <span class="bullet"></span>
+                </div>
               </div>
-
-              <div class="bullet_all">
-                <span class="bullet active"></span>
-                <span class="bullet"></span>
-                <span class="bullet"></span>
-              </div>
+              <div class="icon_all next"><span class="icon"></span></div>
             </div>
           </div>
 
+          <!-- 3: N32 -->
           <div class="name">
-            <div class="txt">
-              <p>N32</p>
+            <div class="tab">
+              <div class="txt">N32</div>
             </div>
-            <div class="active_content">
-              <div class="icon_all left">
-                <img src="../icon/arrow-left.svg" alt="prev">
-              </div>
-              <div class="icon_all right">
-                <img src="../icon/arrow-right.svg" alt="next">
-              </div>
-
-              <div class="slide_container">
-                <div class="slide_wrap">
-                  <!-- Slide 1 -->
-                  <div class="slide_item active">
-                    <div class="m_img_box">
+            <div class="card_content">
+              <div class="icon_all prev"><span class="icon"></span></div>
+              <div class="main_area">
+                <div class="slider_viewport">
+                  <div class="slider_track">
+                    <div class="slide">
                       <img src="../img/list_mattress11.png" alt="Form Mattress">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">N32</p>
-                        <p class="model">Form Mattress</p>
+                      <div class="txt_all">
+                        <p class="brand_name">N32</p>
+                        <p class="model_name">Form Mattress</p>
+                        <p class="price">$ 2,044</p>
                       </div>
-                      <p class="price">$ 2,044</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 2 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
+                    <div class="slide">
                       <img src="../img/list_mattress12.png" alt="Pet Mattress">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">N32</p>
-                        <p class="model">Pet Mattress</p>
+                      <div class="txt_all">
+                        <p class="brand_name">N32</p>
+                        <p class="model_name">Pet Mattress</p>
+                        <p class="price">$ 2,044</p>
                       </div>
-                      <p class="price">$ 219</p>
                     </div>
-                  </div>
-
-                  <!-- Slide 3 -->
-                  <div class="slide_item">
-                    <div class="m_img_box">
+                    <div class="slide">
                       <img src="../img/list_mattress13.png" alt="Topper Mattress">
-                    </div>
-                    <div class="m_txt_all">
-                      <div class="m_txt">
-                        <p class="brand">N32</p>
-                        <p class="model">Topper Mattress</p>
+                      <div class="txt_all">
+                        <p class="brand_name">N32</p>
+                        <p class="model_name">Topper Mattress</p>
+                        <p class="price">$ 491</p>
                       </div>
-                      <p class="price">$ 491</p>
                     </div>
                   </div>
                 </div>
+                <div class="bullet_all">
+                  <span class="bullet active"></span>
+                  <span class="bullet"></span>
+                  <span class="bullet"></span>
+                </div>
               </div>
-
-              <div class="bullet_all">
-                <span class="bullet active"></span>
-                <span class="bullet"></span>
-                <span class="bullet"></span>
-              </div>
+              <div class="icon_all next"><span class="icon"></span></div>
             </div>
           </div>
         </div>
       </section>
     </main>
-
+    <!-- footer start -->
     <footer>
       <div class="footer_inner">
         <section class="info">
@@ -424,7 +348,8 @@
         </section>
       </div>
     </footer>
-  </div>
+    <!-- //footer end -->
+  </div><!-- //.wrap -->
 </body>
 
 </html>
