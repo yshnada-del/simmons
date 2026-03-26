@@ -1,0 +1,264 @@
+@charset "utf-8";
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.yor_n_page {
+    background-color: var(--color-burgundy);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Exactly fill viewport */
+    overflow: hidden;
+    /* No scroll */
+    font-family: 'Pretendard Variable', sans-serif;
+}
+
+/* 1. Inner Container: Fixed height 921px to match requirement */
+.inner {
+    width: 1088px;
+    height: 921px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Center cards within 921px */
+    gap: 24px;
+    /* Space between cards */
+    margin: 0 auto;
+    overflow: visible;
+    /* Prevent shadow clipping */
+}
+
+/* Common Card Style */
+.card {
+    background-color: var(--color-cream);
+    width: 100%;
+}
+
+/* 3. Top Card */
+.top.card {
+    height: 100px;
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+}
+
+.top.card>.info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Info Text Styles */
+.top.card>.info>.left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.top.card>.info>.left>.brand {
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 7.2px;
+    color: var(--color-burgundy);
+}
+
+.top.card>.info>.left>.profile {
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 1.8px;
+    color: var(--color-burgundy);
+}
+
+.top.card>.info>.right>.question_count {
+    font-weight: 400;
+    font-size: 14px;
+    letter-spacing: 2.8px;
+    color: var(--color-burgundy);
+}
+
+/* 7. Main Content Card (Bottom) */
+.bottom.card {
+    /* Height calculation: 921 total - 100 (top) - 32 (divider) - 24 (gap1) - 24 (gap2) = 741px */
+    height: 741px;
+    padding: 48px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Distribute content evenly */
+}
+
+.bottom_container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Space elements in bridge flow */
+    width: 100%;
+}
+
+/* 9. Tit Section */
+.tit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.line_box {
+    width: 100%;
+    height: 21px;
+    border-top: 1px solid var(--color-burgundy);
+    border-bottom: 1px solid var(--color-burgundy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner_line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-burgundy);
+}
+
+.tit h2 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    color: var(--color-burgundy);
+    line-height: 1.2;
+}
+
+.tit p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    text-align: center;
+    color: var(--color-burgundy);
+}
+
+.line_con {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed rgba(var(--color-burgundy-rgb), 0.3);
+}
+
+/* YES / NO Styling */
+.ox_box {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 140px;
+    line-height: normal;
+}
+
+.ox_box .yes {
+    font-weight: 400;
+    color: var(--color-burgundy);
+}
+
+.ox_box .slash {
+    color: rgba(var(--color-burgundy-rgb), 0.1);
+    margin: 0 20px;
+}
+
+.ox_box .no {
+    font-weight: 400;
+    color: rgba(var(--color-burgundy-rgb), 0.1);
+}
+
+/* Barcode Section */
+.code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.code .barcode_img {
+    height: 48px;
+    object-fit: contain;
+}
+
+.code .code_txt {
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: 1.2px;
+    text-align: center;
+    color: var(--color-burgundy);
+}
+
+/* Footer Buttons Styling */
+.btn_wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.btn_link {
+    flex: 1;
+    display: flex;
+    text-decoration: none;
+}
+
+.start_btn {
+    flex: 1;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.start_btn.outline {
+    background-color: transparent;
+    border: 1px solid var(--color-burgundy);
+    color: var(--color-burgundy);
+}
+
+.start_btn.fill {
+    background-color: var(--color-burgundy);
+    border: 1px solid var(--color-burgundy);
+    color: var(--color-cream);
+}
+
+.btn_icon,
+.btn_icon_l {
+    width: 14px;
+    height: auto;
+}
+
+.btn_icon_l {
+    transform: rotate(180deg);
+}
+
+/* 6. Extra Divider (Separate thin bar) */
+.bottom_divider {
+    width: 100%;
+    height: 32px;
+    background-color: var(--color-cream);
+    flex-shrink: 0;
+}

@@ -11,8 +11,8 @@
   --sub_bg1_d: #2F2324;
   --sub_bg2_a: #000000;
   --sub_bg2_b: #1D1D1D;
-  --sub_bg2_c: #282828;
-  --sub_bg2_d: #FFFFFF;
+  --sub_bg2_c: #FFFFFF;
+  --sub_bg2_d: #2F2324;
   --sub_bg3_a: #333333;
   --sub_bg3_b: #4F4F4F;
   --sub_bg3_c: #7B8288;
@@ -23,6 +23,7 @@
   --color-burgundy: #5D3136;
   --color-burgundy-rgb: 93, 49, 54;
   --color-ivory: #F9ECDF;
+  --color-ivory-rgb: 249, 236, 223;
   --color-cream: #F6F3EE;
   --color-dark-grey: #1D1D1D;
   --color-black: #000000;
@@ -43,7 +44,9 @@ header {
   height: 98px;
   padding: 0 124px;
   margin: 0 auto;
-
+  background: rgba(var(--color-ivory-rgb), 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   position: fixed;
   top: 0;
   left: 0;
@@ -51,6 +54,12 @@ header {
   /* 헤더 맨 위로 올라오게 */
   z-index: 100;
 
+  /* 스크롤 애니메이션 추가 */
+  transition: transform 0.4s ease-in-out;
+}
+
+header.hide {
+  transform: translateY(-100%);
 }
 
 header .inner {
@@ -129,7 +138,7 @@ header .right ul li img {
 footer {
   width: 100%;
   padding: 48px 80px;
-  background-color: var(--sub_bg2_d);
+  background-color: var(--sub_bg2_c);
   border-top: 1px solid var(--sub_bg2_a);
   box-sizing: border-box;
   position: relative;

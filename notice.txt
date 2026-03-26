@@ -7,6 +7,9 @@
 
 
 // 이 아래로 전체 복붙해서 시작하시면 됩니다
+// 작업하신 내용은 무조건 header > body > main(***여기에!***) > footer 순서로 넣어주세요
+//붙여넣은 후 css, icon, img 등등 경로 꼭 확인해주세요
+
 <!DOCTYPE html>
 <html lang="ko">
 

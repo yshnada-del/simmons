@@ -4,24 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simmons</title>
+    <title>sleep solution</title>
+    <!-- 폰트4개  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <!-- common -> 헤더, reset -> 기본값 -->
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/style_sleep_main.css">
 
-    <!-- 나의 css -->
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/common.css">
-    <link rel="stylesheet" href="css/style.css">
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
     <!-- 나의 js -->
-    <script src="js/common.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/common.js"></script>
+
 </head>
 
 <body>
@@ -30,7 +32,7 @@
         <header>
             <div class="inner">
                 <div class="logo">
-                    <img src="./icon/logo.svg" alt="simmons">
+                    <img src="../icon/logo.svg" alt="simmons">
                 </div>
                 <nav>
                     <ul class="gnb">
@@ -51,8 +53,8 @@
                 </nav>
                 <div class="right">
                     <ul>
-                        <li><a href="#"><img src="./icon/search.svg" alt=""></a></li>
-                        <li><a href="#"><img src="./icon/menu.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +63,61 @@
 
         <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
+            <div class="inner_wrap">
+                <div class="title_wrap">
+                    <h2>Find Your Perfect Sleep</h2>
+                    <p>150 Years of Sleep Excellence</p>
+                </div>
+                <!-- <div class="step_wrap">
+            <p><img src="./asset/img/step01.png" alt="step1" class="step_icon" />Get your personalized sleep guide.</p>
+            <p><img src="./asset/img/step02.png" alt="step2" class="step_icon" />Find products matched to your sleep
+                style.</p>
+            <p><img src="./asset/img/step03.png" alt="step3" class="step_icon" />Discover your ideal sleep position</p>
+        </div> -->
+                <div class="contents_wrap">
+                    <div class="top_bar">
+                        <div class="top_bar_line"></div>
+                    </div>
+                    <div class="receipt_mask">
+                        <div class="recipe_paper">
+                            <img src="../img/sleep_paper_short.png" alt="Recipe Paper" class="paper_bg" />
+                            <div class="p_inner">
+                                <div class="name">simmons</div>
+                                <img src="../img/sleep_sleeping.png" alt="sleeping" class="sleep_img" />
 
+                                <div class="line_box">
+                                    <div class="c_line_box"></div>
+                                </div>
+
+                                <div class="star_wrap">
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+
+                                <div class="txt_box">
+                                    <h2 class="sol_title">sleep solution</h2>
+                                    <p class="sol_desc">"The personalized sleep experience you've been searching for.
+                                        Tailored
+                                        recommendations crafted specifically for your unique needs."</p>
+                                    <img src="../img/sleep_code.png" alt="barcode" class="barcode_img" />
+
+                                    <a href="sleep_name.html" class="start_btn_link">
+                                        <div class="start_btn">
+                                            <span>start now</span>
+                                            <img src="../icon/arrow-right.svg" alt="arrow" class="btn_icon" />
+                                        </div>
+                                    </a>
+
+                                    <p class="time_desc">Takes less than 2 minutes</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <!-- //main end -->
 
@@ -72,17 +128,17 @@
                     <ul class="sns_list">
                         <li>
                             <a href="#" aria-label="kakao">
-                                <img src="./icon/kakao.svg" alt="kakao">
+                                <img src="../icon/kakao.svg" alt="kakao">
                             </a>
                         </li>
                         <li>
                             <a href="#" aria-label="instagram">
-                                <img src="./icon/insta.svg" alt="instagram">
+                                <img src="../icon/insta.svg" alt="instagram">
                             </a>
                         </li>
                         <li>
                             <a href="#" aria-label="youtube">
-                                <img src="./icon/youtube.svg" alt="youtube">
+                                <img src="../icon/youtube.svg" alt="youtube">
                             </a>
                         </li>
                     </ul>
@@ -112,6 +168,7 @@
         </footer>
         <!-- //footer end -->
     </div>
+
 </body>
 
 </html>

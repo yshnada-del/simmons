@@ -1,0 +1,335 @@
+@charset "utf-8";
+
+/* 초기화 */
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    list-style: none;
+} */
+
+/* 폰트 및 배경 설정 */
+body {
+    background-color: var(--color-burgundy);
+    padding: 200px 0;
+}
+
+h2 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--color-white);
+}
+
+p {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+    color: #B8B1A8;
+}
+
+/* 레이아웃 및 텍스트 스타일 */
+.inner_wrap {
+    width: 1670px;
+    margin: 0 auto;
+}
+
+.title_wrap h2 {
+    font-style: italic;
+    font-size: 100px;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.title_wrap p {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    text-align: right;
+    padding-right: 330px;
+    margin-bottom: 140px;
+    /* 구분감을 위해 여백 조절 */
+}
+
+/* Step 영역 */
+.step_wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+    width: 1300px;
+    margin: 0 auto 80px;
+    padding-bottom: 61px;
+    /* 컨텐츠 등과의 사이 여백 */
+}
+
+.step_wrap p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* 아이콘과 텍스트 사이 간격 */
+    font-size: 28px;
+    font-weight: 400;
+    border-bottom: 1px solid #B8B1A8;
+    padding-bottom: 5px;
+    width: fit-content;
+}
+
+.step_wrap .step_icon {
+    height: 30px;
+    /* 아이콘 크기 적절히 조절 */
+    width: auto;
+}
+
+.step_wrap p:nth-child(1) {
+    align-self: flex-start;
+}
+
+.step_wrap p:nth-child(2) {
+    align-self: center;
+}
+
+.step_wrap p:nth-child(3) {
+    align-self: flex-end;
+}
+
+/* 프린터 및 영수증 영역 */
+.contents_wrap {
+    text-align: center;
+}
+
+.top_bar {
+    width: 768px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(to bottom, #B0B0B0, #888888);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.top_bar_line {
+    width: 690px;
+    height: 8px;
+    background: #333333;
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Slot Inner Shadow for Depth (Effect 3) */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.recipe_paper {
+    width: 690px;
+    margin: 0 auto;
+    /* margin-top: -40px; removed and handled by .receipt_mask */
+    position: relative;
+    z-index: 4;
+    /* top_bar(2)보다 위로 올라오게 조절 */
+
+    /* 이미지가 아래로 오게 배경으로 설정 */
+    background-image: url('../../img/sleep_paper_short.png');
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    background-position: bottom;
+    box-sizing: border-box;
+
+    /* Shadow 조절: X:0, Y:40, Blur:100, Spread:-15, Color:rgba(0,0,0,0.4) */
+    box-shadow: 0px 40px 100px -15px rgba(0, 0, 0, 0.4);
+
+    /* Animation: Rollout content-included */
+    transform: translateY(-100%);
+    animation: printOut 3s cubic-bezier(0.1, 0, 0.3, 1) 0.5s forwards;
+}
+
+/* Animation Mask Wrapper */
+.receipt_mask {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin-top: -40px;
+    padding-bottom: 150px;
+}
+
+@keyframes printOut {
+
+    /* Updated: Pause only once at 1/3 (approx -66%) for a more natural feel */
+    0% {
+        transform: translateY(-100%);
+    }
+
+    30% {
+        transform: translateY(-66%);
+    }
+
+    45% {
+        transform: translateY(-66%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.recipe_paper .paper_bg {
+    display: none;
+    /* CSS 배경으로 대체하여 삭제 효과 */
+}
+
+/* 영수증 내부 스타일 (p_inner) */
+.p_inner {
+    position: relative;
+    /* absolute에서 relative로 변경하여 부모 높이에 영향 주게끔 함 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* 배경 용지 디자인에 맞춰 여백 부여 (필요시 조절) */
+    padding: 140px 40px;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 27px;
+}
+
+.p_inner .name {
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--color-dark-grey);
+}
+
+.p_inner .sleep_img {
+    width: 300px;
+    height: 250px;
+    object-fit: contain;
+}
+
+/* 선 장식 */
+.line_box {
+    border-top: 2px solid var(--color-dark-grey);
+    border-bottom: 2px solid var(--color-dark-grey);
+    height: 13px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.c_line_box {
+    border: 1px solid var(--color-dark-grey);
+    height: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 별점 영역 */
+.star_wrap {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 94px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.star_wrap .star {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-burgundy);
+}
+
+/* 텍스트 박스 */
+.txt_box {
+    width: 100%;
+}
+
+.txt_box .sol_title {
+    text-transform: uppercase;
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-weight: 600;
+    /* 세미볼드 */
+    font-size: 36px;
+    line-height: 1.3;
+    letter-spacing: 1.2px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: var(--color-dark-grey);
+}
+
+.txt_box .sol_desc {
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-weight: 400;
+    /* 레귤러 */
+    font-size: 16px;
+    line-height: 1.6;
+    /* 160% */
+    width: 278px;
+    height: 104px;
+    margin: 0 auto 20px;
+    text-align: center;
+    color: var(--color-dark-grey);
+}
+
+.txt_box .barcode_img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+.txt_box .start_btn_link {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.txt_box .start_btn {
+    width: 323px;
+    height: 60px;
+    margin: 0 auto 20px;
+    padding: 10px 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    background-color: transparent;
+    color: var(--color-burgundy);
+    border: 2px solid var(--color-burgundy);
+    border-radius: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.start_btn .btn_icon {
+    width: 32px;
+    height: 32px;
+    /* var(--color-burgundy) color filter */
+    filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
+}
+
+.txt_box .start_btn span {
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: 1.2px;
+    text-align: center;
+}
+
+.txt_box .time_desc {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: normal;
+    /* 자동 */
+    letter-spacing: 0;
+    text-align: center;
+    color: #2C2C2C;
+}

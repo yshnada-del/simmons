@@ -1,0 +1,598 @@
+@charset "utf-8";
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body.match_page {
+    background-color: var(--color-burgundy);
+    font-family: 'Pretendard Variable', sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* wrap: 전체 페이지 컨테이너 */
+.wrap {
+    width: 100%;
+    position: relative;
+}
+
+/* main: 헤더와 푸터 사이의 실질적 콘텐츠 영역 */
+main {
+    padding-top: 98px;
+    /* header height */
+    min-height: calc(100vh - 98px);
+    /* 최소 높이 확보 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 100px;
+    /* 푸터와의 간격 */
+}
+
+/* 1. Inner Container */
+.page_inner {
+    width: 100%;
+    max-width: 1620px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 21px;
+    margin: 0 auto;
+}
+
+/* Top Title */
+.match_title {
+    width: 100%;
+    font-family: 'DM Serif Display', serif;
+    font-size: 120px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 1px;
+    text-align: center;
+    color: var(--color-cream);
+    padding-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* 2. Receipt Wrap */
+.receipt_wrap {
+    width: 768px;
+    /* Fixed width matching start page bar */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* top_bar (Printer Roll Cap) */
+.top_bar {
+    width: 768px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    background: linear-gradient(to bottom, #B0B0B0, #888888);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    /* Lower than paper */
+}
+
+.top_bar_line {
+    width: 690px;
+    height: 8px;
+    background: #111;
+    border-radius: 2px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Slot Inner Shadow for Depth (Effect 3) */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 1);
+}
+
+/* 3. Receipt Animation Mask */
+.receipt_mask {
+    width: 100%;
+    overflow: hidden;
+    /* Mask the sliding paper */
+    position: relative;
+    margin-top: -40px;
+    /* Bring up to top_bar slot */
+}
+
+/* Receipt Inner (The Paper) */
+.receipt_inner {
+    width: 690px;
+    /* Match top_bar_line width */
+    margin: 0 auto;
+    background-color: var(--color-cream);
+    box-shadow: 0 40px 100px -15px rgba(0, 0, 0, 0.4);
+    /* Refined shadow to match start page */
+    position: relative;
+    padding-bottom: 40px;
+    z-index: 4;
+    /* Higher than top_bar (2) */
+
+    /* Animation: Rollout from Top (No Vibration) */
+    transform: translateY(-101%);
+    animation: printOut 3s cubic-bezier(0.1, 0, 0.3, 1) 0.5s forwards;
+    /* Zigzag will be positioned absolutely inside or outside */
+}
+
+/* Main Print Animation: Single Pause at 1/3 for Realistic Rollout */
+@keyframes printOut {
+    0% {
+        transform: translateY(-101%);
+    }
+
+    20% {
+        transform: translateY(-80%);
+    }
+
+    25% {
+        transform: translateY(-80%);
+    }
+
+    45% {
+        transform: translateY(-55%);
+    }
+
+    50% {
+        transform: translateY(-55%);
+    }
+
+    70% {
+        transform: translateY(-25%);
+    }
+
+    75% {
+        transform: translateY(-25%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Content Appearance (Immediate with Paper) */
+.receipt_top,
+.receipt_visual,
+.receipt_bottom {
+    opacity: 1;
+    /* No individual reveal animations */
+}
+
+/* Header/Top Layout */
+.receipt_top {
+    width: 100%;
+    padding: 60px 48px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Vertical gap adjusted to 16px */
+    gap: 16px;
+}
+
+/* Match Badge */
+.match_badge {
+    position: absolute;
+    top: 40px;
+    right: 48px;
+    width: 110px;
+    height: 110px;
+    border: 2px solid #C0A080;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(15deg);
+    color: #C0A080;
+}
+
+.badge_text {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.badge_percent {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.receipt_top .logo {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 9.6px;
+    color: #2c2c2c;
+    text-align: center;
+    width: 100%;
+    height: 44px;
+    line-height: 44px;
+}
+
+.dashed_line {
+    width: 100%;
+    border-top: 1px dashed #ddd;
+    margin: 10px 0;
+}
+
+.sub_line_box {
+    width: 100%;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sub_line_box span {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 2.4px;
+    line-height: normal;
+}
+
+.state {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 44px;
+    letter-spacing: 2px;
+    color: var(--color-burgundy);
+    text-align: center;
+    width: 100%;
+    height: auto;
+    /* Hug content */
+    margin: 0;
+}
+
+.receipt_top>.dashed_line:last-child {
+    margin-bottom: 20px;
+}
+
+/* Visual Area */
+.receipt_visual {
+    width: 100%;
+    padding: 0 48px 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.product_img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+}
+
+/* Bottom Area */
+.receipt_bottom {
+    padding: 0 48px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.triple_line {
+    width: 100%;
+    height: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.line_outer {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-burgundy);
+    opacity: 0.8;
+}
+
+.line_inner {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-burgundy);
+    opacity: 0.8;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.collection {
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.product_name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 39px;
+    color: var(--color-burgundy);
+}
+
+/* Level Meters */
+.level_area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.level_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Adjusted to space-between */
+    width: 100%;
+    gap: 10px;
+}
+
+.level_label {
+    width: 76px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Source Serif 4', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--color-grey-333);
+    text-align: center;
+    border: 1px solid var(--color-grey-333);
+    /* Added 1px outline */
+    background-color: transparent;
+    text-transform: capitalize;
+    /* Ensure Title Case */
+}
+
+.level_meter {
+    display: flex;
+    gap: 10px;
+}
+
+.level_cell {
+    width: 90px;
+    height: 30px;
+    background-color: transparent;
+    /* Changed to transparent */
+    border: 2px solid var(--color-grey-333);
+    /* Added 2px outline */
+}
+
+.level_cell.is_active {
+    background-color: var(--color-grey-333);
+    /* Active state fill */
+}
+
+.description {
+    font-family: 'Source Serif 4', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--color-burgundy);
+}
+
+.check_list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.check_list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dot_icon {
+    width: 20px;
+    height: 20px;
+}
+
+.check_list li span {
+    font-size: 18px;
+    color: var(--color-burgundy);
+}
+
+.price_area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.price_label {
+    font-size: 20px;
+    letter-spacing: 0.7px;
+    color: var(--color-grey-333);
+}
+
+.price_value {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--color-grey-333);
+}
+
+.sku_barcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.sku_text {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+    color: #999;
+}
+
+.barcode_img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.star_area {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.star {
+    font-size: 24px;
+    color: var(--color-burgundy);
+}
+
+.btn_group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.receipt_btn {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 18px;
+    /* Adjusted to 18px */
+    font-weight: 600;
+    /* SemiBold */
+    letter-spacing: 3px;
+    /* Adjusted to 3px */
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid var(--color-burgundy);
+}
+
+.receipt_btn.fill {
+    background-color: var(--color-burgundy);
+    color: var(--color-cream);
+}
+
+.receipt_btn.fill:hover {
+    opacity: 0.9;
+}
+
+.receipt_btn.outline {
+    background-color: transparent;
+    color: var(--color-burgundy);
+}
+
+.receipt_btn.outline:hover {
+    background-color: rgba(var(--color-burgundy-rgb), 0.05);
+}
+
+.back_link {
+    text-align: center;
+}
+
+.back_link a {
+    text-decoration: underline;
+    /* Added underline */
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 20px;
+    color: var(--color-burgundy);
+    font-weight: 600;
+    letter-spacing: 3px;
+}
+
+.back_link a img {
+    width: 27px;
+    height: 27px;
+    vertical-align: middle;
+}
+
+.receipt_footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.footer_line {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.thanks {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 600;
+    /* SemiBold-like weight */
+    font-size: 18px;
+    /* Adjusted to 18px */
+    color: var(--color-burgundy);
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.sweet {
+    font-family: 'Pretendard Variable', sans-serif;
+    font-size: 12px;
+    /* Adjusted to 12px */
+    font-weight: 400;
+    /* Regular */
+    color: #888;
+    text-align: center;
+}
+
+/* Zigzag Bottom Edge (Using pattern to cut the paper) */
+.zigzag_bottom {
+    display: block;
+    width: 100%;
+    height: 15px;
+    /* Size of the zigzag spikes */
+    background-color: transparent;
+    /* Remove cream background to eliminate extra block */
+    position: absolute;
+    bottom: -15px;
+    /* Protrude from the bottom of the content */
+    left: 0;
+}
+
+.zigzag_bottom::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -15px;
+    /* Offset to align the pattern over the bottom of the cream content */
+    width: 100%;
+    height: 15px;
+    background: linear-gradient(-45deg, var(--color-burgundy) 7px, transparent 0),
+        linear-gradient(45deg, var(--color-burgundy) 7px, transparent 0);
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    background-size: 14px 15px;
+    /* Sharp spikes */
+}
