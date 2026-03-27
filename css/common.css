@@ -41,12 +41,12 @@
 header {
   width: 100%;
   max-width: 1920px;
-  height: 98px;
-  padding: 0 124px;
+  padding: 18px 125px;
   margin: 0 auto;
   background: rgba(var(--color-ivory-rgb), 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-sizing: border-box;
   position: fixed;
   top: 0;
   left: 0;
@@ -64,16 +64,15 @@ header.hide {
 
 header .inner {
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 header .logo {
-  min-width: 120px;
-  height: 48px;
-  padding: 0 20px;
+  width: 170px;
+  height: 50px;
+  padding: 0;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -85,6 +84,12 @@ header .logo {
   justify-content: center;
   color: #5D3136;
   font-size: 16px;
+}
+
+header .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 header nav {
@@ -128,6 +133,8 @@ header .right ul li a {
 
 header .right ul li img {
   display: block;
+  width: 32px;
+  height: 32px;
   /* 벡터 이미지 색 적용 */
   filter: none;
 }
@@ -211,7 +218,7 @@ footer {
   margin: 0;
   color: #5D3136;
   font-family: "DM Serif Display", serif;
-  font-size: clamp(120px, 17vw, 330px);
+  font-size: 330px;
   font-weight: 400;
   line-height: 100%;
   letter-spacing: 0;
@@ -227,4 +234,113 @@ footer {
   line-height: 130%;
   letter-spacing: 0;
   text-align: center;
+}
+
+@media (max-width: 1024px) {
+  header {
+    padding: 18px 100px;
+  }
+
+  header .logo {
+    width: 165px;
+    height: 48px;
+  }
+
+  header .right {
+    width: auto;
+  }
+
+  header .right ul {
+    gap: 20px;
+    justify-content: flex-end;
+  }
+  
+  header nav {
+    display: none;
+  }
+
+  footer {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+
+  .info_text {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 160%;
+  }
+
+  .brand_text {
+    font-size: 180px;
+    line-height: 100%;
+    font-weight: 400;
+  }
+
+  .copy {
+    font-size: 12px;
+    font-weight: 300;
+  }
+}
+
+@media (max-width: 402px) {
+  header {
+    padding: 18px 20px;
+  }
+
+  header .inner {
+    justify-content: space-between;
+  }
+
+  header .logo {
+    width: 105px;
+    height: 34px;
+  }
+
+  header .right {
+    width: auto;
+  }
+
+  header .right ul {
+    gap: 0;
+  }
+
+  header .right ul li:first-child {
+    display: none;
+  }
+
+  header .right ul li img {
+    width: 28px;
+    height: 28px;
+  }
+
+  footer {
+    padding: 55px 20px;
+  }
+
+  .sns_list {
+    gap: 30px;
+  }
+
+  .sns_list a,
+  .sns_list img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .info_text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+  }
+
+  .brand_text {
+    font-size: 80px;
+    line-height: 100%;
+    font-weight: 400;
+  }
+
+  .copy {
+    font-size: 13px;
+    font-weight: 200;
+  }
 }
