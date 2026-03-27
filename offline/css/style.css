@@ -147,8 +147,8 @@
     object-fit: cover;
     border-radius: 40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-    transition: opacity 0.3s ease;
-    /* For smooth opacity changes if not handled by GSAP */
+    transition: filter 0.3s ease;
+    /* For smooth filter changes if not handled by GSAP */
 }
 
 /* Initial stacking order for JS Carousel */
@@ -156,21 +156,21 @@
 .card4 {
     z-index: 3;
     transform: translate(0, 0) rotate(0deg) scale(1);
-    opacity: 1;
+    filter: blur(0px) grayscale(0);
 }
 
 .card2,
 .card5 {
     z-index: 1;
     transform: translate(100px, 40px) rotate(15deg) scale(0.85);
-    opacity: 0.7;
+    filter: blur(2px) grayscale(0.5);
 }
 
 .card3,
 .card6 {
     z-index: 2;
     transform: translate(-100px, 40px) rotate(-15deg) scale(0.85);
-    opacity: 0.7;
+    filter: blur(2px) grayscale(0.5);
 }
 
 .factory .right_content,
@@ -368,6 +368,14 @@
     /* Space between title and images */
 }
 
+/* initial state for gallery entrance animation */
+.gal_maintitle,
+.gal_subtext,
+.gallery .find_store {
+    opacity: 0;
+    transform: translateY(100px);
+}
+
 .gal_maintitle {
     font-family: var(--font-title, 'DM Serif Display'), serif;
     font-weight: 400;
@@ -398,7 +406,7 @@
     font-weight: 500;
     font-size: 22px;
     color: var(--sub_bg2_c);
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .gallery .find_store:hover {
@@ -465,8 +473,7 @@
 }
 
 .ticker_top {
-    background: #252121;
-    /* very dark brown/black */
+    background: #2F2324;
     padding: 30px 0;
     z-index: 2;
 }
@@ -516,24 +523,24 @@
 
 .ticker_text_black {
     font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
-    font-weight: 900;
+    font-weight: 700;
     /* Black */
-    font-size: 150px;
+    font-size: 120px;
     color: #b8a7a8;
     /* grayish color from image */
     padding-right: 50px;
-    line-height: 1;
+    line-height: 1.3;
 }
 
 .ticker_text_regular {
     font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
     font-weight: 400;
     /* Regular */
-    font-size: 50px;
+    font-size: 40px;
     color: #4a4a4a;
     /* dark gray */
     padding-right: 50px;
-    line-height: 1;
+    line-height: 1.3;
 }
 
 /* ===================== */
