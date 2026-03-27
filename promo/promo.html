@@ -4,55 +4,363 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simmons</title>
+    <title>Support &amp; Events</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-    <!-- 나의 css -->
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- 나의 js -->
     <script src="js/main.js"></script>
 </head>
-
 
 <body>
     <div class="wrap">
         <header>
             <div class="inner">
-                <h1 class="logo">
-                    <a href="#">SIMMONS</a>
-                </h1>
-
-                <nav class="nav">
-                    <a href="#">About Us</a>
-                    <a href="#">Products</a>
-                    <a href="#">Sleep Solution</a>
-                    <a href="#">Visit</a>
-                    <a href="#">Contact us</a>
+                <div class="logo">
+                    <img src="../icon/logo.svg" alt="simmons">
+                </div>
+                <nav>
+                    <ul class="gnb">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Sleep Solution</a></li>
+                        <li><a href="#">Visit</a></li>
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
                 </nav>
-
                 <div class="right">
-                    <button type="button" class="icon_btn search" aria-label="search">
-                        <img src="../icon/search.svg" alt="search">
-                    </button>
-                    <button type="button" class="icon_btn menu" aria-label="menu">
-                        <img src="../icon/menu.svg" alt="menu">
-                    </button>
+                    <ul>
+                        <li><a href="#"><img src="../icon/search.svg" alt="Search"></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt="Open menu"></a></li>
+                    </ul>
                 </div>
             </div>
         </header>
 
         <main>
+            <div class="main_visual">
+                <div class="main_visual_inner">
+                    <img class="main_visual_object object_phone" src="../img/promo_main_visual_img_1.png"
+                        alt="Vintage phone object">
+                    <img class="main_visual_object object_bell" src="../img/promo_main_visual_img_2.png"
+                        alt="Bell object">
+                    <img class="main_visual_object object_q" src="../img/promo_main_visual_img_3.png"
+                        alt="Letter Q object">
+                    <img class="main_visual_object object_gift" src="../img/promo_main_visual_img_4.png"
+                        alt="Gift box object">
+                    <h1>Support &amp; Events</h1>
+                </div>
+            </div>
 
+            <section class="event">
+                <div class="inner">
+                    <div class="event_slider">
+                        <div class="event_track">
+                            <div class="event_item">
+                                <img src="../img/promo_con1.png" alt="Promotion image 1">
+                            </div>
+                            <div class="event_item">
+                                <img src="../img/promo_con2.png" alt="Promotion image 2">
+                            </div>
+                            <div class="event_item">
+                                <img src="../img/promo_con3.png" alt="Promotion image 3">
+                            </div>
+                            <div class="event_item">
+                                <img src="../img/promo_con4.png" alt="Promotion image 4">
+                            </div>
+                            <div class="event_item">
+                                <img src="../img/promo_con5.png" alt="Promotion image 5">
+                            </div>
+                            <div class="event_item">
+                                <img src="../img/promo_con6.png" alt="Promotion image 6">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="faq">
+                <div class="inner">
+                    <div class="title">
+                        <h2>FAQ</h2>
+                    </div>
+                    <div class="contents_box">
+                        <div class="left">
+                            <div class="txt_box">
+                                <p>Browse frequently asked questions to find what you need.</p>
+                                <div class="button">
+                                    <a href="#" class="view_all_btn">
+                                        <img src="../icon/promo_view_all_button.svg" alt="View all">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <ul class="accordion">
+                                <li class="accordion_item open">
+                                    <button class="accordion_trigger" type="button">
+                                        <span>Can I use an electric heating pad or heated appliance?</span>
+                                        <span class="accordion_arrow">
+                                            <img class="icon_top" src="../icon/promo_icon_top.svg" alt="Collapse answer">
+                                            <img class="icon_bottom" src="../icon/promo_icon_bottom.svg" alt="Expand answer">
+                                        </span>
+                                    </button>
+                                    <div class="accordion_panel">
+                                        <p>
+                                            Simmons mattresses are made with flame-retardant materials to help ensure
+                                            fire safety. To prevent damage to the materials, use heating appliances only
+                                            at a low temperature below 40&deg;C (104&deg;F) and for short periods.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="accordion_item">
+                                    <button class="accordion_trigger" type="button">
+                                        <span>When is the delivery confirmation call?</span>
+                                        <span class="accordion_arrow">
+                                            <img class="icon_top" src="../icon/promo_icon_top.svg" alt="Collapse answer">
+                                            <img class="icon_bottom" src="../icon/promo_icon_bottom.svg" alt="Expand answer">
+                                        </span>
+                                    </button>
+                                    <div class="accordion_panel">
+                                        <p>
+                                            The delivery confirmation call is typically made one day before your
+                                            scheduled delivery date. The exact timing may vary depending on the local
+                                            delivery center.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="accordion_item">
+                                    <button class="accordion_trigger" type="button">
+                                        <span>Where can I try the mattresses?</span>
+                                        <span class="accordion_arrow">
+                                            <img class="icon_top" src="../icon/promo_icon_top.svg" alt="Collapse answer">
+                                            <img class="icon_bottom" src="../icon/promo_icon_bottom.svg" alt="Expand answer">
+                                        </span>
+                                    </button>
+                                    <div class="accordion_panel">
+                                        <p>
+                                            You can experience Simmons mattresses at selected Simmons Gallery and
+                                            dedicated retail stores. Store availability may differ by region.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li class="accordion_item">
+                                    <button class="accordion_trigger" type="button">
+                                        <span>What's the difference between online &amp; offline models?</span>
+                                        <span class="accordion_arrow">
+                                            <img class="icon_top" src="../icon/promo_icon_top.svg" alt="Collapse answer">
+                                            <img class="icon_bottom" src="../icon/promo_icon_bottom.svg" alt="Expand answer">
+                                        </span>
+                                    </button>
+                                    <div class="accordion_panel">
+                                        <p>
+                                            Online and offline models can differ in fabric, firmness, and showroom
+                                            availability. Some collections are designed exclusively for one sales
+                                            channel.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="review">
+                <div class="inner">
+                    <h2>Review</h2>
+                    <div class="review_box">
+                        <ul class="contents_top">
+                            <li class="review_card">
+                                <img src="../img/promo_review_list1.png" alt="Bedroom review image">
+                                <div class="review_overlay">
+                                    <div class="review_meta">
+                                        <div class="review_profile">
+                                            <span class="review_avatar">
+                                                <img src="../img/promo_review_1.png" alt="Good sleeper profile">
+                                            </span>
+                                            <div class="review_user">
+                                                <strong>Good sleeper</strong>
+                                                <span class="review_stars"
+                                                    aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                            </div>
+                                        </div>
+                                        <span class="review_date">May 14, 2026</span>
+                                    </div>
+                                    <div class="review_txt_box">
+                                        <h3>This has completely changed the way I end my day.</h3>
+                                        <p>What once felt ordinary now feels soothing, restful, and incredibly
+                                            comforting.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="review_card">
+                                <img src="../img/promo_review_list2.png" alt="Mattress review image">
+                                <div class="review_overlay">
+                                    <div class="review_meta">
+                                        <div class="review_profile">
+                                            <span class="review_avatar">
+                                                <img src="../img/promo_review_2.png" alt="Emily R profile">
+                                            </span>
+                                            <div class="review_user">
+                                                <strong>Emily R</strong>
+                                                <span class="review_stars"
+                                                    aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                            </div>
+                                        </div>
+                                        <span class="review_date">May 1, 2026</span>
+                                    </div>
+                                    <div class="review_txt_box">
+                                        <h3>A Noticeable Upgrade in Comfort.</h3>
+                                        <p>This bed feels very comfortable and supportive.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="contents_bottom">
+                            <li class="review_card">
+                                <img src="../img/promo_review_list3.png" alt="Showroom review image">
+                                <div class="review_overlay">
+                                    <div class="review_meta">
+                                        <div class="review_profile">
+                                            <span class="review_avatar">
+                                                <img src="../img/promo_review_3.png" alt="James profile">
+                                            </span>
+                                            <div class="review_user">
+                                                <strong>James</strong>
+                                                <span class="review_stars"
+                                                    aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                            </div>
+                                        </div>
+                                        <span class="review_date">May 15, 2026</span>
+                                    </div>
+                                    <div class="review_txt_box">
+                                        <h3>Better Sleep Every Night.</h3>
+                                        <p>My sleep quality has improved a lot.</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="review_card">
+                                <img src="../img/promo_review_list4.png" alt="Luxury bedroom review image">
+                                <div class="review_overlay">
+                                    <div class="review_meta">
+                                        <div class="review_profile">
+                                            <span class="review_avatar">
+                                                <img src="../img/promo_review_4.png" alt="Ella K profile">
+                                            </span>
+                                            <div class="review_user">
+                                                <strong>Ella K</strong>
+                                                <span class="review_stars"
+                                                    aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                                            </div>
+                                        </div>
+                                        <span class="review_date">May 20, 2026</span>
+                                    </div>
+                                    <div class="review_txt_box">
+                                        <h3>A Great Choice for Restful Sleep.</h3>
+                                        <p>This bed makes my nights more comfortable. It also looks elegant.</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="notice">
+                <div class="inner">
+                    <div class="notice_heading">
+                        <h2>Notice</h2>
+                        <a href="#" class="notice_more">View more <span>&rarr;</span></a>
+                    </div>
+                    <div class="notice_cards">
+                        <a href="#" class="notice_card">
+                            <span class="notice_card_image">
+                                <img src="../img/promo_notice_img_1.png" alt="Pet mattress notice image">
+                            </span>
+                            <span class="notice_card_text">
+                                <strong>The pet mattress has been launched.</strong>
+                                <span>2026.01.30</span>
+                            </span>
+                        </a>
+                        <a href="#" class="notice_card">
+                            <span class="notice_card_image">
+                                <img src="../img/promo_notice_img_2.png" alt="Website renewal notice image">
+                            </span>
+                            <span class="notice_card_text">
+                                <strong>We've renewed the Simmons website.</strong>
+                                <span>2026.02.28</span>
+                            </span>
+                        </a>
+                        <a href="#" class="notice_card">
+                            <span class="notice_card_image">
+                                <img src="../img/promo_notice_img_3.png" alt="Sleep lounge notice image">
+                            </span>
+                            <span class="notice_card_text">
+                                <strong>Sleep Lounge Information</strong>
+                                <span>2026.03.01</span>
+                            </span>
+                        </a>
+                    </div>
+                    <ul class="notice_list">
+                        <li>
+                            <a href="#">
+                                <span class="notice_bullet">&bull;</span>
+                                <span class="notice_title">Sleep Lounge Reservation Notice</span>
+                                <span class="notice_date">2026.03.30</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="notice_bullet">&bull;</span>
+                                <span class="notice_title">Mattress Trial Experience Guide</span>
+                                <span class="notice_date">2026.03.20</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="notice_bullet">&bull;</span>
+                                <span class="notice_title">Complimentary Sleep Kit Notice</span>
+                                <span class="notice_date">2026.02.03</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="notice_bullet">&bull;</span>
+                                <span class="notice_title">Premium Tea Service Information</span>
+                                <span class="notice_date">2026.01.28</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="notice_bullet">&bull;</span>
+                                <span class="notice_title">Store Visit &amp; Reservation Policy</span>
+                                <span class="notice_date">2025.12.20</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="inquiry">
+                <div class="inner">
+                    <h2>Inquiry</h2>
+                    <p>
+                        We're ready to respond to any questions or requests you may have.<br>
+                        Please send us your inquiry, and we'll get back to you as soon as possible.
+                    </p>
+                    <a href="#" class="inquiry_btn">
+                        <img src="../icon/promo_inquiry_button.svg" alt="Send Inquiry">
+                    </a>
+                </div>
+            </section>
         </main>
 
         <footer>
