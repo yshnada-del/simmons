@@ -4,57 +4,598 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simmons</title>
+    <title>Black Lauren_side</title>
+    <!-- 폰트4개  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-    <!-- 나의 css -->
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
+
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
-    <script src="js/main.js"></script>
-</head>
+    <script src="../js/common.js"></script>
+    <script src="./js/main_product.js"></script>
 
+
+</head>
 
 <body>
     <div class="wrap">
+        <!-- header start -->
         <header>
             <div class="inner">
-                <h1 class="logo">
-                    <a href="#">SIMMONS</a>
-                </h1>
+                <div class="logo">
+                    <img src="../icon/logo.svg" alt="simmons">
+                </div>
+                <nav>
+                    <ul class="gnb">
+                        <li><a href="#">About Us</a>
+                        </li>
+                        <li><a href="#">Products</a>
 
-                <nav class="nav">
-                    <a href="#">About Us</a>
-                    <a href="#">Products</a>
-                    <a href="#">Sleep Solution</a>
-                    <a href="#">Visit</a>
-                    <a href="#">Contact us</a>
+                        </li>
+                        <li><a href="#">Sleep Solution</a>
+
+                        </li>
+                        <li><a href="#">Visit</a>
+
+                        </li>
+                        <li><a href="#">Contact us</a>
+                        </li>
+                    </ul><!-- //.gnb -->
                 </nav>
-
                 <div class="right">
-                    <button type="button" class="icon_btn search" aria-label="search">
-                        <img src="../icon/search.svg" alt="search">
-                    </button>
-                    <button type="button" class="icon_btn menu" aria-label="menu">
-                        <img src="../icon/menu.svg" alt="menu">
-                    </button>
+                    <ul>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
+                    </ul>
                 </div>
             </div>
         </header>
+        <!-- //header end -->
 
+        <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
+            <section class="main_product_info">
+                <div class="main_product inner">
+                    <div class="left">
+                        <img src="../img/product_main.png" alt="black lauren">
+                    </div><!-- //.left -->
+                    <div class="right">
+                        <div class="txt_info">
+                            <div class="txt_box">
+                                <p>Beautyrest Black</p>
+                                <h2>Black Lauren</h2>
+                            </div><!-- //.txt_box -->
+                            <div class="price">
+                                <p>5,880$~</p>
+                            </div><!-- //.price -->
+                        </div>
+                        <div class="product_info_wrap">
+                            <div class="list">
+                                <ul class="accordion_list">
+                                    <li class="accordion_item size">
+                                        <div class="accordion_head">
+                                            <p class="accordion_title">Select Size</p>
+                                            <button type="button" class="accordion_btn" aria-label="Toggle accordion">
+                                                <img src="../icon/circle-plus.svg" alt="" class="icon icon_plus">
+                                                <img src="../icon/circle-minus.svg" alt="" class="icon icon_minus">
+                                            </button>
+                                        </div>
 
+                                        <div class="accordion_body">
+                                            <div class="size_box">
+                                                <ul class="size_list">
+                                                    <li class="size_detail">
+                                                        <p class="size_name">SS</p>
+                                                        <p class="size_spec">1,100 x 2,000 x 400 mm</p>
+                                                        <p class="size_price">5,880$</p>
+                                                    </li>
+                                                    <li class="size_detail">
+                                                        <p class="size_name">QE</p>
+                                                        <p class="size_spec">1,500 x 2,000 x 400 mm</p>
+                                                        <p class="size_price">7,639$</p>
+                                                    </li>
+                                                    <li class="size_detail">
+                                                        <p class="size_name">LK</p>
+                                                        <p class="size_spec">1,700 x 2,075 x 400 mm</p>
+                                                        <p class="size_price">9,546$</p>
+                                                    </li>
+                                                    <li class="size_detail">
+                                                        <p class="size_name">KK</p>
+                                                        <p class="size_spec">1,800 x 2,075 x 400 mm</p>
+                                                        <p class="size_price">11,459$</p>
+                                                    </li>
+                                                    <li class="size_detail">
+                                                        <p class="size_name">GK</p>
+                                                        <p class="size_spec">1,900 x 2,075 x 400 mm</p>
+                                                        <p class="size_price">12,602$</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- //.size -->
+
+                                    <li class="accordion_item firmness">
+                                        <div class="accordion_head">
+                                            <p class="accordion_title">Mattress Firmness</p>
+                                            <button type="button" class="accordion_btn" aria-label="Toggle accordion">
+                                                <img src="../icon/circle-plus.svg" alt="" class="icon icon_plus">
+                                                <img src="../icon/circle-minus.svg" alt="" class="icon icon_minus">
+                                            </button>
+                                        </div>
+
+                                        <div class="accordion_body">
+                                            <div class="firmness_box">
+                                                <ul class="firmness_list">
+                                                    <li class="firmness_detail">
+                                                        <div class="level_row">
+                                                            <span class="level_label">Soft</span>
+                                                            <div class="level_meter">
+                                                                <div class="level_cell is_active"></div>
+                                                                <div class="level_cell is_active"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="level_row">
+                                                            <span class="level_label">Regular</span>
+                                                            <div class="level_meter">
+                                                                <div class="level_cell is_active"></div>
+                                                                <div class="level_cell is_active"></div>
+                                                                <div class="level_cell is_active"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="level_row">
+                                                            <span class="level_label">Hard</span>
+                                                            <div class="level_meter">
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                                <div class="level_cell"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- //.firmness -->
+
+                                    <li class="accordion_item promotions">
+                                        <div class="accordion_head">
+                                            <p class="accordion_title">Explore Promotions</p>
+                                            <button type="button" class="accordion_btn" aria-label="Toggle accordion">
+                                                <img src="../icon/circle-plus.svg" alt="" class="icon icon_plus">
+                                                <img src="../icon/circle-minus.svg" alt="" class="icon icon_minus">
+                                            </button>
+                                        </div>
+
+                                        <div class="accordion_body">
+                                            <div class="promotions_box">
+                                                <ul class="promotions_list">
+                                                    <li class="promotions_detail">
+                                                        <p class="promotions_name">Card Benefits - SIMMONS Pay</p>
+                                                        <a href="#" class="promotions_link">Learn More</a>
+                                                    </li>
+                                                    <li class="promotions_detail">
+                                                        <p class="promotions_name">New Member Benefits</p>
+                                                        <a href="#" class="promotions_link">Learn More</a>
+                                                    </li>
+                                                    <li class="promotions_detail">
+                                                        <p class="promotions_name">Exclusive Gifts by Spend</p>
+                                                        <a href="#" class="promotions_link">Learn More</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- //.promotions -->
+
+                                    <li class="accordion_item store_visit">
+                                        <div class="accordion_head">
+                                            <p class="accordion_title">Book a Store Visit</p>
+                                            <button type="button" class="accordion_btn" aria-label="Toggle accordion">
+                                                <img src="../icon/circle-plus.svg" alt="" class="icon icon_plus">
+                                                <img src="../icon/circle-minus.svg" alt="" class="icon icon_minus">
+                                            </button>
+                                        </div>
+
+                                        <div class="accordion_body">
+                                            <div class="store_visit_box">
+                                                <ul class="store_visit_list">
+                                                    <li class="store_visit_detail">
+                                                        <p class="store_visit_name">Sleep Lounge</p>
+                                                        <a href="#" class="store_visit_link">Book Now</a>
+                                                    </li>
+                                                    <li class="store_visit_detail">
+                                                        <p class="store_visit_name">SIMMONS Terrace</p>
+                                                        <a href="#" class="store_visit_link">Book Now</a>
+                                                    </li>
+                                                    <li class="store_visit_detail">
+                                                        <p class="store_visit_name">SIMMONS Factorium</p>
+                                                        <a href="#" class="store_visit_link">Book Now</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- //.store_visit -->
+
+                                    <li class="accordion_item safe">
+                                        <div class="accordion_head">
+                                            <p class="accordion_title">View Safety Certifications</p>
+                                            <button type="button" class="accordion_btn" aria-label="Toggle accordion">
+                                                <img src="../icon/circle-plus.svg" alt="" class="icon icon_plus">
+                                                <img src="../icon/circle-minus.svg" alt="" class="icon icon_minus">
+                                            </button>
+                                        </div>
+
+                                        <div class="accordion_body">
+                                            <div class="view_box">
+                                                <ul class="view_list">
+                                                    <li class="view_detail">
+                                                        <img src="../img/product_safe01.png"
+                                                            alt="Safety certification 1">
+                                                    </li>
+                                                    <li class="view_detail">
+                                                        <img src="../img/product_safe02.png"
+                                                            alt="Safety certification 2">
+                                                    </li>
+                                                    <li class="view_detail">
+                                                        <img src="../img/product_safe03.png"
+                                                            alt="Safety certification 3">
+                                                    </li>
+                                                    <li class="view_detail">
+                                                        <img src="../img/product_safe04.png"
+                                                            alt="Safety certification 4">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </li><!-- //.safe -->
+                                </ul><!-- //.accordion_list -->
+                            </div><!-- //.list -->
+
+                            <div class="product_notice">
+                                <p class="notice_text">• This product is available exclusively at select stores.</p>
+                                <a href="#" class="notice_link">Find a Store -></a>
+                            </div><!-- //.product_notice -->
+                        </div><!-- //.product_info_wrap -->
+                    </div><!-- //.right -->
+                </div><!-- //.main_product -->
+            </section><!-- //.main_product_info -->
+            <section class="innovation">
+                <div class="innovation_inner">
+                    <div class="tit">
+                        <p>In 2025,</p>
+                        <h3>SIMMONS leads a new era of Innovation.</h3>
+                    </div>
+                    <div class="con">
+                        <div class="video">
+                            <video src="../video/list_vid.mp4" autoplay muted loop playsinline preload="auto"></video>
+                        </div>
+                        <div class="view">
+                            <div class="info_text_box">
+                                <ul>
+                                    <li class="card">
+                                        <p>On the occasion of Beautyrest’s 100th anniversary,
+                                            SIMMONS became the first in Korea to apply vanadium
+                                            to POSCO steel wire.</p>
+                                    </li>
+                                    <li class="card">
+                                        <p>Widely used in the aerospace industry,
+                                            vanadium enhances the strength of steel and alloys while delivering
+                                            outstanding thermal stability.Its exceptional flexibility and durability
+                                            allow it to perform under extreme conditions,
+                                            including high pressure and intense heat.</p>
+                                    </li>
+                                    <li class="card">
+                                        <p>Individually responsive support that follows the body’s natural curves.
+                                            Featuring SIMMONS’ original barrel-shaped 7-turn pocket spring system, each
+                                            spring works independently to deliver balanced support, elasticity,
+                                            stability, and lasting durability.</p>
+                                    </li>
+                                </ul>
+                            </div><!-- //.info_text_box -->
+                        </div><!-- //.view -->
+                    </div><!-- //.con -->
+                </div><!-- //.innovation_inner -->
+            </section><!-- //.innovation -->
+            <section class="tech">
+                <div class="tech_inner">
+                    <div class="tit">
+                        <h3>Beautyrest Technology</h3>
+                        <p>Engineered for Perfect Sleep</p>
+                    </div>
+                    <div class="tech_stage">
+                        <div class="tech_layers">
+                            <article class="tech_layer layer-right" data-direction="right">
+                                <div class="tech_copy">
+                                    <h4>Premium Fabric Cover</h4>
+                                    <p>Soft, Breathable Comfort</p>
+                                </div>
+                                <span class="tech_line" aria-hidden="true"></span>
+                                <div class="tech_visual">
+                                    <img src="../img/product_frame01.png" alt="Premium fabric cover layer">
+                                </div>
+                            </article>
+
+                            <article class="tech_layer layer-right" data-direction="right">
+                                <div class="tech_copy">
+                                    <h4>Comfort Foam Layers</h4>
+                                    <p>Adaptive, Pressure-Relieving Layers</p>
+                                </div>
+                                <span class="tech_line" aria-hidden="true"></span>
+                                <div class="tech_visual">
+                                    <img src="../img/product_frame02.png" alt="Comfort foam layers">
+                                </div>
+                            </article>
+
+                            <article class="tech_layer layer-left" data-direction="left">
+                                <div class="tech_visual">
+                                    <img src="../img/product_frame03.png" alt="Pocketed coil spring layer">
+                                </div>
+                                <span class="tech_line" aria-hidden="true"></span>
+                                <div class="tech_copy">
+                                    <h4>Pocketed Coil Spring Advanced Motion Isolation</h4>
+                                    <p>Individually wrapped coils that conform to your body,<br> providing targeted support and minimizing motion transfer</p>
+                                </div>
+                            </article>
+
+                            <article class="tech_layer layer-left" data-direction="left">
+                                <div class="tech_visual">
+                                    <img src="../img/product_frame04.png" alt="Durable support base layer">
+                                </div>
+                                <span class="tech_line" aria-hidden="true"></span>
+                                <div class="tech_copy">
+                                    <h4>Durable Support Base</h4>
+                                    <p>Solid &amp; Stable Foundation</p>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div><!-- //.tech_inner -->
+            </section><!-- //.tech -->
+            <section class="with">
+                <div class="with_inner">
+                    <div class="with_text_box">
+                        <h3>Styled With</h3>
+                        <p>Curated by SIMMONS</p>
+                    </div>
+
+                    <div class="with_gallery">
+                        <article class="with_card with_card_square">
+                            <div class="with_media">
+                                
+                                <img src="../img/product_with01.png" alt="product_with01">
+                                
+                                <button class="with_dot" type="button" style="--dot-top: 42%; --dot-left: 58%;" aria-label="View Francis CORTI details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>Francis CORTI</strong>
+                                            <span>bedding</span>
+                                            <span>285$</span>
+                                        </span>
+                                    </span>
+                                </button>
+
+                                <button class="with_dot" type="button" style="--dot-top: 66%; --dot-left: 24%;" aria-label="View Bergamot Haze details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>Bergamot Haze</strong>
+                                            <span>Diffuser</span>
+                                            <span>33$</span>
+                                        </span>
+                                    </span>
+                                </button>
+
+                                <button class="with_dot" type="button" style="--dot-top: 80%; --dot-left: 40%;" aria-label="View 101 Smart details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>101 Smart</strong>
+                                            <span>Nightstand</span>
+                                            <span>292$</span>
+                                        </span>
+                                    </span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="with_card with_card_square">
+                            <div class="with_media">
+                                <img src="../img/product_with02.png" alt="product_with02">
+                
+
+                                <button class="with_dot" type="button" style="--dot-top: 58%; --dot-left: 30%;" aria-label="View Farnet Brown details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>Farnet Brown</strong>
+                                            <span>Sofa</span>
+                                            <span>1,514$</span>
+                                        </span>
+                                    </span>
+                                </button>
+
+                                <button class="with_dot" type="button" style="--dot-top: 72%; --dot-left: 56%;" aria-label="View Glenda details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>Glenda</strong>
+                                            <span>table</span>
+                                            <span>431$</span>
+                                        </span>
+                                    </span>
+                                </button>
+                            </div>
+                        </article>
+
+                        <article class="with_card with_card_wide">
+                            <div class="with_media">
+                                <img src="../img/product_with03.png" alt="product_with03">
+                                
+
+                                <button class="with_dot" type="button" style="--dot-top: 70%; --dot-left: 32%;" aria-label="View Benedict Cefinn details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>Benedict Cefinn</strong>
+                                            <span>Bedding</span>
+                                            <span>312$</span>
+                                        </span>
+                                    </span>
+                                </button>
+
+                                <button class="with_dot" type="button" style="--dot-top: 72%; --dot-left: 76%;" aria-label="View N32 z2gogomi details">
+                                    <span class="with_hover_card">
+                                        <span class="with_hover_text">
+                                            <strong>N32 z2gogomi</strong>
+                                            <span>Pet Mattress</span>
+                                            <span>219$</span>
+                                        </span>
+                                    </span>
+                                </button>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section><!-- //.with -->
+            <section class="review">
+                <div class="review_inner">
+                    <div class="review_top">
+                        <div class="review_text_box">
+                            <h3>Review</h3>
+                            <p>From Our Customers</p>
+                        </div>
+                        <a href="#" class="review_more">View More</a>
+                    </div>
+
+                    <div class="review_bottom">
+                        <div class="review_left">
+                            <ul class="review_list">
+                                <li class="review_item is_active" data-review-target="review-card-1">
+                                    <a href="#">
+                                        <span class="review_name">James</span>
+                                        <span class="review_excerpt">“Even when I move from side to side ...”</span>
+                                        <span class="review_rating" aria-label="5 stars">★★★★★</span>
+                                        <span class="review_date">2026-03-21</span>
+                                        <img src="../icon/arrow-right.svg" alt="" class="review_arrow">
+                                    </a>
+                                </li>
+                                <li class="review_item" data-review-target="review-card-2">
+                                    <a href="#">
+                                        <span class="review_name">Clare</span>
+                                        <span class="review_excerpt">“I do wish I had gone ...”</span>
+                                        <span class="review_rating" aria-label="4 stars">★★★★</span>
+                                        <span class="review_date">2026-01-18</span>
+                                        <img src="../icon/arrow-right.svg" alt="" class="review_arrow">
+                                    </a>
+                                </li>
+                                <li class="review_item" data-review-target="review-card-3">
+                                    <a href="#">
+                                        <span class="review_name">Robert</span>
+                                        <span class="review_excerpt">“The mattress feels ...”</span>
+                                        <span class="review_rating" aria-label="5 stars">★★★★★</span>
+                                        <span class="review_date">2025-12-30</span>
+                                        <img src="../icon/arrow-right.svg" alt="" class="review_arrow">
+                                    </a>
+                                </li>
+                                <li class="review_item" data-review-target="review-card-4">
+                                    <a href="#">
+                                        <span class="review_name">Emily</span>
+                                        <span class="review_excerpt">“I’m so glad I chose this ...”</span>
+                                        <span class="review_rating" aria-label="5 stars">★★★★★</span>
+                                        <span class="review_date">2025-10-14</span>
+                                        <img src="../icon/arrow-right.svg" alt="" class="review_arrow">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="review_right">
+                            <article class="review_preview_card is_active" id="review-card-1">
+                                <div class="review_preview_media">
+                                    <img src="../img/product_rev_card01.png" alt="James review photo">
+                                </div>
+                                <div class="review_preview_copy">
+                                    <div class="review_preview_topline">
+                                        <span class="review_preview_name">James</span>
+                                        <span class="review_preview_rating" aria-label="5 stars">★★★★★</span>
+                                    </div>
+                                    <div class="review_preview_center">
+                                        <p>Even when I move from side to side, I don’t get any pressure on my lower back, and it has just the right amount of bounce to support me when I get up.</p>
+                                        <p>These days, you usually have to spend around 5,000$ for this level of quality from most bed brands, so I feel like this was a really great purchase.</p>
+                                    </div>
+                                    <div class="review_preview_bottom">2026-03-21</div>
+                                </div>
+                            </article>
+
+                            <article class="review_preview_card" id="review-card-2">
+                                <div class="review_preview_media">
+                                    <img src="../img/product_rev_card02.png" alt="Clare review photo">
+                                </div>
+                                <div class="review_preview_copy">
+                                    <div class="review_preview_topline">
+                                        <span class="review_preview_name">Clare</span>
+                                        <span class="review_preview_rating" aria-label="4 stars">★★★★</span>
+                                    </div>
+                                    <div class="review_preview_center">
+                                        <p>I do wish I had gone with a slightly smaller size for my room, since this bed feels a bit large for the space.</p>
+                                        <p>It looks plush, but the mattress is actually firmer than I expected, which puts less strain on my back, so overall I’m very satisfied.</p>
+                                    </div>
+                                    <div class="review_preview_bottom">2026-01-18</div>
+                                </div>
+                            </article>
+
+                            <article class="review_preview_card" id="review-card-3">
+                                <div class="review_preview_media">
+                                    <img src="../img/product_rev_card03.png" alt="Robert review photo">
+                                </div>
+                                <div class="review_preview_copy">
+                                    <div class="review_preview_topline">
+                                        <span class="review_preview_name">Robert</span>
+                                        <span class="review_preview_rating" aria-label="5 stars">★★★★★</span>
+                                    </div>
+                                    <div class="review_preview_center">
+                                        <p>The mattress feels incredibly sturdy and tall, and being a SIMMONS, it seems to cradle my body just right. No matter how much the person next to me moves, I hardly feel any motion, so sleeping has become much more comfortable.</p>
+                                        <p>I’d definitely love to choose another SIMMONS mattress next time too!</p>
+                                    </div>
+                                    <div class="review_preview_bottom">2025-12-30</div>
+                                </div>
+                            </article>
+
+                            <article class="review_preview_card" id="review-card-4">
+                                <div class="review_preview_media">
+                                    <img src="../img/product_rev_card04.png" alt="Emily review photo">
+                                </div>
+                                <div class="review_preview_copy">
+                                    <div class="review_preview_topline">
+                                        <span class="review_preview_name">Emily</span>
+                                        <span class="review_preview_rating" aria-label="5 stars">★★★★★</span>
+                                    </div>
+                                    <div class="review_preview_center">
+                                        <p>I’m so glad I chose this mattress!! When I moved, I spent a lot of time carefully comparing different options before making a decision.</p>
+                                        <p>As soon as it was installed and I lay down on it, it felt so comfortable and cozy that I almost fell asleep right away. I think my sleep is going to be so much better from now on.</p>
+                                    </div>
+                                    <div class="review_preview_bottom">2025-10-14</div>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </section><!-- //.review -->
         </main>
+        <!-- //main end -->
 
+        <!-- footer start -->
         <footer>
             <div class="footer_inner">
                 <section class="info">
@@ -99,6 +640,7 @@
                 </section>
             </div>
         </footer>
+        <!-- //footer end -->
     </div>
 </body>
 
