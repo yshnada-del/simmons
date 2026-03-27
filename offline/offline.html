@@ -4,57 +4,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simmons</title>
+    <title>offline</title>
+    <!-- 폰트4개  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-    <!-- 나의 css -->
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
+
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
     <script src="js/main.js"></script>
-</head>
+    <script src="../js/common.js"></script>
 
+</head>
 
 <body>
     <div class="wrap">
+        <!-- header start -->
         <header>
             <div class="inner">
-                <h1 class="logo">
-                    <a href="#">SIMMONS</a>
-                </h1>
+                <div class="logo">
+                    <img src="../icon/logo.svg" alt="simmons">
+                </div>
+                <nav>
+                    <ul class="gnb">
+                        <li><a href="#">About Us</a>
+                        </li>
+                        <li><a href="#">Products</a>
 
-                <nav class="nav">
-                    <a href="#">About Us</a>
-                    <a href="#">Products</a>
-                    <a href="#">Sleep Solution</a>
-                    <a href="#">Visit</a>
-                    <a href="#">Contact us</a>
+                        </li>
+                        <li><a href="#">Sleep Solution</a>
+
+                        </li>
+                        <li><a href="#">Visit</a>
+
+                        </li>
+                        <li><a href="#">Contact us</a>
+                        </li>
+                    </ul><!-- //.gnb -->
                 </nav>
-
                 <div class="right">
-                    <button type="button" class="icon_btn search" aria-label="search">
-                        <img src="../icon/search.svg" alt="search">
-                    </button>
-                    <button type="button" class="icon_btn menu" aria-label="menu">
-                        <img src="../icon/menu.svg" alt="menu">
-                    </button>
+                    <ul>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
+                    </ul>
                 </div>
             </div>
         </header>
+        <!-- //header end -->
 
+        <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
+            <section class="offline_main_visual">
+                <div class="inner">
+                    <h2 class="main_title">Experience<br>SIMMONS Offline</h2>
+                    <p class="sub_text">Discover SIMMONS through immersive offline experiences</p>
+                </div>
+            </section>
+            <section class="factory">
+                <!-- Part 1: Cards -->
+                <div class="part_cards">
+                    <div class="inner">
+                        <div class="left_content">
+                            <h3 class="program_title">PROGRAM<br>GUIDE</h3>
+                            <ul class="program_list">
+                                <li>Sleep Research R&D Center</li>
+                                <li>Production System</li>
+                                <li>Observation Tower</li>
+                                <li>Heritage Alley</li>
+                                <li>SIMMONS Terrace</li>
+                            </ul>
+                        </div>
+                        <div class="center_cards">
+                            <div class="card_wrap">
+                                <img src="../img/offline_card1.png" alt="Card 1" class="card card1">
+                                <img src="../img/offline_card2.png" alt="Card 2" class="card card2">
+                                <img src="../img/offline_card3.png" alt="Card 3" class="card card3">
+                            </div>
+                        </div>
+                        <div class="right_content">
+                            <h3 class="operating_title">OPERATING<br>HOURS</h3>
+                            <div class="operating_info">
+                                <p>Monday – Friday, 10:30 AM</p>
+                                <p>One Session Per Day (60 Minutes)</p>
+                            </div>
+                            <a href="#" class="btn_book">Book a Tour <img src="../icon/arrow-right.svg" alt="arrow"
+                                    class="arrow_icon"></a>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Part 2: Title Part -->
+                <div class="part_title">
+                    <div class="inner">
+                        <h2 class="main_title">FACTORY<br>TOUR</h2>
+                        <div class="description_box">
+                            <p class="desc_text">
+                                A Space Where SIMMONS' Technology, Research, And Craftsmanship Come Together, Offering
+                                The True Standard Of Unwavering Comfort Through Its Sleep Research R&D Center And
+                                Proprietary Production System.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 3: Image Part -->
+                <div class="part_image">
+                    <img src="../img/offline_factorium.png" alt="Factorium" class="full_img">
+                </div>
+            </section>
+
+            <!-- terrace section -->
+            <section class="terrace">
+                <!-- Part 1: Cards -->
+                <div class="part_cards">
+                    <div class="inner">
+                        <div class="left_content">
+                            <h3 class="program_title">PROGRAM<br>OVERVIEW</h3>
+                            <ul class="program_list">
+                                <li>Brand Museum</li>
+                                <li>Mattress Lab</li>
+                                <li>Terrace Showroom</li>
+                                <li>Docent Tour</li>
+                            </ul>
+                        </div>
+                        <div class="center_cards">
+                            <div class="card_wrap">
+                                <img src="../img/offline_card4.png" alt="Card 4" class="card card4">
+                                <img src="../img/offline_card5.png" alt="Card 5" class="card card5">
+                                <img src="../img/offline_card6.png" alt="Card 6" class="card card6">
+                            </div>
+                        </div>
+                        <div class="right_content">
+                            <h3 class="operating_title">OPERATING<br>INFORMATION</h3>
+                            <div class="operating_info">
+                                <p>Duration: Approx. 20 Minutes</p>
+                                <p>Closed On National Holidays</p>
+                                <p>Docent Tours Start At The Top<br>Of Every Hour</p>
+                            </div>
+                            <a href="#" class="btn_book">Learn More <img src="../icon/arrow-right.svg" alt="arrow"
+                                    class="arrow_icon"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Title Part (reversed: description left, h2 right) -->
+                <div class="part_title">
+                    <div class="inner">
+                        <div class="description_box">
+                            <p class="desc_text">
+                                A Cultural Space Where You Can Experience SIMMONS' Heritage, Philosophy, And The
+                                Refined
+                                Sensibility The Brand Has Cultivated Over Time Through Exhibitions And Curated Content.
+                            </p>
+                        </div>
+                        <h2 class="main_title">SIMMONS<br>TERRACE</h2>
+                    </div>
+                </div>
+
+                <!-- Part 3: Image Part -->
+                <div class="part_image">
+                    <img src="../img/offline_terrace.png" alt="Simmons Terrace" class="full_img">
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section class="gallery">
+                <div class="gallery_inner">
+                    <div class="gal_title_wrap">
+                        <h2 class="gal_maintitle">SIMMONS GALLERY</h2>
+                        <p class="gal_subtext">
+                            A Space To Discover Your Perfect Sleep Sleep Lounge Experience<br>
+                            Mattress Testing In-Store Purchase Available
+                        </p>
+                        <a href="#" class="btn_book find_store">Find a Store <img src="../icon/arrow-right.svg"
+                                alt="arrow" class="arrow_icon filter_white"></a>
+                    </div>
+
+                    <div class="gal_images">
+                        <img src="../img/offline_gal1.png" alt="Gallery 1" class="gal_img">
+                        <img src="../img/offline_gal2.png" alt="Gallery 2" class="gal_img">
+                        <img src="../img/offline_gal3.png" alt="Gallery 3" class="gal_img">
+                    </div>
+                </div>
+
+                <div class="ticker_wrap">
+                    <div class="ticker_top">
+                        <div class="ticker_track track_right">
+                            <span class="ticker_text_black">Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, </span>
+                            <span class="ticker_text_black">Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, </span>
+                        </div>
+                    </div>
+                    <div class="ticker_bottom">
+                        <div class="ticker_track track_left">
+                            <span class="ticker_text_regular">Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, </span>
+                            <span class="ticker_text_regular">Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, Today Experience Your Sleep, </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Info Section -->
+            <section class="info_sec">
+                <div class="inner">
+                    <a href="#" class="rv_card rv_card1">
+                        <img src="../img/offline_rv1.png" alt="Simmons Gallery Info">
+                    </a>
+                    <a href="#" class="rv_card rv_card2">
+                        <img src="../img/offline_rv2.png" alt="Simmons Terrace Info">
+                    </a>
+                    <a href="#" class="rv_card rv_card3">
+                        <img src="../img/offline_rv3.png" alt="Simmons Factory Tour Info">
+                    </a>
+                </div>
+            </section>
         </main>
+        <!-- //main end -->
 
+        <!-- footer start -->
         <footer>
             <div class="footer_inner">
                 <section class="info">
@@ -99,6 +273,7 @@
                 </section>
             </div>
         </footer>
+        <!-- //footer end -->
     </div>
 </body>
 

@@ -1,1 +1,606 @@
-@charset "utf-8";
+.offline_main_visual {
+    width: 100%;
+    height: 100vh;
+    background: url('../../img/offline_mainvisual.png') no-repeat center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-white, #fff);
+    position: sticky;
+    /* Overlap effect */
+    top: 0;
+    z-index: 1;
+}
+
+.offline_main_visual .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 33px;
+}
+
+.offline_main_visual .main_title {
+    font-family: var(--font-title, 'DM Serif Display'), serif;
+    font-weight: 400;
+    font-size: 172px;
+    line-height: 1;
+    margin: 0;
+    /* initial state for animation */
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.offline_main_visual .sub_text {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 200;
+    /* ExtraLight */
+    font-size: 30px;
+    line-height: 1;
+    margin: 0;
+    /* initial state for animation */
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+/* factory section */
+.factory {
+    width: 100%;
+    /* height: auto; Remove fixed height to accommodate multiple parts */
+    background-color: #F9ECDF;
+    position: relative;
+    z-index: 2;
+    /* Scroll over main visual */
+    overflow-x: hidden;
+    /* Fix horizontal scroll */
+}
+
+.factory .inner,
+.terrace .inner {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+/* Part 1: Cards */
+.part_cards {
+    width: 100%;
+    height: 100vh;
+    /* Keep card part full page */
+    padding: 0 125px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.part_cards .inner {
+    height: 690px;
+    align-items: flex-start;
+    /* left_content top alignment */
+}
+
+.factory .left_content,
+.terrace .left_content {
+    text-align: left;
+    color: var(--sub_bg1_d, #2F2324);
+    z-index: 10;
+    align-self: flex-start;
+    /* Align to top of inner */
+    /* initial state for entrance animation */
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+.factory .program_title,
+.terrace .program_title {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 600;
+    /* Bold */
+    font-size: 60px;
+    line-height: 1.2;
+    margin-bottom: 30px;
+}
+
+.factory .program_list,
+.terrace .program_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.factory .program_list li,
+.terrace .program_list li {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 400;
+    /* Medium */
+    font-size: 32px;
+    line-height: 1.3;
+    color: var(--sub_bg3_b, #4F4F4F);
+    /* opacity: 0.6; */
+}
+
+.factory .center_cards,
+.terrace .center_cards {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 440px;
+    height: 690px;
+}
+
+.factory .card_wrap,
+.terrace .card_wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.factory .card,
+.terrace .card {
+    position: absolute;
+    width: 430px;
+    height: 623px;
+    object-fit: cover;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+    /* For smooth opacity changes if not handled by GSAP */
+}
+
+/* Initial stacking order for JS Carousel */
+.card1,
+.card4 {
+    z-index: 3;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 1;
+}
+
+.card2,
+.card5 {
+    z-index: 1;
+    transform: translate(100px, 40px) rotate(15deg) scale(0.85);
+    opacity: 0.7;
+}
+
+.card3,
+.card6 {
+    z-index: 2;
+    transform: translate(-100px, 40px) rotate(-15deg) scale(0.85);
+    opacity: 0.7;
+}
+
+.factory .right_content,
+.terrace .right_content {
+    text-align: right;
+    color: var(--sub_bg1_d, #2F2324);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 14px;
+    z-index: 10;
+    align-self: flex-end;
+    /* right_content bottom alignment */
+    /* initial state for entrance animation */
+    opacity: 0;
+    transform: translateY(100px);
+}
+
+.factory .operating_title,
+.terrace .operating_title {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 600;
+    /* SemiBold */
+    font-size: 38px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.factory .operating_info,
+.terrace .operating_info {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 200;
+    /* Light */
+    font-size: 26px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+
+.factory .btn_book,
+.terrace .btn_book {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 40px;
+    border: 2px solid var(--sub_bg1_d, #2F2324);
+    border-radius: 8px;
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--sub_bg1_d, #2F2324);
+    margin-top: 95px;
+    /* 14 + 101 = 115 total gap from info */
+    transition: all 0.3s ease;
+}
+
+.factory .btn_book:hover,
+.terrace .btn_book:hover {
+    background-color: var(--sub_bg1_d, #2F2324);
+    color: #fff;
+}
+
+.factory .btn_book:hover .arrow_icon,
+.terrace .btn_book:hover .arrow_icon {
+    filter: invert(1);
+}
+
+.factory .btn_book .arrow_icon,
+.terrace .btn_book .arrow_icon {
+    width: 24px;
+    height: auto;
+}
+
+/* Part 2: Title Part */
+.part_title {
+    width: 100%;
+    padding: 300px 125px 0;
+    /* 300px gap from card part */
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.part_title .inner {
+    align-items: flex-start;
+    justify-content: center;
+    gap: 150px;
+}
+
+.part_title .main_title {
+    font-family: var(--font-title, 'DM Serif Display'), serif;
+    font-weight: 400;
+    font-size: 150px;
+    line-height: .9;
+    color: var(--sub_bg1_d, #2F2324);
+    margin: 0;
+}
+
+
+
+.part_title .desc_text {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 300;
+    /* Regular */
+    font-size: 27px;
+    line-height: 1.5;
+    padding-top: 18px;
+    color: #B8A7A8;
+    text-align: right;
+}
+
+/* Part 3: Image Part */
+.part_image {
+    width: 100%;
+    overflow: hidden;
+}
+
+.factory .part_image {
+    height: 805px;
+}
+
+.terrace .part_image {
+    height: 715px;
+}
+
+.part_image .full_img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ===================== */
+/* Terrace Section       */
+/* ===================== */
+
+/* Overlap scroll (same as factory, sits above) */
+.terrace {
+    width: 100%;
+    background-color: var(--sub_bg1_b, #F6F3EE);
+    position: relative;
+    z-index: 3;
+    /* one higher than factory */
+    overflow-x: hidden;
+}
+
+/* .terrace .left_content / .right_content → shared with .factory above */
+
+/* Terrace card stacking (card4/5/6) handled above */
+
+/* Part 2: Title — description LEFT, h2 RIGHT */
+.terrace .part_title .inner {
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.terrace .part_title .description_box {
+    max-width: 800px;
+}
+
+.terrace .part_title .desc_text {
+    text-align: left;
+}
+
+.terrace .part_title .main_title {
+    text-align: right;
+}
+
+/* ===================== */
+/* Gallery Section       */
+/* ===================== */
+.gallery {
+    padding: 300px 0;
+    background-color: var(--main_bg1);
+    /* Deep reddish brown matching the image */
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    z-index: 4;
+    /* Higher than terrace */
+}
+
+.gallery_inner {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.gal_title_wrap {
+    text-align: center;
+    margin-bottom: 150px;
+    /* Space between title and images */
+}
+
+.gal_maintitle {
+    font-family: var(--font-title, 'DM Serif Display'), serif;
+    font-weight: 400;
+    /* Regular */
+    font-size: 157px;
+    line-height: 1;
+    margin: 0 0 20px 0;
+}
+
+.gal_subtext {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 400;
+    /* Regular */
+    font-size: 36px;
+    color: #e2d9d9;
+    line-height: 1.4;
+    margin-bottom: 60px;
+}
+
+.gallery .find_store {
+    display: inline-flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px 40px;
+    border: 2px solid var(--sub_bg2_c);
+    border-radius: 8px;
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    color: var(--sub_bg2_c);
+    transition: all 0.3s ease;
+}
+
+.gallery .find_store:hover {
+    background-color: var(--sub_bg2_c);
+    color: var(--main_bg1);
+}
+
+.gallery .find_store .arrow_icon {
+    width: 18px;
+    height: auto;
+    transition: filter 0.3s ease;
+}
+
+/* Base state: if the SVG icon is black, we invert to white here */
+.filter_white {
+    filter: brightness(0) invert(1);
+}
+
+/* Hover state: turn back to default (blackish) or invert again depending on SVG color */
+.gallery .find_store:hover .filter_white {
+    filter: brightness(0);
+    /* Make black to match text */
+}
+
+.gal_images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    height: 702px;
+    /* Fixed height so hover doesn't push layout */
+    margin-bottom: 80px;
+}
+
+.gal_img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 40px;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+}
+
+.gal_img:hover {
+    width: 702px;
+    height: 702px;
+}
+
+/* Ticker Section */
+.ticker_wrap {
+    margin-top: 300px;
+    width: 110vw;
+    margin-left: -5vw;
+    transform: rotate(-5deg);
+    /* Slanted layout */
+    display: flex;
+    flex-direction: column;
+}
+
+.ticker_top,
+.ticker_bottom {
+    width: 100%;
+    overflow: hidden;
+}
+
+.ticker_top {
+    background: #252121;
+    /* very dark brown/black */
+    padding: 30px 0;
+    z-index: 2;
+}
+
+.ticker_bottom {
+    background: #fff;
+    padding: 20px 0;
+    z-index: 1;
+}
+
+.ticker_track {
+    display: flex;
+    white-space: nowrap;
+    width: max-content;
+}
+
+.track_right {
+    animation: marquee_right 60s linear infinite;
+}
+
+.track_left {
+    animation: marquee_left 80s linear infinite;
+    /* Slower as requested */
+}
+
+/* Left -> Right : from -50% to 0 */
+@keyframes marquee_right {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Right -> Left : from 0 to -50% */
+@keyframes marquee_left {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.ticker_text_black {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 900;
+    /* Black */
+    font-size: 150px;
+    color: #b8a7a8;
+    /* grayish color from image */
+    padding-right: 50px;
+    line-height: 1;
+}
+
+.ticker_text_regular {
+    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
+    font-weight: 400;
+    /* Regular */
+    font-size: 50px;
+    color: #4a4a4a;
+    /* dark gray */
+    padding-right: 50px;
+    line-height: 1;
+}
+
+/* ===================== */
+/* Info Section          */
+/* ===================== */
+.info_sec {
+    padding-top: 300px;
+    background-color: var(--main_bg1, #5d3939);
+    position: relative;
+    z-index: 5;
+    overflow: hidden;
+}
+
+.info_sec .inner {
+    width: 100%;
+    /* max-width: 1600px; */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.rv_card {
+    display: block;
+    position: relative;
+    /* width: 100% 제거: 이미지가 원래 가진 본연의 크기 그대로 나오게 하기 위해 */
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), z-index 0s;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+}
+
+.rv_card img {
+    display: block;
+    width: auto;
+    max-width: none;
+    /* 컨테이너나 화면에 맞춰 줄어들지 않도록 제한 해제 */
+    height: auto;
+}
+
+/* Base starting transforms */
+.rv_card1 {
+    transform: translateX(0) rotate(10deg);
+    z-index: 1;
+}
+
+.rv_card2 {
+    transform: translateX(-2%) rotate(-7deg);
+    margin-top: -50%;
+    z-index: 2;
+}
+
+.rv_card3 {
+    transform: translateX(3%) rotate(3deg);
+    margin-top: -55%;
+    margin-bottom: -10%;
+    /* 이 값으로 하단 잘리는 정도를 조절할 수 있습니다 */
+    z-index: 3;
+}
+
+/* Hover effects */
+.rv_card1:hover {
+    transform: translateX(0) rotate(10deg) translateY(-40px);
+}
+
+.rv_card2:hover {
+    transform: translateX(-2%) rotate(-7deg) translateY(-40px);
+}
+
+.rv_card3:hover {
+    transform: translateX(3%) rotate(3deg) translateY(-40px);
+}
