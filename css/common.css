@@ -64,6 +64,8 @@ header.hide {
 
 header .inner {
   width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -105,6 +107,7 @@ header .gnb {
 
 header .gnb li a {
   display: block;
+  padding: 12px 8px;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 400;
@@ -207,6 +210,10 @@ footer {
   word-break: keep-all;
 }
 
+.info_text_mobile {
+  display: none;
+}
+
 .bottom {
   width: 100%;
   display: flex;
@@ -238,7 +245,7 @@ footer {
 
 @media (max-width: 1024px) {
   header {
-    padding: 18px 100px;
+    padding: 0 100px;
   }
 
   header .logo {
@@ -246,12 +253,17 @@ footer {
     height: 48px;
   }
 
+  header .inner {
+    min-height: 86px;
+    padding: 0;
+  }
+
   header .right {
     width: auto;
   }
 
   header .right ul {
-    gap: 20px;
+    gap: 54px;
     justify-content: flex-end;
   }
   
@@ -260,8 +272,17 @@ footer {
   }
 
   footer {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding: 48px 100px;
+  }
+
+  .sns_list {
+    gap: 24px;
+  }
+
+  .sns_list a,
+  .sns_list img {
+    width: 40px;
+    height: 40px;
   }
 
   .info_text {
@@ -279,15 +300,18 @@ footer {
   .copy {
     font-size: 12px;
     font-weight: 300;
+    text-align: center;
   }
 }
 
-@media (max-width: 402px) {
+@media (max-width: 430px) {
   header {
     padding: 18px 20px;
   }
 
   header .inner {
+    min-height: auto;
+    padding: 0;
     justify-content: space-between;
   }
 
@@ -301,6 +325,7 @@ footer {
   }
 
   header .right ul {
+    justify-content: flex-end;
     gap: 0;
   }
 
@@ -328,6 +353,14 @@ footer {
   }
 
   .info_text {
+    display: none;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 160%;
+  }
+
+  .info_text_mobile {
+    display: block;
     font-size: 14px;
     font-weight: 400;
     line-height: 160%;
@@ -342,5 +375,6 @@ footer {
   .copy {
     font-size: 13px;
     font-weight: 200;
+    text-align: center;
   }
 }
