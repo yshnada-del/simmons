@@ -8,14 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mainVisual = document.querySelector('.main_visual');
     const bannerWrap = document.querySelector('.banner_all');
-    const storyKeywordConfigs = [
-        { selector: '.story_keyword_classic', x: 32, y: -16, rotation: -2.4, scale: 1.06, duration: 3.6 },
-        { selector: '.story_keyword_enduring', x: -42, y: 22, rotation: 2.1, scale: 1.1, duration: 4.2 },
-        { selector: '.story_keyword_heritage', x: 28, y: 18, rotation: -1.8, scale: 1.05, duration: 3.9 },
-        { selector: '.story_keyword_timeless', x: -34, y: -20, rotation: 2.5, scale: 1.08, duration: 4.5 },
-        { selector: '.story_keyword_elegant', x: 38, y: -14, rotation: -2.2, scale: 1.09, duration: 4 },
-        { selector: '.story_keyword_prestige', x: -30, y: 20, rotation: 1.9, scale: 1.07, duration: 4.4 }
-    ];
 
     if (!prefersReducedMotion && mainVisual && bannerWrap) {
         const primaryBanner = bannerWrap.querySelector('.banner_primary');
@@ -121,51 +113,208 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (!prefersReducedMotion) {
-        const storyKeywords = [];
+    const storySection = document.querySelector('.story');
+    const storyInner = document.querySelector('.story_inner');
+    const storyImage = document.querySelector('.story_image');
+    const storyKeywords = Array.from(document.querySelectorAll('.story_keyword'));
+    const storyButton = document.querySelector('.story_button');
 
-        storyKeywordConfigs.forEach((config) => {
-            const keyword = document.querySelector(config.selector);
+    if (storySection && storyInner && storyImage && storyKeywords.length && storyButton) {
+        const setStoryFloatingState = (isActive) => {
+            storyInner.classList.toggle('is-keywords-active', isActive);
+        };
 
-            if (!keyword) {
-                return;
-            }
+        const storyKeywordStates = storyKeywords.map((keyword) => ({
+            element: keyword,
+            baseOpacity: Number.parseFloat(window.getComputedStyle(keyword).opacity) || 1
+        }));
 
-            const baseOpacity = Number.parseFloat(window.getComputedStyle(keyword).opacity) || 1;
-
-            storyKeywords.push({ element: keyword, baseOpacity });
-
-            gsap.to(keyword, {
-                x: config.x,
-                y: config.y,
-                rotation: config.rotation,
-                scale: config.scale,
-                duration: config.duration,
-                repeat: -1,
-                yoyo: true,
-                ease: 'sine.inOut'
+        const setReducedMotionStoryState = () => {
+            gsap.set(storyKeywords, {
+                clearProps: 'x,y,scale,autoAlpha'
             });
+
+            gsap.set(storyButton, {
+                clearProps: 'y,autoAlpha'
+            });
+
+            setStoryFloatingState(true);
+        };
+
+        const buildStoryScroll = () => {
+            ScrollTrigger.getById('story-pin')?.kill();
+            gsap.killTweensOf(storyKeywords);
+            gsap.killTweensOf(storyButton);
+
+            const imageRect = storyImage.getBoundingClientRect();
+            const imageCenterX = imageRect.left + (imageRect.width / 2);
+            const imageCenterY = imageRect.top + (imageRect.height / 2);
+
+            storyKeywordStates.forEach(({ element }) => {
+                const keyword = element;
+                const keywordRect = keyword.getBoundingClientRect();
+                const keywordCenterX = keywordRect.left + (keywordRect.width / 2);
+                const keywordCenterY = keywordRect.top + (keywordRect.height / 2);
+
+                gsap.set(keyword, {
+                    x: imageCenterX - keywordCenterX,
+                    y: imageCenterY - keywordCenterY,
+                    scale: 0.72,
+                    autoAlpha: 0
+                });
+            });
+
+            gsap.set(storyButton, {
+                y: 180,
+                autoAlpha: 0
+            });
+
+            setStoryFloatingState(false);
+
+            const storyTimeline = gsap.timeline({
+                defaults: {
+                    ease: 'none'
+                },
+                scrollTrigger: {
+                    id: 'story-pin',
+                    trigger: storySection,
+                    start: 'top top',
+                    end: () => `+=${window.innerHeight * 2}`,
+                    scrub: 1,
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    onUpdate: (self) => {
+                        setStoryFloatingState(self.progress >= 0.42);
+                    },
+                    onLeaveBack: () => {
+                        setStoryFloatingState(false);
+                    }
+                }
+            });
+
+            storyTimeline
+                .to(storyKeywords, {
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.38,
+                    stagger: {
+                        each: 0.03,
+                        from: 'center'
+                    }
+                }, 0.06)
+                .to(storyKeywords, {
+                    autoAlpha: (index) => storyKeywordStates[index].baseOpacity,
+                    duration: 0.12,
+                    stagger: 0.02
+                }, 0.4)
+                .to(storyButton, {
+                    y: 0,
+                    autoAlpha: 1,
+                    duration: 0.26,
+                    ease: 'power2.out'
+                }, 0.68);
+        };
+
+        if (prefersReducedMotion) {
+            setReducedMotionStoryState();
+        } else {
+            buildStoryScroll();
+            window.addEventListener('resize', () => {
+                buildStoryScroll();
+                ScrollTrigger.refresh();
+            });
+        }
+    }
+
+    const sleepSolutionSection = document.querySelector('.sleep_solution');
+    const sleepSolutionLabel = document.querySelector('.sleep_solution .txt_s');
+    const sleepSolutionTitle = document.querySelector('.sleep_solution .txt_b');
+    const sleepSolutionTitleText = sleepSolutionTitle?.querySelector('span');
+    const sleepSolutionImage = document.querySelector('.sleep_solution .img');
+    const sleepSolutionButton = document.querySelector('.sleep_solution .btn_test');
+
+    if (!prefersReducedMotion && sleepSolutionSection && sleepSolutionTitle && sleepSolutionTitleText && sleepSolutionImage) {
+        const sleepSolutionChars = Array.from(sleepSolutionTitleText.textContent || '').map((character) => {
+            const charSpan = document.createElement('span');
+            charSpan.className = 'sleep_solution_char';
+            charSpan.textContent = character === ' ' ? '\u00A0' : character;
+            return charSpan;
         });
 
-        if (storyKeywords.length) {
-            const opacityTimeline = gsap.timeline({
-                repeat: -1,
-                repeatDelay: 0.18
-            });
+        sleepSolutionTitleText.textContent = '';
+        sleepSolutionTitleText.setAttribute('aria-label', 'Sleep Solution');
+        sleepSolutionChars.forEach((charSpan) => {
+            sleepSolutionTitleText.appendChild(charSpan);
+        });
 
-            storyKeywords.forEach(({ element, baseOpacity }) => {
-                opacityTimeline
-                    .to(element, {
-                        opacity: 0,
-                        duration: 0.6,
-                        ease: 'sine.inOut'
-                    })
-                    .to(element, {
-                        opacity: baseOpacity,
-                        duration: 0.75,
-                        ease: 'sine.inOut'
-                    });
+        if (sleepSolutionLabel) {
+            gsap.set(sleepSolutionLabel, {
+                autoAlpha: 0,
+                y: -28
             });
+        }
+
+        gsap.set(sleepSolutionTitle, {
+            autoAlpha: 1
+        });
+
+        gsap.set(sleepSolutionChars, {
+            autoAlpha: 0,
+            y: -220
+        });
+
+        gsap.set(sleepSolutionImage, {
+            autoAlpha: 0,
+            y: -320
+        });
+
+        if (sleepSolutionButton) {
+            gsap.set(sleepSolutionButton, {
+                autoAlpha: 0,
+                y: 36
+            });
+        }
+
+        const sleepSolutionTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: sleepSolutionSection,
+                start: 'top 72%',
+                toggleActions: 'play none none none'
+            },
+            defaults: {
+                ease: 'power3.out'
+            }
+        });
+
+        if (sleepSolutionLabel) {
+            sleepSolutionTimeline.to(sleepSolutionLabel, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.45
+            });
+        }
+
+        sleepSolutionTimeline
+            .to(sleepSolutionChars, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.82,
+                stagger: 0.05
+            }, sleepSolutionLabel ? '-=0.08' : 0)
+            .to(sleepSolutionImage, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 1.05
+            }, '+=0.04');
+
+        if (sleepSolutionButton) {
+            sleepSolutionTimeline.to(sleepSolutionButton, {
+                autoAlpha: 1,
+                y: 0,
+                duration: 0.5
+            }, '-=0.3');
         }
     }
 
@@ -188,27 +337,40 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentProductRotation = productBaseRotation - (activeProductIndex * productRotationStep);
         let isProductAnimating = false;
         let isProductDragging = false;
-        let dragStartAngle = 0;
-        let dragStartRotation = currentProductRotation;
+        let dragStartVector = null;
+        let dragStartPoint = null;
+        const productDragStepThreshold = 24;
 
         const normalizeProductIndex = (index) => {
             return ((index % productSlides.length) + productSlides.length) % productSlides.length;
         };
 
-        const getPointerAngle = (clientX, clientY) => {
+        const getPointerVector = (clientX, clientY) => {
             const rect = productCircle.getBoundingClientRect();
             const centerX = rect.left + rect.width / 2;
             const centerY = rect.top + rect.height / 2;
-            return Math.atan2(clientY - centerY, clientX - centerX) * (180 / Math.PI);
+            return {
+                x: clientX - centerX,
+                y: clientY - centerY
+            };
         };
 
-        const getNearestProductIndex = (rotation) => {
-            const rawIndex = Math.round((productBaseRotation - rotation) / productRotationStep);
-            return normalizeProductIndex(rawIndex);
-        };
+        const getTangentialDragDelta = (startVector, startPoint, nextPoint) => {
+            if (!startVector || !startPoint || !nextPoint) {
+                return 0;
+            }
 
-        const getRotationForIndex = (index) => {
-            return productBaseRotation - (normalizeProductIndex(index) * productRotationStep);
+            const vectorLength = Math.hypot(startVector.x, startVector.y);
+            if (!vectorLength) {
+                return 0;
+            }
+
+            const tangentX = -startVector.y / vectorLength;
+            const tangentY = startVector.x / vectorLength;
+            const moveX = nextPoint.x - startPoint.x;
+            const moveY = nextPoint.y - startPoint.y;
+
+            return (moveX * tangentX) + (moveY * tangentY);
         };
 
         const getDirectionBetweenProducts = (fromIndex, toIndex) => {
@@ -245,16 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
             productCirclePieces.forEach((piece) => {
                 piece.classList.toggle('is-active', piece.dataset.piece === activePiece);
             });
-        };
-
-        const syncActiveProductToRotation = () => {
-            const nextIndex = getNearestProductIndex(currentProductRotation);
-
-            if (nextIndex !== activeProductIndex && !isProductAnimating) {
-                activeProductIndex = nextIndex;
-                setProductSlideState(nextIndex);
-                setProductPieceState(nextIndex);
-            }
         };
 
         const transitionProductSlide = (nextIndex, direction) => {
@@ -328,11 +480,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const rotateToProductIndex = (targetIndex, direction = getDirectionBetweenProducts(activeProductIndex, targetIndex)) => {
             const normalizedIndex = normalizeProductIndex(targetIndex);
-            const targetRotation = getRotationForIndex(normalizedIndex);
 
             if (isProductAnimating || productSlides.length < 2) {
                 return;
             }
+
+            if (normalizedIndex === activeProductIndex) {
+                return;
+            }
+
+            const targetRotation = currentProductRotation - (direction * productRotationStep);
 
             isProductAnimating = true;
             gsap.to(productCircleRotor, {
@@ -368,14 +525,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const handleProductPointerMove = (event) => {
-            if (!isProductDragging) {
+            if (!isProductDragging || isProductAnimating) {
                 return;
             }
 
-            const nextAngle = getPointerAngle(event.clientX, event.clientY);
-            const deltaAngle = nextAngle - dragStartAngle;
-            setProductWheelRotation(dragStartRotation + deltaAngle);
-            syncActiveProductToRotation();
+            const nextPoint = {
+                x: event.clientX,
+                y: event.clientY
+            };
+            const tangentialDelta = getTangentialDragDelta(dragStartVector, dragStartPoint, nextPoint);
+
+            if (Math.abs(tangentialDelta) < productDragStepThreshold) {
+                return;
+            }
+
+            isProductDragging = false;
+            productCircle.classList.remove('is-dragging');
+            window.removeEventListener('pointermove', handleProductPointerMove);
+            window.removeEventListener('pointerup', handleProductPointerUp);
+
+            if (tangentialDelta > 0) {
+                rotateToProductIndex(activeProductIndex + 1, 1);
+            } else {
+                rotateToProductIndex(activeProductIndex - 1, -1);
+            }
         };
 
         const handleProductPointerUp = () => {
@@ -385,7 +558,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             isProductDragging = false;
             productCircle.classList.remove('is-dragging');
-            syncActiveProductToRotation();
 
             window.removeEventListener('pointermove', handleProductPointerMove);
             window.removeEventListener('pointerup', handleProductPointerUp);
@@ -397,13 +569,271 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             isProductDragging = true;
-            dragStartAngle = getPointerAngle(event.clientX, event.clientY);
-            dragStartRotation = currentProductRotation;
+            dragStartVector = getPointerVector(event.clientX, event.clientY);
+            dragStartPoint = {
+                x: event.clientX,
+                y: event.clientY
+            };
             productCircle.classList.add('is-dragging');
             productCircle.setPointerCapture?.(event.pointerId);
 
             window.addEventListener('pointermove', handleProductPointerMove);
             window.addEventListener('pointerup', handleProductPointerUp);
+        });
+    }
+
+    const reviewSection = document.querySelector('.review');
+    const reviewCards = Array.from(document.querySelectorAll('.review_card'));
+    const reviewCardSlots = Array.from(document.querySelectorAll('.review_card_slot'));
+    const reviewFilterOptions = Array.from(document.querySelectorAll('.review_filter_option'));
+    const reviewHeadings = Array.from(document.querySelectorAll('.review_card_heading'));
+    const reviewImages = Array.from(document.querySelectorAll('.review_card_image img'));
+
+    if (reviewSection && reviewCards.length && reviewCardSlots.length && reviewFilterOptions.length && reviewHeadings.length && reviewImages.length) {
+        const reviewContentByCategory = {
+            products: {
+                heading: 'PRODUCTS<br>REVIEW',
+                images: [
+                    {
+                        src: '../img/main_review.png',
+                        alt: 'Products review mattress photo 1'
+                    },
+                    {
+                        src: '../img/main_review2.png',
+                        alt: 'Products review mattress photo 2'
+                    },
+                    {
+                        src: '../img/main_review3.png',
+                        alt: 'Products review mattress photo 3'
+                    },
+                    {
+                        src: '../img/main_review4.png',
+                        alt: 'Products review mattress photo 4'
+                    }
+                ]
+            },
+            offline: {
+                heading: 'OFFLINE<br>REVIEW',
+                images: [
+                    {
+                        src: '../img/main_review5.png',
+                        alt: 'Offline review photo 1'
+                    },
+                    {
+                        src: '../img/main_review6.png',
+                        alt: 'Offline review photo 2'
+                    },
+                    {
+                        src: '../img/main_review7.png',
+                        alt: 'Offline review photo 3'
+                    },
+                    {
+                        src: '../img/main_review8.png',
+                        alt: 'Offline review photo 4'
+                    }
+                ]
+            }
+        };
+        let activeReviewCategory = reviewFilterOptions.find((option) => option.classList.contains('is-active'))?.dataset.reviewCategory || 'products';
+        let isReviewTransitioning = false;
+        let reviewScrollTrigger = null;
+        let reviewCardTravelDistances = [];
+        const reviewCardBaseRotations = reviewCards.map((card) => {
+            const computedTransform = window.getComputedStyle(card).transform;
+
+            if (computedTransform && computedTransform !== 'none') {
+                const matrixValues = computedTransform.match(/matrix\(([^)]+)\)/);
+
+                if (matrixValues) {
+                    const [a, b] = matrixValues[1].split(',').map((value) => Number.parseFloat(value.trim()));
+                    return Math.round(Math.atan2(b, a) * (180 / Math.PI) * 100) / 100;
+                }
+            }
+
+            return 0;
+        });
+        const reviewRevealStepDelay = 0.2;
+        const reviewRevealStepDuration = 0.28;
+        let reviewLastProgress = 0;
+
+        const measureReviewCardTravelDistances = () => {
+            reviewCards.forEach((card, index) => {
+                gsap.set(card, {
+                    x: 0,
+                    y: 0,
+                    rotate: reviewCardBaseRotations[index],
+                    rotateY: 0,
+                    scale: 1,
+                    opacity: 1
+                });
+            });
+
+            reviewCardTravelDistances = reviewCardSlots.map((slot) => {
+                const rect = slot.getBoundingClientRect();
+                return Math.max(window.innerWidth - rect.left + 96, 220);
+            });
+        };
+
+        const setReviewCardVisualState = (card, index, progress) => {
+            const clampedProgress = gsap.utils.clamp(0, 1, progress);
+            const easedProgress = gsap.parseEase('sine.inOut')(clampedProgress);
+            const baseRotation = reviewCardBaseRotations[index];
+            const travelDistance = reviewCardTravelDistances[index] || (window.innerWidth * 0.9);
+
+            gsap.set(card, {
+                x: gsap.utils.interpolate(travelDistance, 0, easedProgress),
+                y: 0,
+                opacity: 1,
+                rotate: baseRotation,
+                scale: 1
+            });
+        };
+
+        const syncReviewCardsToScroll = (progress = 0) => {
+            reviewLastProgress = gsap.utils.clamp(0, 1, progress);
+            const revealProgress = reviewLastProgress;
+
+            reviewCards.forEach((card, index) => {
+                const delay = index * reviewRevealStepDelay;
+                const cardProgress = gsap.utils.clamp(0, 1, (revealProgress - delay) / reviewRevealStepDuration);
+                setReviewCardVisualState(card, index, cardProgress);
+            });
+        };
+
+        const startReviewCardMotion = (progress = reviewScrollTrigger?.progress || reviewLastProgress || 0) => {
+            syncReviewCardsToScroll(progress);
+            reviewCards.forEach((card) => {
+                gsap.set(card, {
+                    rotateY: 0
+                });
+            });
+        };
+
+        const syncReviewCategoryToCurrentScroll = () => {
+            const nextProgress = reviewScrollTrigger?.progress ?? reviewLastProgress ?? 0;
+            reviewLastProgress = gsap.utils.clamp(0, 1, nextProgress);
+            startReviewCardMotion(reviewLastProgress);
+        };
+
+        const setReviewCategory = (category) => {
+            const nextContent = reviewContentByCategory[category];
+
+            if (!nextContent) {
+                return;
+            }
+
+            reviewFilterOptions.forEach((option) => {
+                const isActive = option.dataset.reviewCategory === category;
+                option.classList.toggle('is-active', isActive);
+                option.setAttribute('aria-pressed', String(isActive));
+            });
+
+            reviewHeadings.forEach((heading) => {
+                heading.innerHTML = nextContent.heading;
+            });
+
+            reviewImages.forEach((image, index) => {
+                const nextImage = nextContent.images[index];
+
+                if (!nextImage) {
+                    return;
+                }
+
+                image.src = nextImage.src;
+                image.alt = nextImage.alt;
+            });
+        };
+
+        const animateReviewCategoryChange = (category) => {
+            if (isReviewTransitioning || category === activeReviewCategory) {
+                return;
+            }
+
+            isReviewTransitioning = true;
+
+            let completedCards = 0;
+
+            reviewCards.forEach((card, index) => {
+                const baseRotation = reviewCardBaseRotations[index];
+
+                gsap.killTweensOf(card);
+                gsap.set(card, {
+                    rotate: baseRotation,
+                    rotateY: 0
+                });
+
+                gsap.timeline({
+                    delay: index * 0.08,
+                    onComplete: () => {
+                        completedCards += 1;
+
+                        if (completedCards === reviewCards.length) {
+                            activeReviewCategory = category;
+                            isReviewTransitioning = false;
+                            reviewScrollTrigger?.refresh();
+                            syncReviewCategoryToCurrentScroll();
+                        }
+                    }
+                })
+                    .to(card, {
+                        rotateY: 90,
+                        duration: 0.34,
+                        ease: 'power2.in'
+                    })
+                    .add(() => {
+                        if (index === 0) {
+                            setReviewCategory(category);
+                        }
+
+                        gsap.set(card, {
+                            rotate: baseRotation,
+                            rotateY: -90
+                        });
+                    })
+                    .to(card, {
+                        rotateY: 0,
+                        duration: 0.42,
+                        ease: 'power2.out'
+                    });
+            });
+        };
+
+        setReviewCategory(activeReviewCategory);
+        measureReviewCardTravelDistances();
+        startReviewCardMotion();
+
+        reviewScrollTrigger = ScrollTrigger.create({
+            id: 'review-cards-sequence',
+            trigger: reviewSection,
+            start: 'top top',
+            end: () => `+=${window.innerHeight * 3.4}`,
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                if (isReviewTransitioning) {
+                    return;
+                }
+
+                syncReviewCardsToScroll(self.progress);
+            },
+            onRefreshInit: () => {
+                measureReviewCardTravelDistances();
+            },
+            onRefresh: (self) => {
+                if (isReviewTransitioning) {
+                    return;
+                }
+
+                syncReviewCardsToScroll(self.progress);
+            }
+        });
+
+        reviewFilterOptions.forEach((option) => {
+            option.addEventListener('click', () => {
+                animateReviewCategoryChange(option.dataset.reviewCategory);
+            });
         });
     }
 
@@ -551,4 +981,97 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    const eventSection = document.querySelector('.event');
+    const eventCards = Array.from(document.querySelectorAll('.event_card'));
+    const eventMoreButton = document.querySelector('.event_more_button');
+
+    if (!prefersReducedMotion && eventSection && eventCards.length === 3 && eventMoreButton) {
+        const eventCardOrders = [
+            [0, 1, 2],
+            [1, 2, 0],
+            [2, 0, 1],
+            [0, 1, 2]
+        ];
+        const eventDropDistance = 150;
+        const eventCardPhasePortion = 0.78;
+        let eventLastProgress = 0;
+
+        const setEventStackOrder = (order) => {
+            order.forEach((cardIndex, stackIndex) => {
+                eventCards[cardIndex].style.zIndex = String(3 - stackIndex);
+            });
+        };
+
+        const renderEventSequence = (progress) => {
+            eventLastProgress = gsap.utils.clamp(0, 1, progress);
+            const cardPhaseProgress = gsap.utils.clamp(0, 1, eventLastProgress / eventCardPhasePortion);
+
+            if (cardPhaseProgress >= 1) {
+                eventCards.forEach((card) => {
+                    gsap.set(card, { y: 0 });
+                });
+                setEventStackOrder(eventCardOrders[eventCardOrders.length - 1]);
+            } else {
+                const segmentCount = eventCardOrders.length - 1;
+                const scaledProgress = gsap.utils.clamp(0, segmentCount - 0.0001, cardPhaseProgress * segmentCount);
+                const segmentIndex = Math.floor(scaledProgress);
+                const localProgress = scaledProgress - segmentIndex;
+                const currentOrder = eventCardOrders[segmentIndex];
+                const nextOrder = eventCardOrders[segmentIndex + 1];
+                const movingCard = eventCards[currentOrder[0]];
+
+                eventCards.forEach((card) => {
+                    gsap.set(card, { y: 0 });
+                });
+
+                if (localProgress < 0.5) {
+                    setEventStackOrder(currentOrder);
+                    gsap.set(movingCard, {
+                        y: gsap.utils.interpolate(0, eventDropDistance, localProgress * 2)
+                    });
+                } else {
+                    setEventStackOrder(nextOrder);
+                    gsap.set(movingCard, {
+                        y: gsap.utils.interpolate(eventDropDistance, 0, (localProgress - 0.5) * 2)
+                    });
+                }
+            }
+
+            const buttonProgress = gsap.utils.clamp(0, 1, (eventLastProgress - eventCardPhasePortion) / (1 - eventCardPhasePortion));
+            gsap.set(eventMoreButton, {
+                autoAlpha: buttonProgress,
+                y: gsap.utils.interpolate(48, 0, buttonProgress)
+            });
+        };
+
+        gsap.set(eventMoreButton, {
+            autoAlpha: 0,
+            y: 48
+        });
+
+        renderEventSequence(0);
+
+        ScrollTrigger.create({
+            id: 'event-card-drop-sequence',
+            trigger: eventSection,
+            start: 'top top',
+            end: () => `+=${window.innerHeight * 2.6}`,
+            scrub: 1,
+            pin: true,
+            pinSpacing: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+                renderEventSequence(self.progress);
+            },
+            onRefreshInit: () => {
+                renderEventSequence(eventLastProgress);
+            },
+            onRefresh: (self) => {
+                renderEventSequence(self.progress);
+            }
+        });
+    }
+
 });

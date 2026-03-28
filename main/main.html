@@ -18,6 +18,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="../js/common.js"></script>
     <script src="js/main.js"></script>
 </head>
 
@@ -105,34 +106,40 @@
                             <article class="banner banner_secondary">
                                 <div class="banner_secondary_copy">
                                     <p class="banner_brand">SIMMONS</p>
-                                    <p class="banner_headline">N32 2026 NEW COLLECTION</p>
+                                    <a href="../list/list.html" class="banner_headline_link">
+                                        <p class="banner_headline">N32 2026 NEW COLLECTION</p>
+                                    </a>
                                     <div class="banner_divider" aria-hidden="true"></div>
                                 </div>
-                                <div class="banner_arrow">
+                                <a href="../list/list.html" class="banner_arrow" aria-label="N32 2026 NEW COLLECTION 바로가기">
                                     <img src="../icon/chevron-right.svg" alt="">
-                                </div>
+                                </a>
                             </article>
 
                             <article class="banner banner_secondary">
                                 <div class="banner_secondary_copy">
                                     <p class="banner_brand">SIMMONS</p>
-                                    <p class="banner_headline banner_headline_single">1st Anniversary | Official Store</p>
+                                    <a href="../promo/promo.html" class="banner_headline_link">
+                                        <p class="banner_headline banner_headline_single">1st Anniversary | Official Store</p>
+                                    </a>
                                     <div class="banner_divider" aria-hidden="true"></div>
                                 </div>
-                                <div class="banner_arrow">
+                                <a href="../promo/promo.html" class="banner_arrow" aria-label="1st Anniversary Official Store 바로가기">
                                     <img src="../icon/chevron-right.svg" alt="">
-                                </div>
+                                </a>
                             </article>
 
                             <article class="banner banner_secondary">
                                 <div class="banner_secondary_copy">
                                     <p class="banner_brand">SIMMONS</p>
-                                    <p class="banner_headline banner_headline_single">March Official Store Promotion</p>
+                                    <a href="../promo/promo.html" class="banner_headline_link">
+                                        <p class="banner_headline banner_headline_single">March Official Store Promotion</p>
+                                    </a>
                                     <div class="banner_divider" aria-hidden="true"></div>
                                 </div>
-                                <div class="banner_arrow">
+                                <a href="../promo/promo.html" class="banner_arrow" aria-label="March Official Store Promotion 바로가기">
                                     <img src="../icon/chevron-right.svg" alt="">
-                                </div>
+                                </a>
                             </article>
                         </div>
                     </div>
@@ -152,12 +159,12 @@
                 <div class="story_inner">
                     <h2 class="story_title">Simmons Story</h2>
 
-                    <p class="story_keyword story_keyword_classic">Classic</p>
-                    <p class="story_keyword story_keyword_enduring">Enduring</p>
-                    <p class="story_keyword story_keyword_heritage">Heritage</p>
-                    <p class="story_keyword story_keyword_timeless">Timeless</p>
-                    <p class="story_keyword story_keyword_elegant">Elegant</p>
-                    <p class="story_keyword story_keyword_prestige">Prestige</p>
+                    <p class="story_keyword story_keyword_classic"><span class="story_keyword_label">Classic</span></p>
+                    <p class="story_keyword story_keyword_enduring"><span class="story_keyword_label">Enduring</span></p>
+                    <p class="story_keyword story_keyword_heritage"><span class="story_keyword_label">Heritage</span></p>
+                    <p class="story_keyword story_keyword_timeless"><span class="story_keyword_label">Timeless</span></p>
+                    <p class="story_keyword story_keyword_elegant"><span class="story_keyword_label">Elegant</span></p>
+                    <p class="story_keyword story_keyword_prestige"><span class="story_keyword_label">Prestige</span></p>
 
                     <div class="story_image">
                         <img src="../img/main_story.png" alt="Simmons Story bed">
@@ -649,10 +656,16 @@
                         </div>
                     </div>
 
-                    <button type="button" class="review_filter_button">
-                        <span class="review_filter_button_on">Products</span>
-                        <span class="review_filter_button_txt">Offline</span>
-                    </button>
+                    <div class="review_filter_button" role="tablist" aria-label="Review category">
+                        <button type="button" class="review_filter_option is-active" data-review-category="products"
+                            aria-pressed="true">
+                            Products
+                        </button>
+                        <button type="button" class="review_filter_option" data-review-category="offline"
+                            aria-pressed="false">
+                            Offline
+                        </button>
+                    </div>
                 </div>
             </section>
 
