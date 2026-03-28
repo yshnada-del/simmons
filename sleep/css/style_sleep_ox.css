@@ -169,9 +169,16 @@ body.yor_n_page {
     line-height: normal;
 }
 
+.ox_box .yes,
+.ox_box .no {
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.22s ease, transform 0.22s ease;
+}
+
 .ox_box .yes {
     font-weight: 400;
-    color: var(--color-burgundy);
+    color: rgba(var(--color-burgundy-rgb), 0.1);
 }
 
 .ox_box .slash {
@@ -181,6 +188,22 @@ body.yor_n_page {
 
 .ox_box .no {
     font-weight: 400;
+    color: rgba(var(--color-burgundy-rgb), 0.1);
+}
+
+.ox_box .yes:hover {
+    color: var(--color-burgundy);
+}
+
+.ox_box:has(.yes:hover) .no {
+    color: rgba(var(--color-burgundy-rgb), 0.1);
+}
+
+.ox_box .no:hover {
+    color: var(--color-burgundy);
+}
+
+.ox_box:has(.no:hover) .yes {
     color: rgba(var(--color-burgundy-rgb), 0.1);
 }
 
@@ -228,9 +251,9 @@ body.yor_n_page {
     gap: 10px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 16px;
-    text-transform: uppercase;
-    transition: all 0.3s;
+    font-size: 18px;
+    letter-spacing: 3px;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
 }
 
 .start_btn.outline {
@@ -253,6 +276,21 @@ body.yor_n_page {
 
 .btn_icon_l {
     transform: rotate(180deg);
+}
+
+.start_btn.outline .btn_icon,
+.start_btn.outline .btn_icon_l {
+    filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
+}
+
+.start_btn.fill .btn_icon,
+.start_btn.fill .btn_icon_l {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%) hue-rotate(302deg) brightness(102%) contrast(92%);
+}
+
+.btn_link:hover .start_btn {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* 6. Extra Divider (Separate thin bar) */

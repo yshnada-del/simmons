@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+html {
+    scrollbar-gutter: stable;
+}
+
+header.sleep_header_locked {
+    transform: translateY(-100%);
+}
+
 /* Reset & Base */
 * {
     margin: 0;
@@ -128,45 +136,10 @@ main {
     z-index: 4;
     /* Higher than top_bar (2) */
 
-    /* Animation: Rollout from Top (No Vibration) */
-    transform: translateY(-101%);
-    animation: printOut 3s cubic-bezier(0.1, 0, 0.3, 1) 0.5s forwards;
+    transform: translateY(-99.6%);
+    transform-origin: top center;
+    will-change: transform;
     /* Zigzag will be positioned absolutely inside or outside */
-}
-
-/* Main Print Animation: Single Pause at 1/3 for Realistic Rollout */
-@keyframes printOut {
-    0% {
-        transform: translateY(-101%);
-    }
-
-    20% {
-        transform: translateY(-80%);
-    }
-
-    25% {
-        transform: translateY(-80%);
-    }
-
-    45% {
-        transform: translateY(-55%);
-    }
-
-    50% {
-        transform: translateY(-55%);
-    }
-
-    70% {
-        transform: translateY(-25%);
-    }
-
-    75% {
-        transform: translateY(-25%);
-    }
-
-    100% {
-        transform: translateY(0);
-    }
 }
 
 /* Content Appearance (Immediate with Paper) */
@@ -380,6 +353,8 @@ main {
     /* Changed to transparent */
     border: 2px solid var(--color-grey-333);
     /* Added 2px outline */
+    transition: background-color 0.22s ease, transform 0.22s ease;
+    transform-origin: center;
 }
 
 .level_cell.is_active {
@@ -481,6 +456,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 12px;
     font-family: 'Pretendard Variable', sans-serif;
     font-size: 18px;
     /* Adjusted to 18px */
@@ -489,8 +465,14 @@ main {
     letter-spacing: 3px;
     /* Adjusted to 3px */
     cursor: pointer;
-    transition: all 0.2s;
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
     border: 2px solid var(--color-burgundy);
+}
+
+.receipt_btn img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
 }
 
 .receipt_btn.fill {
@@ -498,8 +480,8 @@ main {
     color: var(--color-cream);
 }
 
-.receipt_btn.fill:hover {
-    opacity: 0.9;
+.receipt_btn.fill img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%) hue-rotate(302deg) brightness(102%) contrast(92%);
 }
 
 .receipt_btn.outline {
@@ -507,8 +489,13 @@ main {
     color: var(--color-burgundy);
 }
 
-.receipt_btn.outline:hover {
-    background-color: rgba(var(--color-burgundy-rgb), 0.05);
+.receipt_btn.outline img {
+    filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
+}
+
+.receipt_btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .back_link {
@@ -523,12 +510,18 @@ main {
     color: var(--color-burgundy);
     font-weight: 600;
     letter-spacing: 3px;
+    transition: transform 0.22s ease;
 }
 
 .back_link a img {
-    width: 27px;
-    height: 27px;
-    vertical-align: middle;
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+      filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
+  }
+
+.back_link a:hover {
+    transform: translateY(-1px);
 }
 
 .receipt_footer {
