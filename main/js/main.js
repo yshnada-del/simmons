@@ -4,10 +4,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     gsap.registerPlugin(ScrollTrigger);
+    ScrollTrigger.config({
+        autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load,resize'
+    });
+
+    const scheduleScrollTriggerRefresh = (() => {
+        let refreshTween = null;
+
+        return () => {
+            refreshTween?.kill();
+            refreshTween = gsap.delayedCall(0.18, () => {
+                ScrollTrigger.refresh();
+            });
+        };
+    })();
+
+    window.addEventListener('resize', scheduleScrollTriggerRefresh);
+    window.addEventListener('orientationchange', scheduleScrollTriggerRefresh);
+    window.visualViewport?.addEventListener('resize', scheduleScrollTriggerRefresh);
+    document.fonts?.ready?.then(() => {
+        scheduleScrollTriggerRefresh();
+    });
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mainVisual = document.querySelector('.main_visual');
     const bannerWrap = document.querySelector('.banner_all');
+    const secondaryBannerCards = Array.from(document.querySelectorAll('.banner_secondary'));
+    const floatButtons = document.querySelector('.float_buttons');
+    const floatTopButton = document.querySelector('.float_button_top');
+
+    if (floatButtons && floatButtons.parentElement !== document.body) {
+        document.body.appendChild(floatButtons);
+    }
+
+    if (floatTopButton) {
+        floatTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+        });
+    }
+
+    secondaryBannerCards.forEach((banner) => {
+        const destinationLink = banner.querySelector('.banner_headline_link, .banner_arrow');
+        const href = destinationLink?.getAttribute('href');
+
+        if (!href) {
+            return;
+        }
+
+        banner.setAttribute('role', 'link');
+        banner.setAttribute('tabindex', '0');
+
+        const navigateToBannerLink = () => {
+            window.location.href = href;
+        };
+
+        banner.addEventListener('click', (event) => {
+            if (event.target instanceof Element && event.target.closest('a')) {
+                return;
+            }
+
+            navigateToBannerLink();
+        });
+
+        banner.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                navigateToBannerLink();
+            }
+        });
+    });
 
     if (!prefersReducedMotion && mainVisual && bannerWrap) {
         const primaryBanner = bannerWrap.querySelector('.banner_primary');
@@ -118,6 +186,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const storyImage = document.querySelector('.story_image');
     const storyKeywords = Array.from(document.querySelectorAll('.story_keyword'));
     const storyButton = document.querySelector('.story_button');
+    const storyButtonTracePath = 'M305.877 69.4646C296.287 74.0146 282.977 73.7346 273.517 68.5946C263.387 63.0946 262.537 57.5946 253.317 51.1046C244.747 45.0746 233.567 45.2046 225.157 51.3746C221.087 54.3646 217.707 57.6246 214.137 61.2946C207.547 68.0746 198.617 72.4846 188.847 72.4846L36.3969 72.5146C20.1769 72.5146 6.05689 61.9146 1.47689 46.3846C-3.03311 31.1146 3.02689 14.5546 16.3669 5.68456C21.0469 2.56456 26.6769 0.144564 32.5869 0.154564L191.477 0.224564C200.257 0.224564 208.337 5.55456 214.037 11.4246C217.657 15.1546 220.677 18.4146 224.727 21.3746C232.697 27.1946 242.747 27.9246 251.387 23.0546C255.817 20.5546 259.287 16.9946 262.497 13.0746C270.177 3.67456 281.367 -0.825436 293.547 0.124564C308.007 1.24456 320.287 10.9546 325.037 24.6646C331.167 42.3346 322.707 61.4946 305.877 69.4846V69.4646ZM310.447 7.95456C296.217 -2.13544 276.267 -0.0354366 264.847 12.9746C262.717 15.4046 260.947 17.6146 258.617 19.8146C248.257 29.5346 234.327 30.8846 222.917 22.1646C219.057 19.2146 216.047 16.0246 212.667 12.4846C206.977 6.52456 199.477 1.84456 190.817 1.82456L147.977 1.68456L79.4669 1.66456L33.7669 1.69456C29.3469 1.69456 24.9769 2.97456 21.0969 4.92456C8.38689 11.3046 0.646894 24.6646 1.83689 39.1246C3.21689 55.9146 17.4869 70.6946 34.8569 70.7046L189.577 70.8046C198.497 70.8046 206.677 66.2046 212.737 60.3446C216.047 57.1446 218.817 54.3846 222.247 51.4546C231.027 43.9646 243.487 42.8346 253.377 49.1046C257.607 51.7846 260.957 55.3146 264.307 59.0846C270.537 66.0946 278.837 70.4446 288.317 71.0746C308.137 72.3846 325.317 56.3646 325.327 36.3346C325.327 25.0546 319.657 14.4846 310.447 7.95456Z';
+
+    if (storyButton && !storyButton.querySelector('.story_button_trace')) {
+        const traceSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        const tracePathBeige = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const tracePathBurgundy = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        traceSvg.setAttribute('class', 'story_button_trace');
+        traceSvg.setAttribute('viewBox', '0 0 328 73');
+        traceSvg.setAttribute('aria-hidden', 'true');
+        tracePathBeige.setAttribute('class', 'story_button_trace_beige');
+        tracePathBeige.setAttribute('d', storyButtonTracePath);
+        tracePathBurgundy.setAttribute('class', 'story_button_trace_burgundy');
+        tracePathBurgundy.setAttribute('d', storyButtonTracePath);
+        traceSvg.append(tracePathBeige, tracePathBurgundy);
+        storyButton.appendChild(traceSvg);
+
+        const traceLength = tracePathBeige.getTotalLength();
+        storyButton.style.setProperty('--story-button-trace-length', `${traceLength}`);
+    }
 
     if (storySection && storyInner && storyImage && storyKeywords.length && storyButton) {
         const setStoryFloatingState = (isActive) => {
@@ -324,8 +411,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const productCircleRotor = document.querySelector('.product_circle_rotor');
     const productCirclePieces = Array.from(document.querySelectorAll('.product_circle_piece'));
     const productSlides = Array.from(document.querySelectorAll('.product_slide'));
+    const productCircleBadgeLabel = document.querySelector('.product_circle_badge span');
     const productPrevButton = document.querySelector('.product_scroll_arrow_up');
     const productNextButton = document.querySelector('.product_scroll_arrow_down');
+    const productDetailArrows = Array.from(document.querySelectorAll('.product_arrow'));
 
     if (productSection && productCircle && productCircleSvg && productCircleRotor && productSlides.length) {
         const productBaseRotation = 0;
@@ -340,9 +429,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let dragStartVector = null;
         let dragStartPoint = null;
         const productDragStepThreshold = 24;
+        const productBadgeGroups = ['Black', 'Black', 'Black', 'Mattress', 'Mattress'];
 
         const normalizeProductIndex = (index) => {
             return ((index % productSlides.length) + productSlides.length) % productSlides.length;
+        };
+
+        const getProductBadgeLabel = (index) => {
+            return productBadgeGroups[normalizeProductIndex(index)] || 'Black';
         };
 
         const getPointerVector = (clientX, clientY) => {
@@ -401,6 +495,55 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        const setProductBadgeState = (nextIndex, direction = 1, animate = false) => {
+            if (!productCircleBadgeLabel) {
+                return;
+            }
+
+            const nextLabel = getProductBadgeLabel(nextIndex);
+            const currentLabel = productCircleBadgeLabel.textContent?.trim() || '';
+
+            if (!animate || currentLabel === nextLabel || prefersReducedMotion) {
+                gsap.killTweensOf(productCircleBadgeLabel);
+                productCircleBadgeLabel.textContent = nextLabel;
+                gsap.set(productCircleBadgeLabel, {
+                    autoAlpha: 1,
+                    y: 0,
+                    x: 70
+                });
+                return;
+            }
+
+            const outgoingY = direction > 0 ? -18 : 18;
+            const incomingY = direction > 0 ? 18 : -18;
+
+            gsap.killTweensOf(productCircleBadgeLabel);
+            gsap.timeline({
+                defaults: {
+                    overwrite: 'auto'
+                }
+            })
+                .to(productCircleBadgeLabel, {
+                    autoAlpha: 0,
+                    y: outgoingY,
+                    duration: 0.16,
+                    ease: 'power2.in'
+                })
+                .add(() => {
+                    productCircleBadgeLabel.textContent = nextLabel;
+                    gsap.set(productCircleBadgeLabel, {
+                        y: incomingY,
+                        x: 70
+                    });
+                })
+                .to(productCircleBadgeLabel, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.26,
+                    ease: 'power2.out'
+                });
+        };
+
         const setProductPieceState = (nextIndex) => {
             const activePiece = productActivePieceOrder[normalizeProductIndex(nextIndex)];
 
@@ -412,6 +555,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const transitionProductSlide = (nextIndex, direction) => {
             if (nextIndex === activeProductIndex) {
                 setProductSlideState(nextIndex);
+                setProductBadgeState(nextIndex, direction, false);
                 isProductAnimating = false;
                 return;
             }
@@ -457,6 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     activeProductIndex = nextIndex;
                     setProductSlideState(nextIndex);
                     setProductPieceState(nextIndex);
+                    setProductBadgeState(nextIndex, direction, false);
                     isProductAnimating = false;
                 }
             })
@@ -489,6 +634,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            setProductBadgeState(normalizedIndex, direction, true);
+
             const targetRotation = currentProductRotation - (direction * productRotationStep);
 
             isProductAnimating = true;
@@ -511,16 +658,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
         setProductSlideState(activeProductIndex);
         setProductPieceState(activeProductIndex);
+        setProductBadgeState(activeProductIndex, 1, false);
+
+        productDetailArrows.forEach((arrow) => {
+            arrow.setAttribute('role', 'link');
+            arrow.setAttribute('tabindex', '0');
+            arrow.setAttribute('aria-label', 'Go to product page');
+
+            const navigateToProductPage = () => {
+                window.location.href = '../product/product.html';
+            };
+
+            arrow.addEventListener('click', navigateToProductPage);
+            arrow.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    navigateToProductPage();
+                }
+            });
+        });
 
         if (productPrevButton) {
             productPrevButton.addEventListener('click', () => {
-                rotateToProductIndex(activeProductIndex - 1, -1);
+                rotateToProductIndex(activeProductIndex + 1, 1);
             });
         }
 
         if (productNextButton) {
             productNextButton.addEventListener('click', () => {
-                rotateToProductIndex(activeProductIndex + 1, 1);
+                rotateToProductIndex(activeProductIndex - 1, -1);
             });
         }
 
@@ -545,9 +711,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.removeEventListener('pointerup', handleProductPointerUp);
 
             if (tangentialDelta > 0) {
-                rotateToProductIndex(activeProductIndex + 1, 1);
-            } else {
                 rotateToProductIndex(activeProductIndex - 1, -1);
+            } else {
+                rotateToProductIndex(activeProductIndex + 1, 1);
             }
         };
 
@@ -568,6 +734,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            if (event.target instanceof Element && event.target.closest('.product_scroll_arrow')) {
+                return;
+            }
+
             isProductDragging = true;
             dragStartVector = getPointerVector(event.clientX, event.clientY);
             dragStartPoint = {
@@ -583,257 +753,346 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const reviewSection = document.querySelector('.review');
-    const reviewCards = Array.from(document.querySelectorAll('.review_card'));
-    const reviewCardSlots = Array.from(document.querySelectorAll('.review_card_slot'));
-    const reviewFilterOptions = Array.from(document.querySelectorAll('.review_filter_option'));
-    const reviewHeadings = Array.from(document.querySelectorAll('.review_card_heading'));
-    const reviewImages = Array.from(document.querySelectorAll('.review_card_image img'));
+    const reviewStage = reviewSection?.querySelector('.review_stage');
+    const reviewSets = reviewSection ? Array.from(reviewSection.querySelectorAll('.review_set')) : [];
+    const reviewFilterOptions = reviewSection ? Array.from(reviewSection.querySelectorAll('.review_filter_option')) : [];
+    const reviewFilterButton = reviewSection?.querySelector('.review_filter_button');
 
-    if (reviewSection && reviewCards.length && reviewCardSlots.length && reviewFilterOptions.length && reviewHeadings.length && reviewImages.length) {
-        const reviewContentByCategory = {
-            products: {
-                heading: 'PRODUCTS<br>REVIEW',
-                images: [
-                    {
-                        src: '../img/main_review.png',
-                        alt: 'Products review mattress photo 1'
-                    },
-                    {
-                        src: '../img/main_review2.png',
-                        alt: 'Products review mattress photo 2'
-                    },
-                    {
-                        src: '../img/main_review3.png',
-                        alt: 'Products review mattress photo 3'
-                    },
-                    {
-                        src: '../img/main_review4.png',
-                        alt: 'Products review mattress photo 4'
-                    }
-                ]
-            },
-            offline: {
-                heading: 'OFFLINE<br>REVIEW',
-                images: [
-                    {
-                        src: '../img/main_review5.png',
-                        alt: 'Offline review photo 1'
-                    },
-                    {
-                        src: '../img/main_review6.png',
-                        alt: 'Offline review photo 2'
-                    },
-                    {
-                        src: '../img/main_review7.png',
-                        alt: 'Offline review photo 3'
-                    },
-                    {
-                        src: '../img/main_review8.png',
-                        alt: 'Offline review photo 4'
-                    }
-                ]
-            }
+    if (reviewSection && reviewStage && reviewSets.length && reviewFilterButton) {
+        const reviewSpreadRotationsByCategory = {
+            products: [-10, -4, 4, 10],
+            offline: [-14, 10, -6, 9]
         };
         let activeReviewCategory = reviewFilterOptions.find((option) => option.classList.contains('is-active'))?.dataset.reviewCategory || 'products';
+        let reviewIntroPlayed = false;
         let isReviewTransitioning = false;
-        let reviewScrollTrigger = null;
-        let reviewCardTravelDistances = [];
-        const reviewCardBaseRotations = reviewCards.map((card) => {
-            const computedTransform = window.getComputedStyle(card).transform;
+        let reviewIntroTimeline = null;
+        let reviewPrepTween = null;
+        let reviewIntroTrigger = null;
 
-            if (computedTransform && computedTransform !== 'none') {
-                const matrixValues = computedTransform.match(/matrix\(([^)]+)\)/);
+        const getReviewSetCards = (set) => Array.from(set.querySelectorAll('.review_card'));
+        const getReviewSetSlots = (set) => Array.from(set.querySelectorAll('.review_card_slot'));
+        const getReviewSetInners = (set) => Array.from(set.querySelectorAll('.review_card_inner'));
+        const getReviewSlideDistance = () => reviewStage.offsetWidth + 220;
+        const getReviewRotations = (set) => reviewSpreadRotationsByCategory[set.dataset.reviewSet] || reviewSpreadRotationsByCategory.products;
+        const getReviewStackBaseY = (index) => index * 14;
+        const getReviewStackScale = (index) => 1 - (index * 0.035);
+        const getReviewStackRotate = (index) => [-6, -2, 2, 6][index] || 0;
 
-                if (matrixValues) {
-                    const [a, b] = matrixValues[1].split(',').map((value) => Number.parseFloat(value.trim()));
-                    return Math.round(Math.atan2(b, a) * (180 / Math.PI) * 100) / 100;
-                }
-            }
-
-            return 0;
-        });
-        const reviewRevealStepDelay = 0.2;
-        const reviewRevealStepDuration = 0.28;
-        let reviewLastProgress = 0;
-
-        const measureReviewCardTravelDistances = () => {
-            reviewCards.forEach((card, index) => {
-                gsap.set(card, {
-                    x: 0,
-                    y: 0,
-                    rotate: reviewCardBaseRotations[index],
-                    rotateY: 0,
-                    scale: 1,
-                    opacity: 1
-                });
-            });
-
-            reviewCardTravelDistances = reviewCardSlots.map((slot) => {
-                const rect = slot.getBoundingClientRect();
-                return Math.max(window.innerWidth - rect.left + 96, 220);
-            });
-        };
-
-        const setReviewCardVisualState = (card, index, progress) => {
-            const clampedProgress = gsap.utils.clamp(0, 1, progress);
-            const easedProgress = gsap.parseEase('sine.inOut')(clampedProgress);
-            const baseRotation = reviewCardBaseRotations[index];
-            const travelDistance = reviewCardTravelDistances[index] || (window.innerWidth * 0.9);
-
-            gsap.set(card, {
-                x: gsap.utils.interpolate(travelDistance, 0, easedProgress),
-                y: 0,
-                opacity: 1,
-                rotate: baseRotation,
-                scale: 1
-            });
-        };
-
-        const syncReviewCardsToScroll = (progress = 0) => {
-            reviewLastProgress = gsap.utils.clamp(0, 1, progress);
-            const revealProgress = reviewLastProgress;
-
-            reviewCards.forEach((card, index) => {
-                const delay = index * reviewRevealStepDelay;
-                const cardProgress = gsap.utils.clamp(0, 1, (revealProgress - delay) / reviewRevealStepDuration);
-                setReviewCardVisualState(card, index, cardProgress);
-            });
-        };
-
-        const startReviewCardMotion = (progress = reviewScrollTrigger?.progress || reviewLastProgress || 0) => {
-            syncReviewCardsToScroll(progress);
-            reviewCards.forEach((card) => {
-                gsap.set(card, {
-                    rotateY: 0
-                });
-            });
-        };
-
-        const syncReviewCategoryToCurrentScroll = () => {
-            const nextProgress = reviewScrollTrigger?.progress ?? reviewLastProgress ?? 0;
-            reviewLastProgress = gsap.utils.clamp(0, 1, nextProgress);
-            startReviewCardMotion(reviewLastProgress);
-        };
-
-        const setReviewCategory = (category) => {
-            const nextContent = reviewContentByCategory[category];
-
-            if (!nextContent) {
-                return;
-            }
-
+        const setReviewFilterState = (category) => {
             reviewFilterOptions.forEach((option) => {
                 const isActive = option.dataset.reviewCategory === category;
                 option.classList.toggle('is-active', isActive);
                 option.setAttribute('aria-pressed', String(isActive));
             });
+        };
 
-            reviewHeadings.forEach((heading) => {
-                heading.innerHTML = nextContent.heading;
-            });
+        const stopReviewPrepAnimation = () => {
+            reviewPrepTween?.kill();
+            reviewPrepTween = null;
+        };
 
-            reviewImages.forEach((image, index) => {
-                const nextImage = nextContent.images[index];
+        const getReviewOverlapOffsets = (set) => {
+            const setRect = set.getBoundingClientRect();
+            const targetCenterX = setRect.width / 2;
 
-                if (!nextImage) {
-                    return;
-                }
+            return getReviewSetSlots(set).map((slot) => {
+                const slotRect = slot.getBoundingClientRect();
+                const slotCenterX = (slotRect.left - setRect.left) + (slotRect.width / 2);
 
-                image.src = nextImage.src;
-                image.alt = nextImage.alt;
+                return targetCenterX - slotCenterX;
             });
         };
 
-        const animateReviewCategoryChange = (category) => {
-            if (isReviewTransitioning || category === activeReviewCategory) {
+        const setReviewSetState = (set, { x = 0, stacked = false, showBack = true, zIndex = 1 } = {}) => {
+            const cards = getReviewSetCards(set);
+            const inners = getReviewSetInners(set);
+
+            gsap.set(set, {
+                x,
+                autoAlpha: 1,
+                zIndex
+            });
+
+            if (stacked) {
+                const overlapOffsets = getReviewOverlapOffsets(set);
+
+                cards.forEach((card, index) => {
+                    gsap.set(card, {
+                        x: overlapOffsets[index],
+                        y: getReviewStackBaseY(index),
+                        rotate: getReviewStackRotate(index),
+                        scale: getReviewStackScale(index),
+                        autoAlpha: 1,
+                        zIndex: cards.length - index
+                    });
+                });
+            } else {
+                const rotations = getReviewRotations(set);
+
+                cards.forEach((card, index) => {
+                    gsap.set(card, {
+                        x: 0,
+                        y: 0,
+                        rotate: rotations[index] || 0,
+                        scale: 1,
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                });
+            }
+
+            gsap.set(inners, {
+                rotateY: showBack ? 180 : 0
+            });
+        };
+
+        const initializeReviewSets = () => {
+            const slideDistance = getReviewSlideDistance();
+
+            reviewSets.forEach((set) => {
+                const category = set.dataset.reviewSet;
+                const isActive = category === activeReviewCategory;
+                const offscreenDirection = category === 'offline' ? 1 : -1;
+
+                set.classList.toggle('is-active', isActive);
+
+                if (isActive) {
+                    setReviewSetState(set, {
+                        x: 0,
+                        stacked: !reviewIntroPlayed && !prefersReducedMotion,
+                        showBack: reviewIntroPlayed || prefersReducedMotion,
+                        zIndex: 2
+                    });
+                } else {
+                    setReviewSetState(set, {
+                        x: offscreenDirection * slideDistance,
+                        stacked: false,
+                        showBack: true,
+                        zIndex: 1
+                    });
+                }
+            });
+
+            setReviewFilterState(activeReviewCategory);
+        };
+
+        const startReviewPrepAnimation = () => {
+            stopReviewPrepAnimation();
+
+            if (reviewIntroPlayed || prefersReducedMotion) {
                 return;
             }
 
-            isReviewTransitioning = true;
+            const activeSet = reviewSets.find((set) => set.dataset.reviewSet === activeReviewCategory);
 
-            let completedCards = 0;
+            if (!activeSet) {
+                return;
+            }
 
-            reviewCards.forEach((card, index) => {
-                const baseRotation = reviewCardBaseRotations[index];
+            const cards = getReviewSetCards(activeSet);
 
-                gsap.killTweensOf(card);
-                gsap.set(card, {
-                    rotate: baseRotation,
-                    rotateY: 0
-                });
-
-                gsap.timeline({
-                    delay: index * 0.08,
-                    onComplete: () => {
-                        completedCards += 1;
-
-                        if (completedCards === reviewCards.length) {
-                            activeReviewCategory = category;
-                            isReviewTransitioning = false;
-                            reviewScrollTrigger?.refresh();
-                            syncReviewCategoryToCurrentScroll();
-                        }
-                    }
-                })
-                    .to(card, {
-                        rotateY: 90,
-                        duration: 0.34,
-                        ease: 'power2.in'
-                    })
-                    .add(() => {
-                        if (index === 0) {
-                            setReviewCategory(category);
-                        }
-
-                        gsap.set(card, {
-                            rotate: baseRotation,
-                            rotateY: -90
-                        });
-                    })
-                    .to(card, {
-                        rotateY: 0,
-                        duration: 0.42,
-                        ease: 'power2.out'
-                    });
+            reviewPrepTween = gsap.to(cards, {
+                y: (index) => getReviewStackBaseY(index) + (index % 2 === 0 ? -8 : 8),
+                duration: 1.35,
+                ease: 'sine.inOut',
+                repeat: -1,
+                yoyo: true,
+                stagger: 0.06
             });
         };
 
-        setReviewCategory(activeReviewCategory);
-        measureReviewCardTravelDistances();
-        startReviewCardMotion();
+        const buildReviewIntroTimeline = () => {
+            const activeSet = reviewSets.find((set) => set.dataset.reviewSet === activeReviewCategory);
 
-        reviewScrollTrigger = ScrollTrigger.create({
-            id: 'review-cards-sequence',
+            reviewIntroTimeline?.kill();
+
+            if (!activeSet) {
+                return;
+            }
+
+            const cards = getReviewSetCards(activeSet);
+            const inners = getReviewSetInners(activeSet);
+            const rotations = getReviewRotations(activeSet);
+
+            gsap.killTweensOf(cards);
+            gsap.killTweensOf(inners);
+
+            if (reviewIntroPlayed || prefersReducedMotion) {
+                setReviewSetState(activeSet, {
+                    x: 0,
+                    stacked: false,
+                    showBack: true,
+                    zIndex: 2
+                });
+                return;
+            }
+
+            setReviewSetState(activeSet, {
+                x: 0,
+                stacked: true,
+                showBack: false,
+                zIndex: 2
+            });
+
+            reviewIntroTimeline = gsap.timeline({
+                paused: true,
+                defaults: {
+                    overwrite: 'auto'
+                },
+                onComplete: () => {
+                    stopReviewPrepAnimation();
+                    reviewIntroPlayed = true;
+                    setReviewSetState(activeSet, {
+                        x: 0,
+                        stacked: false,
+                        showBack: true,
+                        zIndex: 2
+                    });
+                    reviewIntroTrigger?.kill();
+                }
+            });
+
+            reviewIntroTimeline.to({}, {
+                duration: 0.45
+            });
+
+            reviewIntroTimeline.to(cards, {
+                x: 0,
+                y: 0,
+                rotate: (index) => rotations[index] || 0,
+                scale: 1,
+                duration: 1.05,
+                ease: 'power3.out',
+                stagger: 0.1
+            });
+
+            inners.forEach((cardInner, index) => {
+                reviewIntroTimeline.to(cardInner, {
+                    rotateY: 180,
+                    duration: 0.56,
+                    ease: 'power2.inOut'
+                }, `>-${index === 0 ? 0.06 : 0.02}`);
+            });
+        };
+
+        const transitionReviewCategory = (targetCategory) => {
+            if (isReviewTransitioning || targetCategory === activeReviewCategory) {
+                return;
+            }
+
+            if (!reviewIntroPlayed) {
+                stopReviewPrepAnimation();
+                reviewIntroTimeline?.kill();
+                reviewIntroPlayed = true;
+                initializeReviewSets();
+            }
+
+            const currentSet = reviewSets.find((set) => set.dataset.reviewSet === activeReviewCategory);
+            const nextSet = reviewSets.find((set) => set.dataset.reviewSet === targetCategory);
+
+            if (!currentSet || !nextSet) {
+                return;
+            }
+
+            const slideDistance = getReviewSlideDistance();
+            const direction = targetCategory === 'offline' ? 1 : -1;
+
+            isReviewTransitioning = true;
+
+            setReviewFilterState(targetCategory);
+            currentSet.classList.add('is-active');
+            nextSet.classList.add('is-active');
+
+            setReviewSetState(nextSet, {
+                x: direction * slideDistance,
+                stacked: false,
+                showBack: true,
+                zIndex: 3
+            });
+
+            gsap.set(currentSet, {
+                zIndex: 2
+            });
+
+            gsap.timeline({
+                defaults: {
+                    duration: prefersReducedMotion ? 0 : 0.82,
+                    ease: 'power3.inOut'
+                },
+                onComplete: () => {
+                    activeReviewCategory = targetCategory;
+                    reviewSets.forEach((set) => {
+                        const isActive = set.dataset.reviewSet === activeReviewCategory;
+                        set.classList.toggle('is-active', isActive);
+                    });
+
+                    setReviewSetState(currentSet, {
+                        x: -direction * slideDistance,
+                        stacked: false,
+                        showBack: true,
+                        zIndex: 1
+                    });
+
+                    setReviewSetState(nextSet, {
+                        x: 0,
+                        stacked: false,
+                        showBack: true,
+                        zIndex: 2
+                    });
+
+                    setReviewFilterState(activeReviewCategory);
+                    isReviewTransitioning = false;
+                }
+            })
+                .to(currentSet, {
+                    x: -direction * slideDistance
+                }, 0)
+                .to(nextSet, {
+                    x: 0
+                }, 0);
+        };
+
+        initializeReviewSets();
+        buildReviewIntroTimeline();
+        startReviewPrepAnimation();
+
+        reviewIntroTrigger = ScrollTrigger.create({
+            id: 'review-intro-once',
             trigger: reviewSection,
-            start: 'top top',
-            end: () => `+=${window.innerHeight * 3.4}`,
-            scrub: 1,
-            pin: true,
-            pinSpacing: true,
+            start: 'top 72%',
+            once: true,
             invalidateOnRefresh: true,
-            onUpdate: (self) => {
-                if (isReviewTransitioning) {
+            onEnter: () => {
+                if (prefersReducedMotion) {
+                    reviewIntroPlayed = true;
+                    stopReviewPrepAnimation();
+                    initializeReviewSets();
                     return;
                 }
 
-                syncReviewCardsToScroll(self.progress);
-            },
-            onRefreshInit: () => {
-                measureReviewCardTravelDistances();
-            },
-            onRefresh: (self) => {
-                if (isReviewTransitioning) {
-                    return;
-                }
-
-                syncReviewCardsToScroll(self.progress);
+                stopReviewPrepAnimation();
+                initializeReviewSets();
+                buildReviewIntroTimeline();
+                reviewIntroTimeline?.restart(true);
             }
         });
 
         reviewFilterOptions.forEach((option) => {
             option.addEventListener('click', () => {
-                animateReviewCategoryChange(option.dataset.reviewCategory);
+                transitionReviewCategory(option.dataset.reviewCategory);
             });
+        });
+
+        window.addEventListener('resize', () => {
+            initializeReviewSets();
+
+            if (!reviewIntroPlayed) {
+                buildReviewIntroTimeline();
+                startReviewPrepAnimation();
+            }
+
+            ScrollTrigger.refresh();
         });
     }
 
@@ -844,6 +1103,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (offlineTrackButtons.length && offlineTrackItems.length && offlineSlides.length) {
         let activeOfflineIndex = Math.max(offlineSlides.findIndex((slide) => slide.classList.contains('is-active')), 0);
         let isOfflineAnimating = false;
+        const offlineDescriptionIcons = Array.from(document.querySelectorAll('.offline_description_icon'));
+
+        offlineDescriptionIcons.forEach((icon) => {
+            icon.setAttribute('role', 'link');
+            icon.setAttribute('tabindex', '0');
+            icon.setAttribute('aria-label', 'Go to offline page');
+
+            const navigateToOfflinePage = () => {
+                window.location.href = '../offline/offline.html';
+            };
+
+            icon.addEventListener('click', navigateToOfflinePage);
+            icon.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    navigateToOfflinePage();
+                }
+            });
+        });
 
         const setOfflineTrackState = (nextIndex) => {
             offlineTrackItems.forEach((item, index) => {
@@ -869,8 +1147,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextSlide = offlineSlides[nextIndex];
             const currentCard = currentSlide.querySelector('.offline_card_wrap');
             const nextCard = nextSlide.querySelector('.offline_card_wrap');
-            const currentInfo = currentSlide.querySelector('.offline_info');
-            const nextInfo = nextSlide.querySelector('.offline_info');
+            const currentInfo = currentSlide.querySelector('.offline_description');
+            const nextInfo = nextSlide.querySelector('.offline_description');
             const direction = nextIndex > activeOfflineIndex ? 1 : -1;
 
             isOfflineAnimating = true;
@@ -887,10 +1165,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 autoAlpha: 1
             });
 
-            gsap.set(nextInfo, {
-                autoAlpha: 0,
-                x: direction > 0 ? 40 : -40
-            });
+            if (nextInfo) {
+                gsap.set(nextInfo, {
+                    autoAlpha: 0,
+                    x: direction > 0 ? 40 : -40
+                });
+            }
 
             gsap.set(currentCard, {
                 xPercent: 0,
@@ -898,10 +1178,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 autoAlpha: 1
             });
 
-            gsap.set(currentInfo, {
-                autoAlpha: 1,
-                x: 0
-            });
+            if (currentInfo) {
+                gsap.set(currentInfo, {
+                    autoAlpha: 1,
+                    x: 0
+                });
+            }
 
             gsap.set(currentSlide, { zIndex: 1 });
             gsap.set(nextSlide, { zIndex: 2 });
@@ -924,7 +1206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         clearProps: 'xPercent,rotation,autoAlpha'
                     });
 
-                    gsap.set([currentInfo, nextInfo], {
+                    gsap.set([currentInfo, nextInfo].filter(Boolean), {
                         clearProps: 'x,autoAlpha'
                     });
 
@@ -952,7 +1234,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     duration: prefersReducedMotion ? 0 : 0.52,
                     ease: 'power3.in'
                 }, 0.16)
-                .to(currentInfo, {
+                .to(currentInfo ? [currentInfo] : [], {
                     autoAlpha: 0,
                     x: direction > 0 ? -48 : 48,
                     duration: prefersReducedMotion ? 0 : 0.3,
@@ -965,7 +1247,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     duration: prefersReducedMotion ? 0 : 0.3,
                     ease: 'power2.out'
                 }, 0.4)
-                .to(nextInfo, {
+                .to(nextInfo ? [nextInfo] : [], {
                     autoAlpha: 1,
                     x: 0,
                     duration: prefersReducedMotion ? 0 : 0.28,
@@ -982,20 +1264,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ===== EVENT SECTION START =====
     const eventSection = document.querySelector('.event');
-    const eventCards = Array.from(document.querySelectorAll('.event_card'));
-    const eventMoreButton = document.querySelector('.event_more_button');
+    const eventCardStack = eventSection?.querySelector('.event_card_stack');
+    const eventCards = eventSection ? Array.from(eventSection.querySelectorAll('.event_card')) : [];
 
-    if (!prefersReducedMotion && eventSection && eventCards.length === 3 && eventMoreButton) {
+    if (eventSection && eventCardStack && eventCards.length === 3) {
         const eventCardOrders = [
             [0, 1, 2],
             [1, 2, 0],
-            [2, 0, 1],
-            [0, 1, 2]
+            [2, 0, 1]
         ];
         const eventDropDistance = 150;
-        const eventCardPhasePortion = 0.78;
-        let eventLastProgress = 0;
+        let activeEventOrderIndex = 0;
+        let isEventTransitioning = false;
+        let eventHintHidden = eventSection.classList.contains('is-event-hint-hidden');
+        let eventNextZone = eventCardStack.querySelector('.event_click_zone_next');
+
+        ScrollTrigger.getById('event-card-drop-sequence')?.kill();
+
+        if (!eventNextZone) {
+            eventNextZone = document.createElement('button');
+            eventNextZone.type = 'button';
+            eventNextZone.className = 'event_click_zone event_click_zone_next';
+            eventNextZone.setAttribute('aria-label', 'Next event card');
+
+            eventCardStack.append(eventNextZone);
+        }
 
         const setEventStackOrder = (order) => {
             order.forEach((cardIndex, stackIndex) => {
@@ -1003,75 +1298,76 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        const renderEventSequence = (progress) => {
-            eventLastProgress = gsap.utils.clamp(0, 1, progress);
-            const cardPhaseProgress = gsap.utils.clamp(0, 1, eventLastProgress / eventCardPhasePortion);
-
-            if (cardPhaseProgress >= 1) {
-                eventCards.forEach((card) => {
-                    gsap.set(card, { y: 0 });
-                });
-                setEventStackOrder(eventCardOrders[eventCardOrders.length - 1]);
-            } else {
-                const segmentCount = eventCardOrders.length - 1;
-                const scaledProgress = gsap.utils.clamp(0, segmentCount - 0.0001, cardPhaseProgress * segmentCount);
-                const segmentIndex = Math.floor(scaledProgress);
-                const localProgress = scaledProgress - segmentIndex;
-                const currentOrder = eventCardOrders[segmentIndex];
-                const nextOrder = eventCardOrders[segmentIndex + 1];
-                const movingCard = eventCards[currentOrder[0]];
-
-                eventCards.forEach((card) => {
-                    gsap.set(card, { y: 0 });
-                });
-
-                if (localProgress < 0.5) {
-                    setEventStackOrder(currentOrder);
-                    gsap.set(movingCard, {
-                        y: gsap.utils.interpolate(0, eventDropDistance, localProgress * 2)
-                    });
-                } else {
-                    setEventStackOrder(nextOrder);
-                    gsap.set(movingCard, {
-                        y: gsap.utils.interpolate(eventDropDistance, 0, (localProgress - 0.5) * 2)
-                    });
-                }
-            }
-
-            const buttonProgress = gsap.utils.clamp(0, 1, (eventLastProgress - eventCardPhasePortion) / (1 - eventCardPhasePortion));
-            gsap.set(eventMoreButton, {
-                autoAlpha: buttonProgress,
-                y: gsap.utils.interpolate(48, 0, buttonProgress)
-            });
+        const resetEventCardPositions = () => {
+            gsap.set(eventCards, { y: 0 });
         };
 
-        gsap.set(eventMoreButton, {
-            autoAlpha: 0,
-            y: 48
-        });
+        const applyEventOrder = (orderIndex) => {
+            activeEventOrderIndex = ((orderIndex % eventCardOrders.length) + eventCardOrders.length) % eventCardOrders.length;
+            resetEventCardPositions();
+            setEventStackOrder(eventCardOrders[activeEventOrderIndex]);
+        };
 
-        renderEventSequence(0);
-
-        ScrollTrigger.create({
-            id: 'event-card-drop-sequence',
-            trigger: eventSection,
-            start: 'top top',
-            end: () => `+=${window.innerHeight * 2.6}`,
-            scrub: 1,
-            pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-                renderEventSequence(self.progress);
-            },
-            onRefreshInit: () => {
-                renderEventSequence(eventLastProgress);
-            },
-            onRefresh: (self) => {
-                renderEventSequence(self.progress);
+        const transitionEventOrder = (direction) => {
+            if (isEventTransitioning) {
+                return;
             }
+
+             if (!eventHintHidden) {
+                eventHintHidden = true;
+                eventSection.classList.add('is-event-hint-hidden');
+            }
+
+            const currentOrderIndex = activeEventOrderIndex;
+            const nextOrderIndex = ((activeEventOrderIndex + direction) % eventCardOrders.length + eventCardOrders.length) % eventCardOrders.length;
+            const currentOrder = eventCardOrders[currentOrderIndex];
+            const nextOrder = eventCardOrders[nextOrderIndex];
+            const movingCard = eventCards[currentOrder[0]];
+
+            if (!movingCard) {
+                return;
+            }
+
+            if (prefersReducedMotion) {
+                applyEventOrder(nextOrderIndex);
+                return;
+            }
+
+            isEventTransitioning = true;
+            resetEventCardPositions();
+            setEventStackOrder(currentOrder);
+
+            gsap.timeline({
+                defaults: {
+                    overwrite: 'auto'
+                },
+                onComplete: () => {
+                    isEventTransitioning = false;
+                    applyEventOrder(nextOrderIndex);
+                }
+            })
+                .to(movingCard, {
+                    y: eventDropDistance,
+                    duration: 0.34,
+                    ease: 'power2.in'
+                })
+                .add(() => {
+                    setEventStackOrder(nextOrder);
+                    gsap.set(movingCard, { y: eventDropDistance });
+                })
+                .to(movingCard, {
+                    y: 0,
+                    duration: 0.42,
+                    ease: 'power2.out'
+                });
+        };
+
+        applyEventOrder(0);
+
+        eventNextZone.addEventListener('click', () => {
+            transitionEventOrder(1);
         });
     }
+    // ===== EVENT SECTION END =====
 
 });
