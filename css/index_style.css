@@ -590,7 +590,7 @@ body {
     padding: 0;
     border: 0;
     background-color: transparent;
-    background-image: url('../../vector/main_button.svg');
+    background-image: url('../vector/main_button.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -1188,7 +1188,7 @@ body {
     padding: 0;
     border: 0;
     background-color: transparent;
-    background-image: url('../../vector/main_button.svg');
+    background-image: url('../vector/main_button.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -1987,7 +1987,7 @@ body {
     max-width: 1920px;
     margin: 0 auto;
     padding: 100px 0 130px 0;
-    background: #f4e5d9 url('../../img/main_eventbg.png') no-repeat center top / cover;
+    background: #f4e5d9 url('../img/main_eventbg.png') no-repeat center top / cover;
     box-sizing: border-box;
     overflow: hidden;
 }
@@ -2110,11 +2110,11 @@ body {
     height: 100px;
     transform: translateX(-50%);
     background-color: rgba(93, 49, 54, 0.72);
-    -webkit-mask-image: url('../../icon/hand-click.svg');
+    -webkit-mask-image: url('../icon/hand-click.svg');
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
     -webkit-mask-size: 200px 200px;
-    mask-image: url('../../icon/hand-click.svg');
+    mask-image: url('../icon/hand-click.svg');
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 80px 80px;
@@ -2320,7 +2320,7 @@ body {
     border: 0;
     border-radius: 0;
     background-color: transparent;
-    background-image: url('../../vector/main_button.svg');
+    background-image: url('../vector/main_button.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -2378,7 +2378,7 @@ body {
 .sleep_solution_button:focus-visible,
 .event_more_button:hover,
 .event_more_button:focus-visible {
-    background-image: url('../../vector/main_hbutton.svg');
+    background-image: url('../vector/main_hbutton.svg');
 }
 
 .story_button:hover .story_button_text,
