@@ -1,89 +1,131 @@
 gsap.registerPlugin(ScrollTrigger);
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Banner Floating Interaction (이미 CSS로 구현됨, 필요시 JS로 보완 가능)
-    
-    // 2. Best Section Horizontal Scroll
     const bestSection = document.querySelector('.best');
     const bestAll = document.querySelector('.best_all');
+    const nameCards = document.querySelectorAll('.more .name');
+    let bestTween = null;
+    const bestScrollStartDelay = 180;
 
-    if (bestSection && bestAll) {
-        // 이동해야 할 거리는 (전체 트랙의 너비 - 보여지는 화면의 너비) 입니다.
-        const totalWidth = () => bestAll.scrollWidth - window.innerWidth;
+    const setupBestScroll = () => {
+        if (!bestSection || !bestAll) return;
 
-        gsap.to(bestAll, {
+        if (bestTween) {
+            bestTween.scrollTrigger.kill();
+            bestTween.kill();
+            bestTween = null;
+            gsap.set(bestAll, { clearProps: 'transform' });
+        }
+
+        if (window.innerWidth <= 1024) return;
+
+        const totalWidth = () => Math.max(bestAll.scrollWidth - window.innerWidth, 0);
+
+        bestTween = gsap.to(bestAll, {
             x: () => -totalWidth(),
             ease: 'none',
             scrollTrigger: {
                 trigger: bestSection,
-                start: 'top top',
+                start: () => `top top-=${bestScrollStartDelay}`,
                 end: () => '+=' + bestAll.scrollWidth,
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
-                invalidateOnRefresh: true, // 화면 크기 변경 시 재계산
+                invalidateOnRefresh: true
             }
         });
-    }
+    };
 
-    // 3. More Section Accordion Interaction
-    const nameCards = document.querySelectorAll('.more .name');
-    nameCards.forEach(card => {
-        card.addEventListener('click', () => {
-            if (card.classList.contains('active')) return;
-            nameCards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-            
-            // GSAP/ScrollTrigger refresh to handle layout changes if needed
-            // Delay to allow CSS flex transition (0.6s) to completely finish smoothly without jank
-            setTimeout(() => {
-                ScrollTrigger.refresh();
-            }, 600);
-        });
-
-        // Carousels
+    const syncCardSlider = (card) => {
         const track = card.querySelector('.slider_track');
-        if (track) {
-            const prevBtn = card.querySelector('.icon_all.prev');
-            const nextBtn = card.querySelector('.icon_all.next');
-            const bullets = card.querySelectorAll('.bullet');
-            const slideCount = card.querySelectorAll('.slide').length;
-            let currentIndex = 0;
+        const sliderViewport = card.querySelector('.slider_viewport');
+        const bullets = card.querySelectorAll('.bullet');
+        const slides = card.querySelectorAll('.slide');
+        const activeIndex = Number(card.dataset.currentIndex ?? 0);
+        const currentIndex = activeIndex > -1 ? activeIndex : 0;
 
-            const updateSlider = () => {
-                track.style.transform = `translateX(-${currentIndex * 835}px)`;
-                bullets.forEach((b, i) => {
-                    if(i === currentIndex) b.classList.add('active');
-                    else b.classList.remove('active');
-                });
-            };
+        if (!track || !sliderViewport || !slides.length) return;
 
-            if (nextBtn) {
-                nextBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    currentIndex = (currentIndex + 1) % slideCount;
-                    updateSlider();
-                });
-            }
+        const slideWidth = sliderViewport.clientWidth;
+        slides.forEach((slide) => {
+            slide.style.width = `${slideWidth}px`;
+        });
+        track.style.width = `${slideWidth * slides.length}px`;
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
 
-            if (prevBtn) {
-                prevBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    currentIndex = (currentIndex - 1 + slideCount) % slideCount;
-                    updateSlider();
-                });
-            }
+        bullets.forEach((bullet, index) => {
+            bullet.classList.toggle('active', index === currentIndex);
+        });
+    };
 
-            bullets.forEach((bullet, i) => {
-                bullet.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    currentIndex = i;
-                    updateSlider();
+    setupBestScroll();
+
+    nameCards.forEach((card) => {
+        const tab = card.querySelector('.tab');
+        if (tab) {
+            tab.addEventListener('click', () => {
+                if (card.classList.contains('active')) return;
+
+                nameCards.forEach((item) => item.classList.remove('active'));
+                card.classList.add('active');
+
+                requestAnimationFrame(() => {
+                    syncCardSlider(card);
+                    ScrollTrigger.refresh();
                 });
             });
         }
+
+        const track = card.querySelector('.slider_track');
+        if (!track) return;
+
+        const prevBtn = card.querySelector('.icon_all.prev');
+        const nextBtn = card.querySelector('.icon_all.next');
+        const bullets = card.querySelectorAll('.bullet');
+        const sliderViewport = card.querySelector('.slider_viewport');
+        const slides = card.querySelectorAll('.slide');
+        const slideCount = slides.length;
+        let currentIndex = Number(card.dataset.currentIndex ?? 0);
+
+        const updateSlider = () => {
+            card.dataset.currentIndex = String(currentIndex);
+            syncCardSlider(card);
+        };
+
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                currentIndex = (currentIndex + 1) % slideCount;
+                updateSlider();
+            });
+        }
+
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (event) => {
+                event.stopPropagation();
+                currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+                updateSlider();
+            });
+        }
+
+        bullets.forEach((bullet, index) => {
+            bullet.addEventListener('click', (event) => {
+                event.stopPropagation();
+                currentIndex = index;
+                updateSlider();
+            });
+        });
+
+        slides.forEach((slide) => {
+            slide.style.flexShrink = '0';
+        });
+
+        updateSlider();
     });
 
-    // 4. Resize Event
-    window.addEventListener('resize', () => ScrollTrigger.refresh());
+    window.addEventListener('resize', () => {
+        setupBestScroll();
+        nameCards.forEach((card) => syncCardSlider(card));
+        ScrollTrigger.refresh();
+    });
 });

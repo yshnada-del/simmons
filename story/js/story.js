@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const philosophyTexts = gsap.utils.toArray('.philosophy_text_block');
     const productSection = document.querySelector('.product');
     const productAll = document.querySelector('.product_all');
+    const productScrollStartDelay = 180;
     const pieces = gsap.utils.toArray('.about_piece');
     const isDesktop = window.matchMedia('(min-width: 1281px)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -643,7 +644,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ease: 'none',
             scrollTrigger: {
                 trigger: productSection,
-                start: 'top top',
+                start: () => `top top-=${productScrollStartDelay}`,
                 end: () => '+=' + Math.max(totalWidth(), 0),
                 scrub: true,
                 pin: true,
