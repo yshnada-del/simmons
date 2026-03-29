@@ -677,9 +677,12 @@ body {
 }
 
 @keyframes storyKeywordFade {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.24;
     }
@@ -689,6 +692,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(32px, -16px, 0) rotate(-2.4deg) scale(1.06);
     }
@@ -698,6 +702,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(-42px, 22px, 0) rotate(2.1deg) scale(1.1);
     }
@@ -707,6 +712,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(28px, 18px, 0) rotate(-1.8deg) scale(1.05);
     }
@@ -716,6 +722,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(-34px, -20px, 0) rotate(2.5deg) scale(1.08);
     }
@@ -725,6 +732,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(38px, -14px, 0) rotate(-2.2deg) scale(1.09);
     }
@@ -734,6 +742,7 @@ body {
     from {
         transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
     }
+
     to {
         transform: translate3d(-30px, 20px, 0) rotate(1.9deg) scale(1.07);
     }
@@ -934,10 +943,13 @@ body {
 }
 
 @keyframes productScrollArrowUpFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
         opacity: 0.62;
     }
+
     50% {
         transform: translateY(-3px);
         opacity: 1;
@@ -945,10 +957,13 @@ body {
 }
 
 @keyframes productScrollArrowDownFloat {
-    0%, 100% {
+
+    0%,
+    100% {
         transform: translateY(0);
         opacity: 0.62;
     }
+
     50% {
         transform: translateY(3px);
         opacity: 1;
@@ -1531,6 +1546,7 @@ body {
     cursor: pointer;
     margin-left: -20px;
     margin-bottom: -4px;
+    transform: translateX(-12px)
 }
 
 .offline_description_icon img {
@@ -2391,15 +2407,19 @@ body {
 }
 
 @keyframes eventCardHintPulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 0.42;
     }
+
     50% {
         opacity: 0.92;
     }
 }
 
 @media (max-width: 1024px) {
+
     .main_visual,
     .main_visual_inner {
         min-height: 720px;
@@ -2987,6 +3007,7 @@ body {
 }
 
 @media (max-width: 430px) {
+
     .main_visual,
     .main_visual_inner {
         width: 430px;
@@ -3161,7 +3182,7 @@ body {
         top: 280px;
         left: 50%;
         bottom: auto;
-        width: 120px;
+        width: 70px;
         gap: 0;
         flex-direction: row;
         justify-content: space-between;

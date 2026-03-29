@@ -16,12 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     const introOverlay = document.querySelector('#intro-overlay');
     const introStage = document.querySelector('.intro_stage');
+    const introStageContent = document.querySelector('.intro_stage_content');
     const yearDigits = Array.from(document.querySelectorAll('.intro_digit'));
     const introLogo = document.querySelector('.intro_logo_mark');
     const mainVisual = document.querySelector('.main_visual');
     const mainVideo = mainVisual ? mainVisual.querySelector('video') : null;
 
-    if (!introOverlay || !introStage || yearDigits.length !== 4 || !introLogo || !mainVisual) {
+    if (!introOverlay || !introStage || !introStageContent || yearDigits.length !== 4 || !introLogo || !mainVisual) {
         return;
     }
 
@@ -135,6 +136,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 height: tinySize,
                 duration: 0.5,
                 ease: 'power2.in',
+            },
+            fullscreen: {
+                width: window.innerWidth,
+                height: window.innerHeight,
+                duration: 0.76,
+                ease: 'power2.out',
             },
         };
     };
@@ -252,32 +259,32 @@ document.addEventListener('DOMContentLoaded', () => {
     introTimeline.call(() => {
         gsap.set(revealShell, { opacity: 1 });
         gsap.set(revealVisual, {
-            scale: 1.04,
-            filter: 'brightness(0.96) blur(4px)',
-        });
-        gsap.set(revealShell, {
-            scale: 0.02,
+            opacity: 0,
+            scale: 1.08,
+            filter: 'brightness(1.06) blur(14px)',
         });
     });
 
     introTimeline.to(introStage, {
-        opacity: 0,
-        duration: 0.14,
-        ease: 'power1.out',
-    });
-
-    introTimeline.to(revealShell, {
-        scale: 1,
-        duration: 1.68,
-        ease: 'power2.out',
+        width: stageFrames.fullscreen.width,
+        height: stageFrames.fullscreen.height,
+        duration: stageFrames.fullscreen.duration,
+        ease: stageFrames.fullscreen.ease,
     });
 
     introTimeline.to(revealVisual, {
+        opacity: 1,
         scale: 1,
         filter: 'brightness(1) blur(0px)',
-        duration: 1.68,
+        duration: 1.2,
         ease: 'power2.out',
-    }, '<');
+    });
+
+    introTimeline.to(introStage, {
+        opacity: 0,
+        duration: 0.34,
+        ease: 'power1.out',
+    }, '<+=0.08');
 
     introTimeline.call(() => {
         if (mainVideo && revealVideo) {
