@@ -19,9 +19,49 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     })();
 
+    const getResponsiveMode = () => {
+        if (window.innerWidth <= 430) {
+            return 'mobile';
+        }
+
+        if (window.innerWidth <= 1034) {
+            return 'tablet';
+        }
+
+        return 'desktop';
+    };
+
+    let currentResponsiveMode = getResponsiveMode();
+    const responsiveModeListeners = new Set();
+
+    const onResponsiveModeChange = (listener) => {
+        responsiveModeListeners.add(listener);
+
+        return () => {
+            responsiveModeListeners.delete(listener);
+        };
+    };
+
+    const notifyResponsiveModeChange = () => {
+        const nextResponsiveMode = getResponsiveMode();
+
+        if (nextResponsiveMode === currentResponsiveMode) {
+            return;
+        }
+
+        currentResponsiveMode = nextResponsiveMode;
+        responsiveModeListeners.forEach((listener) => {
+            listener(nextResponsiveMode);
+        });
+        scheduleScrollTriggerRefresh();
+    };
+
     window.addEventListener('resize', scheduleScrollTriggerRefresh);
     window.addEventListener('orientationchange', scheduleScrollTriggerRefresh);
     window.visualViewport?.addEventListener('resize', scheduleScrollTriggerRefresh);
+    window.addEventListener('resize', notifyResponsiveModeChange);
+    window.addEventListener('orientationchange', notifyResponsiveModeChange);
+    window.visualViewport?.addEventListener('resize', notifyResponsiveModeChange);
     document.fonts?.ready?.then(() => {
         scheduleScrollTriggerRefresh();
     });
@@ -207,6 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const storyButton = document.querySelector('.story_button');
 
     if (storySection && storyInner && storyImage && storyKeywords.length && storyButton) {
+        const isStoryStaticLayout = () => window.innerWidth <= 1024;
+
         const setStoryFloatingState = (isActive) => {
             storyInner.classList.toggle('is-keywords-active', isActive);
         };
@@ -217,6 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }));
 
         const setReducedMotionStoryState = () => {
+            ScrollTrigger.getById('story-pin')?.kill();
+            gsap.killTweensOf(storyKeywords);
+            gsap.killTweensOf(storyButton);
+
             gsap.set(storyKeywords, {
                 clearProps: 'x,y,scale,autoAlpha'
             });
@@ -304,15 +350,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 0.68);
         };
 
-        if (prefersReducedMotion) {
-            setReducedMotionStoryState();
-        } else {
-            buildStoryScroll();
-            window.addEventListener('resize', () => {
+        const syncStoryInteraction = () => {
+            if (prefersReducedMotion || isStoryStaticLayout()) {
+                setReducedMotionStoryState();
+            } else {
                 buildStoryScroll();
-                ScrollTrigger.refresh();
-            });
-        }
+            }
+
+            ScrollTrigger.refresh();
+        };
+
+        syncStoryInteraction();
+        window.addEventListener('resize', syncStoryInteraction);
     }
 
     const sleepSolutionSection = document.querySelector('.sleep_solution');
@@ -659,6 +708,30 @@ document.addEventListener('DOMContentLoaded', () => {
         setProductSlideState(activeProductIndex);
         setProductPieceState(activeProductIndex);
         setProductBadgeState(activeProductIndex, 1, false);
+
+        const resetProductResponsiveState = () => {
+            const productAnimatedElements = productSlides.flatMap((slide) => {
+                return [
+                    slide.querySelector('.product_content'),
+                    slide.querySelector('.product_arrow'),
+                    slide.querySelector('.product_image')
+                ];
+            }).filter(Boolean);
+
+            gsap.killTweensOf(productAnimatedElements);
+            gsap.set(productAnimatedElements, {
+                clearProps: 'x,y,scale,autoAlpha,rotation,xPercent,filter,zIndex'
+            });
+
+            setProductWheelRotation(productBaseRotation - (activeProductIndex * productRotationStep));
+            setProductSlideState(activeProductIndex);
+            setProductPieceState(activeProductIndex);
+            setProductBadgeState(activeProductIndex, 1, false);
+        };
+
+        onResponsiveModeChange(() => {
+            resetProductResponsiveState();
+        });
 
         productDetailArrows.forEach((arrow) => {
             arrow.setAttribute('role', 'link');
@@ -1211,6 +1284,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let activeOfflineIndex = Math.max(offlineSlides.findIndex((slide) => slide.classList.contains('is-active')), 0);
         let isOfflineAnimating = false;
         const offlineDescriptionIcons = Array.from(document.querySelectorAll('.offline_description_icon'));
+        const offlineCardWraps = offlineSlides.map((slide) => slide.querySelector('.offline_card_wrap')).filter(Boolean);
+        const offlineDescriptions = offlineSlides.map((slide) => slide.querySelector('.offline_description')).filter(Boolean);
 
         offlineDescriptionIcons.forEach((icon) => {
             icon.setAttribute('role', 'link');
@@ -1244,6 +1319,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         };
+
+        const resetOfflineResponsiveState = () => {
+            isOfflineAnimating = false;
+
+            offlineSlides.forEach((slide, index) => {
+                const isActive = index === activeOfflineIndex;
+                slide.classList.toggle('is-active', isActive);
+                slide.setAttribute('aria-hidden', String(!isActive));
+            });
+
+            gsap.killTweensOf([...offlineCardWraps, ...offlineDescriptions, ...offlineSlides]);
+
+            gsap.set([...offlineCardWraps, ...offlineDescriptions, ...offlineSlides], {
+                clearProps: 'xPercent,rotation,autoAlpha,x,y,zIndex'
+            });
+
+            setOfflineTrackState(activeOfflineIndex);
+        };
+
+        onResponsiveModeChange(() => {
+            resetOfflineResponsiveState();
+        });
 
         const animateOfflineTransition = (nextIndex) => {
             if (nextIndex === activeOfflineIndex || isOfflineAnimating) {
