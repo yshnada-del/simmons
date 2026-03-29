@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const primaryBanner = bannerWrap.querySelector('.banner_primary');
         const bannerStack = bannerWrap.querySelector('.banner_stack');
         const secondaryBanners = bannerWrap.querySelectorAll('.banner_secondary');
+        const isTabletMainVisual = () => window.innerWidth <= 1024;
 
         if (primaryBanner && bannerStack) {
             const getScrollDistance = () => {
@@ -128,11 +129,29 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             const buildBannerScroll = () => {
+                ScrollTrigger.getById('main-visual-banner-pin')?.kill();
+                gsap.killTweensOf([bannerWrap, primaryBanner, secondaryBanners]);
+
+                if (isTabletMainVisual()) {
+                    gsap.set(bannerWrap, {
+                        clearProps: 'all'
+                    });
+
+                    gsap.set(primaryBanner, {
+                        clearProps: 'all'
+                    });
+
+                    if (secondaryBanners.length) {
+                        gsap.set(secondaryBanners, {
+                            clearProps: 'all'
+                        });
+                    }
+
+                    return;
+                }
+
                 const scrollDistance = getScrollDistance();
                 const { startOffset } = setInitialBannerState();
-
-                ScrollTrigger.getById('main-visual-banner-pin')?.kill();
-                gsap.killTweensOf([bannerWrap, secondaryBanners]);
 
                 gsap.timeline({
                     defaults: {
@@ -186,25 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const storyImage = document.querySelector('.story_image');
     const storyKeywords = Array.from(document.querySelectorAll('.story_keyword'));
     const storyButton = document.querySelector('.story_button');
-    const storyButtonTracePath = 'M305.877 69.4646C296.287 74.0146 282.977 73.7346 273.517 68.5946C263.387 63.0946 262.537 57.5946 253.317 51.1046C244.747 45.0746 233.567 45.2046 225.157 51.3746C221.087 54.3646 217.707 57.6246 214.137 61.2946C207.547 68.0746 198.617 72.4846 188.847 72.4846L36.3969 72.5146C20.1769 72.5146 6.05689 61.9146 1.47689 46.3846C-3.03311 31.1146 3.02689 14.5546 16.3669 5.68456C21.0469 2.56456 26.6769 0.144564 32.5869 0.154564L191.477 0.224564C200.257 0.224564 208.337 5.55456 214.037 11.4246C217.657 15.1546 220.677 18.4146 224.727 21.3746C232.697 27.1946 242.747 27.9246 251.387 23.0546C255.817 20.5546 259.287 16.9946 262.497 13.0746C270.177 3.67456 281.367 -0.825436 293.547 0.124564C308.007 1.24456 320.287 10.9546 325.037 24.6646C331.167 42.3346 322.707 61.4946 305.877 69.4846V69.4646ZM310.447 7.95456C296.217 -2.13544 276.267 -0.0354366 264.847 12.9746C262.717 15.4046 260.947 17.6146 258.617 19.8146C248.257 29.5346 234.327 30.8846 222.917 22.1646C219.057 19.2146 216.047 16.0246 212.667 12.4846C206.977 6.52456 199.477 1.84456 190.817 1.82456L147.977 1.68456L79.4669 1.66456L33.7669 1.69456C29.3469 1.69456 24.9769 2.97456 21.0969 4.92456C8.38689 11.3046 0.646894 24.6646 1.83689 39.1246C3.21689 55.9146 17.4869 70.6946 34.8569 70.7046L189.577 70.8046C198.497 70.8046 206.677 66.2046 212.737 60.3446C216.047 57.1446 218.817 54.3846 222.247 51.4546C231.027 43.9646 243.487 42.8346 253.377 49.1046C257.607 51.7846 260.957 55.3146 264.307 59.0846C270.537 66.0946 278.837 70.4446 288.317 71.0746C308.137 72.3846 325.317 56.3646 325.327 36.3346C325.327 25.0546 319.657 14.4846 310.447 7.95456Z';
-
-    if (storyButton && !storyButton.querySelector('.story_button_trace')) {
-        const traceSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        const tracePathBeige = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        const tracePathBurgundy = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-        traceSvg.setAttribute('class', 'story_button_trace');
-        traceSvg.setAttribute('viewBox', '0 0 328 73');
-        traceSvg.setAttribute('aria-hidden', 'true');
-        tracePathBeige.setAttribute('class', 'story_button_trace_beige');
-        tracePathBeige.setAttribute('d', storyButtonTracePath);
-        tracePathBurgundy.setAttribute('class', 'story_button_trace_burgundy');
-        tracePathBurgundy.setAttribute('d', storyButtonTracePath);
-        traceSvg.append(tracePathBeige, tracePathBurgundy);
-        storyButton.appendChild(traceSvg);
-
-        const traceLength = tracePathBeige.getTotalLength();
-        storyButton.style.setProperty('--story-button-trace-length', `${traceLength}`);
-    }
 
     if (storySection && storyInner && storyImage && storyKeywords.length && storyButton) {
         const setStoryFloatingState = (isActive) => {
@@ -763,6 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
             products: [-10, -4, 4, 10],
             offline: [-14, 10, -6, 9]
         };
+        const isTabletReviewLayout = () => window.innerWidth <= 1024;
         let activeReviewCategory = reviewFilterOptions.find((option) => option.classList.contains('is-active'))?.dataset.reviewCategory || 'products';
         let reviewIntroPlayed = false;
         let isReviewTransitioning = false;
@@ -814,6 +815,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 zIndex
             });
 
+            if (isTabletReviewLayout()) {
+                cards.forEach((card) => {
+                    gsap.set(card, {
+                        x: 0,
+                        y: 0,
+                        rotate: 0,
+                        scale: 1,
+                        autoAlpha: 1,
+                        zIndex: 1
+                    });
+                });
+
+                gsap.set(inners, {
+                    rotateY: 180
+                });
+                return;
+            }
+
             if (stacked) {
                 const overlapOffsets = getReviewOverlapOffsets(set);
 
@@ -850,6 +869,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const initializeReviewSets = () => {
             const slideDistance = getReviewSlideDistance();
 
+            if (isTabletReviewLayout()) {
+                const tabletSlideDistance = reviewStage.offsetWidth;
+                reviewSets.forEach((set) => {
+                    const isActive = set.dataset.reviewSet === activeReviewCategory;
+                    set.classList.toggle('is-active', isActive);
+                    setReviewSetState(set, {
+                        x: isActive ? 0 : (set.dataset.reviewSet === 'offline' ? tabletSlideDistance : -tabletSlideDistance),
+                        stacked: false,
+                        showBack: true,
+                        zIndex: isActive ? 2 : 1
+                    });
+                });
+
+                setReviewFilterState(activeReviewCategory);
+                return;
+            }
+
             reviewSets.forEach((set) => {
                 const category = set.dataset.reviewSet;
                 const isActive = category === activeReviewCategory;
@@ -860,8 +896,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (isActive) {
                     setReviewSetState(set, {
                         x: 0,
-                        stacked: !reviewIntroPlayed && !prefersReducedMotion,
-                        showBack: reviewIntroPlayed || prefersReducedMotion,
+                        stacked: !isTabletReviewLayout() && !reviewIntroPlayed && !prefersReducedMotion,
+                        showBack: isTabletReviewLayout() || reviewIntroPlayed || prefersReducedMotion,
                         zIndex: 2
                     });
                 } else {
@@ -880,7 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const startReviewPrepAnimation = () => {
             stopReviewPrepAnimation();
 
-            if (reviewIntroPlayed || prefersReducedMotion) {
+            if (reviewIntroPlayed || prefersReducedMotion || isTabletReviewLayout()) {
                 return;
             }
 
@@ -918,7 +954,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.killTweensOf(cards);
             gsap.killTweensOf(inners);
 
-            if (reviewIntroPlayed || prefersReducedMotion) {
+            if (reviewIntroPlayed || prefersReducedMotion || isTabletReviewLayout()) {
                 setReviewSetState(activeSet, {
                     x: 0,
                     stacked: false,
@@ -978,6 +1014,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const transitionReviewCategory = (targetCategory) => {
             if (isReviewTransitioning || targetCategory === activeReviewCategory) {
+                return;
+            }
+
+            if (isTabletReviewLayout()) {
+                const currentSet = reviewSets.find((set) => set.dataset.reviewSet === activeReviewCategory);
+                const nextSet = reviewSets.find((set) => set.dataset.reviewSet === targetCategory);
+
+                if (!currentSet || !nextSet) {
+                    return;
+                }
+
+                const slideDistance = reviewStage.offsetWidth;
+                const direction = targetCategory === 'offline' ? 1 : -1;
+
+                isReviewTransitioning = true;
+                setReviewFilterState(targetCategory);
+                currentSet.classList.add('is-active');
+                nextSet.classList.add('is-active');
+
+                setReviewSetState(nextSet, {
+                    x: direction * slideDistance,
+                    stacked: false,
+                    showBack: true,
+                    zIndex: 3
+                });
+
+                gsap.set(currentSet, { zIndex: 2 });
+
+                gsap.timeline({
+                    defaults: {
+                        duration: 0.45,
+                        ease: 'power2.inOut'
+                    },
+                    onComplete: () => {
+                        activeReviewCategory = targetCategory;
+                        reviewSets.forEach((set) => {
+                            const isActive = set.dataset.reviewSet === activeReviewCategory;
+                            set.classList.toggle('is-active', isActive);
+                        });
+
+                        setReviewSetState(currentSet, {
+                            x: -direction * slideDistance,
+                            stacked: false,
+                            showBack: true,
+                            zIndex: 1
+                        });
+
+                        setReviewSetState(nextSet, {
+                            x: 0,
+                            stacked: false,
+                            showBack: true,
+                            zIndex: 2
+                        });
+
+                        setReviewFilterState(activeReviewCategory);
+                        isReviewTransitioning = false;
+                    }
+                })
+                    .to(currentSet, {
+                        x: -direction * slideDistance
+                    }, 0)
+                    .to(nextSet, {
+                        x: 0
+                    }, 0);
                 return;
             }
 
@@ -1064,7 +1164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             once: true,
             invalidateOnRefresh: true,
             onEnter: () => {
-                if (prefersReducedMotion) {
+                if (prefersReducedMotion || isTabletReviewLayout()) {
                     reviewIntroPlayed = true;
                     stopReviewPrepAnimation();
                     initializeReviewSets();
@@ -1085,9 +1185,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('resize', () => {
+            if (isTabletReviewLayout()) {
+                reviewIntroPlayed = true;
+                stopReviewPrepAnimation();
+                reviewIntroTimeline?.kill();
+                reviewIntroTrigger?.kill();
+            }
+
             initializeReviewSets();
 
-            if (!reviewIntroPlayed) {
+            if (!reviewIntroPlayed && !isTabletReviewLayout()) {
                 buildReviewIntroTimeline();
                 startReviewPrepAnimation();
             }

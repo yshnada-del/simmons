@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+body {
+    background-color: var(--main_bg2);
+    overflow: hidden;
+}
+
+.main-shell {
+    opacity: 0;
+}
+
+body.intro-complete {
+    overflow: visible;
+}
+
+body.intro-complete .main-shell {
+    opacity: 1;
+}
+
+body.intro-complete #intro-overlay {
+    pointer-events: none;
+}
+
+#intro-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--main_bg1);
+    color: var(--main_bg2);
+    overflow: hidden;
+}
+
+.intro_stage {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    transform-origin: center center;
+    will-change: width, height, opacity, filter;
+    z-index: 3;
+    overflow: hidden;
+    background: var(--main_bg1);
+    box-shadow: 0 24px 60px rgba(93, 49, 54, 0.08);
+}
+
+.intro_year_slot {
+    position: relative;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.intro_year_digits {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    font-family: var(--font-accent);
+    font-size: 50px;
+    font-weight: 500;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--main_bg2);
+    font-variant-numeric: tabular-nums;
+}
+
+.intro_digit {
+    position: relative;
+    width: 0.64em;
+    height: 1em;
+    overflow: hidden;
+}
+
+.intro_digit_current,
+.intro_digit_next {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    width: 100%;
+    text-align: center;
+    will-change: transform, opacity;
+}
+
+.intro_logo_mark {
+    position: relative;
+    width: 500px;
+    transform: scale(1);
+    opacity: 1;
+    z-index: 1;
+    will-change: transform, opacity;
+}
+
+.intro_logo_mark img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.intro_reveal_shell {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%) scale(0.02);
+    transform-origin: center center;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform, opacity;
+}
+
+.intro_reveal_visual {
+    position: absolute;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    transform-origin: center center;
+    will-change: transform, filter;
+}
+
+.intro_reveal_visual .main_visual_inner {
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+    .intro_logo_mark {
+        width: min(78vw, 320px);
+    }
+
+    .intro_year_digits {
+        font-size: 34px;
+    }
+}
