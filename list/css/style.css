@@ -844,10 +844,10 @@ body {
   }
 }
 
-@media (max-width: 402px) {
+@media (max-width: 430px) {
   .banner .txt_all {
     left: 30px;
-    top: 36%;
+    top: 40%;
   }
 
   .banner .txt_all p:first-child {
@@ -859,8 +859,13 @@ body {
     font-size: 48px;
   }
 
+  .banner .txt_all p:last-child {
+    transform: translateY(-6px);
+  }
+
   .banner .shop_txt {
     right: 30px;
+    transform: translateY(-6px);
   }
 
   .signature .txt p {
