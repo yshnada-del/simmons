@@ -8,11 +8,13 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #fff;
+  overflow-x: hidden;
 }
 
 .wrap {
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Banner Styling */
@@ -21,7 +23,7 @@ body {
   width: 1920px;
   height: 1200px;
   box-sizing: border-box;
-  background-color: var(--sub_bg1_b);
+  background-color: #f8f8f8;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -42,7 +44,7 @@ body {
   font-size: 62px;
   line-height: 100%;
   letter-spacing: -0.02em;
-  color: var(--sub_bg3_d);
+  color: #C2C2C2;
   margin: 0;
 }
 
@@ -52,7 +54,7 @@ body {
   font-size: 250px;
   line-height: 100%;
   letter-spacing: 0;
-  color: var(--main_bg1);
+  color: #5D3136;
   margin: 0;
 }
 
@@ -65,7 +67,7 @@ body {
   font-size: 250px;
   line-height: 100%;
   letter-spacing: 0;
-  color: var(--main_bg1);
+  color: #5D3136;
   z-index: 10;
 }
 
@@ -103,7 +105,7 @@ body {
   position: relative;
   width: 1920px;
   height: 1605px;
-  background-color: var(--main_bg2);
+  background-color: #F9ECDF;
   overflow: hidden;
   margin: 0 auto;
 }
@@ -129,7 +131,7 @@ body {
   font-size: 100px;
   line-height: 130%;
   letter-spacing: 0;
-  color: var(--main_bg1);
+  color: #5D3136;
   margin: 0;
 }
 
@@ -139,7 +141,7 @@ body {
   font-size: 32px;
   line-height: 140%;
   letter-spacing: 0;
-  color: var(--sub_bg3_b);
+  color: #4F4F4F;
   margin: 0;
 }
 
@@ -162,7 +164,7 @@ body {
   position: relative;
   width: 3636px;
   height: 180px;
-  background-color: var(--main_bg1);
+  background-color: #5D3136;
   left: 50%;
   z-index: 50;
   overflow: hidden;
@@ -201,7 +203,7 @@ body {
   font-size: 84px;
   line-height: 140%;
   letter-spacing: -0.025em; /* 자간 -2.5% */
-  color: var(--main_bg2);
+  color: #F9ECDF;
   white-space: nowrap;
 }
 
@@ -210,7 +212,7 @@ body {
   position: relative;
   width: 1920px;
   padding: 300px 0;
-  background-color: var(--sub_bg1_b);
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -231,7 +233,7 @@ body {
   font-size: 96px;
   line-height: 110%;
   letter-spacing: 0;
-  color: var(--main_bg1);
+  color: #5D3136;
 }
 
 .best .best_all {
@@ -259,9 +261,9 @@ body {
   gap: 40px;
 }
 
-.best .img_all:nth-child(1) { background-color: var(--sub_bg3_c); }
-.best .img_all:nth-child(2) { background-color: var(--sub_bg3_d); }
-.best .img_all:nth-child(3) { background-color: var(--sub_bg3_e); }
+.best .img_all:nth-child(1) { background-color: #7B8288; }
+.best .img_all:nth-child(2) { background-color: #C2C2C2; }
+.best .img_all:nth-child(3) { background-color: #E0E0E0; }
 
 .best .img_all img {
   width: 503px;
@@ -281,7 +283,7 @@ body {
   font-weight: 400;
   font-size: 30px;
   line-height: 110%;
-  color: var(--sub_bg2_c);
+  color: #282828;
   margin: 0;
 }
 
@@ -290,7 +292,7 @@ body {
   font-weight: 400;
   font-size: 64px;
   line-height: 110%;
-  color: var(--sub_bg2_c);
+  color: #282828;
   margin: 0;
 }
 
@@ -299,7 +301,7 @@ body {
   position: relative;
   width: 1920px;
   height: 1826px;
-  background-color: var(--main_bg2);
+  background-color: #F9ECDF;
   padding: 300px 125px;
   box-sizing: border-box;
   overflow: hidden;
@@ -324,7 +326,7 @@ body {
   font-weight: 400;
   font-size: 84px;
   line-height: 110%;
-  color: var(--main_bg1);
+  color: #5D3136;
   margin: 0;
 }
 
@@ -333,7 +335,7 @@ body {
   font-weight: 500;
   font-size: 40px;
   line-height: 110%;
-  color: var(--sub_bg3_b);
+  color: #4F4F4F;
   margin: 0;
 }
 
@@ -369,7 +371,7 @@ body {
   justify-content: center;
   flex-shrink: 0;
   cursor: pointer;
-  background-color: var(--sub_bg1_a);
+  background-color: #D7C5B7;
   border-radius: 100px;
 }
 
@@ -380,7 +382,7 @@ body {
   font-weight: 400;
   font-size: 58px;
   line-height: 110%;
-  color: var(--main_bg1);
+  color: #5D3136;
   white-space: nowrap;
   transition: opacity 0.3s ease;
 }
@@ -398,7 +400,7 @@ body {
   justify-content: space-between;
   padding: 0 50px;
   box-sizing: border-box;
-  background-color: var(--sub_bg2_d);
+  background-color: #FFFFFF;
   border-radius: 100px;
 }
 
@@ -450,7 +452,7 @@ body {
   font-weight: 400;
   font-size: 36px;
   line-height: 130%;
-  color: var(--sub_bg2_a);
+  color: #000000;
   margin: 0;
 }
 
@@ -459,7 +461,7 @@ body {
   font-weight: 400;
   font-size: 84px;
   line-height: 110%;
-  color: var(--sub_bg2_a);
+  color: #000000;
   margin: 0;
 }
 
@@ -468,7 +470,7 @@ body {
   font-weight: 400;
   font-size: 32px;
   line-height: 140%;
-  color: var(--sub_bg3_b);
+  color: #4F4F4F;
   margin: 0;
 }
 
@@ -481,7 +483,7 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background-color: var(--sub_bg3_d);
+  background-color: #C2C2C2;
 }
 
 .more .bullet.active {

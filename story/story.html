@@ -5,56 +5,540 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simmons</title>
+    <!-- 폰트4개  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-
-    <!-- 나의 css -->
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
+
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
-    <script src="js/main.js"></script>
+    <script src="js/story.js"></script>
+    
 </head>
-
 
 <body>
     <div class="wrap">
+               <!-- header start -->
         <header>
             <div class="inner">
-                <h1 class="logo">
-                    <a href="#">SIMMONS</a>
-                </h1>
+                <div class="logo">
+                    <img src="../icon/logo.svg" alt="simmons">
+                </div>
+                <nav>
+                    <ul class="gnb">
+                        <li><a href="#">About Us</a>
+                        </li>
+                        <li><a href="#">Products</a>
 
-                <nav class="nav">
-                    <a href="#">About Us</a>
-                    <a href="#">Products</a>
-                    <a href="#">Sleep Solution</a>
-                    <a href="#">Visit</a>
-                    <a href="#">Contact us</a>
+                        </li>
+                        <li><a href="#">Sleep Solution</a>
+
+                        </li>
+                        <li><a href="#">Visit</a>
+
+                        </li>
+                        <li><a href="#">Contact us</a>
+                        </li>
+                    </ul><!-- //.gnb -->
                 </nav>
-
                 <div class="right">
-                    <button type="button" class="icon_btn search" aria-label="search">
-                        <img src="../icon/search.svg" alt="search">
-                    </button>
-                    <button type="button" class="icon_btn menu" aria-label="menu">
-                        <img src="../icon/menu.svg" alt="menu">
-                    </button>
+                    <ul>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
+                    </ul>
                 </div>
             </div>
         </header>
+        <!-- //header end -->
 
+        <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
+            <div class="story_transition">
+                <div class="story_transition_scene">
+                    <section class="about">
+                        <div class="about_inner">
+                            <div class="about_layout">
+                                <div class="txt_all" aria-label="SIMMNS">
+                                    <span class="about_title">SIMM    NS</span>
+                                </div>
+                                <div class="img_all" aria-label="SIMMONS about collage">
+                                    <svg class="about_circle" viewBox="0 0 790 933" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                                        <defs>
+                                            <pattern id="aboutPattern01" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage01" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <pattern id="aboutPattern02" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage02" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <pattern id="aboutPattern03" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage03" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <pattern id="aboutPattern04" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage04" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <pattern id="aboutPattern05" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage05" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <pattern id="aboutPattern06" patternContentUnits="objectBoundingBox" width="1" height="1">
+                                                <use href="#aboutImage06" transform="matrix(0.00117233 0 0 0.00122549 -0.35346 0)" />
+                                            </pattern>
+                                            <image id="aboutImage01" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history1.png" />
+                                            <image id="aboutImage02" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history2.png" />
+                                            <image id="aboutImage03" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history3.png" />
+                                            <image id="aboutImage04" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history4.png" />
+                                            <image id="aboutImage05" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history5.png" />
+                                            <image id="aboutImage06" width="1456" height="816" preserveAspectRatio="none" href="../img/story_history6.png" />
+                                        </defs>
+                                        <path class="about_piece about_piece_01" d="M460.648 301.563C423.488 283.986 364.876 285.525 340.154 300.66L316.063 84.5499C354.09 74.3671 449.086 75.3606 490.288 86.2009L460.648 301.563Z" fill="url(#aboutPattern01)" stroke="none" />
+                                        <path class="about_piece about_piece_02" d="M573.792 433.284C569.026 392.454 536.684 343.548 510.756 330.59L681.326 195.722C710.1 222.589 759.558 303.7 772.179 344.393L573.792 433.284Z" fill="url(#aboutPattern02)" stroke="none" />
+                                        <path class="about_piece about_piece_03" d="M573.792 498.971C569.026 539.802 536.684 588.707 510.756 601.665L681.326 736.533C710.1 709.666 759.558 628.555 772.179 587.862L573.792 498.971Z" fill="url(#aboutPattern03)" stroke="none" />
+                                        <path class="about_piece about_piece_04" d="M460.648 630.692C423.488 648.269 364.876 646.729 340.154 631.595L316.063 847.705C354.09 857.887 449.086 856.894 490.288 846.054L460.648 630.692Z" fill="url(#aboutPattern04)" stroke="none" />
+                                        <path class="about_piece about_piece_05" d="M293.213 604.772C258.141 583.331 227.295 533.468 226.398 504.495L32.4536 602.828C44.7857 640.213 97.6972 719.116 129.352 747.631L293.213 604.772Z" fill="url(#aboutPattern05)" stroke="none" />
+                                        <path class="about_piece about_piece_06" d="M293.213 327.482C258.141 348.924 227.295 398.786 226.398 427.759L32.4536 329.427C44.7857 292.041 97.6972 213.139 129.352 184.623L293.213 327.482Z" fill="url(#aboutPattern06)" stroke="none" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <section class="history">
+                <div class="history_inner">
+                    <div class="title">
+                        <div class="title_all">
+                            <h2 class="history_title">SIMMONS HISTORY</h2>
+                            <p class="history_intro">
+                                Founded in 1870, Simmons has built a legacy of comfort, craftsmanship, and innovation.
+                                <br>
+                                From the United States to Korea, Simmons continues to define premium sleep.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="history_cards_section sticky-cards">
+                        <article class="sub_all card" id="history-card-1">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">1870-1876</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">From Foundation to Innovation</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            Beginning in Kenosha, Wisconsin, Zalmon G. Simmons laid the foundation for the brand, and
+                                            soon transformed mattress production through a patented spring manufacturing machine,
+                                            making <span>innovation</span>, <span>high-quality mattresses</span>, and wider
+                                            <span>accessibility</span> possible.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history1.png" alt="Historic Simmons mattress workshop in the early years of the brand">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sub_all card" id="history-card-2">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">1925-1931</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">Innovation Shaping the Future of Sleep</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            With the world&apos;s first patented <span>pocket spring</span> manufacturing machine,
+                                            Simmons introduced <span>Beautyrest</span> and continued pioneering
+                                            <span>sleep research</span>, helping lay the foundation for modern sleep science.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history2.png" alt="Simmons innovation era machinery and manufacturing floor">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sub_all card" id="history-card-3">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">1958-1970</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">Innovation That Redefined Rest</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            Recognizing changes in the average American body size, Simmons introduced the
+                                            <span>world&apos;s first queen- and king-size mattresses</span>, setting a new standard
+                                            for sleep. Through distinctive and <span>innovative advertising campaigns</span>,
+                                            Simmons delivered its <span>brand spirit</span> with strong impact.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history3.png" alt="Modern Simmons bedroom representing the expansion of mattress standards">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sub_all card" id="history-card-4">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">2017-2018</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">ESG Leadership in Mattress Safety</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            As part of its <span>ESG management</span>, Simmons Korea became the first and only
+                                            company in Korea to test all household mattresses against international and Korean
+                                            <span>fire safety standards</span>, while developing patented
+                                            <span>flame-resistant mattresses</span>.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history4.png" alt="Advanced Simmons safety laboratory focused on mattress testing">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sub_all card" id="history-card-5">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">2024</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">For the Public Good</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            Guided by its commitment to the <span>public good</span>, Simmons Korea disclosed its
+                                            patented <span>flame-resistant mattress</span> manufacturing technology to support broader
+                                            <span>safety</span> across the bedding industry.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history5.png" alt="Simmons flame-resistant mattress technology presented for public good">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="sub_all card" id="history-card-6">
+                            <div class="sub_inner card-inner">
+                                <div class="card-copy">
+                                    <div class="card-info">
+                                        <p class="history_year">2025</p>
+                                    </div>
+                                    <div class="card-title">
+                                        <h3 class="history_heading">100 Years of Beautyrest</h3>
+                                    </div>
+                                    <div class="card-description">
+                                        <p class="history_desc">
+                                            Marking the <span>100th anniversary</span> of Beautyrest, Simmons became the first in
+                                            Korea to apply <span>vanadium</span> to POSCO steel wire, advancing its legacy of
+                                            <span>undisturbed comfort</span> through a new innovation.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card-img">
+                                    <div class="card-img-frame">
+                                        <img src="../img/story_history6.png" alt="Beautyrest centennial innovation campaign image">
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+            </section>
+
+            <section class="technology">
+                <div class="technology_inner">
+                    <div class="title_all">
+                        <p class="technology_title">SIMMONS<br>TECHNOLOGY</p>
+                    </div>
+
+                    <div class="technology_img technology_img_1">
+                        <img src="../img/tec_mattress5.png" alt="Simmons technology mattress quilt layer">
+                    </div>
+                    <div class="technology_img technology_img_2">
+                        <img src="../img/tec_mattress3.png" alt="Simmons technology cutaway mattress structure">
+                    </div>
+                    <div class="technology_img technology_img_3">
+                        <img src="../img/tec_mattress1.png" alt="Simmons technology upper comfort layer">
+                    </div>
+                    <div class="technology_img technology_img_4">
+                        <img src="../img/tec_mattress2.png" alt="Simmons technology pocket spring layer">
+                    </div>
+                    <div class="technology_img technology_img_5">
+                        <img src="../img/tec_mattress6.png" alt="Simmons technology finished mattress">
+                    </div>
+                    <div class="technology_img technology_img_6">
+                        <img src="../img/tec_mattress4.png" alt="Simmons technology wave foam layer">
+                    </div>
+                </div>
+            </section>
+
+            <section class="tec2">
+                <div class="tec2_inner">
+                    <div class="tec2_obj" aria-hidden="true">
+                        <div class="tec2_image tec2_image_1">
+                            <img src="../img/tec_mattress6.png" alt="">
+                        </div>
+                        <div class="tec2_image tec2_image_2">
+                            <img src="../img/tec_mattress5.png" alt="">
+                        </div>
+                        <div class="tec2_image tec2_image_3">
+                            <img src="../img/tec_mattress4.png" alt="">
+                        </div>
+                        <div class="tec2_image tec2_image_4">
+                            <img src="../img/tec_mattress3.png" alt="">
+                        </div>
+                        <div class="tec2_image tec2_image_5">
+                            <img src="../img/tec_mattress2.png" alt="">
+                        </div>
+                        <div class="tec2_image tec2_image_6">
+                            <img src="../img/tec_mattress1.png" alt="">
+                        </div>
+
+                        <span class="tec2_line tec2_line_1"></span>
+                        <span class="tec2_line tec2_line_2"></span>
+                        <span class="tec2_line tec2_line_3"></span>
+                        <span class="tec2_line tec2_line_4"></span>
+                    </div>
+
+                    <div class="tec2_txt_all tec2_txt_all_1">
+                        <p class="tec2_heading">Pocket Spring</p>
+                        <p class="tec2_body">
+                            Simmons signature pocket spring system delivers optimal elasticity, stability, and
+                            durability, providing even support that closely adapts to the body.
+                        </p>
+                    </div>
+
+                    <div class="tec2_txt_all tec2_txt_all_2">
+                        <p class="tec2_heading">Layering</p>
+                        <p class="tec2_body">
+                            By layering more than 50 carefully selected cushioning materials over pocket springs,
+                            Simmons creates a uniquely refined sleep experience with optimal comfort.
+                        </p>
+                    </div>
+
+                    <div class="tec2_txt_all tec2_txt_all_3">
+                        <p class="tec2_heading">ZONING SYSTEM</p>
+                        <p class="tec2_body">
+                            Simmons&rsquo; proprietary zoning system combines pocket springs with varying levels of
+                            support and elasticity to adapt to different body shapes, sleep habits, and lifestyles.
+                        </p>
+                    </div>
+
+                    <div class="tec2_txt_all tec2_txt_all_4">
+                        <p class="tec2_heading">Vanadium</p>
+                        <p class="tec2_body">
+                            Vanadium, also used in the aerospace industry, provides exceptional strength, flexibility,
+                            and durability, performing reliably even under extreme pressure and heat.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="philosophy">
+                <div class="philosophy_inner">
+                    <h2 class="philosophy_title">SIMMONS PHILOSOPHY</h2>
+
+                    <div class="philosophy_all">
+                        <article class="philosophy_card philosophy_card_comfort">
+                            <div class="philosophy_shell">
+                                <span class="philosophy_badge">Comfort</span>
+                                <div class="philosophy_media">
+                                    <img src="../img/phil04.png" alt="Comfort philosophy image">
+                                </div>
+                                <div class="philosophy_text_block">
+                                    <p class="philosophy_text_heading">Preserving The Essence Of Comfort</p>
+                                    <div class="philosophy_lines">
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text"><strong>Comfort</strong> begins with design that understands the body.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Simmons pursues <strong>balanced</strong> support shaped by natural <strong>movement</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text"><strong>Stable resilience</strong> creates the base for deeper rest.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text"><strong>Materials</strong> and <strong>technology</strong> elevate everyday sleep.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Lasting comfort begins with <strong>enduring standards</strong>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="philosophy_frame" src="../vector/story_phil01.svg" alt="">
+                            </div>
+                        </article>
+
+                        <article class="philosophy_card philosophy_card_eco">
+                            <div class="philosophy_shell">
+                                <span class="philosophy_badge">Eco-Friendly</span>
+                                <div class="philosophy_media">
+                                    <img src="../img/phil03.png" alt="Eco-Friendly philosophy image">
+                                </div>
+                                <div class="philosophy_text_block">
+                                    <p class="philosophy_text_heading">Responsibility Built Into Comfort</p>
+                                    <div class="philosophy_lines">
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text"><strong>Sustainability</strong> starts with every <strong>material</strong> and every process.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Simmons pursues a more <strong>responsible way</strong> to create comfort.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Reducing impact helps <strong>build a better</strong> standard of rest.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Thoughtful materials reflect long-term <strong>ESG values</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Comfort gains meaning through <strong>responsibility and care</strong>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="philosophy_frame" src="../vector/story_phil01.svg" alt="">
+                            </div>
+                        </article>
+
+                        <article class="philosophy_card philosophy_card_science">
+                            <div class="philosophy_shell">
+                                <span class="philosophy_badge">Craft Science</span>
+                                <div class="philosophy_media">
+                                    <img src="../img/phil02.png" alt="Craft Science philosophy image">
+                                </div>
+                                <div class="philosophy_text_block">
+                                    <p class="philosophy_text_heading">Science Refined By Craftsmanship</p>
+                                    <div class="philosophy_lines">
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">True quality begins where <strong>sleep science</strong> meets <strong>craftsmanship</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Simmons unites <strong>research</strong>, <strong>precision</strong>, and lasting comfort.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Every detail reflects careful <strong>engineering</strong> and skilled <strong>workmanship</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">A relentless focus on <strong>quality</strong> shapes better sleep.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Science refined by craft builds trust into every <strong>structure</strong>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="philosophy_frame" src="../vector/story_phil01.svg" alt="">
+                            </div>
+                        </article>
+
+                        <article class="philosophy_card philosophy_card_life">
+                            <div class="philosophy_shell">
+                                <span class="philosophy_badge">Life</span>
+                                <div class="philosophy_media">
+                                    <img src="../img/phil01.png" alt="Life philosophy image">
+                                </div>
+                                <div class="philosophy_text_block">
+                                    <p class="philosophy_text_heading">Comfort Beyond Sleep</p>
+                                    <div class="philosophy_lines">
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Simmons sees the bed as part of everyday <strong>life</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Comfort supports moments of rest, <strong>recovery and living well</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">A bed shapes how we sleep and <strong>begin each day</strong>.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Simmons connects <strong>comfort to the rhythm</strong> of daily life.</p>
+                                        </div>
+                                        <div class="philosophy_line">
+                                            <p class="philosophy_line_text">Beyond the bed, Simmons supports how people <strong>live and restore</strong>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img class="philosophy_frame" src="../vector/story_phil01.svg" alt="">
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section class="product">
+                <div class="product_title_all">
+                    <div class="product_title">Our Picks</div>
+                </div>
+                <div class="product_all">
+                    <article class="product_card">
+                        <img src="../img/list_mattress2.png" alt="Beautyrest Black">
+                        <div class="product_txt">
+                            <p>Beautyrest Black</p>
+                            <p>Black Lauren</p>
+                        </div>
+                    </article>
+
+                    <article class="product_card">
+                        <img src="../img/list_mattress3.png" alt="Beautyrest Mattress">
+                        <div class="product_txt">
+                            <p>Beautyrest Mattress</p>
+                            <p>Black Jasmine</p>
+                        </div>
+                    </article>
+
+                    <article class="product_card">
+                        <img src="../img/list_mattress4.png" alt="N32">
+                        <div class="product_txt">
+                            <p>N32</p>
+                            <p>Spring Mattress</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="product_button_wrap">
+                    <a href="#" class="button_all" aria-label="Explore Product">
+                        <span>Explore Product</span>
+                        <img src="../icon/arrow-up-right.svg" alt="">
+                    </a>
+                </div>
+            </section>
 
         </main>
+        <!-- //main end -->
 
+        <!-- footer start -->
         <footer>
             <div class="footer_inner">
                 <section class="info">
@@ -99,6 +583,7 @@
                 </section>
             </div>
         </footer>
+        <!-- //footer end -->
     </div>
 </body>
 

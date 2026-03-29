@@ -1,1 +1,1817 @@
 @charset "utf-8";
+
+body {
+    overflow-x: hidden;
+}
+
+.wrap {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.story_transition {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.story_transition_scene {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.about {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1920px;
+    min-height: 1615px;
+    margin: 0 auto;
+    padding: 300px 0;
+    box-sizing: border-box;
+    background-color: #5d3136;
+    overflow: hidden;
+}
+
+.about_inner {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    height: 1015px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.about_layout {
+    position: relative;
+    width: 1670px;
+    height: 100%;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.about .txt_all {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1670px;
+    height: 360px;
+    z-index: 2;
+    pointer-events: none;
+    transform: translateY(-46%);
+}
+
+.about_title {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 1670px;
+    margin: 0;
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 300px;
+    line-height: 2.12;
+    letter-spacing: 0.05em;
+    color: #F9ECDF;
+    white-space: pre;
+    transform: translateY(-50%);
+}
+
+.about .img_all {
+    position: absolute;
+    top: 50.5%;
+    left: 61%;
+    width: 548px;
+    height: 648px;
+    transform: translate(-50%, -50%);
+    transform-origin: center;
+    z-index: 1;
+    overflow: visible;
+}
+
+.about_circle {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+}
+
+.about_piece {
+    transform-box: fill-box;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.story_transition_spacer {
+    width: 100%;
+    height: 100vh;
+    background-color: #5d3136;
+}
+
+.history {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    padding: 300px 0 150px;
+    box-sizing: border-box;
+    background-color: #F6F3EE;
+    overflow: visible;
+}
+
+.history_inner {
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+.history .title {
+    width: 100%;
+    margin-bottom: 150px;
+}
+
+.history .title_all {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.history_title {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #5D3136;
+    text-align: center;
+}
+
+.history_intro {
+    width: 100%;
+    margin: 36px 0 0;
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #4F4F4F;
+    text-align: center;
+    word-break: keep-all;
+}
+
+@media (min-width: 1281px) {
+    .story_transition {
+        height: 180vh;
+    }
+
+    .story_transition_scene {
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .story_transition_scene .about {
+        position: absolute;
+        inset: 0;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
+    .story_transition_scene .about_inner {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    .history {
+        will-change: transform;
+    }
+}
+
+.history_cards_section,
+.sticky-cards {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: #0F0F0F;
+    padding-bottom: 0;
+}
+
+.history_cards_section .card,
+.sub_all {
+    width: 100%;
+    max-width: 1920px;
+    height: 125svh;
+    position: sticky;
+    top: 0;
+    background-color: rgba(15, 15, 15, var(--card-bg-opacity, 0));
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+
+.history_cards_section .card-inner,
+.sub_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform-origin: 50% 100%;
+    transform-style: preserve-3d;
+    background-color: #F6F3EE;
+    overflow: hidden;
+    will-change: transform;
+    text-align: left;
+    --card-overlay-opacity: 0;
+}
+
+.card-copy {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding-bottom: 56px;
+    box-sizing: border-box;
+    background-color: #F6F3EE;
+}
+
+.card-info {
+    width: 100%;
+    padding: 36px 125px 0;
+    box-sizing: border-box;
+}
+
+.card-title {
+    width: 100%;
+    padding: 18px 125px 0;
+    box-sizing: border-box;
+}
+
+.card-description {
+    width: 100%;
+    padding: 24px 125px 0;
+    box-sizing: border-box;
+}
+
+.history_cards_section .card-inner::after,
+.sub_inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    opacity: var(--card-overlay-opacity);
+    will-change: auto;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.card-img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    flex: 1 1 auto;
+    height: 100%;
+    margin-top: 56px;
+    box-sizing: border-box;
+    background-color: #F6F3EE;
+}
+
+.card-img-frame {
+    width: calc(100% - 250px);
+    height: calc(100% - 181px);
+    margin: 0 auto 125px;
+    overflow: hidden;
+}
+
+.card-img img {
+    will-change: transform;
+    transform: scale(var(--image-scale, 1));
+    transform-origin: center center;
+}
+
+.sub_all .img,
+.sub_all .card-img {
+    display: block;
+}
+
+.sub_all .img img,
+.card-img img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.sub_all .txt {
+    width: 100%;
+    flex: 1 0 auto;
+    padding: 80px 125px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.history_year {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 34px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #7B8288;
+    text-transform: uppercase;
+}
+
+.history_heading {
+    margin: 0;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 800;
+    font-size: 60px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #000000;
+}
+
+.history_desc {
+    max-width: 1410px;
+    margin: 0;
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 300;
+    font-size: 28px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    color: #000000;
+}
+
+.history_desc span {
+    font-weight: 500;
+}
+
+.technology {
+    width: 100%;
+    max-width: 1920px;
+    min-height: 1780px;
+    margin: 0 auto;
+    background-color: #5D3136;
+    overflow: visible;
+    position: relative;
+    z-index: 3;
+}
+
+.technology_inner {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    height: 1780px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.technology .title_all {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    text-align: center;
+    pointer-events: none;
+}
+
+.technology_title {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 126px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #F9ECDF;
+}
+
+.technology_img {
+    position: absolute;
+    width: 490px;
+    height: 315px;
+    will-change: transform, opacity;
+    transform-origin: center center;
+}
+
+.technology_img img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.technology_img_4 img {
+    transform: scaleX(-1);
+}
+
+.technology_img_5 img {
+    transform: scaleY(-1);
+}
+
+.technology_img_6 img {
+    transform: scaleY(-1);
+}
+
+.technology_img_1 {
+    top: 390px;
+    left: 25px;
+    --rotate: -34.59deg;
+    --float-offset: -20px;
+    --float-duration: 3.1s;
+}
+
+.technology_img_2 {
+    top: 180px;
+    left: 690px;
+    --rotate: 43.37deg;
+    --float-offset: -26px;
+    --float-duration: 3.6s;
+}
+
+.technology_img_3 {
+    top: 410px;
+    right: 25px;
+    --rotate: 32.57deg;
+    --float-offset: -18px;
+    --float-duration: 3.2s;
+}
+
+.technology_img_4 {
+    bottom: 400px;
+    left: 30px;
+    --rotate: -84.72deg;
+    --float-offset: -24px;
+    --float-duration: 3.8s;
+}
+
+.technology_img_5 {
+    bottom: 190px;
+    left: 690px;
+    --rotate: -23.55deg;
+    --float-offset: -16px;
+    --float-duration: 3s;
+}
+
+.technology_img_6 {
+    bottom: 440px;
+    right: 30px;
+    --rotate: -62.05deg;
+    --float-offset: -22px;
+    --float-duration: 3.5s;
+}
+
+.tec2 {
+    width: 100%;
+    max-width: 1920px;
+    min-height: 1780px;
+    margin: 0 auto;
+    padding: 180px 0 300px;
+    background-color: #f6f3ee;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.tec2_inner {
+    position: relative;
+    width: 100%;
+    max-width: 1920px;
+    min-height: 1780px;
+    margin: 0 auto;
+}
+
+.tec2_obj {
+    position: absolute;
+    inset: 0;
+    transform: none;
+}
+
+.tec2_image {
+    position: absolute;
+    z-index: 3;
+    will-change: transform, opacity;
+}
+
+.tec2_image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+}
+
+.tec2_image_1 {
+    top: 34px;
+    left: 665px;
+    width: 590px;
+    height: 304px;
+}
+
+.tec2_image_2 {
+    top: 250px;
+    left: 530px;
+    width: 900px;
+    height: 383px;
+}
+
+.tec2_image_3 {
+    top: 628px;
+    left: 480px;
+    width: 960px;
+    height: 284px;
+}
+
+.tec2_image_4 {
+    top: 918px;
+    left: 670px;
+    width: 580px;
+    height: 267px;
+}
+
+.tec2_image_5 {
+    top: 1170px;
+    left: 476px;
+    width: 968px;
+    height: 286px;
+}
+
+.tec2_image_6 {
+    top: 1520px;
+    left: 500px;
+    width: 920px;
+    height: 260px;
+}
+
+.tec2_line {
+    position: absolute;
+    display: block;
+    background-image: url('../../vector/tec_line.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    z-index: 1;
+    will-change: transform, opacity;
+}
+
+.tec2_line_1 {
+    top: 324px;
+    left: 385px;
+    width: 402px;
+    height: 151px;
+}
+
+.tec2_line_2 {
+    top: 598px;
+    right: 430px;
+    width: 424px;
+    height: 151px;
+}
+
+.tec2_line_3 {
+    top: 900px;
+    left: 386px;
+    width: 424px;
+    height: 151px;
+}
+
+.tec2_line_4 {
+    top: 1182px;
+    right: 398px;
+    width: 424px;
+    height: 151px;
+}
+
+.tec2_txt_all {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 614px;
+    height: 199px;
+    gap: 20px;
+    justify-content: flex-start;
+    z-index: 3;
+    will-change: transform, opacity;
+}
+
+.tec2_txt_all_1 {
+    top: 144px;
+    left: 125px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.tec2_txt_all_2 {
+    top: 392px;
+    right: 125px;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.tec2_txt_all_3 {
+    top: 690px;
+    left: 125px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.tec2_txt_all_4 {
+    top: 968px;
+    right: 125px;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.tec2_heading {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 54px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #5d3136;
+}
+
+.tec2_body {
+    margin: 0;
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #5d3136;
+    max-width: 100%;
+}
+
+.tec2_txt_all_1 .tec2_heading,
+.tec2_txt_all_1 .tec2_body,
+.tec2_txt_all_3 .tec2_heading,
+.tec2_txt_all_3 .tec2_body {
+    text-align: left;
+}
+
+.tec2_txt_all_2 .tec2_heading,
+.tec2_txt_all_2 .tec2_body,
+.tec2_txt_all_4 .tec2_heading,
+.tec2_txt_all_4 .tec2_body {
+    text-align: right;
+}
+
+.philosophy {
+    width: 100%;
+    max-width: 1920px;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 300px 0;
+    box-sizing: border-box;
+    background-color: #f6f3ee;
+    overflow: visible;
+}
+
+.philosophy_inner {
+    width: 1920px;
+    margin: 0 auto;
+}
+
+.philosophy_title {
+    width: 1670px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.philosophy_title {
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 100px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #5D3136;
+    text-align: center;
+}
+
+.philosophy_all {
+    position: relative;
+    width: 1920px;
+    height: auto;
+    margin-top: 300px;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 120px;
+}
+
+.philosophy_card {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 1920px;
+    height: 1764px;
+    will-change: auto;
+}
+
+.philosophy_card_comfort {
+    z-index: 1;
+}
+
+.philosophy_card_eco {
+    z-index: 2;
+}
+
+.philosophy_card_science {
+    z-index: 3;
+}
+
+.philosophy_card_life {
+    z-index: 4;
+}
+
+.philosophy_shell {
+    --card-color: #D7C5B7;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.philosophy_card_comfort .philosophy_shell {
+    --card-color: #D7C5B7;
+}
+
+.philosophy_card_eco .philosophy_shell {
+    --card-color: #E0E0E0;
+}
+
+.philosophy_card_science .philosophy_shell {
+    --card-color: #B8B1A8;
+}
+
+.philosophy_card_life .philosophy_shell {
+    --card-color: #C2C2C2;
+}
+
+.philosophy_shell::before {
+    content: '';
+    position: absolute;
+    top: 54px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 54px);
+    background-color: var(--card-color);
+    border-radius: 24px 24px 0 0;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.08);
+}
+
+.philosophy_shell::after {
+    content: '';
+    position: absolute;
+    top: 54px;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: var(--card-color);
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+.philosophy_badge {
+    position: absolute;
+    top: 0;
+    left: 78px;
+    z-index: 3;
+    min-width: 410px;
+    height: 80px;
+    padding: 0 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-color);
+    clip-path: polygon(22% 0, 78% 0, 100% 78%, 0 78%);
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    color: #5D3136;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.philosophy_card_eco .philosophy_badge,
+.philosophy_card_life .philosophy_badge {
+    left: auto;
+    right: 80px;
+    justify-content: center;
+    text-align: center;
+    clip-path: polygon(0 78%, 22% 0, 78% 0, 100% 78%);
+}
+
+.philosophy_media {
+    position: absolute;
+    top: 190px;
+    left: 80px;
+    width: calc(100% - 160px);
+    height: 874px;
+    z-index: 1;
+    overflow: hidden;
+    box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.philosophy_media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    filter: grayscale(1);
+}
+
+.philosophy_text_block {
+    position: absolute;
+    top: 1088px;
+    left: 70px;
+    width: calc(100% - 140px);
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+    padding: 32px 10px 80px;
+    box-sizing: border-box;
+    z-index: 4;
+    opacity: 1;
+    transform: none;
+    will-change: auto;
+    pointer-events: auto;
+    display: flex;
+    visibility: visible;
+}
+
+.philosophy_text_heading {
+    margin: 0;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 600;
+    font-size: 52px;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    color: #000000;
+}
+
+.philosophy_lines {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.philosophy_line {
+    width: 100%;
+}
+
+.philosophy_line_text {
+    margin: 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #000000;
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 300;
+    font-size: 32px;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+    color: #000000;
+}
+
+.philosophy_line_text strong {
+    font-weight: 600;
+}
+
+.philosophy_frame {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: none;
+    pointer-events: none;
+}
+
+.philosophy.is-active {
+    overflow: visible;
+}
+
+.philosophy.has-interaction .philosophy_inner {
+    width: 100%;
+    max-width: 1920px;
+}
+
+.philosophy.has-interaction .philosophy_title {
+    width: 1670px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.philosophy.has-interaction .philosophy_all {
+    position: relative;
+    width: 1920px;
+    height: 1060px;
+    margin-top: 140px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    overflow: hidden;
+}
+
+.philosophy.has-interaction .philosophy_card {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1670px;
+    height: 1060px;
+    margin: 0;
+    overflow: hidden;
+    transform: translateX(-50%);
+    will-change: transform, width;
+}
+
+.philosophy.has-interaction .philosophy_card_comfort {
+    z-index: 1;
+}
+
+.philosophy.has-interaction .philosophy_card_eco {
+    z-index: 2;
+}
+
+.philosophy.has-interaction .philosophy_card_science {
+    z-index: 3;
+}
+
+.philosophy.has-interaction .philosophy_card_life {
+    z-index: 4;
+}
+
+.philosophy.has-interaction .philosophy_shell {
+    width: 100%;
+    height: 1764px;
+    will-change: transform;
+}
+
+.product {
+    position: relative;
+    width: 1920px;
+    padding: 300px 0;
+    margin: 0 auto;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.product_title_all {
+    width: 100%;
+    margin-bottom: 160px;
+    text-align: center;
+}
+
+.product_title {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 1.1;
+    letter-spacing: 0;
+    color: #5D3136;
+}
+
+.product_all {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 160px;
+    padding: 0 125px;
+    width: max-content;
+    box-sizing: border-box;
+    will-change: transform;
+}
+
+.product_card {
+    flex: 0 0 929px;
+    height: 524px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.product_card:nth-child(1) {
+    background-color: #7B8288;
+}
+
+.product_card:nth-child(2) {
+    background-color: #C2C2C2;
+}
+
+.product_card:nth-child(3) {
+    background-color: #E0E0E0;
+}
+
+.product_card > img {
+    width: 503px;
+    height: 240px;
+    object-fit: contain;
+}
+
+.product_txt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+}
+
+.product_txt p {
+    margin: 0;
+    color: #282828;
+}
+
+.product_txt p:nth-child(1) {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.1;
+}
+
+.product_txt p:nth-child(2) {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 1.1;
+}
+
+.product_button_wrap {
+    width: 100%;
+    margin-top: 160px;
+    display: flex;
+    justify-content: center;
+}
+
+.button_all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    width: 372px;
+    height: 92px;
+    padding: 16px;
+    border: 1px solid #5D3136;
+    border-radius: 8px;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.button_all span {
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: 0;
+    color: #5D3136;
+}
+
+.button_all img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+@keyframes technology_float {
+    0% {
+        transform: translateY(0) rotate(var(--rotate, 0deg));
+    }
+    50% {
+        transform: translateY(var(--float-offset, -20px)) rotate(var(--rotate, 0deg));
+    }
+    100% {
+        transform: translateY(0) rotate(var(--rotate, 0deg));
+    }
+}
+
+@media (max-width: 1760px) {
+    .history {
+        padding: 220px 40px 150px;
+    }
+
+    .sub_all {
+        width: 100%;
+        min-height: auto;
+        position: relative;
+        top: auto;
+        transform-style: flat;
+        perspective: none;
+    }
+
+    .sub_inner {
+        min-height: auto;
+    }
+
+    .card-info,
+    .card-title,
+    .card-description {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+
+    .card-info {
+        padding-top: 32px;
+    }
+
+    .card-img {
+        min-height: 68vh;
+    }
+
+    .card-img-frame {
+        width: calc(100% - 160px);
+        margin-bottom: 80px;
+    }
+
+    .technology {
+        min-height: 1500px;
+    }
+
+    .technology_inner {
+        height: 1500px;
+    }
+
+    .technology_title {
+        font-size: 120px;
+    }
+
+    .technology_img {
+        width: 520px;
+        height: 352px;
+    }
+
+    .tec2 {
+        min-height: 1500px;
+    }
+
+    .tec2_inner {
+        min-height: 1500px;
+    }
+
+    .tec2_obj {
+        transform: translateY(-180px);
+    }
+
+    .tec2_image_1 {
+        top: 150px;
+        left: 449px;
+        width: 520px;
+        height: 268px;
+    }
+
+    .tec2_image_2 {
+        top: 438px;
+        left: 454px;
+        width: 510px;
+        height: 241px;
+    }
+
+    .tec2_image_3 {
+        top: 704px;
+        left: 323px;
+        width: 772px;
+        height: 229px;
+    }
+
+    .tec2_image_4 {
+        top: 890px;
+        left: 466px;
+        width: 484px;
+        height: 223px;
+    }
+
+    .tec2_image_5 {
+        top: 1168px;
+        left: 317px;
+        width: 782px;
+        height: 231px;
+    }
+
+    .tec2_image_6 {
+        top: 1392px;
+        left: 336px;
+        width: 744px;
+        height: 210px;
+    }
+
+    .tec2_txt_all_1,
+    .tec2_txt_all_3 {
+        left: 22px;
+        width: 268px;
+    }
+
+    .tec2_txt_all_2,
+    .tec2_txt_all_4 {
+        right: 20px;
+        width: 286px;
+    }
+
+    .tec2_txt_all_1 {
+        top: 300px;
+    }
+
+    .tec2_txt_all_2 {
+        top: 450px;
+    }
+
+    .tec2_txt_all_3 {
+        top: 650px;
+    }
+
+    .tec2_txt_all_4 {
+        top: 966px;
+    }
+
+    .tec2_heading {
+        font-size: 42px;
+        line-height: 0.96;
+    }
+
+    .tec2_body {
+        font-size: 22px;
+        line-height: 1.1;
+    }
+
+    .tec2_line_1 {
+        top: 532px;
+        left: 92px;
+        width: 338px;
+        height: 72px;
+    }
+
+    .tec2_line_2 {
+        top: 734px;
+        right: 100px;
+        width: 270px;
+        height: 72px;
+    }
+
+    .tec2_line_3 {
+        top: 926px;
+        left: 108px;
+        width: 430px;
+        height: 74px;
+    }
+
+    .tec2_line_4 {
+        top: 1330px;
+        right: 24px;
+        width: 382px;
+        height: 72px;
+    }
+}
+
+@media (max-width: 1280px) {
+    .history {
+        min-height: auto;
+        padding: 180px 24px;
+    }
+
+    .history .title {
+        margin-bottom: 120px;
+    }
+
+    .history_title {
+        font-size: 72px;
+    }
+
+    .history_intro {
+        margin-top: 28px;
+        font-size: 30px;
+    }
+
+    .history_cards_section {
+        display: flex;
+        flex-direction: column;
+        gap: 120px;
+    }
+
+    .sub_all {
+        position: relative;
+        top: auto;
+        min-height: auto;
+        transform-style: flat;
+        perspective: none;
+    }
+
+    .sub_inner {
+        min-height: auto;
+    }
+
+    .card-info,
+    .card-title,
+    .card-description {
+        padding-left: 56px;
+        padding-right: 56px;
+    }
+
+    .card-info {
+        padding-top: 28px;
+    }
+
+    .history_year {
+        font-size: 28px;
+    }
+
+    .history_heading {
+        font-size: 52px;
+    }
+
+    .history_desc {
+        font-size: 28px;
+    }
+
+    .card-img {
+        min-height: 54vh;
+    }
+
+    .card-img-frame {
+        width: calc(100% - 112px);
+        margin-bottom: 56px;
+    }
+
+    .technology {
+        min-height: 1100px;
+    }
+
+    .technology_inner {
+        height: 1100px;
+    }
+
+    .technology_title {
+        font-size: 96px;
+    }
+
+    .technology_img {
+        width: 360px;
+        height: 244px;
+    }
+
+    .technology_img_1 {
+        top: 130px;
+        left: -20px;
+    }
+
+    .technology_img_2 {
+        top: 20px;
+        left: 420px;
+    }
+
+    .technology_img_3 {
+        top: 140px;
+        right: -20px;
+    }
+
+    .technology_img_4 {
+        bottom: 140px;
+        left: 10px;
+    }
+
+    .technology_img_5 {
+        bottom: 60px;
+        left: 430px;
+    }
+
+    .technology_img_6 {
+        bottom: 130px;
+        right: 10px;
+    }
+
+    .tec2 {
+        min-height: 1320px;
+    }
+
+    .tec2_inner {
+        min-height: 1320px;
+    }
+
+    .tec2_obj {
+        transform: translateY(-140px);
+    }
+
+    .tec2_image_1 {
+        top: 124px;
+        left: 232px;
+        width: 500px;
+        height: 258px;
+    }
+
+    .tec2_image_2 {
+        top: 352px;
+        left: 238px;
+        width: 488px;
+        height: 230px;
+    }
+
+    .tec2_image_3 {
+        top: 562px;
+        left: 223px;
+        width: 620px;
+        height: 184px;
+    }
+
+    .tec2_image_4 {
+        top: 700px;
+        left: 329px;
+        width: 410px;
+        height: 189px;
+    }
+
+    .tec2_image_5 {
+        top: 916px;
+        left: 222px;
+        width: 620px;
+        height: 183px;
+    }
+
+    .tec2_image_6 {
+        top: 1128px;
+        left: 237px;
+        width: 590px;
+        height: 167px;
+    }
+
+    .tec2_txt_all_1,
+    .tec2_txt_all_3 {
+        left: 24px;
+        width: 220px;
+    }
+
+    .tec2_txt_all_2,
+    .tec2_txt_all_4 {
+        right: 24px;
+        width: 236px;
+    }
+
+    .tec2_txt_all_1 {
+        top: 254px;
+    }
+
+    .tec2_txt_all_2 {
+        top: 346px;
+    }
+
+    .tec2_txt_all_3 {
+        top: 506px;
+    }
+
+    .tec2_txt_all_4 {
+        top: 748px;
+    }
+
+    .tec2_heading {
+        font-size: 34px;
+        line-height: 0.98;
+    }
+
+    .tec2_body {
+        font-size: 18px;
+        line-height: 1.12;
+    }
+
+    .tec2_line_1 {
+        top: 430px;
+        left: 86px;
+        width: 254px;
+        height: 84px;
+    }
+
+    .tec2_line_2 {
+        top: 566px;
+        right: 94px;
+        width: 208px;
+        height: 92px;
+    }
+
+    .tec2_line_3 {
+        top: 728px;
+        left: 86px;
+        width: 318px;
+        height: 96px;
+    }
+
+    .tec2_line_4 {
+        top: 1082px;
+        right: 20px;
+        width: 286px;
+        height: 90px;
+    }
+
+    .philosophy {
+        min-height: auto;
+        padding: 180px 24px;
+    }
+
+    .philosophy_inner,
+    .philosophy_all,
+    .philosophy_card {
+        width: 100%;
+    }
+
+    .philosophy_title {
+        font-size: 72px;
+    }
+
+    .philosophy_all {
+        height: auto;
+        margin-top: 120px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        overflow: visible;
+    }
+
+    .philosophy_card {
+        position: relative;
+        top: auto;
+        height: auto;
+    }
+
+    .philosophy_shell {
+        aspect-ratio: 1670 / 1145;
+    }
+
+    .philosophy_badge {
+        min-width: 300px;
+        height: 62px;
+        font-size: 28px;
+    }
+
+    .philosophy_media {
+        top: 16.6%;
+        left: 4.8%;
+        width: 90.4%;
+        height: 54%;
+    }
+
+    .philosophy_text_block {
+        top: 72%;
+        left: 4%;
+        width: 92%;
+        gap: 32px;
+        padding: 20px 10px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    .philosophy_text_heading {
+        font-size: 34px;
+    }
+
+    .philosophy_lines {
+        gap: 20px;
+    }
+
+    .philosophy_line_text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tec2 {
+        min-height: 1500px;
+    }
+
+    .tec2_inner {
+        min-height: 1500px;
+    }
+
+    .tec2_obj {
+        transform: scale(0.72);
+        transform-origin: top center;
+    }
+
+    .tec2_txt_all {
+        width: 200px;
+        gap: 14px;
+    }
+
+    .tec2_txt_all_1,
+    .tec2_txt_all_3 {
+        left: 18px;
+    }
+
+    .tec2_txt_all_2,
+    .tec2_txt_all_4 {
+        right: 18px;
+    }
+
+    .tec2_heading {
+        font-size: 26px;
+    }
+
+    .tec2_body {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .history {
+        padding: 120px 20px;
+    }
+
+    .history .title {
+        margin-bottom: 80px;
+    }
+
+    .history_title {
+        font-size: 48px;
+    }
+
+
+    .history_intro {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    .history_cards_section {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .sub_all {
+        position: relative;
+        top: auto;
+        min-height: auto;
+        transform-style: flat;
+        perspective: none;
+    }
+
+    .sub_inner {
+        min-height: auto;
+    }
+
+    .card-info,
+    .card-title,
+    .card-description {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .card-info {
+        padding-top: 28px;
+    }
+
+    .history_year {
+        font-size: 18px;
+    }
+
+    .history_heading {
+        font-size: 34px;
+    }
+
+    .history_desc {
+        font-size: 18px;
+    }
+
+    .card-img {
+        min-height: 36vh;
+    }
+
+    .card-img-frame {
+        width: calc(100% - 48px);
+        margin-bottom: 24px;
+    }
+
+    .technology {
+        min-height: 760px;
+    }
+
+    .technology_inner {
+        height: 760px;
+    }
+
+    .technology_title {
+        font-size: 56px;
+    }
+
+    .technology_img {
+        width: 180px;
+        height: 122px;
+    }
+
+    .technology_img_1 {
+        top: 110px;
+        left: -30px;
+    }
+
+    .technology_img_2 {
+        top: 32px;
+        left: 120px;
+    }
+
+    .technology_img_3 {
+        top: 112px;
+        right: -28px;
+    }
+
+    .technology_img_4 {
+        bottom: 120px;
+        left: -8px;
+    }
+
+    .technology_img_5 {
+        bottom: 48px;
+        left: 128px;
+    }
+
+    .technology_img_6 {
+        bottom: 116px;
+        right: -8px;
+    }
+
+    .philosophy {
+        padding: 120px 20px;
+    }
+
+    .philosophy_title {
+        font-size: 48px;
+    }
+
+    .philosophy_all {
+        margin-top: 80px;
+        gap: 48px;
+    }
+
+    .philosophy_badge {
+        min-width: 170px;
+        height: 38px;
+        padding: 0 18px;
+        left: 24px;
+        font-size: 14px;
+    }
+
+    .philosophy_card_eco .philosophy_badge,
+    .philosophy_card_life .philosophy_badge {
+        right: 24px;
+    }
+
+    .philosophy_media {
+        height: 48%;
+    }
+
+    .philosophy_text_block {
+        top: 64%;
+        left: 3.5%;
+        width: 93%;
+        gap: 20px;
+        padding: 12px 10px;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+    }
+
+    .philosophy_text_heading {
+        font-size: 20px;
+    }
+
+    .philosophy_lines {
+        gap: 14px;
+        padding: 0 4px;
+    }
+
+    .philosophy_line_text {
+        font-size: 12px;
+        padding-bottom: 4px;
+    }
+}
