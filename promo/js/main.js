@@ -5,9 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
   const mainVisualObjects = document.querySelectorAll('.main_visual .main_visual_object');
 
   if (items.length) {
+    function syncState() {
+      items.forEach((item) => {
+        const button = item.querySelector('.accordion_trigger');
+        button.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+      });
+    }
+
     function closeAll() {
       items.forEach((item) => item.classList.remove('open'));
+      syncState();
     }
+
+    syncState();
 
     items.forEach((item) => {
       const button = item.querySelector('.accordion_trigger');
@@ -20,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isOpen) {
           item.classList.add('open');
         }
+
+        syncState();
       });
     });
   }
@@ -34,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     originalItems.forEach((item) => {
       const clone = item.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
       eventTrack.appendChild(clone);
     });
 
