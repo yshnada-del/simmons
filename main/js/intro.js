@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const INTRO_SESSION_KEY = 'simmons-main-intro-played';
     const years = [1870, 1876, 1925, 1931, 1958, 1970, 2017, 2024, 2025, 2026];
     const yearTimings = [
         { out: 0.26, in: 0.32, gap: 0.06 },
@@ -21,6 +22,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const mainVideo = mainVisual ? mainVisual.querySelector('video') : null;
 
     if (!introOverlay || !introStage || yearDigits.length !== 4 || !introLogo || !mainVisual) {
+        return;
+    }
+
+    const hasPlayedIntro = () => {
+        try {
+            return sessionStorage.getItem(INTRO_SESSION_KEY) === 'true';
+        } catch (error) {
+            return false;
+        }
+    };
+
+    const persistIntroPlayed = () => {
+        try {
+            sessionStorage.setItem(INTRO_SESSION_KEY, 'true');
+        } catch (error) {
+            // Ignore storage access errors and continue without persistence.
+        }
+    };
+
+    const playMainVisualVideo = () => {
+        if (!mainVideo) {
+            return;
+        }
+
+        const playPromise = mainVideo.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => { });
+        }
+    };
+
+    const finalizeIntroState = () => {
+        persistIntroPlayed();
+        body.classList.add('intro-complete');
+        body.classList.remove('header-locked');
+
+        requestAnimationFrame(() => {
+            introOverlay.remove();
+        });
+    };
+
+    if (hasPlayedIntro()) {
+        body.classList.add('intro-complete');
+        body.classList.remove('header-locked');
+        playMainVisualVideo();
+        introOverlay.remove();
         return;
     }
 
@@ -249,20 +295,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
 
-                const playPromise = mainVideo.play();
-                if (playPromise && typeof playPromise.catch === 'function') {
-                    playPromise.catch(() => { });
-                }
+                playMainVisualVideo();
             } catch (error) {
                 // Keep the intro handoff resilient even if currentTime sync is blocked.
             }
         }
 
-        body.classList.add('intro-complete');
-        body.classList.remove('header-locked');
-        requestAnimationFrame(() => {
-            introOverlay.remove();
-        });
+        finalizeIntroState();
     });
 
     window.addEventListener('load', () => {
