@@ -276,5 +276,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 toggleActions: 'play none none none',
             }
         });
+
+        infoCards.forEach((card) => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -40,
+                    duration: 0.35,
+                    ease: "power3.out",
+                    overwrite: 'auto',
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    duration: 0.35,
+                    ease: "power3.out",
+                    overwrite: 'auto',
+                });
+            });
+        });
     }
 });

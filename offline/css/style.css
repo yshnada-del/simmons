@@ -752,6 +752,10 @@
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
 }
 
+.rv_card:hover {
+    filter: drop-shadow(0 28px 54px rgba(0, 0, 0, 0.45));
+}
+
 .rv_card img {
     display: block;
     width: auto;
@@ -780,15 +784,10 @@
     z-index: 3;
 }
 
-/* Hover effects */
-.rv_card1:hover {
-    transform: translateX(0) rotate(10deg) translateY(-40px);
+footer .info {
+    transition: transform 0.3s ease;
 }
 
-.rv_card2:hover {
-    transform: translateX(-2%) rotate(-7deg) translateY(-40px);
-}
-
-.rv_card3:hover {
-    transform: translateX(3%) rotate(3deg) translateY(-40px);
+footer .info:hover {
+    transform: translateY(-8px);
 }
