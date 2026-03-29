@@ -273,3 +273,40 @@
     height: 24px;
     background-color: var(--color-cream);
 }
+
+@media (max-width: 1024px) {
+    .name_page_body {
+        padding: 24px 100px 0;
+    }
+
+    .name_page_inner {
+        margin-top: 0;
+        max-width: none;
+    }
+
+    .name_page_inner .main_title {
+        font-size: 90px;
+    }
+
+    .name_contents {
+        height: auto;
+        min-height: 680px;
+        padding: 40px 100px;
+    }
+
+    .tit2_box p {
+        font-size: 16px;
+    }
+
+    .input_box .q_name {
+        font-size: 16px;
+    }
+
+    .start_btn span {
+        font-size: 22px;
+    }
+
+    .footer_box .code_txt {
+        font-size: 16px;
+    }
+}

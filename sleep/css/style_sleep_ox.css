@@ -300,3 +300,45 @@ body.yor_n_page {
     background-color: var(--color-cream);
     flex-shrink: 0;
 }
+
+@media (max-width: 1024px) {
+    body.yor_n_page {
+        justify-content: flex-start;
+        align-items: stretch;
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+        padding: 80px 100px;
+    }
+
+    .inner {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        min-height: calc(100vh - 160px);
+        justify-content: flex-start;
+    }
+
+    .top.card {
+        min-height: 100px;
+        padding: 0 40px;
+    }
+
+    .bottom.card {
+        height: auto;
+        min-height: 741px;
+        padding: 40px;
+    }
+
+    .tit h2 {
+        font-size: 32px;
+    }
+
+    .ox_box {
+        font-size: 120px;
+    }
+
+    .code .barcode_img {
+        height: 40px;
+    }
+}

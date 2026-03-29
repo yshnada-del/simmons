@@ -45,7 +45,7 @@ main {
 
 /* 1. Inner Container */
 .page_inner {
-    width: 100%;
+    width: calc(100% - 200px);
     max-width: 1620px;
     display: flex;
     flex-direction: column;
@@ -588,4 +588,147 @@ main {
     background-repeat: repeat-x;
     background-size: 14px 15px;
     /* Sharp spikes */
+}
+
+@media (max-width: 1024px) {
+    main {
+        min-height: auto;
+        padding-top: 140px;
+        padding-bottom: 120px;
+    }
+
+    .page_inner {
+        width: calc(100% - 64px);
+        gap: 18px;
+    }
+
+    .match_title {
+        font-size: 92px;
+        padding-bottom: 20px;
+    }
+
+    .receipt_wrap {
+        width: min(680px, 100%);
+    }
+
+    .top_bar {
+        width: min(680px, 100%);
+        height: 72px;
+    }
+
+    .top_bar_line {
+        width: calc(100% - 48px);
+    }
+
+    .receipt_mask {
+        margin-top: -32px;
+    }
+
+    .receipt_inner {
+        width: min(620px, 100%);
+        padding-bottom: 32px;
+    }
+
+    .receipt_top {
+        padding: 52px 32px 18px;
+        gap: 14px;
+    }
+
+    .match_badge {
+        top: 32px;
+        right: 32px;
+        width: 96px;
+        height: 96px;
+    }
+
+    .badge_text {
+        font-size: 12px;
+    }
+
+    .badge_percent {
+        font-size: 24px;
+    }
+
+    .receipt_top .logo {
+        font-size: 24px;
+        letter-spacing: 8px;
+    }
+
+    .state {
+        font-size: 40px;
+    }
+
+    .receipt_visual {
+        padding: 0 32px 24px;
+    }
+
+    .product_img {
+        max-height: 340px;
+    }
+
+    .receipt_bottom {
+        padding: 0 32px 32px;
+        gap: 32px;
+    }
+
+    .info {
+        gap: 16px;
+    }
+
+    .product_name {
+        font-size: 34px;
+    }
+
+    .level_row {
+        gap: 10px;
+    }
+
+    .level_label {
+        width: 76px;
+        min-width: 76px;
+        flex: 0 0 76px;
+    }
+
+    .level_meter {
+        gap: 5px;
+    }
+
+    .level_cell {
+        width: 90px;
+        min-width: 90px;
+        flex: 0 0 90px;
+    }
+
+    .description {
+        font-size: 18px;
+    }
+
+    .check_list li span {
+        font-size: 17px;
+    }
+
+    .price_label {
+        font-size: 20px;
+    }
+
+    .price_value {
+        font-size: 30px;
+    }
+
+    .receipt_btn {
+        height: 58px;
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .receipt_btn img,
+    .back_link a img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .back_link a {
+        font-size: 18px;
+        letter-spacing: 2px;
+    }
 }
