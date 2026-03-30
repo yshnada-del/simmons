@@ -146,7 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewItems.forEach((item) => {
             const targetId = item.dataset.reviewTarget;
 
-            item.addEventListener('mouseenter', () => setActiveReview(targetId));
+            item.addEventListener('click', (event) => {
+                event.preventDefault();
+                setActiveReview(targetId);
+            });
             item.addEventListener('focusin', () => setActiveReview(targetId));
         });
     }
@@ -176,46 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
         innovationView &&
         infoTextBox &&
         innovationCards.length &&
-        window.gsap &&
-        window.ScrollTrigger
+        window.gsap
     ) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const setInnovationScroll = () => {
-            const firstCard = innovationCards[0];
-            const cardsHeight = infoTextBox.scrollHeight;
-            const viewHeight = innovationView.clientHeight;
-            const firstCardHeight = firstCard ? firstCard.offsetHeight : 0;
-            const initialOffset = Math.max((viewHeight - firstCardHeight) / 2 - 24, 0);
-            const travelDistance = Math.max(cardsHeight - viewHeight + initialOffset + 120, 0);
-
-            ScrollTrigger.getById('innovation-cards')?.kill();
-            gsap.killTweensOf(infoTextBox);
-
-            gsap.set(infoTextBox, { y: initialOffset });
-            gsap.set(innovationCards, { y: 0 });
-
-            gsap.to(infoTextBox, {
-                y: -(travelDistance - initialOffset),
-                ease: 'none',
-                scrollTrigger: {
-                    id: 'innovation-cards',
-                    trigger: innovationHeading || innovationSection,
-                    start: 'top top+=80',
-                    end: () => `+=${Math.max(travelDistance + window.innerHeight * 0.35, window.innerHeight * 1.2)}`,
-                    scrub: 0.35,
-                    pin: innovationSection,
-                    pinSpacing: true,
-                    anticipatePin: 1,
-                    fastScrollEnd: true,
-                    invalidateOnRefresh: true
-                }
-            });
-        };
-
-        setInnovationScroll();
-        ScrollTrigger.addEventListener('refreshInit', setInnovationScroll);
-        window.addEventListener('resize', () => ScrollTrigger.refresh());
+        gsap.set(infoTextBox, { clearProps: 'all' });
+        gsap.set(innovationCards, { clearProps: 'all' });
     }
 
     if (techSection && techLayers.length && window.gsap && window.ScrollTrigger) {
@@ -372,123 +339,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (withSection && withTextBox && withCards.length && window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const withMedia = gsap.matchMedia();
-
-        withMedia.add('(min-width: 961px)', () => {
-            const cards = Array.from(withCards);
-            const dotsByCard = cards.map((card) => Array.from(card.querySelectorAll('.with_dot')));
-            const allDots = dotsByCard.flat();
-            const withTimeline = gsap.timeline({
-                paused: true,
-                defaults: {
-                    ease: 'power2.out'
-                }
-            });
-            const breathingTweens = [];
-            let hasPlayed = false;
-
-            gsap.set(withTextBox, {
-                autoAlpha: 0,
-                y: 34
-            });
-
-            cards.forEach((card) => {
-                gsap.set(card, {
-                    autoAlpha: 0,
-                    y: 48,
-                    scale: 0.985
-                });
-            });
-
-            dotsByCard.forEach((dots) => {
-                if (!dots.length) {
-                    return;
-                }
-
-                gsap.set(dots, {
-                    autoAlpha: 0,
-                    scale: 0.82
-                });
-            });
-
-            withTimeline.to(withTextBox, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 1.2
-            });
-
-            cards.forEach((card, index) => {
-                withTimeline.to(card, {
-                    autoAlpha: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: index === 0 ? 1.28 : 1.08
-                }, index === 0 ? '+=0.18' : '>-0.56');
-            });
-
-            if (allDots.length) {
-                withTimeline.to(allDots, {
-                    autoAlpha: 1,
-                    duration: 0.38
-                }, '>-0.02');
-
-                withTimeline.to(allDots, {
-                    scale: 1.18,
-                    duration: 0.32
-                }, '<');
-
-                withTimeline.to(allDots, {
-                    scale: 0.82,
-                    duration: 0.54,
-                    ease: 'power2.out'
-                }, '>');
-            }
-
-            withTimeline.eventCallback('onComplete', () => {
-                allDots.forEach((dot, index) => {
-                    const tween = gsap.to(dot, {
-                        scale: 0.9,
-                        duration: 1.9 + index * 0.08,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: 'sine.inOut',
-                        delay: index * 0.16
-                    });
-
-                    breathingTweens.push(tween);
-                });
-            });
-
-            ScrollTrigger.create({
-                id: 'with-section-enter',
-                trigger: withTextBox,
-                start: 'top 18%',
-                once: true,
-                onEnter: () => {
-                    if (hasPlayed) {
-                        return;
-                    }
-
-                    hasPlayed = true;
-                    withTimeline.play();
-                }
-            });
-
-            return () => {
-                ScrollTrigger.getById('with-section-enter')?.kill();
-                breathingTweens.forEach((tween) => tween.kill());
-                withTimeline.kill();
-            };
-        });
-
-        withMedia.add('(max-width: 960px)', () => {
-            gsap.set(withTextBox, { clearProps: 'all' });
-            gsap.set(withCards, { clearProps: 'all' });
-            gsap.set('.with_dot', { clearProps: 'all' });
-        });
+    if (withSection && withTextBox && withCards.length && window.gsap) {
+        gsap.set(withTextBox, { clearProps: 'all' });
+        gsap.set(withCards, { clearProps: 'all' });
+        gsap.set('.with_dot', { clearProps: 'all' });
     }
 
     if (
@@ -496,100 +350,11 @@ document.addEventListener('DOMContentLoaded', () => {
         reviewTextBox &&
         reviewLeft &&
         reviewRight &&
-        window.gsap &&
-        window.ScrollTrigger
+        window.gsap
     ) {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const reviewMedia = gsap.matchMedia();
-
-        reviewMedia.add('(min-width: 961px)', () => {
-            const reviewTimeline = gsap.timeline({
-                paused: true,
-                defaults: {
-                    ease: 'power2.out'
-                }
-            });
-            let hasPlayed = false;
-
-            gsap.set(reviewTextBox, {
-                autoAlpha: 0,
-                y: 34
-            });
-
-            if (reviewMore) {
-                gsap.set(reviewMore, {
-                    autoAlpha: 0,
-                    y: 24
-                });
-            }
-
-            gsap.set(reviewLeft, {
-                autoAlpha: 0,
-                y: 48,
-                scale: 0.985
-            });
-
-            gsap.set(reviewRight, {
-                autoAlpha: 0,
-                y: 48,
-                scale: 0.985
-            });
-
-            reviewTimeline.to(reviewTextBox, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 1.2
-            });
-
-            if (reviewMore) {
-                reviewTimeline.to(reviewMore, {
-                    autoAlpha: 1,
-                    y: 0,
-                    duration: 0.9
-                }, '<+0.1');
-            }
-
-            reviewTimeline.to(reviewLeft, {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.16
-            }, '+=0.18');
-
-            reviewTimeline.to(reviewRight, {
-                autoAlpha: 1,
-                y: 0,
-                scale: 1,
-                duration: 1.08
-            }, '>-0.64');
-
-            ScrollTrigger.create({
-                id: 'review-section-enter',
-                trigger: reviewTextBox,
-                start: 'top 18%',
-                once: true,
-                onEnter: () => {
-                    if (hasPlayed) {
-                        return;
-                    }
-
-                    hasPlayed = true;
-                    reviewTimeline.play();
-                }
-            });
-
-            return () => {
-                ScrollTrigger.getById('review-section-enter')?.kill();
-                reviewTimeline.kill();
-            };
-        });
-
-        reviewMedia.add('(max-width: 960px)', () => {
-            gsap.set(reviewTextBox, { clearProps: 'all' });
-            gsap.set(reviewMore, { clearProps: 'all' });
-            gsap.set(reviewLeft, { clearProps: 'all' });
-            gsap.set(reviewRight, { clearProps: 'all' });
-        });
+        gsap.set(reviewTextBox, { clearProps: 'all' });
+        gsap.set(reviewMore, { clearProps: 'all' });
+        gsap.set(reviewLeft, { clearProps: 'all' });
+        gsap.set(reviewRight, { clearProps: 'all' });
     }
 }); //dom end
