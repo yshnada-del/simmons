@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const headerLinkMap = [
         `${basePath}story/story.html`,
-        `${basePath}product/product.html`,
+        `${basePath}list/list.html`,
         `${basePath}sleep/sleep_main.html`,
         `${basePath}offline/offline.html`,
     ];

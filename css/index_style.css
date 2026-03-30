@@ -1486,6 +1486,8 @@ body {
     justify-content: center;
     padding-top: 0;
     transform: translateX(-50%);
+    z-index: 5;
+    pointer-events: auto;
 }
 
 .offline_info {
@@ -1584,7 +1586,8 @@ body {
     justify-content: center;
     padding-top: 0;
     transform: translateX(-50%);
-    z-index: 1;
+    z-index: 5;
+    pointer-events: auto;
 }
 
 .offline_card {
@@ -1602,13 +1605,20 @@ body {
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 1;
     background-color: rgba(237, 237, 237, 0.2);
+    pointer-events: none;
 }
 
 .offline_card_image,
 .offline_card_image img {
     width: 100%;
     height: 100%;
+}
+
+.offline_card_image {
+    position: relative;
+    z-index: 0;
 }
 
 .offline_card_image img {
@@ -1638,7 +1648,7 @@ body {
 
 .offline_card_button:hover,
 .offline_card_button:focus-visible {
-    background-color: rgba(255, 255, 255, 0.58);
+    background-color: rgba(255, 255, 255, 0.3);
     border-color: #5d3136;
 }
 
