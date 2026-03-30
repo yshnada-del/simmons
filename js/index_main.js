@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const mainVisual = document.querySelector('.main_visual');
+    const eventMoreButton = document.querySelector('.event_more_button');
     const bannerWrap = document.querySelector('.banner_all');
     const secondaryBannerCards = Array.from(document.querySelectorAll('.banner_secondary'));
     const floatButtons = document.querySelector('.float_buttons');
@@ -83,6 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: 0,
                 behavior: prefersReducedMotion ? 'auto' : 'smooth'
             });
+        });
+    }
+
+    if (eventMoreButton) {
+        eventMoreButton.addEventListener('click', () => {
+            window.location.href = 'promo/promo.html';
         });
     }
 
@@ -245,6 +252,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const storyImage = document.querySelector('.story_image');
     const storyKeywords = Array.from(document.querySelectorAll('.story_keyword'));
     const storyButton = document.querySelector('.story_button');
+
+    if (storyButton) {
+        storyButton.addEventListener('click', () => {
+            window.location.href = 'story/story.html';
+        });
+    }
 
     if (storySection && storyInner && storyImage && storyKeywords.length && storyButton) {
         const isStoryStaticLayout = () => window.innerWidth <= 1024;
