@@ -590,10 +590,6 @@ body {
     padding: 0;
     border: 0;
     background-color: transparent;
-    background-image: url('../vector/main_button.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
     display: block;
     cursor: pointer;
     overflow: visible;
@@ -1203,10 +1199,6 @@ body {
     padding: 0;
     border: 0;
     background-color: transparent;
-    background-image: url('../vector/main_button.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
     display: block;
     cursor: pointer;
     position: relative;
@@ -2346,14 +2338,27 @@ body {
     border: 0;
     border-radius: 0;
     background-color: transparent;
-    background-image: url('../vector/main_button.svg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
     display: block;
     cursor: pointer;
     position: relative;
     transition: none;
+}
+
+.button_image {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.button_image_default {
+    opacity: 1;
+}
+
+.button_image_hover {
+    opacity: 0;
 }
 
 .event_more_button_text {
@@ -2404,16 +2409,25 @@ body {
 .sleep_solution_button:focus-visible,
 .event_more_button:hover,
 .event_more_button:focus-visible {
-    background-image: url('../vector/main_hbutton.svg');
+    outline: none;
 }
 
-.story_button:hover .story_button_text,
-.story_button:focus-visible .story_button_text,
-.sleep_solution_button:hover .sleep_solution_button_text,
-.sleep_solution_button:focus-visible .sleep_solution_button_text,
-.event_more_button:hover .event_more_button_text,
-.event_more_button:focus-visible .event_more_button_text {
-    color: #f9ecdf;
+.story_button:hover .button_image_default,
+.story_button:focus-visible .button_image_default,
+.sleep_solution_button:hover .button_image_default,
+.sleep_solution_button:focus-visible .button_image_default,
+.event_more_button:hover .button_image_default,
+.event_more_button:focus-visible .button_image_default {
+    opacity: 0;
+}
+
+.story_button:hover .button_image_hover,
+.story_button:focus-visible .button_image_hover,
+.sleep_solution_button:hover .button_image_hover,
+.sleep_solution_button:focus-visible .button_image_hover,
+.event_more_button:hover .button_image_hover,
+.event_more_button:focus-visible .button_image_hover {
+    opacity: 1;
 }
 
 @keyframes eventCardHintPulse {
