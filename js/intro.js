@@ -58,13 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
         body.classList.add('intro-complete');
         body.classList.remove('header-locked');
 
-        requestAnimationFrame(() => {
+        window.setTimeout(() => {
+            body.classList.add('intro-header-visible');
+        }, 2000);
+
+        window.setTimeout(() => {
             introOverlay.remove();
-        });
+        }, 520);
     };
 
     if (hasPlayedIntro()) {
         body.classList.add('intro-complete');
+        body.classList.add('intro-header-visible');
         body.classList.remove('header-locked');
         playMainVisualVideo();
         introOverlay.remove();
@@ -309,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         finalizeIntroState();
-    });
+    }, null, '>-0.12');
 
     window.addEventListener('load', () => {
         introTimeline.play();

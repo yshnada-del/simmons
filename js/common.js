@@ -1,6 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
+    const headerLogo = document.querySelector('header .logo');
+    const gnbLinks = document.querySelectorAll('.gnb > li > a');
     let lastScroll = 0;
+
+    if (!header) {
+        return;
+    }
+
+    const normalizedPath = window.location.pathname.replace(/\\/g, '/');
+    const isNestedPage = /\/(story|product|offline|sleep|list|promo)\//.test(normalizedPath);
+    const basePath = isNestedPage ? '../' : '';
+
+    const headerLinkMap = [
+        `${basePath}story/story.html`,
+        `${basePath}product/product.html`,
+        `${basePath}sleep/sleep_main.html`,
+        `${basePath}offline/offline.html`,
+    ];
+
+    const homePath = `${basePath}index.html`;
+
+    if (headerLogo) {
+        headerLogo.style.cursor = 'pointer';
+        headerLogo.addEventListener('click', () => {
+            window.location.href = homePath;
+        });
+    }
+
+    gnbLinks.forEach((link, index) => {
+        if (headerLinkMap[index]) {
+            link.setAttribute('href', headerLinkMap[index]);
+        }
+    });
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
