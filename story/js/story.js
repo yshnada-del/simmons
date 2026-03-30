@@ -25,10 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const philosophyTexts = gsap.utils.toArray('.philosophy_text_block');
     const productSection = document.querySelector('.product');
     const productAll = document.querySelector('.product_all');
-    const productScrollStartDelay = 180;
+    const technologyScrollStartDelay = 360;
+    const productScrollStartDelay = 320;
     const pieces = gsap.utils.toArray('.about_piece');
     const isDesktop = window.matchMedia('(min-width: 1281px)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let productTween = null;
 
     if (!storyTransition || !storyScene || !aboutSection || !collage || !historySection || pieces.length !== 6) {
         return;
@@ -363,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const technologyTimeline = gsap.timeline({
             scrollTrigger: {
                 trigger: technologySection,
-                start: 'top top-=280',
+                start: `top+=${technologyScrollStartDelay} top`,
                 end: '+=190%',
                 scrub: 0.8,
                 pin: true,
@@ -552,6 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (philosophySection && philosophyCards.length) {
         const philosophyStage = philosophySection.querySelector('.philosophy_all');
         const philosophyShells = philosophyCards.map((card) => card.querySelector('.philosophy_shell'));
+        const philosophyNextCardDelay = 0.22;
 
         philosophySection.classList.add('has-interaction');
 
@@ -576,7 +579,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const philosophyTimeline = gsap.timeline({
             scrollTrigger: {
                 trigger: philosophyStage,
-                start: 'top top+=110',
+                start: 'top top',
                 end: `+=${(philosophyCards.length * 260)}%`,
                 scrub: 1,
                 pin: true,
@@ -628,30 +631,48 @@ document.addEventListener('DOMContentLoaded', () => {
                         ease: 'none',
                         duration: 0.9
                     },
-                    cursor
+                    cursor + philosophyNextCardDelay
                 );
 
-                cursor += 0.9;
+                cursor += 0.9 + philosophyNextCardDelay;
             }
         });
     }
 
-    if (productSection && productAll) {
-        const totalWidth = () => productAll.scrollWidth - productSection.offsetWidth;
+    const setupProductScroll = () => {
+        if (!productSection || !productAll) {
+            return;
+        }
 
-        gsap.to(productAll, {
-            x: () => -Math.max(totalWidth(), 0),
+        if (productTween) {
+            productTween.scrollTrigger.kill();
+            productTween.kill();
+            productTween = null;
+            gsap.set(productAll, { clearProps: 'transform' });
+        }
+
+        const totalWidth = () => Math.max(productAll.scrollWidth - window.innerWidth, 0);
+
+        productTween = gsap.to(productAll, {
+            x: () => -totalWidth(),
             ease: 'none',
             scrollTrigger: {
                 trigger: productSection,
                 start: () => `top top-=${productScrollStartDelay}`,
-                end: () => '+=' + Math.max(totalWidth(), 0),
+                end: () => '+=' + productAll.scrollWidth,
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true
             }
         });
-    }
+    };
+
+    setupProductScroll();
+
+    window.addEventListener('resize', () => {
+        setupProductScroll();
+        ScrollTrigger.refresh();
+    });
 
 });

@@ -266,19 +266,19 @@ main {
 
 .card-info {
     width: 100%;
-    padding: 36px 125px 0;
+    padding: 100px 125px 0;
     box-sizing: border-box;
 }
 
 .card-title {
     width: 100%;
-    padding: 18px 125px 0;
+    padding: 8px 125px 0;
     box-sizing: border-box;
 }
 
 .card-description {
     width: 100%;
-    padding: 24px 125px 0;
+    padding: 40px 125px 0;
     box-sizing: border-box;
 }
 
@@ -568,7 +568,7 @@ main {
 }
 
 .tec2_image_6 {
-    top: 1520px;
+    top: 1420px;
     left: 500px;
     width: 920px;
     height: 260px;
@@ -859,7 +859,7 @@ main {
 
 .philosophy_text_block {
     position: absolute;
-    top: 1088px;
+    top: 1040px;
     left: 70px;
     width: calc(100% - 140px);
     display: flex;
@@ -1147,7 +1147,11 @@ main {
     }
 
     .card-info {
-        padding-top: 32px;
+        padding-top: 72px;
+    }
+
+    .card-title {
+        padding-top: 8px;
     }
 
     .card-img {
@@ -1224,7 +1228,7 @@ main {
     }
 
     .tec2_image_6 {
-        top: 1392px;
+        top: 1320px;
         left: 336px;
         width: 744px;
         height: 210px;
@@ -1385,7 +1389,11 @@ main {
     }
 
     .card-info {
-        padding-top: 28px;
+        padding-top: 64px;
+    }
+
+    .card-title {
+        padding-top: 8px;
     }
 
     .history_year {
@@ -1506,7 +1514,7 @@ main {
     }
 
     .tec2_image_6 {
-        top: 1128px;
+        top: 1070px;
         left: 237px;
         width: 590px;
         height: 167px;
@@ -1822,7 +1830,11 @@ main {
     }
 
     .card-info {
-        padding-top: 28px;
+        padding-top: 52px;
+    }
+
+    .card-title {
+        padding-top: 8px;
     }
 
     .history_year {
@@ -2019,15 +2031,15 @@ main {
     }
 
     .card-info {
-        padding-top: 20px;
+        padding-top: 36px;
     }
 
     .card-title {
-        padding-top: 12px;
+        padding-top: 6px;
     }
 
     .card-description {
-        padding-top: 16px;
+        padding-top: 24px;
     }
 
     .history_year {

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const bestAll = document.querySelector('.best_all');
     const nameCards = document.querySelectorAll('.more .name');
     let bestTween = null;
-    const bestScrollStartDelay = 180;
+    const bestScrollStartDelay = 320;
 
     const setupBestScroll = () => {
         if (!bestSection || !bestAll) return;

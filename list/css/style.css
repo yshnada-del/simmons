@@ -259,6 +259,8 @@ body {
   align-items: center;
   justify-content: center;
   gap: 40px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .best .img_all:nth-child(1) { background-color: #7B8288; }
@@ -431,6 +433,16 @@ body {
   align-items: center;
   gap: 40px;
   flex-shrink: 0;
+}
+
+.more .slide_link {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .more .card_content img {
