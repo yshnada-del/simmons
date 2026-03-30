@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (window.innerWidth <= 1024) return;
 
-        const totalWidth = () => Math.max(bestAll.scrollWidth - window.innerWidth, 0);
+        const totalWidth = () => Math.max(bestAll.scrollWidth - bestSection.clientWidth, 0);
 
         bestTween = gsap.to(bestAll, {
             x: () => -totalWidth(),
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTrigger: {
                 trigger: bestSection,
                 start: () => `top top-=${bestScrollStartDelay}`,
-                end: () => '+=' + bestAll.scrollWidth,
+                end: () => '+=' + totalWidth(),
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,

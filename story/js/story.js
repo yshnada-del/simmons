@@ -555,13 +555,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const philosophyStage = philosophySection.querySelector('.philosophy_all');
         const philosophyShells = philosophyCards.map((card) => card.querySelector('.philosophy_shell'));
         const philosophyNextCardDelay = 0.22;
+        const getPhilosophyCollapsedWidth = () => {
+            if (!philosophyStage) {
+                return 1670;
+            }
+
+            return Math.min(1670, philosophyStage.clientWidth);
+        };
+        const getPhilosophyExpandedWidth = () => {
+            if (!philosophyStage) {
+                return 1920;
+            }
+
+            return philosophyStage.clientWidth;
+        };
+        const getPhilosophyPinDistance = () => {
+            if (!philosophyStage) {
+                return window.innerHeight * 3;
+            }
+
+            const stageHeight = philosophyStage.offsetHeight || window.innerHeight;
+            const transitionCount = Math.max(philosophyCards.length - 1, 1);
+            return stageHeight * transitionCount;
+        };
 
         philosophySection.classList.add('has-interaction');
 
         philosophyCards.forEach((card, index) => {
             gsap.set(card, {
                 xPercent: -50,
-                width: 1670,
+                width: getPhilosophyCollapsedWidth(),
                 yPercent: index === 0 ? 0 : 112
             });
         });
@@ -580,7 +603,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTrigger: {
                 trigger: philosophyStage,
                 start: 'top top',
-                end: `+=${(philosophyCards.length * 260)}%`,
+                end: () => `+=${getPhilosophyPinDistance()}`,
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
@@ -597,7 +620,7 @@ document.addEventListener('DOMContentLoaded', () => {
             philosophyTimeline.to(
                 card,
                 {
-                    width: 1920,
+                    width: () => getPhilosophyExpandedWidth(),
                     ease: 'none',
                     duration: 0.8
                 },
@@ -651,7 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.set(productAll, { clearProps: 'transform' });
         }
 
-        const totalWidth = () => Math.max(productAll.scrollWidth - window.innerWidth, 0);
+        const totalWidth = () => Math.max(productAll.scrollWidth - productSection.clientWidth, 0);
 
         productTween = gsap.to(productAll, {
             x: () => -totalWidth(),
@@ -659,7 +682,7 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollTrigger: {
                 trigger: productSection,
                 start: () => `top top-=${productScrollStartDelay}`,
-                end: () => '+=' + productAll.scrollWidth,
+                end: () => '+=' + totalWidth(),
                 scrub: true,
                 pin: true,
                 anticipatePin: 1,

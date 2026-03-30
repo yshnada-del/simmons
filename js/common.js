@@ -2,7 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('header');
     const headerLogo = document.querySelector('header .logo');
     const gnbLinks = document.querySelectorAll('.gnb > li > a');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const floatButtons = document.querySelector('.float_buttons');
+    const floatTopButton = document.querySelector('.float_button_top');
     let lastScroll = 0;
+
+    if (floatButtons && floatButtons.parentElement !== document.body) {
+        document.body.appendChild(floatButtons);
+    }
+
+    if (floatTopButton) {
+        floatTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            });
+        });
+    }
 
     if (!header) {
         return;

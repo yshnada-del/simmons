@@ -40,9 +40,7 @@
 
 header {
   width: 100%;
-  max-width: 1920px;
   padding: 18px 125px;
-  margin: 0 auto;
   background: rgba(var(--color-ivory-rgb), 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -244,16 +242,38 @@ footer {
 }
 
 .float_buttons {
+  position: fixed;
+  right: 42px;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
   animation: floatButtonsDrift 4.8s ease-in-out infinite;
   will-change: transform;
 }
 
 .float_button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   transition: transform 0.22s ease, filter 0.22s ease;
 }
 
 .float_button img {
+  display: block;
+  object-fit: contain;
   filter: drop-shadow(0 10px 18px rgba(31, 19, 15, 0.18));
+}
+
+.float_button_ai img,
+.float_button_top img {
+  width: 70px;
+  height: 70px;
 }
 
 .float_button:hover,

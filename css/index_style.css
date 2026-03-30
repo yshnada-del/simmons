@@ -40,9 +40,7 @@ body {
 /* Main Visual Section */
 .main_visual {
     width: 100%;
-    max-width: 1920px;
     min-height: 1080px;
-    margin: 0 auto;
     background-color: #000000;
     overflow: hidden;
     position: relative;
@@ -467,9 +465,7 @@ body {
 /* Story Section */
 .story {
     width: 100%;
-    max-width: 1920px;
     min-height: 1040px;
-    margin: 0 auto;
     background-color: #fbfbf7;
     overflow: hidden;
     position: relative;
@@ -747,9 +743,7 @@ body {
 /* Product Section */
 .product {
     width: 100%;
-    max-width: 1920px;
     min-height: 1225px;
-    margin: 0 auto;
     background-color: #f9ecdf;
     overflow: hidden;
     position: relative;
@@ -763,19 +757,26 @@ body {
     right: 0;
     z-index: 0;
     pointer-events: none;
+    background-color: #5D3136;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 774' preserveAspectRatio='none'%3E%3Cpath d='M683.893 178.4C501.451 200.294 408.147 165.148 347 156.506V297.663H1920V39.5472C1742.46 -6.08395 1576.5 -10.2486 1425.66 19.3819C1323 39.5472 866.335 156.506 683.893 178.4Z' fill='white'/%3E%3Crect y='218' width='1920' height='556' fill='white'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 774' preserveAspectRatio='none'%3E%3Cpath d='M683.893 178.4C501.451 200.294 408.147 165.148 347 156.506V297.663H1920V39.5472C1742.46 -6.08395 1576.5 -10.2486 1425.66 19.3819C1323 39.5472 866.335 156.506 683.893 178.4Z' fill='white'/%3E%3Crect y='218' width='1920' height='556' fill='white'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
 }
 
 .product .sub_bg img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: cover;
+    display: none;
 }
 
 .product_inner {
     position: relative;
-    width: 100%;
+    width: min(100%, 1920px);
     min-height: 1225px;
+    margin: 0 auto;
     z-index: 1;
 }
 
@@ -1096,21 +1097,25 @@ body {
     transform: scaleX(-1);
 }
 
+@media (min-width: 1921px) {
+    .product_circle {
+        left: calc(-600px - ((100vw - 1920px) / 2));
+    }
+}
+
 
 /* Sleep Solution Section */
 .sleep_solution {
     width: 100%;
-    max-width: 1920px;
     min-height: 1209px;
     background-color: #F9ECDF;
-    margin: 0 auto;
     position: relative;
     box-sizing: border-box;
     overflow: hidden;
 }
 
 .sleep_solution .bg {
-    width: min(1800px, calc(100% - 120px));
+    width: calc(100% - 120px);
     min-height: 1161px;
     background-color: #ffffff;
     border-radius: 80px 80px 0 0;
@@ -1249,9 +1254,9 @@ body {
 /* Offline Section */
 .offline {
     width: 100%;
-    max-width: 1920px;
+    --offline-curve-size: max(6267px, 326.40625vw);
+    --offline-curve-offset: min(-6112px, -318.333333vw);
     min-height: 1264px;
-    margin: 0 auto;
     padding: 123px clamp(40px, 10.6vw, 203px) 0;
     background-color: #5d3136;
     box-sizing: border-box;
@@ -1263,9 +1268,9 @@ body {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: -6112px;
-    width: 6267px;
-    height: 6267px;
+    bottom: var(--offline-curve-offset);
+    width: var(--offline-curve-size);
+    height: var(--offline-curve-size);
     border-radius: 50%;
     background-color: #f9ecdf;
     transform: translateX(-50%);
@@ -1672,9 +1677,7 @@ body {
 /* Review Section */
 .review {
     width: 100%;
-    max-width: 1920px;
     min-height: 1238px;
-    margin: 0 auto;
     background-color: #f9ecdf;
     box-sizing: border-box;
     overflow: hidden;
@@ -1720,6 +1723,7 @@ body {
     margin: 100px 0 0;
     box-sizing: border-box;
     position: relative;
+    overflow: hidden;
     z-index: 1;
 }
 
@@ -2002,8 +2006,6 @@ body {
 .event {
     width: 100%;
     min-height: 1089px;
-    max-width: 1920px;
-    margin: 0 auto;
     padding: 100px 0 130px 0;
     background: #f4e5d9 url('../img/main_eventbg.png') no-repeat center top / cover;
     box-sizing: border-box;
