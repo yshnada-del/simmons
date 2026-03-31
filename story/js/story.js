@@ -20,9 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tec2Images = gsap.utils.toArray('.tec2_image');
     const tec2Lines = gsap.utils.toArray('.tec2_line');
     const tec2TextBlocks = gsap.utils.toArray('.tec2_txt_all');
-    const philosophySection = document.querySelector('.philosophy');
     const philosophyCards = gsap.utils.toArray('.philosophy_card');
-    const philosophyTexts = gsap.utils.toArray('.philosophy_text_block');
+    const philosophyStage = document.querySelector('.philosophy_all');
     const productSection = document.querySelector('.product');
     const productAll = document.querySelector('.product_all');
     const technologyScrollStartDelay = 360;
@@ -31,6 +30,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const isDesktop = window.matchMedia('(min-width: 1281px)').matches;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let productTween = null;
+
+    const setupPhilosophyInteraction = () => {
+        if (!philosophyStage || !philosophyCards.length) {
+            return;
+        }
+
+        const closeAll = () => {
+            philosophyStage.classList.remove('has-expanded');
+
+            philosophyCards.forEach((card) => {
+                card.classList.remove('is-expanded');
+                const trigger = card.querySelector('.philosophy_trigger');
+                const expanded = card.querySelector('.philosophy_expanded');
+
+                if (trigger) {
+                    trigger.setAttribute('aria-expanded', 'false');
+                }
+
+                if (expanded) {
+                    expanded.hidden = true;
+                }
+            });
+        };
+
+        philosophyCards.forEach((card) => {
+            const trigger = card.querySelector('.philosophy_trigger');
+            const expanded = card.querySelector('.philosophy_expanded');
+
+            if (!trigger || !expanded) {
+                return;
+            }
+
+            expanded.hidden = true;
+
+            trigger.addEventListener('click', () => {
+                const isExpanded = card.classList.contains('is-expanded');
+
+                closeAll();
+
+                if (isExpanded) {
+                    return;
+                }
+
+                philosophyStage.classList.add('has-expanded');
+                card.classList.add('is-expanded');
+                trigger.setAttribute('aria-expanded', 'true');
+                expanded.hidden = false;
+            });
+
+            expanded.addEventListener('click', () => {
+                closeAll();
+            });
+        });
+    };
+
+    setupPhilosophyInteraction();
 
     if (!storyTransition || !storyScene || !aboutSection || !collage || !historySection || pieces.length !== 6) {
         return;
@@ -62,9 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clearProps: 'all'
         });
         gsap.set(philosophyCards, {
-            clearProps: 'all'
-        });
-        gsap.set(philosophyTexts, {
             clearProps: 'all'
         });
         gsap.set(productAll, {
@@ -549,117 +601,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 0.74
             );
-    }
-
-    if (philosophySection && philosophyCards.length) {
-        const philosophyStage = philosophySection.querySelector('.philosophy_all');
-        const philosophyShells = philosophyCards.map((card) => card.querySelector('.philosophy_shell'));
-        const philosophyNextCardDelay = 0.22;
-        const getPhilosophyCollapsedWidth = () => {
-            if (!philosophyStage) {
-                return 1670;
-            }
-
-            return Math.min(1670, philosophyStage.clientWidth);
-        };
-        const getPhilosophyExpandedWidth = () => {
-            if (!philosophyStage) {
-                return 1920;
-            }
-
-            return philosophyStage.clientWidth;
-        };
-        const getPhilosophyPinDistance = () => {
-            if (!philosophyStage) {
-                return window.innerHeight * 3;
-            }
-
-            const stageHeight = philosophyStage.offsetHeight || window.innerHeight;
-            const transitionCount = Math.max(philosophyCards.length - 1, 1);
-            return stageHeight * transitionCount;
-        };
-
-        philosophySection.classList.add('has-interaction');
-
-        philosophyCards.forEach((card, index) => {
-            gsap.set(card, {
-                xPercent: -50,
-                width: getPhilosophyCollapsedWidth(),
-                yPercent: index === 0 ? 0 : 112
-            });
-        });
-
-        philosophyShells.forEach((shell) => {
-            if (!shell) {
-                return;
-            }
-
-            gsap.set(shell, {
-                y: 0
-            });
-        });
-
-        const philosophyTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: philosophyStage,
-                start: 'top top',
-                end: () => `+=${getPhilosophyPinDistance()}`,
-                scrub: 1,
-                pin: true,
-                anticipatePin: 1,
-                invalidateOnRefresh: true
-            }
-        });
-
-        let cursor = 0;
-
-        philosophyCards.forEach((card, index) => {
-            const shell = philosophyShells[index];
-            const nextCard = philosophyCards[index + 1];
-
-            philosophyTimeline.to(
-                card,
-                {
-                    width: () => getPhilosophyExpandedWidth(),
-                    ease: 'none',
-                    duration: 0.8
-                },
-                cursor
-            );
-
-            cursor += 0.8;
-
-            if (shell) {
-                philosophyTimeline.to(
-                    shell,
-                    {
-                        y: () => {
-                            const revealDistance = Math.max(shell.offsetHeight - card.offsetHeight, 0);
-                            return -revealDistance;
-                        },
-                        ease: 'none',
-                        duration: 0.95
-                    },
-                    cursor
-                );
-            }
-
-            cursor += 0.95;
-
-            if (nextCard) {
-                philosophyTimeline.to(
-                    nextCard,
-                    {
-                        yPercent: 0,
-                        ease: 'none',
-                        duration: 0.9
-                    },
-                    cursor + philosophyNextCardDelay
-                );
-
-                cursor += 0.9 + philosophyNextCardDelay;
-            }
-        });
     }
 
     const setupProductScroll = () => {

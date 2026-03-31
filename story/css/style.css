@@ -682,7 +682,7 @@ main {
     min-height: auto;
     padding: 300px 0;
     box-sizing: border-box;
-    background-color: #f6f3ee;
+    background-color: #F9ECDF;
     overflow: visible;
 }
 
@@ -692,7 +692,7 @@ main {
 }
 
 .philosophy_title {
-    width: var(--story-content-width);
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -711,132 +711,135 @@ main {
 
 .philosophy_all {
     position: relative;
-    width: var(--story-shell-width);
-    height: auto;
-    margin-top: 300px;
+    width: min(1604px, calc(100% - 80px));
+    height: 820px;
+    margin: 140px auto 0;
     overflow: visible;
-    display: flex;
-    flex-direction: column;
-    gap: 120px;
 }
 
 .philosophy_card {
-    position: relative;
-    left: auto;
-    top: auto;
-    width: 100%;
-    height: 1764px;
+    position: absolute;
+    top: 0;
+    width: 512px;
+    height: 820px;
     will-change: auto;
 }
 
 .philosophy_card_comfort {
-    z-index: 1;
+    z-index: 4;
+    left: 0;
 }
 
 .philosophy_card_eco {
-    z-index: 2;
+    z-index: 3;
+    left: 364px;
 }
 
 .philosophy_card_science {
-    z-index: 3;
+    z-index: 2;
+    left: 728px;
 }
 
 .philosophy_card_life {
-    z-index: 4;
+    z-index: 1;
+    left: 1092px;
 }
 
 .philosophy_shell {
-    --card-color: #D7C5B7;
     position: relative;
     width: 100%;
     height: 100%;
-    overflow: hidden;
 }
 
-.philosophy_card_comfort .philosophy_shell {
-    --card-color: #D7C5B7;
+.philosophy_svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
-.philosophy_card_eco .philosophy_shell {
-    --card-color: #E0E0E0;
+.philosophy_trigger {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
 }
 
-.philosophy_card_science .philosophy_shell {
-    --card-color: #B8B1A8;
+.philosophy_card_comfort {
+    --phil-card-color: #D7C5B7;
 }
 
-.philosophy_card_life .philosophy_shell {
-    --card-color: #C2C2C2;
+.philosophy_card_eco {
+    --phil-card-color: #E4E4E4;
 }
 
-.philosophy_shell::before {
+.philosophy_card_science {
+    --phil-card-color: #C1B9B0;
+}
+
+.philosophy_card_life {
+    --phil-card-color: #CFCFD3;
+}
+
+.philosophy_expanded {
+    position: absolute;
+    inset: 0;
+    display: none;
+    width: 1670px;
+    height: 1145px;
+}
+
+.philosophy_expanded_frame {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(-4px 0 30px rgba(0, 0, 0, 0.2));
+}
+
+.philosophy_expanded_frame .expanded-fill {
+    fill: var(--phil-card-color);
+}
+
+.philosophy_expanded::after {
     content: '';
     position: absolute;
-    top: 54px;
+    top: 111px;
     left: 0;
-    width: 100%;
-    height: calc(100% - 54px);
-    background-color: var(--card-color);
-    border-radius: 24px 24px 0 0;
-    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.08);
+    width: 1670px;
+    height: 1033px;
+    border-radius: 0 0 0 0;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.philosophy_shell::after {
-    content: '';
+.philosophy_expanded_label {
     position: absolute;
-    top: 54px;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    background-color: var(--card-color);
-    border-radius: 24px 24px 0 0;
-    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
-}
-
-.philosophy_badge {
-    position: absolute;
-    top: 0;
-    left: 78px;
-    z-index: 3;
-    min-width: 410px;
-    height: 80px;
-    padding: 0 42px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--card-color);
-    clip-path: polygon(22% 0, 78% 0, 100% 78%, 0 78%);
-    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
-    font-weight: 600;
-    font-size: 38px;
-    line-height: 1.4;
+    top: 16px;
+    left: 178px;
+    width: 214px;
+    margin: 0;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: 28px;
+    line-height: 1;
     letter-spacing: -0.025em;
     color: #5D3136;
-    box-sizing: border-box;
     text-align: center;
 }
 
-.philosophy_card_eco .philosophy_badge,
-.philosophy_card_life .philosophy_badge {
-    left: auto;
-    right: 80px;
-    justify-content: center;
-    text-align: center;
-    clip-path: polygon(0 78%, 22% 0, 78% 0, 100% 78%);
-}
-
-.philosophy_media {
+.philosophy_expanded_media {
     position: absolute;
     top: 190px;
     left: 80px;
-    width: calc(100% - 160px);
+    width: 649px;
     height: 874px;
-    z-index: 1;
     overflow: hidden;
-    box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.08);
+    z-index: 2;
 }
 
-.philosophy_media img {
+.philosophy_expanded_media img {
     width: 100%;
     height: 100%;
     display: block;
@@ -844,132 +847,84 @@ main {
     filter: grayscale(1);
 }
 
-.philosophy_text_block {
+.philosophy_expanded_copy {
     position: absolute;
-    top: 1040px;
-    left: 70px;
-    width: calc(100% - 140px);
+    top: 240px;
+    left: 809px;
+    width: 781px;
+    height: 664px;
+    padding: 10px;
+    box-sizing: border-box;
+    z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 64px;
-    padding: 32px 10px 80px;
-    box-sizing: border-box;
-    z-index: 4;
-    opacity: 1;
-    transform: none;
-    will-change: auto;
-    pointer-events: auto;
-    display: flex;
-    visibility: visible;
+    justify-content: center;
 }
 
-.philosophy_text_heading {
-    margin: 0;
+.philosophy_expanded_heading {
+    margin: 0 0 80px;
     font-family: 'Source Serif 4', serif;
     font-weight: 600;
     font-size: 52px;
-    line-height: 1.4;
+    line-height: 1.2;
     letter-spacing: -0.025em;
-    color: #000000;
+    color: #111111;
 }
 
-.philosophy_lines {
+.philosophy_expanded_lines {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    padding: 0 10px;
-    box-sizing: border-box;
+    gap: 0;
 }
 
-.philosophy_line {
-    width: 100%;
-}
-
-.philosophy_line_text {
+.philosophy_expanded_line {
     margin: 0;
-    padding-bottom: 6px;
-    border-bottom: 1px solid #000000;
+    padding: 24px 0 12px;
+    border-bottom: 1px solid rgba(17, 17, 17, 0.55);
     font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
-    font-weight: 300;
-    font-size: 32px;
-    line-height: 1.4;
+    font-weight: 400;
+    font-size: 27px;
+    line-height: 1.35;
     letter-spacing: -0.025em;
-    color: #000000;
+    color: #111111;
 }
 
-.philosophy_line_text strong {
-    font-weight: 600;
+.philosophy_expanded_line:first-child {
+    padding-top: 0;
 }
 
-.philosophy_frame {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    display: none;
+.philosophy_expanded_line strong {
+    font-weight: 700;
+}
+
+.philosophy_all.has-expanded {
+    width: min(1670px, calc(100% - 80px));
+    height: 1145px;
+}
+
+.philosophy_all.has-expanded .philosophy_card {
+    opacity: 0;
     pointer-events: none;
-}
-
-.philosophy.is-active {
-    overflow: visible;
-}
-
-.philosophy.has-interaction .philosophy_inner {
-    width: var(--story-shell-width);
-}
-
-.philosophy.has-interaction .philosophy_title {
-    width: var(--story-content-width);
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.philosophy.has-interaction .philosophy_all {
-    position: relative;
-    width: 100%;
-    height: 1060px;
-    margin-top: 140px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    overflow: hidden;
-    padding: 0 var(--story-stage-gutter);
-    box-sizing: border-box;
-}
-
-.philosophy.has-interaction .philosophy_card {
-    position: absolute;
+    left: 0;
     top: 0;
-    left: 50%;
-    width: min(var(--story-content-max), 100%);
-    height: 1060px;
-    margin: 0;
-    overflow: hidden;
-    transform: translateX(-50%);
-    will-change: transform, width;
+    width: 512px;
+    height: 820px;
 }
 
-.philosophy.has-interaction .philosophy_card_comfort {
-    z-index: 1;
+.philosophy_all.has-expanded .philosophy_card.is-expanded {
+    opacity: 1;
+    pointer-events: auto;
+    width: 1670px;
+    height: 1145px;
+    z-index: 20;
 }
 
-.philosophy.has-interaction .philosophy_card_eco {
-    z-index: 2;
+.philosophy_all.has-expanded .philosophy_card.is-expanded .philosophy_trigger {
+    display: none;
 }
 
-.philosophy.has-interaction .philosophy_card_science {
-    z-index: 3;
-}
-
-.philosophy.has-interaction .philosophy_card_life {
-    z-index: 4;
-}
-
-.philosophy.has-interaction .philosophy_shell {
-    width: 100%;
-    height: 1764px;
-    will-change: transform;
+.philosophy_all.has-expanded .philosophy_card.is-expanded .philosophy_expanded {
+    display: block;
 }
 
 .product {
@@ -1080,6 +1035,7 @@ main {
     border-radius: 8px;
     text-decoration: none;
     background-color: transparent;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .button_all span {
@@ -1089,12 +1045,27 @@ main {
     line-height: 1;
     letter-spacing: 0;
     color: #5D3136;
+    transition: color 0.25s ease;
 }
 
 .button_all img {
     width: 24px;
     height: 24px;
     display: block;
+    transition: filter 0.25s ease;
+}
+
+.button_all:hover {
+    background-color: #5D3136;
+    border-color: #5D3136;
+}
+
+.button_all:hover span {
+    color: #F9ECDF;
+}
+
+.button_all:hover img {
+    filter: brightness(0) saturate(100%) invert(95%) sepia(22%) saturate(344%) hue-rotate(303deg) brightness(103%) contrast(95%);
 }
 
 @keyframes technology_float {
@@ -1286,6 +1257,47 @@ main {
         right: 24px;
         width: 382px;
         height: 72px;
+    }
+}
+
+@media (max-width: 1684px) and (min-width: 1281px) {
+    .philosophy {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .philosophy_inner {
+        width: 100%;
+        max-width: 824px;
+    }
+
+    .philosophy_title {
+        width: 100%;
+        font-size: 84px;
+    }
+
+    .philosophy_all {
+        width: 100%;
+        max-width: 824px;
+        height: auto;
+        margin-top: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 80px;
+    }
+
+    .philosophy_card {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(512px, 100%);
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .philosophy_shell {
+        aspect-ratio: 512 / 820;
     }
 }
 
@@ -1591,91 +1603,27 @@ main {
     }
 
     .philosophy_all {
-        width: 100%;
-        max-width: 824px;
+        width: min(824px, 100%);
         height: auto;
         margin-top: 120px;
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 80px;
-        overflow: visible;
     }
 
     .philosophy_card {
-        width: 100%;
         position: relative;
+        left: auto;
         top: auto;
+        width: min(512px, 100%);
         height: auto;
-        max-width: 824px;
         margin: 0 auto;
     }
 
     .philosophy_shell {
-        aspect-ratio: 824 / 736;
+        aspect-ratio: 512 / 820;
         overflow: visible;
-    }
-
-    .philosophy.has-interaction .philosophy_all {
-        width: 100%;
-        max-width: 1024px;
-        height: 994px;
-    }
-
-    .philosophy.has-interaction .philosophy_card {
-        width: 100%;
-        max-width: 1024px;
-        height: 994px;
-    }
-
-    .philosophy_badge {
-        min-width: 220px;
-        height: 52px;
-        left: 28px;
-        padding: 0 28px;
-        font-size: 24px;
-        line-height: 1;
-    }
-
-    .philosophy_card_eco .philosophy_badge,
-    .philosophy_card_life .philosophy_badge {
-        left: auto;
-        right: 28px;
-    }
-
-    .philosophy_media {
-        top: 16.6%;
-        left: 4.8%;
-        width: 90.4%;
-        height: 54%;
-    }
-
-    .philosophy_text_block {
-        top: 72%;
-        left: 4%;
-        width: 92%;
-        gap: 24px;
-        padding: 18px 10px 0;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: none;
-        z-index: 4;
-    }
-
-    .philosophy_text_heading {
-        font-size: 28px;
-        line-height: 1.28;
-    }
-
-    .philosophy_lines {
-        gap: 14px;
-        padding: 0;
-    }
-
-    .philosophy_line_text {
-        font-size: 16px;
-        line-height: 1.35;
     }
 
     .product {
@@ -1906,47 +1854,8 @@ main {
         gap: 48px;
     }
 
-    .philosophy_badge {
-        min-width: 170px;
-        height: 38px;
-        padding: 0 18px;
-        left: 24px;
-        font-size: 14px;
-    }
-
-    .philosophy_card_eco .philosophy_badge,
-    .philosophy_card_life .philosophy_badge {
-        right: 24px;
-    }
-
-    .philosophy_media {
-        height: 48%;
-    }
-
-    .philosophy_text_block {
-        top: 64%;
-        left: 3.5%;
-        width: 93%;
-        gap: 20px;
-        padding: 12px 10px;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: none;
-    }
-
-    .philosophy_text_heading {
-        font-size: 20px;
-    }
-
-    .philosophy_lines {
-        gap: 14px;
-        padding: 0 4px;
-    }
-
-    .philosophy_line_text {
-        font-size: 12px;
-        padding-bottom: 4px;
+    .philosophy_card {
+        width: min(360px, 100%);
     }
 }
 
@@ -2186,67 +2095,11 @@ main {
     }
 
     .philosophy_card {
-        max-width: 362px;
+        width: min(320px, 100%);
     }
 
     .philosophy_shell {
-        aspect-ratio: auto;
-        min-height: 520px;
-    }
-
-    .philosophy_shell::before {
-        top: 40px;
-        height: calc(100% - 40px);
-        border-radius: 18px 18px 0 0;
-    }
-
-    .philosophy_shell::after {
-        top: 40px;
-        height: 42px;
-        border-radius: 18px 18px 0 0;
-    }
-
-    .philosophy_badge {
-        min-width: 138px;
-        height: 32px;
-        left: 18px;
-        padding: 0 14px;
-        font-size: 12px;
-    }
-
-    .philosophy_card_eco .philosophy_badge,
-    .philosophy_card_life .philosophy_badge {
-        right: 18px;
-    }
-
-    .philosophy_media {
-        top: 64px;
-        left: 16px;
-        width: calc(100% - 32px);
-        height: 200px;
-    }
-
-    .philosophy_text_block {
-        top: 282px;
-        left: 0;
-        width: 100%;
-        gap: 16px;
-        padding: 16px 18px 28px;
-    }
-
-    .philosophy_text_heading {
-        font-size: 18px;
-        line-height: 1.35;
-    }
-
-    .philosophy_lines {
-        gap: 10px;
-        padding: 0;
-    }
-
-    .philosophy_line_text {
-        font-size: 11px;
-        line-height: 1.45;
+        min-height: auto;
     }
 
     .product {
