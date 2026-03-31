@@ -1,312 +1,443 @@
 @charset "utf-8";
 
-* {
-    margin: 0;
-    padding: 0;
+html,
+body {
+  width: 100%;
+  min-height: 100%;
 }
 
-/* solution_name.html (Name Page) 전용 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .name_page_body {
-    padding: 0 clamp(24px, 10vw, 416px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    background-color: var(--color-burgundy);
-    /* body 배경색 유지 */
-    box-sizing: border-box;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 80px clamp(28px, 8vw, 170px);
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-burgundy);
+  background-image:
+    radial-gradient(
+      circle at 18% 80%,
+      rgba(255, 255, 255, 0.08),
+      transparent 24%
+    ),
+    radial-gradient(
+      circle at 78% 18%,
+      rgba(255, 255, 255, 0.06),
+      transparent 22%
+    );
+  overflow-x: hidden;
 }
 
 .name_page_inner {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 10px;
-    width: 100%;
-    max-width: 1020px;
+  width: min(1280px, 100%);
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .name_page_inner .main_title {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 70px;
-    line-height: normal;
-    letter-spacing: 1px;
-    text-align: center;
-    color: var(--color-white);
-    width: fit-content;
-    height: fit-content;
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  font-size: clamp(70px, 6.2vw, 96px);
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  text-align: center;
+  color: var(--color-white);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 .name_contents {
-    background-color: var(--color-cream);
-    /* 배경색 변경 */
-    width: 100%;
-    height: 739px;
-    /* 세로값 739 */
-    padding: 40px clamp(40px, 12vw, 245px);
-    /* 양옆 245, 위아래 40 패딩 */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  width: 100%;
+  flex: 1;
+  min-height: 760px;
+  background-color: var(--color-cream);
+  padding: 40px clamp(72px, 14vw, 260px) 54px;
+  display: flex;
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.14);
 }
 
-/* 콘텐츠 이너 - 위 아래 2px 외곽선 */
 .content_inner {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    /* 이너 간격 36px */
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .line_center {
-    width: 100%;
-    height: 20px;
-    border-top: 2px solid #2c2c2c;
-    border-bottom: 2px solid #2c2c2c;
-    position: relative;
-    box-sizing: border-box;
+  width: 100%;
+  height: 24px;
+  margin: 0 auto;
+  position: relative;
+  border-top: 2px solid #4d4d4d;
+  border-bottom: 2px solid #4d4d4d;
 }
 
 .line_center::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: #2c2c2c;
-    transform: translateY(-50%);
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #4d4d4d;
 }
 
-/* 1. Tit Section */
 .tit_box {
-    text-align: center;
-    gap: 16px;
+  position: relative;
+  text-align: center;
+  padding-top: 6px;
 }
 
 .tit_box h2 {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-weight: 600;
-    font-size: 18px;
-    text-transform: uppercase;
-    letter-spacing: 7.2px;
-    line-height: normal;
-    color: #2c2c2c;
-    margin-bottom: 10px;
+  font-family: "Pretendard Variable", sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 8px;
+  color: #2c2c2c;
+  text-transform: uppercase;
+  margin-bottom: 18px;
 }
 
-/* dashed 라인 2px */
+.personalized_stamp {
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  width: 164px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(193, 156, 126, 0.48);
+  border-radius: 12px;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1.2px;
+  color: rgba(193, 156, 126, 0.58);
+  transform: rotate(16deg);
+}
+
 .tit_box .line_dashed {
-    width: 100%;
-    border-top: 2px dashed #2c2c2c;
-    margin: 10px 0;
+  width: 100%;
+  border-top: 2px dashed rgba(44, 44, 44, 0.2);
+  margin-bottom: 16px;
 }
 
 .tit_box p {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    letter-spacing: 2.4px;
-    line-height: normal;
-    color: #5a5a5a;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 3.4px;
+  color: #686868;
+  text-transform: uppercase;
 }
 
-/* 2. Tit2 Section */
 .tit2_box {
-    text-align: center;
+  text-align: center;
+  margin-top: 6px;
 }
 
 .tit2_box h2 {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-weight: 600;
-    font-size: 30px;
-    line-height: normal;
-    margin-bottom: 8px;
-    color: #2c2c2c;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: clamp(34px, 3.2vw, 48px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #2c2c2c;
+  margin-bottom: 14px;
 }
 
 .tit2_box p {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.6;
-    color: #2c2c2c;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.8;
+  color: #2c2c2c;
 }
 
-/* 중간 구분선 */
 .line_full {
-    width: 100%;
-    height: 2px;
-    background-color: #2c2c2c;
-    margin: 5px 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4d4d4d;
 }
 
-/* 3. Input Section */
 .input_box {
-    height: 80px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 12px;
+  width: 100%;
+  min-height: 156px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  position: relative;
+  padding-top: 6px;
 }
 
 .input_box .q_name {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 2.4px;
-    line-height: normal;
-    text-align: left;
-    color: #2c2c2c;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 3.6px;
+  color: #5e5e5e;
+  text-transform: uppercase;
 }
 
 .input_box .enter_name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 30px;
-    font-weight: 400;
-    line-height: normal;
-    text-align: left;
-    color: #ccc;
-    border: none;
-    background: transparent;
-    width: 100%;
-    height: 70px;
-    border-bottom: 3px dashed #2c2c2c
+  width: 100%;
+  height: 76px;
+  padding: 0 0 12px;
+  border: none;
+  border-bottom: 3px dashed #4d4d4d;
+  background: transparent;
+  font-family: "DM Serif Display", serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1;
+  color: #2c2c2c;
+  caret-color: #2c2c2c;
 }
 
 .input_box .enter_name:focus {
-    outline: none;
-    color: #2c2c2c;
+  outline: none;
 }
 
-/* 4. Footer Section */
+.input_box .enter_name_hint {
+  position: absolute;
+  left: 0;
+  top: 62px;
+  font-family: "DM Serif Display", serif;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 1;
+  color: #d0cdc7;
+  pointer-events: none;
+  animation: enter-name-placeholder-blink 1.7s ease-in-out infinite;
+}
+
+.input_box:has(.enter_name:focus) .enter_name_hint,
+.input_box:has(.enter_name:not(:placeholder-shown)) .enter_name_hint {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes enter-name-placeholder-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
 .footer_box {
-    text-align: center;
+  text-align: center;
 }
 
 .footer_box .code_img {
-    display: block;
-    margin: 0 auto 5px;
-    height: 40px;
-    width: auto;
-    max-width: 100%;
+  display: block;
+  margin: 0 auto 12px;
+  height: 54px;
+  width: auto;
+  max-width: 100%;
 }
 
 .footer_box .code_txt {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 1.2px;
-    line-height: normal;
-    color: #5A5A5A;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 2px;
+  color: #656565;
 }
 
-/* 5. Button 스타일 */
 .start_btn_link_wrap {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 4px;
 }
 
 .start_btn_link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .start_btn {
-    width: 280px;
-    height: 50px;
-    padding: 5px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 3px;
-    background-color: transparent;
-    color: var(--color-burgundy);
-    border: 2px solid var(--color-burgundy);
-    border-radius: 0;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: background-color 0.28s ease, color 0.28s ease, border-color 0.28s ease;
+  width: 328px;
+  height: 76px;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 2px solid var(--color-burgundy);
+  color: var(--color-burgundy);
+  background-color: transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    border-color 0.28s ease;
 }
 
 .start_btn .btn_icon {
-    width: 32px;
-    height: 32px;
-    /* var(--color-burgundy) color filter */
-    filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
-    transition: filter 0.28s ease;
+  width: 34px;
+  height: 34px;
+  filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg)
+    brightness(92%) contrast(92%);
+  transition: filter 0.28s ease;
 }
 
 .start_btn span {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-weight: 600;
-    /* 세미볼드 */
-    font-size: 18px;
-    /* 폰트 크기 22 */
-    line-height: 1.3;
-    letter-spacing: 3px;
-    text-align: center;
-    /* CONTINUE 대문자 */
-
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 3.2px;
+  text-transform: uppercase;
 }
 
 .start_btn_link:hover .start_btn {
-    background-color: var(--color-burgundy);
-    color: var(--color-cream);
+  background-color: var(--color-burgundy);
+  color: var(--color-cream);
 }
 
 .start_btn_link:hover .btn_icon {
-    filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%) hue-rotate(302deg) brightness(102%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%)
+    hue-rotate(302deg) brightness(102%) contrast(92%);
 }
 
-/* 6. Extra Divider */
 .bottom_divider {
-    width: 100%;
-    height: 24px;
-    background-color: var(--color-cream);
+  width: 100%;
+  height: 26px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-cream);
+}
+
+.bottom_divider span {
+  font-family: "Source Serif 4", serif;
+  font-size: 15px;
+  font-style: italic;
+  color: rgba(115, 76, 76, 0.4);
 }
 
 @media (max-width: 1024px) {
-    .name_page_body {
-        padding: 24px 100px 0;
-    }
+  .name_page_body {
+    padding: 22px 48px 18px;
+  }
 
-    .name_page_inner {
-        margin-top: 0;
-        max-width: none;
-    }
+  .name_page_inner .main_title {
+    font-size: clamp(60px, 8vw, 84px);
+  }
 
-    .name_page_inner .main_title {
-        font-size: 90px;
-    }
+  .name_contents {
+    min-height: 680px;
+    padding: 34px 48px 42px;
+  }
 
-    .name_contents {
-        height: auto;
-        min-height: 680px;
-        padding: 40px 100px;
-    }
+  .personalized_stamp {
+    right: 0;
+    top: -2px;
+  }
+}
 
-    .tit2_box p {
-        font-size: 16px;
-    }
+@media (max-width: 767px) {
+  .name_page_body {
+    padding: 18px 16px 16px;
+  }
 
-    .input_box .q_name {
-        font-size: 16px;
-    }
+  .name_page_inner {
+    gap: 12px;
+  }
 
-    .start_btn span {
-        font-size: 22px;
-    }
+  .name_page_inner .main_title {
+    font-size: clamp(42px, 12vw, 58px);
+  }
 
-    .footer_box .code_txt {
-        font-size: 16px;
-    }
+  .name_contents {
+    min-height: 0;
+    padding: 24px 20px 30px;
+  }
+
+  .content_inner {
+    gap: 20px;
+  }
+
+  .line_center {
+    width: 100%;
+    height: 20px;
+  }
+
+  .line_center::after {
+    top: 6px;
+  }
+
+  .tit_box h2 {
+    font-size: 18px;
+    letter-spacing: 6px;
+  }
+
+  .personalized_stamp {
+    width: 128px;
+    height: 38px;
+    font-size: 12px;
+    top: -4px;
+  }
+
+  .tit2_box h2 {
+    font-size: 30px;
+  }
+
+  .tit2_box p {
+    font-size: 14px;
+  }
+
+  .input_box {
+    min-height: 138px;
+  }
+
+  .input_box .q_name {
+    font-size: 15px;
+    letter-spacing: 2.6px;
+  }
+
+  .input_box .enter_name,
+  .input_box .enter_name_hint {
+    font-size: 28px;
+  }
+
+  .input_box .enter_name_hint {
+    top: 56px;
+  }
+
+  .footer_box .code_img {
+    height: 44px;
+  }
+
+  .start_btn {
+    width: min(100%, 300px);
+    height: 64px;
+  }
+
+  .start_btn span {
+    font-size: 20px;
+  }
+
+  .bottom_divider span {
+    font-size: 13px;
+  }
 }

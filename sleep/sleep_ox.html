@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>simmons</title>
+    <title>sleep solution ox</title>
       <meta property="og:type" content="website" />
     <meta property="og:title" content="simmons" />
     <meta property="og:description"
@@ -37,25 +37,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
     <script src="js/main_sleep.js"></script>
+    <script src="js/sleep_ox.js" defer></script>
 </head>
 
 <body class="yor_n_page">
-    <div class="inner">
+    <div class="ox_inner">
         <!-- 상단 카드 -->
-        <div class="top card">
-            <div class="info">
-                <div class="left">
+        <div class="ox_top card">
+            <div class="ox_info">
+                <div class="ox_left">
                     <p class="brand">SIMMONS</p>
                     <p class="profile">Profile: name</p>
                 </div>
-                <div class="right">
+                <div class="ox_right">
                     <p class="question_count">Question 2 / 10</p>
                 </div>
             </div>
         </div>
 
         <!-- 메인 콘텐츠 카드 -->
-        <div class="bottom card">
+        <div class="ox_bottom card">
             <div class="bottom_container">
                 <!-- Title Group -->
                 <div class="tit">
@@ -68,10 +69,10 @@
                 </div>
 
                 <!-- YES / NO Section (Separated for styling) -->
-                <div class="ox_box">
-                    <span class="yes">YES</span>
+                <div class="ox_box" role="group" aria-label="Select yes or no">
+                    <button type="button" class="yes ox_choice" data-value="yes">YES</button>
                     <span class="slash"> / </span>
-                    <span class="no">NO</span>
+                    <button type="button" class="no ox_choice" data-value="no">NO</button>
                 </div>
 
                 <!-- Barcode Section -->
@@ -89,7 +90,7 @@
                                 <span>Back</span>
                             </div>
                         </a>
-                        <a href="sleep_match.html" class="btn_link">
+                        <a href="sleep_match.html" class="btn_link next_step_link is-disabled" aria-disabled="true" tabindex="-1">
                             <div class="start_btn next_btn fill">
                                 <span>Finish</span>
                                 <img src="../icon/arrow-right.svg" alt="next" class="btn_icon">

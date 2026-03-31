@@ -1,265 +1,306 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const receipt = document.querySelector('.recipe_paper, .receipt_inner');
-    const mask = document.querySelector('.receipt_mask');
-    const body = document.body;
-    const header = document.querySelector('header');
-    const levelArea = document.querySelector('.level_area');
-    const initialYPercent = -99.9;
-    const completionEpsilon = 0.0015;
-    const sleepLockHeaderClass = 'sleep_header_locked';
-    const pageMotionConfig = body.classList.contains('match_page')
-        ? {
-            lockThreshold: 200,
-            wheelPrintFactor: 0.0012,
-            touchPrintFactor: 0.0017,
-            keyPrintStep: 0.07,
-            progressLerp: 0.12
-        }
-        : {
-            lockThreshold: 350,
-            wheelPrintFactor: 0.00105,
-            touchPrintFactor: 0.0015,
-            keyPrintStep: 0.06,
-            progressLerp: 0.11
-        };
+document.addEventListener("DOMContentLoaded", () => {
+  const receiptSection = document.querySelector(".contents_wrap");
+  const receiptStage = document.querySelector(".receipt_stage");
+  const settledStageHost = document.querySelector(".receipt_stage_settled");
+  const receipt = receiptStage?.querySelector(".recipe_paper, .receipt_inner");
+  const scrollIndicator = receiptStage?.querySelector(".scroll_indicator");
 
-    if ('scrollRestoration' in history) {
-        history.scrollRestoration = 'manual';
+  if (
+    !receiptSection ||
+    !receiptStage ||
+    !settledStageHost ||
+    !receipt ||
+    typeof gsap === "undefined" ||
+    typeof ScrollTrigger === "undefined"
+  ) {
+    return;
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const initialYPercent = -99.6;
+  const initialRevealPx = 140;
+
+  let indicatorHidden = false;
+  let revealComplete = false;
+  let revealSettled = false;
+  let partialYPercent = initialYPercent;
+  let revealTween = null;
+  let pinTrigger = null;
+
+  const getPinTopOffset = () => {
+    if (window.innerWidth <= 767) {
+      return 88;
     }
 
-    window.scrollTo(0, 0);
-
-    if (!receipt || !mask || !header || typeof gsap === 'undefined') {
-        return;
+    if (window.innerWidth <= 1024) {
+      return 96;
     }
 
-    let targetPrintProgress = 0;
-    let currentPrintProgress = 0;
-    let isScrollLocked = false;
-    let isPrintComplete = false;
-    let lockScrollY = 0;
-    let touchStartY = 0;
-    let levelAnimationPlayed = false;
-    let levelObserver = null;
-    const targetLevelCells = levelArea
-        ? Array.from(levelArea.querySelectorAll('.level_cell.is_active'))
-        : [];
+    return 110;
+  };
 
-    const printTimeline = gsap.timeline({ paused: true });
+  const updateInitialReveal = () => {
+    const receiptHeight = receipt.offsetHeight || 1;
+    const revealPercent = (initialRevealPx / receiptHeight) * 100;
+    partialYPercent = Math.min(0, initialYPercent + revealPercent);
+  };
 
-    targetLevelCells.forEach((cell) => {
-        cell.classList.add('level_cell_target');
-        cell.classList.remove('is_active');
+  const getPinDistance = () => {
+    updateInitialReveal();
+    const hiddenPercent = Math.abs(partialYPercent);
+    const currentHeight = receipt.offsetHeight || 1;
+    const revealDistance = (hiddenPercent / 100) * currentHeight;
+
+    return Math.max(revealDistance + 120, 320);
+  };
+
+  const hideScrollIndicator = () => {
+    if (!scrollIndicator || indicatorHidden) {
+      return;
+    }
+
+    indicatorHidden = true;
+    scrollIndicator.classList.remove("is-visible");
+    scrollIndicator.classList.add("is-hidden");
+
+    gsap.to(scrollIndicator, {
+      autoAlpha: 0,
+      y: 20,
+      duration: 0.35,
+      ease: "power2.out",
+      overwrite: true,
     });
+  };
+
+  const buildSettledStage = () => {
+    settledStageHost.innerHTML = "";
+
+    const clone = receiptStage.cloneNode(true);
+    const cloneReceipt = clone.querySelector(".recipe_paper, .receipt_inner");
+    const cloneIndicator = clone.querySelector(".scroll_indicator");
+
+    clone.classList.remove("is-hidden");
+    cloneIndicator?.remove();
+
+    if (cloneReceipt) {
+      gsap.set(cloneReceipt, {
+        yPercent: 0,
+        y: 0,
+        rotation: 0,
+        clearProps: "all",
+      });
+    }
+
+    settledStageHost.appendChild(clone);
+  };
+
+  const freezeReveal = () => {
+    if (revealTween?.scrollTrigger) {
+      revealTween.scrollTrigger.kill();
+    }
+
+    revealTween?.kill();
+    revealTween = null;
+
+    gsap.killTweensOf(receipt);
+    gsap.set(receipt, {
+      yPercent: 0,
+      y: 0,
+      rotation: 0,
+      clearProps: "willChange",
+    });
+  };
+
+  const settleReveal = () => {
+    if (!revealComplete || revealSettled) {
+      return;
+    }
+
+    revealSettled = true;
+    buildSettledStage();
+
+    receiptStage.classList.add("is-hidden");
+    settledStageHost.classList.add("is-visible");
+    settledStageHost.setAttribute("aria-hidden", "false");
+
+    if (revealTween?.scrollTrigger) {
+      revealTween.scrollTrigger.kill();
+    }
+
+    revealTween?.kill();
+    revealTween = null;
+
+    if (pinTrigger) {
+      pinTrigger.kill(true);
+      pinTrigger = null;
+    }
+
+    gsap.killTweensOf(receipt);
+    gsap.set(receipt, {
+      yPercent: 0,
+      y: 0,
+      rotation: 0,
+      clearProps: "transform,willChange",
+    });
+
+    ScrollTrigger.refresh();
+  };
+
+  const maybeSettleReveal = () => {
+    if (!revealComplete || revealSettled) {
+      return;
+    }
+
+    const sectionRect = receiptSection.getBoundingClientRect();
+
+    if (sectionRect.bottom < 0) {
+      settleReveal();
+    }
+  };
+
+  const setupAnimation = () => {
+    updateInitialReveal();
+
+    revealTween?.kill();
+    pinTrigger?.kill();
+    gsap.killTweensOf(receipt);
+
+    if (revealSettled) {
+      settledStageHost.classList.add("is-visible");
+      receiptStage.classList.add("is-hidden");
+      return;
+    }
+
+    settledStageHost.classList.remove("is-visible");
+    settledStageHost.setAttribute("aria-hidden", "true");
+    receiptStage.classList.remove("is-hidden");
 
     gsap.set(receipt, {
-        yPercent: initialYPercent,
-        rotation: 0,
-        y: 0,
-        transformOrigin: '50% 0%'
+      yPercent: revealComplete ? 0 : partialYPercent,
+      y: 0,
+      rotation: 0,
+      transformOrigin: "50% 0%",
+      willChange: "transform",
     });
 
-    printTimeline
-        .to(receipt, {
-            yPercent: -82,
-            duration: 0.22,
-            ease: 'power1.out'
-        })
-        .to(receipt, {
-            yPercent: -38,
-            duration: 0.28,
-            ease: 'sine.out'
-        })
-        .to(receipt, {
-            yPercent: 0,
-            duration: 0.5,
-            ease: 'power2.out'
-        });
+    const pinTopOffset = getPinTopOffset();
+    const pinDistance = getPinDistance();
 
-    const playLevelAnimation = () => {
-        if (!levelArea || levelAnimationPlayed) {
+    pinTrigger = ScrollTrigger.create({
+      trigger: receiptSection,
+      start: `top top+=${pinTopOffset}`,
+      end: `+=${pinDistance}`,
+      pin: receiptStage,
+      pinSpacing: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: () => {
+        hideScrollIndicator();
+      },
+      onLeave: () => {
+        revealComplete = true;
+        freezeReveal();
+        maybeSettleReveal();
+      },
+    });
+
+    revealTween = gsap.to(receipt, {
+      yPercent: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: receiptSection,
+        start: `top top+=${pinTopOffset}`,
+        end: `+=${pinDistance}`,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          hideScrollIndicator();
+
+          if (revealComplete) {
+            gsap.set(receipt, { yPercent: 0 });
             return;
-        }
+          }
 
-        levelAnimationPlayed = true;
+          if (self.progress >= 0.999) {
+            revealComplete = true;
+            freezeReveal();
+          }
+        },
+      },
+    });
+  };
 
-        targetLevelCells.forEach((cell, index) => {
-            gsap.delayedCall(index * 0.12, () => {
-                cell.classList.add('is_active');
-                gsap.fromTo(cell, {
-                    scale: 0.92
-                }, {
-                    scale: 1,
-                    duration: 0.32,
-                    ease: 'power2.out',
-                    clearProps: 'scale'
-                });
-            });
-        });
-    };
+  gsap.set(receipt, {
+    yPercent: initialYPercent,
+    y: 0,
+    rotation: 0,
+    transformOrigin: "50% 0%",
+  });
 
-    const setupLevelObserver = () => {
-        if (!levelArea || levelObserver) {
-            return;
-        }
+  setupAnimation();
 
-        levelObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (!entry.isIntersecting || !isPrintComplete) {
-                    return;
-                }
+  if (scrollIndicator) {
+    gsap.set(scrollIndicator, {
+      xPercent: -50,
+      y: 0,
+      autoAlpha: 0,
+    });
 
-                playLevelAnimation();
-                levelObserver.disconnect();
-                levelObserver = null;
-            });
-        }, {
-            threshold: 0.35,
-            rootMargin: '0px 0px -12% 0px'
-        });
+    gsap.to(scrollIndicator, {
+      autoAlpha: 1,
+      duration: 0.7,
+      ease: "power2.out",
+      delay: 0.4,
+      onStart: () => {
+        scrollIndicator.classList.add("is-visible");
+      },
+    });
+  }
 
-        levelObserver.observe(levelArea);
-    };
-
-    const syncPrintProgress = () => {
-        printTimeline.progress(currentPrintProgress);
-
-        if (targetPrintProgress >= 1 - completionEpsilon
-            && currentPrintProgress >= 1 - completionEpsilon
-            && !isPrintComplete) {
-            currentPrintProgress = 1;
-            printTimeline.progress(1);
-            isPrintComplete = true;
-            releaseScrollLock();
-            setupLevelObserver();
-        }
-    };
-
-    const tickPrintProgress = () => {
-        if (isPrintComplete || !isScrollLocked) {
-            return;
-        }
-
-        const nextProgress = gsap.utils.interpolate(
-            currentPrintProgress,
-            targetPrintProgress,
-            pageMotionConfig.progressLerp
-        );
-
-        currentPrintProgress = Math.abs(targetPrintProgress - nextProgress) <= completionEpsilon
-            ? targetPrintProgress
-            : nextProgress;
-
-        syncPrintProgress();
-    };
-
-    const applyPrintDelta = (delta) => {
-        if (!isScrollLocked || isPrintComplete || delta <= 0) {
-            return;
-        }
-
-        targetPrintProgress = Math.min(1, targetPrintProgress + delta);
-    };
-
-    function lockScroll() {
-        if (isScrollLocked || isPrintComplete) {
-            return;
-        }
-
-        isScrollLocked = true;
-        lockScrollY = window.scrollY || window.pageYOffset || 0;
-
-        header.classList.add(sleepLockHeaderClass);
-
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${lockScrollY}px`;
-        document.body.style.left = '0';
-        document.body.style.width = '100%';
-        document.body.style.overflow = 'hidden';
-        document.documentElement.style.overflow = 'hidden';
-
-        targetPrintProgress = currentPrintProgress;
+  const handleScrollIntent = (event) => {
+    if (event) {
+      hideScrollIndicator();
     }
 
-    function releaseScrollLock() {
-        if (!isScrollLocked) {
-            return;
-        }
+    maybeSettleReveal();
+  };
 
-        isScrollLocked = false;
+  window.addEventListener("wheel", handleScrollIntent, { passive: true });
+  window.addEventListener("touchmove", handleScrollIntent, { passive: true });
+  window.addEventListener("scroll", handleScrollIntent, { passive: true });
+  window.addEventListener("keydown", (event) => {
+    const scrollKeys = [
+      "ArrowDown",
+      "PageDown",
+      "Space",
+      "Enter",
+      "ArrowUp",
+      "PageUp",
+      "Home",
+      "End",
+    ];
 
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
-        document.body.style.width = '';
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-        header.classList.remove(sleepLockHeaderClass);
-
-        window.scrollTo(0, lockScrollY);
+    if (
+      scrollKeys.includes(event.code) ||
+      scrollKeys.includes(event.key) ||
+      event.key === " "
+    ) {
+      handleScrollIntent(event);
     }
+  });
 
-    const handleWheel = (event) => {
-        if (!isScrollLocked) {
-            return;
-        }
+  window.addEventListener(
+    "resize",
+    () => {
+      if (revealSettled) {
+        buildSettledStage();
+        return;
+      }
 
-        event.preventDefault();
-        applyPrintDelta(event.deltaY * pageMotionConfig.wheelPrintFactor);
-    };
-
-    const handleTouchStart = (event) => {
-        touchStartY = event.touches[0]?.clientY ?? 0;
-    };
-
-    const handleTouchMove = (event) => {
-        if (!isScrollLocked) {
-            return;
-        }
-
-        const currentY = event.touches[0]?.clientY ?? touchStartY;
-        const deltaY = touchStartY - currentY;
-
-        event.preventDefault();
-        touchStartY = currentY;
-        applyPrintDelta(deltaY * pageMotionConfig.touchPrintFactor);
-    };
-
-    const handleKeydown = (event) => {
-        if (!isScrollLocked) {
-            return;
-        }
-
-        const forwardKeys = ['ArrowDown', 'PageDown', 'Space', 'Enter'];
-        const backwardKeys = ['ArrowUp', 'PageUp', 'Home'];
-
-        if (forwardKeys.includes(event.code) || forwardKeys.includes(event.key)) {
-            event.preventDefault();
-            applyPrintDelta(pageMotionConfig.keyPrintStep);
-            return;
-        }
-
-        if (backwardKeys.includes(event.code) || backwardKeys.includes(event.key) || event.key === ' ') {
-            event.preventDefault();
-        }
-    };
-
-    const handleScroll = () => {
-        if (isScrollLocked || isPrintComplete) {
-            return;
-        }
-
-        const currentScrollY = window.scrollY || window.pageYOffset || 0;
-
-        if (currentScrollY > pageMotionConfig.lockThreshold && header.classList.contains('hide')) {
-            lockScroll();
-        }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchmove', handleTouchMove, { passive: false });
-    window.addEventListener('keydown', handleKeydown);
-    gsap.ticker.add(tickPrintProgress);
-}); //dom end
+      setupAnimation();
+      ScrollTrigger.refresh();
+    },
+    { passive: true },
+  );
+});
