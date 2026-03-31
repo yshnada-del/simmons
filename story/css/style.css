@@ -175,8 +175,8 @@ main {
     width: 100%;
     margin: 36px 0 0;
     font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
-    font-weight: 500;
-    font-size: 40px;
+    font-weight: 300;
+    font-size: 38px;
     line-height: 1.1;
     letter-spacing: 0;
     color: #4F4F4F;
@@ -243,18 +243,33 @@ main {
     flex-direction: column;
     transform-origin: 50% 100%;
     transform-style: preserve-3d;
-    background-color: #F6F3EE;
+    background-color: transparent;
     overflow: hidden;
     will-change: transform;
     text-align: left;
     --card-overlay-opacity: 0;
 }
 
+.history_cards_section .card-inner::before,
+.sub_inner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background-color: #F6F3EE;
+    z-index: 0;
+    pointer-events: none;
+}
+
 .card-copy {
     position: relative;
     z-index: 1;
     width: 100%;
-    padding-bottom: 56px;
+    max-width: var(--story-shell-max);
+    margin: 0 auto;
     box-sizing: border-box;
     background-color: #F6F3EE;
 }
@@ -273,7 +288,7 @@ main {
 
 .card-description {
     width: 100%;
-    padding: 40px 125px 0;
+    padding: 60px 125px 0;
     box-sizing: border-box;
 }
 
@@ -281,7 +296,11 @@ main {
 .sub_inner::after {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
     background-color: #000;
     opacity: var(--card-overlay-opacity);
     will-change: auto;
@@ -293,16 +312,17 @@ main {
     position: relative;
     z-index: 1;
     width: 100%;
+    max-width: var(--story-shell-max);
     flex: 1 1 auto;
     height: 100%;
-    margin-top: 56px;
+    margin: 56px auto 0;
     box-sizing: border-box;
     background-color: #F6F3EE;
 }
 
 .card-img-frame {
-    width: calc(100% - 250px);
-    height: calc(100% - 181px);
+    width: min(calc(100% - 250px), var(--story-content-max));
+    height: calc(100% - 381px);
     margin: 0 auto 125px;
     overflow: hidden;
 }
