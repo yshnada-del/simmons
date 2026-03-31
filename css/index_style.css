@@ -199,6 +199,14 @@ body {
     overflow: hidden;
 }
 
+.banner_primary_image_link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    cursor: pointer;
+    z-index: 1;
+}
+
 .pic_box img {
     width: 100%;
     height: 100%;
@@ -221,6 +229,7 @@ body {
     transform: translate(-50%, -50%);
     text-decoration: none;
     cursor: pointer;
+    z-index: 2;
 }
 
 .box span {
@@ -1579,6 +1588,8 @@ body {
 .offline_description_icon {
     width: 84px;
     height: 84px;
+    padding-left: 10px;
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -1633,7 +1644,7 @@ body {
     height: 581px;
     border-radius: 10px;
     overflow: hidden;
-    transform: rotate(6.8deg);
+    transform: rotate(3.8deg);
     transform-origin: center;
     background-color: rgba(237, 237, 237, 0.2);
 }

@@ -1400,7 +1400,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsap.set(activeCard, {
                     autoAlpha: 0,
                     x: 72,
-                    rotation: 9
+                    rotation: 3.8
                 });
             }
         };
@@ -1432,7 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .to(activeCard ? [activeCard] : [], {
                     autoAlpha: 1,
                     x: 0,
-                    rotation: 6.8,
+                    rotation: 3.8,
                     duration: 0.72
                 }, '-=0.24');
         };
@@ -1529,7 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             gsap.set(currentCard, {
                 xPercent: 0,
-                rotation: 6.8,
+                rotation: 3.8,
                 autoAlpha: 1
             });
 
@@ -1597,7 +1597,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 0.12)
                 .to(nextCard, {
                     xPercent: 0,
-                    rotation: 6.8,
+                    rotation: 3.8,
                     autoAlpha: 1,
                     duration: prefersReducedMotion ? 0 : 0.3,
                     ease: 'power2.out'
