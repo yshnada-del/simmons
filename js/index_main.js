@@ -383,8 +383,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sleepSolutionTitleText = sleepSolutionTitle?.querySelector('span');
     const sleepSolutionImage = document.querySelector('.sleep_solution .img');
     const sleepSolutionButton = document.querySelector('.sleep_solution .btn_test');
+    let sleepSolutionTimeline = null;
 
-    if (!prefersReducedMotion && sleepSolutionSection && sleepSolutionTitle && sleepSolutionTitleText && sleepSolutionImage) {
+    if (sleepSolutionSection && sleepSolutionTitle && sleepSolutionTitleText && sleepSolutionImage) {
         const sleepSolutionChars = Array.from(sleepSolutionTitleText.textContent || '').map((character) => {
             const charSpan = document.createElement('span');
             charSpan.className = 'sleep_solution_char';
@@ -398,73 +399,115 @@ document.addEventListener('DOMContentLoaded', () => {
             sleepSolutionTitleText.appendChild(charSpan);
         });
 
-        if (sleepSolutionLabel) {
-            gsap.set(sleepSolutionLabel, {
-                autoAlpha: 0,
-                y: -28
+        const setSleepSolutionInitialState = () => {
+            gsap.killTweensOf([sleepSolutionLabel, sleepSolutionChars, sleepSolutionImage, sleepSolutionButton].filter(Boolean));
+
+            if (prefersReducedMotion) {
+                gsap.set([sleepSolutionLabel, sleepSolutionChars, sleepSolutionImage, sleepSolutionButton].filter(Boolean), {
+                    clearProps: 'all'
+                });
+                gsap.set(sleepSolutionTitle, {
+                    clearProps: 'all'
+                });
+                return;
+            }
+
+            if (sleepSolutionLabel) {
+                gsap.set(sleepSolutionLabel, {
+                    autoAlpha: 0,
+                    y: -28
+                });
+            }
+
+            gsap.set(sleepSolutionTitle, {
+                autoAlpha: 1
             });
-        }
 
-        gsap.set(sleepSolutionTitle, {
-            autoAlpha: 1
-        });
-
-        gsap.set(sleepSolutionChars, {
-            autoAlpha: 0,
-            y: -220
-        });
-
-        gsap.set(sleepSolutionImage, {
-            autoAlpha: 0,
-            y: -320
-        });
-
-        if (sleepSolutionButton) {
-            gsap.set(sleepSolutionButton, {
+            gsap.set(sleepSolutionChars, {
                 autoAlpha: 0,
-                y: 36
+                y: -220
             });
-        }
 
-        const sleepSolutionTimeline = gsap.timeline({
-            scrollTrigger: {
-                trigger: sleepSolutionSection,
-                start: 'top 72%',
-                toggleActions: 'play none none none'
+            gsap.set(sleepSolutionImage, {
+                autoAlpha: 0,
+                y: -320
+            });
+
+            if (sleepSolutionButton) {
+                gsap.set(sleepSolutionButton, {
+                    autoAlpha: 0,
+                    y: 36
+                });
+            }
+        };
+
+        const buildSleepSolutionTimeline = () => {
+            sleepSolutionTimeline?.kill();
+
+            if (prefersReducedMotion) {
+                sleepSolutionTimeline = null;
+                return;
+            }
+
+            sleepSolutionTimeline = gsap.timeline({
+                paused: true,
+                defaults: {
+                    ease: 'power3.out'
+                }
+            });
+
+            if (sleepSolutionLabel) {
+                sleepSolutionTimeline.to(sleepSolutionLabel, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.45
+                });
+            }
+
+            sleepSolutionTimeline
+                .to(sleepSolutionChars, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.82,
+                    stagger: 0.05
+                }, sleepSolutionLabel ? '-=0.08' : 0)
+                .to(sleepSolutionImage, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 1.05
+                }, '+=0.04');
+
+            if (sleepSolutionButton) {
+                sleepSolutionTimeline.to(sleepSolutionButton, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.5
+                }, '-=0.3');
+            }
+        };
+
+        setSleepSolutionInitialState();
+        buildSleepSolutionTimeline();
+
+        ScrollTrigger.create({
+            id: 'sleep-solution-enter',
+            trigger: sleepSolutionSection,
+            start: 'top 72%',
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                if (prefersReducedMotion) {
+                    setSleepSolutionInitialState();
+                    return;
+                }
+
+                setSleepSolutionInitialState();
+                buildSleepSolutionTimeline();
+                sleepSolutionTimeline?.restart(true);
             },
-            defaults: {
-                ease: 'power3.out'
+            onLeaveBack: () => {
+                setSleepSolutionInitialState();
             }
         });
-
-        if (sleepSolutionLabel) {
-            sleepSolutionTimeline.to(sleepSolutionLabel, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.45
-            });
-        }
-
-        sleepSolutionTimeline
-            .to(sleepSolutionChars, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.82,
-                stagger: 0.05
-            }, sleepSolutionLabel ? '-=0.08' : 0)
-            .to(sleepSolutionImage, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 1.05
-            }, '+=0.04');
-
-        if (sleepSolutionButton) {
-            sleepSolutionTimeline.to(sleepSolutionButton, {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.5
-            }, '-=0.3');
-        }
     }
 
     const productSection = document.querySelector('.product');
@@ -1289,16 +1332,99 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const offlineSection = document.querySelector('.offline');
+    const offlineInner = offlineSection?.querySelector('.offline_inner');
     const offlineTrackButtons = Array.from(document.querySelectorAll('.offline_track_button'));
     const offlineTrackItems = Array.from(document.querySelectorAll('.offline_track_item'));
     const offlineSlides = Array.from(document.querySelectorAll('.offline_slide'));
 
-    if (offlineTrackButtons.length && offlineTrackItems.length && offlineSlides.length) {
+    if (offlineSection && offlineTrackButtons.length && offlineTrackItems.length && offlineSlides.length) {
         let activeOfflineIndex = Math.max(offlineSlides.findIndex((slide) => slide.classList.contains('is-active')), 0);
         let isOfflineAnimating = false;
         const offlineDescriptionIcons = Array.from(document.querySelectorAll('.offline_description_icon'));
         const offlineCardWraps = offlineSlides.map((slide) => slide.querySelector('.offline_card_wrap')).filter(Boolean);
         const offlineDescriptions = offlineSlides.map((slide) => slide.querySelector('.offline_description')).filter(Boolean);
+        const activeOfflineSlide = () => offlineSlides[activeOfflineIndex];
+        const getOfflineEntranceTargets = () => {
+            const activeSlide = activeOfflineSlide();
+
+            if (!activeSlide) {
+                return [];
+            }
+
+            const activeCard = activeSlide.querySelector('.offline_card_wrap');
+            const activeInfo = activeSlide.querySelector('.offline_info');
+
+            return [offlineInner, activeInfo, activeCard].filter(Boolean);
+        };
+        const setOfflineEntranceInitialState = () => {
+            const targets = getOfflineEntranceTargets();
+
+            gsap.killTweensOf(targets);
+
+            if (prefersReducedMotion) {
+                gsap.set(targets, {
+                    clearProps: 'all'
+                });
+                return;
+            }
+
+            gsap.set(offlineInner, {
+                autoAlpha: 0,
+                y: 70
+            });
+
+            const activeSlide = activeOfflineSlide();
+            const activeCard = activeSlide?.querySelector('.offline_card_wrap');
+            const activeInfo = activeSlide?.querySelector('.offline_info');
+
+            if (activeInfo) {
+                gsap.set(activeInfo, {
+                    autoAlpha: 0,
+                    y: 38
+                });
+            }
+
+            if (activeCard) {
+                gsap.set(activeCard, {
+                    autoAlpha: 0,
+                    x: 72,
+                    rotation: 9
+                });
+            }
+        };
+        const playOfflineEntrance = () => {
+            if (prefersReducedMotion) {
+                setOfflineEntranceInitialState();
+                return;
+            }
+
+            const activeSlide = activeOfflineSlide();
+            const activeCard = activeSlide?.querySelector('.offline_card_wrap');
+            const activeInfo = activeSlide?.querySelector('.offline_info');
+
+            gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            })
+                .to(offlineInner, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.55
+                })
+                .to(activeInfo ? [activeInfo] : [], {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.48
+                }, '-=0.28')
+                .to(activeCard ? [activeCard] : [], {
+                    autoAlpha: 1,
+                    x: 0,
+                    rotation: 6.8,
+                    duration: 0.72
+                }, '-=0.24');
+        };
 
         offlineDescriptionIcons.forEach((icon) => {
             icon.setAttribute('role', 'link');
@@ -1349,6 +1475,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             setOfflineTrackState(activeOfflineIndex);
+            setOfflineEntranceInitialState();
         };
 
         onResponsiveModeChange(() => {
@@ -1473,6 +1600,21 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         setOfflineTrackState(activeOfflineIndex);
+        setOfflineEntranceInitialState();
+
+        ScrollTrigger.create({
+            id: 'offline-enter',
+            trigger: offlineSection,
+            start: 'top 72%',
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                setOfflineEntranceInitialState();
+                playOfflineEntrance();
+            },
+            onLeaveBack: () => {
+                setOfflineEntranceInitialState();
+            }
+        });
 
         offlineTrackButtons.forEach((button, index) => {
             button.addEventListener('click', () => {
@@ -1485,6 +1627,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const eventSection = document.querySelector('.event');
     const eventCardStack = eventSection?.querySelector('.event_card_stack');
     const eventCards = eventSection ? Array.from(eventSection.querySelectorAll('.event_card')) : [];
+    const eventMoreActionButton = eventSection?.querySelector('.event_more_button');
 
     if (eventSection && eventCardStack && eventCards.length === 3) {
         const eventCardOrders = [
@@ -1517,6 +1660,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const resetEventCardPositions = () => {
             gsap.set(eventCards, { y: 0 });
+        };
+        const setEventEntranceInitialState = () => {
+            gsap.killTweensOf([...eventCards, eventCardStack, eventMoreActionButton].filter(Boolean));
+
+            if (prefersReducedMotion) {
+                gsap.set([...eventCards, eventCardStack, eventMoreActionButton].filter(Boolean), {
+                    clearProps: 'all'
+                });
+                return;
+            }
+
+            gsap.set(eventCardStack, {
+                autoAlpha: 1
+            });
+
+            gsap.set(eventCards, {
+                autoAlpha: 0,
+                y: 96
+            });
+
+            if (eventMoreActionButton) {
+                gsap.set(eventMoreActionButton, {
+                    autoAlpha: 0,
+                    y: 36
+                });
+            }
+        };
+        const playEventEntrance = () => {
+            if (prefersReducedMotion) {
+                setEventEntranceInitialState();
+                return;
+            }
+
+            gsap.timeline({
+                defaults: {
+                    ease: 'power3.out'
+                }
+            })
+                .to(eventCards, {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.72,
+                    stagger: 0.1
+                })
+                .to(eventMoreActionButton ? [eventMoreActionButton] : [], {
+                    autoAlpha: 1,
+                    y: 0,
+                    duration: 0.45
+                }, '-=0.28');
         };
 
         const applyEventOrder = (orderIndex) => {
@@ -1580,6 +1772,23 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         applyEventOrder(0);
+        setEventEntranceInitialState();
+
+        ScrollTrigger.create({
+            id: 'event-enter',
+            trigger: eventSection,
+            start: 'top 72%',
+            invalidateOnRefresh: true,
+            onEnter: () => {
+                applyEventOrder(activeEventOrderIndex);
+                setEventEntranceInitialState();
+                playEventEntrance();
+            },
+            onLeaveBack: () => {
+                applyEventOrder(activeEventOrderIndex);
+                setEventEntranceInitialState();
+            }
+        });
 
         eventNextZone.addEventListener('click', () => {
             transitionEventOrder(1);
