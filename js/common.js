@@ -66,77 +66,119 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (headerRight && searchToggle) {
         const searchIcon = searchToggle.querySelector('img');
-        const searchPanel = document.createElement('div');
+        const searchHint = searchToggle.querySelector('.search_hint');
         const searchIconSrc = searchIcon ? searchIcon.getAttribute('src') : `${basePath}icon/search.svg`;
 
-        searchPanel.className = 'header_search_panel';
-        searchPanel.innerHTML = `
-            <form class="header_search_form" role="search">
-                <input
-                    type="search"
-                    class="header_search_input"
-                    placeholder="\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694"
-                    aria-label="\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694"
-                >
-                <button type="submit" class="header_search_submit" aria-label="\uAC80\uC0C9">
+        if (searchHint) {
+            const searchForm = document.createElement('form');
+            searchForm.className = 'search_link';
+            searchForm.setAttribute('role', 'search');
+            searchForm.innerHTML = `
+                <label class="search_hint" for="header-search-input">
+                    <input
+                        type="search"
+                        id="header-search-input"
+                        class="search_input"
+                        placeholder=""
+                        aria-label="Search"
+                    >
+                </label>
+                <button type="button" class="search_icon_button" aria-label="Search">
                     <img src="${searchIconSrc}" alt="">
                 </button>
-            </form>
-        `;
-        headerRight.appendChild(searchPanel);
+            `;
 
-        const searchForm = searchPanel.querySelector('.header_search_form');
-        const searchInput = searchPanel.querySelector('.header_search_input');
+            searchToggle.replaceWith(searchForm);
 
-        const closeSearch = () => {
-            headerRight.classList.remove('is-search-open');
-        };
+            const inlineSearch = headerRight.querySelector('.search_link');
+            const inlineSearchInput = inlineSearch?.querySelector('.search_input');
+            const inlineSearchButton = inlineSearch?.querySelector('.search_icon_button');
 
-        const openSearch = (shouldFocus = false) => {
-            headerRight.classList.add('is-search-open');
+            inlineSearch?.addEventListener('submit', (event) => {
+                event.preventDefault();
+            });
 
-            if (shouldFocus) {
-                window.setTimeout(() => {
-                    searchInput.focus();
-                }, prefersReducedMotion ? 0 : 120);
-            }
-        };
+            inlineSearchButton?.addEventListener('click', () => {
+                inlineSearchInput?.focus();
+            });
 
-        searchToggle.addEventListener('click', (event) => {
-            event.preventDefault();
-        });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    inlineSearchInput?.blur();
+                }
+            });
+        } else {
+            const searchPanel = document.createElement('div');
 
-        searchToggle.addEventListener('mouseenter', () => {
-            openSearch();
-        });
+            searchPanel.className = 'header_search_panel';
+            searchPanel.innerHTML = `
+                <form class="header_search_form" role="search">
+                    <input
+                        type="search"
+                        class="header_search_input"
+                        placeholder="\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694"
+                        aria-label="\uAC80\uC0C9\uC5B4\uB97C \uC785\uB825\uD558\uC138\uC694"
+                    >
+                    <button type="submit" class="header_search_submit" aria-label="\uAC80\uC0C9">
+                        <img src="${searchIconSrc}" alt="">
+                    </button>
+                </form>
+            `;
+            headerRight.appendChild(searchPanel);
 
-        headerRight.addEventListener('mouseleave', () => {
-            closeSearch();
-        });
+            const searchForm = searchPanel.querySelector('.header_search_form');
+            const searchInput = searchPanel.querySelector('.header_search_input');
 
-        searchPanel.addEventListener('mouseenter', () => {
-            openSearch();
-        });
+            const closeSearch = () => {
+                headerRight.classList.remove('is-search-open');
+            };
 
-        searchInput.addEventListener('focus', () => {
-            openSearch(true);
-        });
+            const openSearch = (shouldFocus = false) => {
+                headerRight.classList.add('is-search-open');
 
-        searchInput.addEventListener('blur', () => {
-            if (!headerRight.matches(':hover')) {
+                if (shouldFocus) {
+                    window.setTimeout(() => {
+                        searchInput.focus();
+                    }, prefersReducedMotion ? 0 : 120);
+                }
+            };
+
+            searchToggle.addEventListener('click', (event) => {
+                event.preventDefault();
+            });
+
+            searchToggle.addEventListener('mouseenter', () => {
+                openSearch();
+            });
+
+            headerRight.addEventListener('mouseleave', () => {
                 closeSearch();
-            }
-        });
+            });
 
-        searchForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-        });
+            searchPanel.addEventListener('mouseenter', () => {
+                openSearch();
+            });
 
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                closeSearch();
-            }
-        });
+            searchInput.addEventListener('focus', () => {
+                openSearch(true);
+            });
+
+            searchInput.addEventListener('blur', () => {
+                if (!headerRight.matches(':hover')) {
+                    closeSearch();
+                }
+            });
+
+            searchForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape') {
+                    closeSearch();
+                }
+            });
+        }
     }
 
     window.addEventListener('scroll', () => {

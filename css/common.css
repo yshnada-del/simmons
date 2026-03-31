@@ -154,7 +154,8 @@ header .right {
 header .right ul {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 38px;
   width: 100%;
   transition: opacity 0.2s ease;
 }
@@ -163,6 +164,86 @@ header .right ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+header .right ul li:first-child {
+  position: relative;
+}
+
+header .right .search_link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  overflow: visible;
+  margin: 0;
+}
+
+header .right .search_link .search_hint {
+  position: absolute;
+  top: 68%;
+  right: calc(100% + 3px);
+  display: flex;
+  align-items: center;
+  width: 240px;
+  max-width: 0;
+  overflow: hidden;
+  padding-bottom: 7px;
+  opacity: 0;
+  transform: translateY(-50%);
+  transition: max-width 0.28s ease, opacity 0.2s ease;
+}
+
+header .right .search_link .search_hint::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: #5D3136;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.24s ease;
+}
+
+header .right .search_link:hover .search_hint,
+header .right .search_link:focus-within .search_hint {
+  max-width: 200px;
+  opacity: 1;
+}
+
+header .right .search_link:hover .search_hint::after,
+header .right .search_link:focus-within .search_hint::after {
+  transform: scaleX(1);
+}
+
+header .right .search_input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #5D3136;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  padding: 0;
+}
+
+header .right .search_input::placeholder {
+  color: #5D3136;
+  opacity: 1;
+}
+
+header .right .search_icon_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
 }
 
 header .header_search_panel {
