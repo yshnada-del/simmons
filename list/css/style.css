@@ -382,6 +382,11 @@ body {
   cursor: pointer;
   background-color: #D7C5B7;
   border-radius: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.more .name.active .tab {
+  background-color: var(--color-burgundy);
 }
 
 .more .name .tab .txt {
@@ -399,6 +404,7 @@ body {
 .more .name.active .tab .txt {
   opacity: 1; /* Ensure visibility */
   pointer-events: none;
+  color: var(--color-ivory);
 }
 
 .more .card_content {
@@ -518,6 +524,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .more .icon {
@@ -525,6 +532,19 @@ body {
   height: 14px;
   border-top: 3px solid #000;
   border-left: 3px solid #000;
+  transition: border-color 0.25s ease;
+}
+
+.more .icon_all:hover,
+.more .icon_all:focus-visible {
+  background-color: rgba(var(--color-burgundy-rgb), 0.9);
+  box-shadow: 0 10px 24px rgba(var(--color-burgundy-rgb), 0.22);
+}
+
+.more .icon_all:hover .icon,
+.more .icon_all:focus-visible .icon {
+  border-top-color: #fff;
+  border-left-color: #fff;
 }
 
 .more .icon_all.prev .icon {
