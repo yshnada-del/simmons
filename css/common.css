@@ -106,17 +106,49 @@ header .gnb {
 header .gnb li a {
   display: block;
   padding: 12px 8px;
+  position: relative;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 400;
   line-height: 100%;
   white-space: nowrap;
   color: #5D3136;
+  transition: color 0.3s ease;
+}
+
+header .gnb li a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  width: calc(100% - 16px);
+  height: 1.5px;
+  background-color: currentColor;
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.35s ease;
+}
+
+header .gnb li a:hover::after,
+header .gnb li a:focus-visible::after,
+header .gnb li a.is-active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+header .gnb li a:hover,
+header .gnb li a:focus-visible,
+header .gnb li a.is-active {
+  color: #4b2328;
+}
+
+header .gnb li a:focus-visible {
+  outline: none;
 }
 
 header .right {
   width: 103px;
   height: auto;
+  position: relative;
 }
 
 header .right ul {
@@ -124,12 +156,105 @@ header .right ul {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  transition: opacity 0.2s ease;
 }
 
 header .right ul li a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+header .header_search_panel {
+  position: absolute;
+  top: 50%;
+  right: 52px;
+  width: 276px;
+  height: 54px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.96);
+  transform-origin: right center;
+  transition: opacity 0.24s ease, transform 0.24s ease, visibility 0.24s ease;
+  z-index: 2;
+}
+
+header .right.is-search-open .header_search_panel {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+header .right.is-search-open ul li:first-child {
+  opacity: 0;
+  pointer-events: none;
+}
+
+header .header_search_form {
+  width: 252px;
+  height: 34px;
+  padding: 7px 20px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 100px;
+  background-color: var(--color-white);
+}
+
+header .header_search_input {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  padding-right: 32px;
+  background: transparent;
+  color: #1D1D1D;
+  font-family: var(--font-main);
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 140%;
+  letter-spacing: -0.025em;
+}
+
+header .header_search_input::placeholder {
+  color: #C2C2C2;
+}
+
+header .header_search_input:focus {
+  outline: none;
+}
+
+header .header_search_submit {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex: 0 0 auto;
+  transform: translateY(-50%);
+}
+
+header .header_search_submit img {
+  display: block;
+  width: 20px;
+  height: 20px;
 }
 
 header .right ul li img {
@@ -386,6 +511,15 @@ footer {
   header .right ul {
     justify-content: flex-end;
     gap: 0;
+  }
+
+  header .header_search_panel {
+    width: min(276px, calc(100vw - 40px));
+    right: 40px;
+  }
+
+  header .header_search_form {
+    width: 100%;
   }
 
   header .right ul li:first-child {
