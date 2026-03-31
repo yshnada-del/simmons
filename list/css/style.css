@@ -37,7 +37,7 @@ body {
 .banner .txt_all {
   position: absolute;
   top: 183px;
-  left: calc(var(--list-shell-anchor) + 125px);
+  left: calc(var(--list-shell-anchor) + 220px);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -47,17 +47,18 @@ body {
 .banner .txt_all p:first-child {
   font-family: 'Pretendard', sans-serif;
   font-weight: 400;
-  font-size: 62px;
+  font-size: 50px;
   line-height: 100%;
   letter-spacing: -0.02em;
   color: #C2C2C2;
   margin: 0;
+  padding-left: 18px;
 }
 
 .banner .txt_all p:last-child {
   font-family: 'DM Serif Display', serif;
   font-weight: 400;
-  font-size: 250px;
+  font-size: 200px;
   line-height: 100%;
   letter-spacing: 0;
   color: #5D3136;
@@ -66,11 +67,11 @@ body {
 
 .banner .shop_txt {
   position: absolute;
-  top: 525px;
-  right: calc(var(--list-shell-anchor) + 125px);
+  top: 485px;
+  right: calc(var(--list-shell-anchor) + 220px);
   font-family: 'DM Serif Display', serif;
   font-weight: 400;
-  font-size: 250px;
+  font-size: 200px;
   line-height: 100%;
   letter-spacing: 0;
   color: #5D3136;
@@ -80,11 +81,11 @@ body {
 .banner .img {
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 48%;
   transform: translate(-50%, -50%) rotate(-20.5deg);
   width: 864px;
   height: 567px;
-  z-index: 5; /* Higher than txt_all */
+  z-index: 20; /* Higher than txt_all */
   animation: banner_floating 3s infinite ease-in-out;
 }
 
@@ -512,7 +513,7 @@ body {
 }
 
 .more .bullet.active {
-  background-color: #2F2324;
+  background-color: var(--color-burgundy);
 }
 
 .more .icon_all {
@@ -589,7 +590,7 @@ body {
   }
 
   .banner .shop_txt {
-    top: 52%;
+    top: 49%;
     right: 100px;
   }
 
@@ -904,7 +905,7 @@ body {
 
   .banner .shop_txt {
     right: 30px;
-    transform: translateY(-6px);
+    transform: translateY(-16px);
   }
 
   .signature .txt p {
