@@ -527,6 +527,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const productRotationCenterX = 708.5;
         const productRotationCenterY = 709;
         const productActivePieceOrder = ['right', 'bottom-right', 'bottom-left', 'left', 'top'];
+        const getProductBadgeLabelOffsetX = () => {
+            if (!productCircleBadgeLabel) {
+                return 0;
+            }
+
+            const badgeStyles = getComputedStyle(productCircleBadgeLabel);
+            const rawValue = badgeStyles.getPropertyValue('--product-badge-label-offset-x').trim();
+            const parsedValue = parseFloat(rawValue);
+
+            return Number.isFinite(parsedValue) ? parsedValue : 0;
+        };
         let activeProductIndex = Math.max(productSlides.findIndex((slide) => slide.classList.contains('is-active')), 0);
         let currentProductRotation = productBaseRotation - (activeProductIndex * productRotationStep);
         let isProductAnimating = false;
@@ -614,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsap.set(productCircleBadgeLabel, {
                     autoAlpha: 1,
                     y: 0,
-                    x: 70
+                    x: getProductBadgeLabelOffsetX()
                 });
                 return;
             }
@@ -638,7 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     productCircleBadgeLabel.textContent = nextLabel;
                     gsap.set(productCircleBadgeLabel, {
                         y: incomingY,
-                        x: 70
+                        x: getProductBadgeLabelOffsetX()
                     });
                 })
                 .to(productCircleBadgeLabel, {
