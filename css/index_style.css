@@ -41,6 +41,8 @@ body {
 .main_visual {
     width: 100%;
     min-height: 1080px;
+    min-height: max(1080px, 100vh);
+    min-height: max(1080px, 100dvh);
     background-color: #000000;
     overflow: hidden;
     position: relative;
@@ -72,6 +74,8 @@ body {
     position: relative;
     width: 100%;
     min-height: 1080px;
+    min-height: max(1080px, 100vh);
+    min-height: max(1080px, 100dvh);
     z-index: 1;
 }
 
@@ -2449,6 +2453,8 @@ body {
     .main_visual,
     .main_visual_inner {
         min-height: 720px;
+        min-height: max(720px, 100vh);
+        min-height: max(720px, 100dvh);
     }
 
     .main_visual_copy {
@@ -3039,7 +3045,9 @@ body {
         width: 430px;
         max-width: 100%;
         min-height: 328px;
-        height: 328px;
+        min-height: max(328px, 100vh);
+        min-height: max(328px, 100dvh);
+        height: auto;
     }
 
     .main_visual_copy {
