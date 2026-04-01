@@ -37,7 +37,7 @@
 </head>
 
 <body>
-    <div class="wrap">
+    <div class="wrap main-shell">
         <!-- header start -->
         <header>
             <div class="inner">
@@ -69,25 +69,101 @@
                                 <img src="../icon/search.svg" alt="">
                             </a>
                         </li>
-                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
+                        <li><a href="#" class="menu_toggle" aria-label="Open menu"><img src="../icon/menu.svg"
+                                    alt=""></a>
+                        </li>
                     </ul>
                 </div>
             </div>
+            <div class="sub_tab_backdrop" aria-hidden="true"></div>
+            <div class="sub_tab" aria-hidden="true">
+                <div class="sub_tab_inner">
+                    <div class="sub_tab_btn">
+                        <div class="sub_tab_lang_box">
+                            <div class="sub_tab_lang" aria-label="Language options">
+                                <button type="button" class="sub_tab_lang_option is-active" data-lang="en">EN</button>
+                                <button type="button" class="sub_tab_lang_option" data-lang="kr">KR</button>
+                                <span class="sub_tab_lang_highlight" aria-hidden="true"></span>
+                            </div>
+                        </div>
+                        <button type="button" class="sub_tab_close" aria-label="Close menu"><img
+                                src="../icon/header_x.svg" alt="" aria-hidden="true"></button>
+                    </div>
+                    <div class="sub_tab_top">
+                        <div class="tab_gnb">
+                            <a href="#" class="tab_gnb_link is-default" data-tab="about">About Us</a>
+                            <a href="#" class="tab_gnb_link" data-tab="products">Products</a>
+                            <a href="#" class="tab_gnb_link" data-tab="sleep">Sleep Solution</a>
+                            <a href="#" class="tab_gnb_link" data-tab="visit">Visit</a>
+                            <a href="#" class="tab_gnb_link" data-tab="community">Community</a>
+                        </div>
+                        <div class="tab_sub" aria-label="Sub menu">
+                            <div class="tab_sub_panel is-default" data-tab="about">
+                                <a href="#">Simmons</a>
+                                <a href="#">Hotel Story</a>
+                            </div>
+                            <div class="tab_sub_panel" data-tab="products">
+                                <a href="#">Mattresses</a>
+                                <a href="#">Bed Frames</a>
+                                <a href="#">Bedding</a>
+                                <a href="#">Livving Collections</a>
+                            </div>
+                            <div class="tab_sub_panel" data-tab="sleep">
+                                <a href="#">Sleep Match</a>
+                                <a href="#">Sleep Test</a>
+                                <a href="#">Sleep Report</a>
+                            </div>
+                            <div class="tab_sub_panel" data-tab="visit">
+                                <a href="#">Factorium</a>
+                                <a href="#">Location</a>
+                            </div>
+                            <div class="tab_sub_panel" data-tab="community">
+                                <a href="#">Notice</a>
+                                <a href="#">Event</a>
+                                <a href="#">Customer Service</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sub_tab_bottom">
+                        <div class="bt_top">
+                            <p>CONTACT</p>
+                            <div class="info">
+                                <div class="con_left">
+                                    <p>Customer Service: 1899-8182</p>
+                                    <p>Mon-Fri 9AM-6PM</p>
+                                    <p>master@simmons.co.kr</p>
+                                </div>
+                                <div class="con_right">
+                                    <a href="#" aria-label="Kakao">
+                                        <img src="../icon/kakao.svg" alt="Kakao">
+                                    </a>
+                                    <a href="#" aria-label="Instagram">
+                                        <img src="../icon/insta.svg" alt="Instagram">
+                                    </a>
+                                    <a href="#" aria-label="Youtube">
+                                        <img src="../icon/youtube.svg" alt="Youtube">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bt_bottom">
+                            <div class="bt_bottom_left">
+                                <a href="#">Privacy Policy</a>
+                                <a href="#">Terms of Use</a>
+                            </div>
+                            <p class="bt_bottom_copy">@2026 Simmons</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </header>
+
         <!-- //header end -->
 
         <!-- 헤더 제외한 모든 섹션 메인 안에서 시작 -->
         <main>
             <div class="main_visual">
                 <div class="main_visual_inner">
-                    <div class="main_visual_meta main_visual_meta_left">
-                        <span>Support Desk</span>
-                        <span>Always On</span>
-                    </div>
-                    <div class="main_visual_meta main_visual_meta_right">
-                        <span>Event Calendar</span>
-                        <span>Sleep Service</span>
-                    </div>
                     <img class="main_visual_object object_phone" src="../img/promo_main_visual_img_1.png"
                         alt="Vintage phone object">
                     <img class="main_visual_object object_bell" src="../img/promo_main_visual_img_2.png"
@@ -410,10 +486,8 @@
                     <img src="../icon/top_button.svg" alt="Top button">
                 </button>
             </div>
-    </div><!-- wrap -->
-
-    </main>
-    <!-- //main end -->
+        </main>
+        <!-- //main end -->
 
     <!-- footer start -->
     <footer>
@@ -459,9 +533,9 @@
                 </p>
             </section>
         </div>
-    </footer>
-    <!-- //footer end -->
-    </div>
+        </footer>
+        <!-- //footer end -->
+    </div><!-- //.wrap -->
 </body>
 
 </html>
