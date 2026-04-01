@@ -81,12 +81,62 @@ body.intro-complete #intro-overlay {
     position: fixed;
     inset: 0;
     z-index: 2000;
-    display: flex;
+    display: flex; 
     align-items: center;
     justify-content: center;
     background: var(--main_bg1);
     color: var(--main_bg2);
     overflow: hidden;
+}
+
+.intro_skip_button {
+    position: absolute;
+    top: clamp(12px, 1.6vw, 24px);
+    right: clamp(12px, 1.8vw, 24px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 0 4px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    background: transparent;
+    color: rgba(var(--color-black-rgb, 0, 0, 0), 0.7);
+    font-family: var(--font-main);
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 5;
+    transition: color 0.24s ease, border-color 0.24s ease, opacity 0.24s ease;
+}
+
+.intro_skip_button:hover,
+.intro_skip_button:focus-visible {
+    color: rgba(var(--color-black-rgb, 0, 0, 0), 0.88);
+    border-bottom-color: rgba(var(--color-burgundy-rgb), 0.4);
+}
+
+.intro_skip_button:focus-visible {
+    outline: none;
+}
+
+.intro_skip_button.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.intro_skip_label {
+    line-height: 1;
+}
+
+.intro_skip_icon {
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    background-color: currentColor;
+    -webkit-mask: url("../icon/arrow-up-right.svg") center / contain no-repeat;
+    mask: url("../icon/arrow-up-right.svg") center / contain no-repeat;
 }
 
 .intro_stage {
@@ -216,6 +266,20 @@ body.intro-complete #intro-overlay {
 }
 
 @media (max-width: 768px) {
+    .intro_skip_button {
+        top: 12px;
+        right: 12px;
+        gap: 6px;
+        padding-bottom: 3px;
+        font-size: 14px;
+    }
+
+    .intro_skip_icon {
+        width: 16px;
+        height: 16px;
+        flex-basis: 16px;
+    }
+
     .intro_logo_mark {
         width: min(78vw, 320px);
     }

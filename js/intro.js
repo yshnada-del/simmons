@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const body = document.body;
     const introOverlay = document.querySelector('#intro-overlay');
+    const introSkipButton = document.querySelector('.intro_skip_button');
     const introStage = document.querySelector('.intro_stage');
     const introStageContent = document.querySelector('.intro_stage_content');
     const yearDigits = Array.from(document.querySelectorAll('.intro_digit'));
@@ -25,6 +26,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!introOverlay || !introStage || !introStageContent || yearDigits.length !== 4 || !introLogo || !mainVisual) {
         return;
     }
+
+    let introTimeline = null;
+    let revealShell = null;
+    let revealVisual = null;
+    let revealVideo = null;
+    let isIntroCompleting = false;
 
     const hasPlayedIntro = () => {
         try {
@@ -54,9 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const finalizeIntroState = () => {
+        if (isIntroCompleting) {
+            return;
+        }
+
+        isIntroCompleting = true;
         persistIntroPlayed();
         body.classList.add('intro-complete');
         body.classList.remove('header-locked');
+        introSkipButton?.classList.add('is-hidden');
 
         window.setTimeout(() => {
             body.classList.add('intro-header-visible');
@@ -65,6 +78,59 @@ document.addEventListener('DOMContentLoaded', () => {
         window.setTimeout(() => {
             introOverlay.remove();
         }, 520);
+    };
+
+    const syncAndPlayMainVideo = () => {
+        if (!mainVideo || !revealVideo) {
+            playMainVisualVideo();
+            return;
+        }
+
+        try {
+            if (Number.isFinite(revealVideo.currentTime)) {
+                const duration = Number.isFinite(mainVideo.duration) && mainVideo.duration > 0
+                    ? mainVideo.duration
+                    : null;
+                const syncedTime = duration
+                    ? revealVideo.currentTime % duration
+                    : revealVideo.currentTime;
+
+                if (Math.abs(mainVideo.currentTime - syncedTime) > 0.05) {
+                    mainVideo.currentTime = syncedTime;
+                }
+            }
+        } catch (error) {
+            // Ignore currentTime sync issues and continue with playback.
+        }
+
+        playMainVisualVideo();
+    };
+
+    const skipIntro = () => {
+        if (isIntroCompleting) {
+            return;
+        }
+
+        introTimeline?.pause(0);
+        introSkipButton?.classList.add('is-hidden');
+
+        if (revealShell && revealVisual) {
+            gsap.set(revealShell, { opacity: 1 });
+            gsap.set(revealVisual, {
+                opacity: 1,
+                scale: 1,
+                filter: 'brightness(1) blur(0px)',
+            });
+        }
+
+        syncAndPlayMainVideo();
+        finalizeIntroState();
+
+        gsap.to(introOverlay, {
+            autoAlpha: 0,
+            duration: 0.46,
+            ease: 'power2.out',
+        });
     };
 
     if (hasPlayedIntro()) {
@@ -97,15 +163,15 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.set(pair.next, { yPercent: 110, opacity: 0 });
     });
 
-    const revealShell = document.createElement('div');
+    revealShell = document.createElement('div');
     revealShell.className = 'intro_reveal_shell';
 
-    const revealVisual = mainVisual.cloneNode(true);
+    revealVisual = mainVisual.cloneNode(true);
     revealVisual.classList.add('intro_reveal_visual');
     revealShell.appendChild(revealVisual);
     introOverlay.appendChild(revealShell);
 
-    const revealVideo = revealVisual.querySelector('video');
+    revealVideo = revealVisual.querySelector('video');
     if (revealVideo) {
         revealVideo.muted = true;
         revealVideo.playsInline = true;
@@ -151,7 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     };
 
-    const introTimeline = gsap.timeline({
+    introTimeline = gsap.timeline({
         paused: true,
         defaults: {
             ease: 'power3.out',
@@ -292,29 +358,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }, '<+=0.08');
 
     introTimeline.call(() => {
-        if (mainVideo && revealVideo) {
-            try {
-                if (Number.isFinite(revealVideo.currentTime)) {
-                    const duration = Number.isFinite(mainVideo.duration) && mainVideo.duration > 0
-                        ? mainVideo.duration
-                        : null;
-                    const syncedTime = duration
-                        ? revealVideo.currentTime % duration
-                        : revealVideo.currentTime;
-
-                    if (Math.abs(mainVideo.currentTime - syncedTime) > 0.05) {
-                        mainVideo.currentTime = syncedTime;
-                    }
-                }
-
-                playMainVisualVideo();
-            } catch (error) {
-                // Keep the intro handoff resilient even if currentTime sync is blocked.
-            }
-        }
-
+        syncAndPlayMainVideo();
         finalizeIntroState();
     }, null, '>-0.12');
+
+    introSkipButton?.addEventListener('click', skipIntro);
 
     window.addEventListener('load', () => {
         introTimeline.play();
