@@ -47,13 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `${basePath}list/list.html`,
         `${basePath}sleep/sleep_main.html`,
         `${basePath}offline/offline.html`,
+        `${basePath}promo/promo.html`,
     ];
     const activePathMap = [
         /\/story\/story\.html$/i,
         /\/(list\/list|product\/product)\.html$/i,
-        /\/sleep\/sleep_(main|match|name|ox)\.html$/i,
-        /\/(offline\/offline|promo\/promo)\.html$/i,
+        /\/sleep\/sleep_(main|match|name|ox(?:0[2-5])?)\.html$/i,
+        /\/offline\/offline\.html$/i,
+        /\/promo\/promo\.html$/i,
     ];
+    const activeTabKeyMap = ['about', 'products', 'sleep', 'visit', 'community'];
 
     const homePath = `${basePath}index.html`;
     const subTabPrimaryLinkMap = {
@@ -107,6 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    let currentActiveTabKey = '';
+
     gnbLinks.forEach((link, index) => {
         if (headerLinkMap[index]) {
             link.setAttribute('href', headerLinkMap[index]);
@@ -116,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (activePattern && activePattern.test(normalizedPath)) {
             link.classList.add('is-active');
             link.setAttribute('aria-current', 'page');
+            currentActiveTabKey = activeTabKeyMap[index] || '';
         }
     });
 
@@ -281,6 +287,13 @@ document.addEventListener('DOMContentLoaded', () => {
             body.classList.add('sub-tab-open');
             body.style.top = `-${subTabScrollY}px`;
             subTab.setAttribute('aria-hidden', 'false');
+
+            if (currentActiveTabKey) {
+                const activeLink = subTabTop?.querySelector(`.tab_gnb_link[data-tab="${currentActiveTabKey}"]`);
+                if (activeLink) {
+                    setActiveSubTab(activeLink);
+                }
+            }
         };
 
         const closeSubTab = () => {

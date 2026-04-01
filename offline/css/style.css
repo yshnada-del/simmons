@@ -337,38 +337,111 @@
 }
 
 
-.factory .btn_book,
-.terrace .btn_book {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px 40px;
-    border: 2px solid var(--sub_bg1_d, #2F2324);
-    border-radius: 8px;
-    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
-    font-weight: 500;
-    font-size: 22px;
-    color: var(--sub_bg1_d, #2F2324);
+.offline_cta_button {
+    --offline-cta-fill: transparent;
+    --offline-cta-ring-fill: var(--color-burgundy);
+    --offline-cta-stroke: var(--color-burgundy);
+    --offline-cta-text: var(--color-burgundy);
+    --offline-cta-icon: var(--color-ivory);
+    position: relative;
+    width: 490px;
+    height: 118px;
+    display: block;
     margin-top: 95px;
-    /* 14 + 101 = 115 total gap from info */
-    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: visible;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.factory .btn_book:hover,
-.terrace .btn_book:hover {
-    background-color: var(--sub_bg1_d, #2F2324);
-    color: #fff;
+.factory .right_content .offline_cta_button,
+.terrace .right_content .offline_cta_button {
+    margin-left: auto;
+    right: -54px;
 }
 
-.factory .btn_book:hover .arrow_icon,
-.terrace .btn_book:hover .arrow_icon {
-    filter: invert(1);
+.offline_cta_button_svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
 }
 
-.factory .btn_book .arrow_icon,
-.terrace .btn_book .arrow_icon {
-    width: 24px;
-    height: auto;
+.offline_cta_button_shape,
+.offline_cta_button_ring {
+    transition: fill 0.35s ease, stroke 0.35s ease, transform 0.35s ease;
+}
+
+.offline_cta_button_shape {
+    fill: var(--offline-cta-fill);
+    stroke: var(--offline-cta-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.offline_cta_button_ring {
+    fill: var(--offline-cta-ring-fill);
+    stroke: var(--offline-cta-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.offline_cta_button_text {
+    position: absolute;
+    top: 50%;
+    left: 108px;
+    z-index: 2;
+    width: 220px;
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--offline-cta-text);
+    white-space: nowrap;
+    text-align: left;
+    transform: translateY(-50%);
+    transition: color 0.35s ease;
+}
+
+.offline_cta_button_icon {
+    position: absolute;
+    top: 50%;
+    right: 78px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: var(--offline-cta-icon);
+    transition: color 0.35s ease;
+}
+
+.offline_cta_button_icon svg {
+    width: 100px;
+    height: 100px;
+    display: block;
+}
+
+.offline_cta_button_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.offline_cta_button:hover,
+.offline_cta_button:focus-visible {
+    --offline-cta-fill: var(--color-burgundy);
+    --offline-cta-ring-fill: var(--color-ivory);
+    --offline-cta-text: var(--color-ivory);
+    --offline-cta-icon: var(--color-burgundy);
+    outline: none;
 }
 
 /* Part 2: Title Part */
@@ -565,40 +638,23 @@
     margin-bottom: 60px;
 }
 
-.gallery .find_store {
-    display: inline-flex;
-    align-items: center;
-    gap: 20px;
-    padding: 15px 40px;
-    border: 2px solid var(--sub_bg2_c);
-    border-radius: 8px;
-    font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
-    font-weight: 500;
-    font-size: 22px;
-    color: var(--sub_bg2_c);
-    transition: background-color 0.3s ease, color 0.3s ease;
+.gallery .find_store,
+.offline_cta_button_light {
+    --offline-cta-ring-fill: #f6f3ee;
+    --offline-cta-stroke: #f6f3ee;
+    --offline-cta-text: #f6f3ee;
+    --offline-cta-icon: var(--main_bg1);
+    margin: 0 auto;
 }
 
-.gallery .find_store:hover {
-    background-color: var(--sub_bg2_c);
-    color: var(--main_bg1);
-}
-
-.gallery .find_store .arrow_icon {
-    width: 18px;
-    height: auto;
-    transition: filter 0.3s ease;
-}
-
-/* Base state: if the SVG icon is black, we invert to white here */
-.filter_white {
-    filter: brightness(0) invert(1);
-}
-
-/* Hover state: turn back to default (blackish) or invert again depending on SVG color */
-.gallery .find_store:hover .filter_white {
-    filter: brightness(0);
-    /* Make black to match text */
+.gallery .find_store:hover,
+.gallery .find_store:focus-visible,
+.offline_cta_button_light:hover,
+.offline_cta_button_light:focus-visible {
+    --offline-cta-fill: #f6f3ee;
+    --offline-cta-ring-fill: var(--main_bg1);
+    --offline-cta-text: var(--main_bg1);
+    --offline-cta-icon: #f6f3ee;
 }
 
 .gal_images {
@@ -754,6 +810,29 @@
         padding-top: 0;
     }
 
+    .offline_cta_button {
+        width: 320px;
+        height: 78px;
+        margin-top: 56px;
+    }
+
+    .offline_cta_button_text {
+        left: 72px;
+        width: 168px;
+        font-size: 24px;
+    }
+
+    .offline_cta_button_icon {
+        right: 50px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .offline_cta_button_icon svg {
+        width: 68px;
+        height: 68px;
+    }
+
     .gallery_inner {
         min-height: auto;
         padding: 120px 20px 80px;
@@ -795,6 +874,30 @@
 
     .ticker_wrap {
         margin-top: 60px;
+    }
+}
+
+@media (max-width: 640px) {
+    .offline_cta_button {
+        width: 260px;
+        height: 64px;
+    }
+
+    .offline_cta_button_text {
+        left: 58px;
+        width: 140px;
+        font-size: 20px;
+    }
+
+    .offline_cta_button_icon {
+        right: 40px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .offline_cta_button_icon svg {
+        width: 54px;
+        height: 54px;
     }
 }
 
