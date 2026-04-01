@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollTrigger: {
                     id: 'innovation-cards',
                     trigger: innovationHeading || innovationSection,
-                    start: 'top top+=80',
+                    start: 'top top+=160',
                     end: () => `+=${Math.max(travelDistance + window.innerHeight * 0.35, window.innerHeight * 1.2)}`,
                     scrub: 0.35,
                     pin: innovationSection,
