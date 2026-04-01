@@ -37,10 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const closeAll = () => {
-            philosophyStage.classList.remove('has-expanded');
+            philosophyStage.classList.remove('has_expanded');
+            philosophyStage.removeAttribute('data-active-card');
 
             philosophyCards.forEach((card) => {
-                card.classList.remove('is-expanded');
+                card.classList.remove('is_expanded');
                 const trigger = card.querySelector('.philosophy_trigger');
                 const expanded = card.querySelector('.philosophy_expanded');
 
@@ -54,6 +55,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
+        const activateCard = (card) => {
+            if (!card) {
+                return;
+            }
+
+            const trigger = card.querySelector('.philosophy_trigger');
+            const expanded = card.querySelector('.philosophy_expanded');
+            const activeCardName = Array.from(card.classList).find((className) => className.startsWith('philosophy_card_') && className !== 'philosophy_card');
+
+            closeAll();
+
+            philosophyStage.classList.add('has_expanded');
+            if (activeCardName) {
+                philosophyStage.setAttribute('data-active-card', activeCardName.replace('philosophy_card_', ''));
+            }
+            card.classList.add('is_expanded');
+
+            if (trigger) {
+                trigger.setAttribute('aria-expanded', 'true');
+            }
+
+            if (expanded) {
+                expanded.hidden = false;
+            }
+        };
+
+        const defaultCard = philosophyStage.querySelector('.philosophy_card_comfort');
+
         philosophyCards.forEach((card) => {
             const trigger = card.querySelector('.philosophy_trigger');
             const expanded = card.querySelector('.philosophy_expanded');
@@ -65,24 +94,30 @@ document.addEventListener('DOMContentLoaded', () => {
             expanded.hidden = true;
 
             trigger.addEventListener('click', () => {
-                const isExpanded = card.classList.contains('is-expanded');
-
-                closeAll();
+                const isExpanded = card.classList.contains('is_expanded');
 
                 if (isExpanded) {
+                    if (defaultCard) {
+                        activateCard(defaultCard);
+                    }
                     return;
                 }
 
-                philosophyStage.classList.add('has-expanded');
-                card.classList.add('is-expanded');
-                trigger.setAttribute('aria-expanded', 'true');
-                expanded.hidden = false;
+                activateCard(card);
             });
 
-            expanded.addEventListener('click', () => {
-                closeAll();
+            expanded.addEventListener('click', (event) => {
+                if (event.target === expanded) {
+                    if (defaultCard) {
+                        activateCard(defaultCard);
+                    }
+                }
             });
         });
+
+        if (defaultCard) {
+            activateCard(defaultCard);
+        }
     };
 
     setupPhilosophyInteraction();
@@ -98,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.set(historyCards, {
             clearProps: 'all'
         });
-        gsap.set('.history_cards_section .card-inner, .history_cards_section .card-img img', {
+        gsap.set('.history_cards_section .card_inner, .history_cards_section .card_img img', {
             clearProps: 'all'
         });
         gsap.set(technologyImages, {
@@ -277,8 +312,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const nextEl = index < historyCards.length - 1
                 ? historyCards[index + 1]
                 : document.querySelector('.technology');
-            const cardInner = card.querySelector('.card-inner');
-            const cardImage = card.querySelector('.card-img img');
+            const cardInner = card.querySelector('.card_inner');
+            const cardImage = card.querySelector('.card_img img');
 
             if (!nextEl || !cardInner) {
                 return;
@@ -479,9 +514,10 @@ document.addEventListener('DOMContentLoaded', () => {
             { ...technologyClusterOffsets[3], zIndex: 3 },
             { ...technologyClusterOffsets[2], zIndex: 5 }
         ];
-        const tec2RiseDistance = 760;
-        const tec2OvershootDistance = 96;
-        const tec2SettleDistance = 42;
+        const tec2RiseDistance = 380;
+        const tec2OvershootDistance = 48;
+        const tec2SettleDistance = 18;
+        const tec2ExpandedOffsetY = 240;
         const tec2TextDirections = [-180, 180, -180, 180];
         const tec2LineScaleX = [1, -1, 1, -1];
         const getTec2ClusterPosition = (element, index) => {
@@ -513,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         gsap.set(tec2Lines, {
+            y: 0,
             autoAlpha: 0,
             zIndex: 1,
             scaleX: (index) => tec2LineScaleX[index] * 0.72,
@@ -522,6 +559,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         gsap.set(tec2TextBlocks, {
             x: (index) => tec2TextDirections[index],
+            y: 0,
             autoAlpha: 0
         });
 
@@ -554,7 +592,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: 'none',
                     stagger: 0
                 },
-                0.18
+                0.08
             )
             .to(
                 tec2Images,
@@ -563,43 +601,45 @@ document.addEventListener('DOMContentLoaded', () => {
                     ease: 'none',
                     stagger: 0
                 },
-                0.34
+                0.14
             )
             .to(
                 tec2Images,
                 {
                     x: 0,
-                    y: 0,
+                    y: tec2ExpandedOffsetY,
                     rotation: 0,
                     scale: 1,
                     ease: 'none',
                     stagger: {
-                        each: 0.028,
-                        from: 'center'
+                        each: 0.014,
+                        from: 0
                     }
                 },
-                0.54
+                0.2
             )
             .to(
                 tec2Lines,
                 {
+                    y: tec2ExpandedOffsetY,
                     autoAlpha: 1,
                     scaleX: (index) => tec2LineScaleX[index],
                     scaleY: 1,
                     ease: 'none',
-                    stagger: 0.04
+                    stagger: 0.02
                 },
-                0.66
+                0.3
             )
             .to(
                 tec2TextBlocks,
                 {
                     x: 0,
+                    y: tec2ExpandedOffsetY,
                     autoAlpha: 1,
                     ease: 'none',
-                    stagger: 0.08
+                    stagger: 0.04
                 },
-                0.74
+                0.38
             );
     }
 
@@ -640,3 +680,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+

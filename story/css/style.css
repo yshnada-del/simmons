@@ -23,7 +23,7 @@ main {
     overflow-y: visible;
 }
 
-.visually-hidden {
+.visually_hidden {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -214,7 +214,7 @@ main {
 }
 
 .history_cards_section,
-.sticky-cards {
+.sticky_cards {
     position: relative;
     isolation: isolate;
     width: 100%;
@@ -234,7 +234,7 @@ main {
 }
 
 
-.history_cards_section .card-inner,
+.history_cards_section .card_inner,
 .sub_inner {
     position: relative;
     width: 100%;
@@ -250,7 +250,7 @@ main {
     --card-overlay-opacity: 0;
 }
 
-.history_cards_section .card-inner::before,
+.history_cards_section .card_inner::before,
 .sub_inner::before {
     content: '';
     position: absolute;
@@ -264,7 +264,7 @@ main {
     pointer-events: none;
 }
 
-.card-copy {
+.card_copy {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -274,25 +274,25 @@ main {
     background-color: #F6F3EE;
 }
 
-.card-info {
+.card_info {
     width: 100%;
-    padding: 100px 125px 0;
+    padding: 200px 125px 0;
     box-sizing: border-box;
 }
 
-.card-title {
+.card_title {
     width: 100%;
     padding: 8px 125px 0;
     box-sizing: border-box;
 }
 
-.card-description {
+.card_description {
     width: 100%;
     padding: 60px 125px 0;
     box-sizing: border-box;
 }
 
-.history_cards_section .card-inner::after,
+.history_cards_section .card_inner::after,
 .sub_inner::after {
     content: '';
     position: absolute;
@@ -308,7 +308,7 @@ main {
     z-index: 3;
 }
 
-.card-img {
+.card_img {
     position: relative;
     z-index: 1;
     width: 100%;
@@ -320,26 +320,26 @@ main {
     background-color: #F6F3EE;
 }
 
-.card-img-frame {
+.card_img_frame {
     width: min(calc(100% - 250px), var(--story-content-max));
     height: calc(100% - 381px);
     margin: 0 auto 125px;
     overflow: hidden;
 }
 
-.card-img img {
+.card_img img {
     will-change: transform;
     transform: scale(var(--image-scale, 1));
     transform-origin: center center;
 }
 
 .sub_all .img,
-.sub_all .card-img {
+.sub_all .card_img {
     display: block;
 }
 
 .sub_all .img img,
-.card-img img {
+.card_img img {
     width: 100%;
     height: 100%;
     display: block;
@@ -508,7 +508,7 @@ main {
 .tec2 {
     width: 100%;
     min-height: 1780px;
-    padding: 180px 0 300px;
+    padding: 96px 0 300px;
     background-color: #f6f3ee;
     overflow: hidden;
     position: relative;
@@ -525,7 +525,8 @@ main {
 .tec2_obj {
     position: absolute;
     inset: 0;
-    transform: none;
+    transform: translateY(-320px);
+    transform-origin: top center;
 }
 
 .tec2_image {
@@ -635,28 +636,28 @@ main {
 }
 
 .tec2_txt_all_1 {
-    top: 144px;
+    top: -210px;
     left: 125px;
     align-items: flex-start;
     text-align: left;
 }
 
 .tec2_txt_all_2 {
-    top: 392px;
+    top: 60px;
     right: 125px;
     align-items: flex-end;
     text-align: right;
 }
 
 .tec2_txt_all_3 {
-    top: 690px;
+    top: 360px;
     left: 125px;
     align-items: flex-start;
     text-align: left;
 }
 
 .tec2_txt_all_4 {
-    top: 968px;
+    top: 638px;
     right: 125px;
     align-items: flex-end;
     text-align: right;
@@ -731,8 +732,8 @@ main {
 
 .philosophy_all {
     position: relative;
-    width: min(1604px, calc(100% - 80px));
-    height: 820px;
+    width: min(1704px, calc(100% - 36px));
+    height: 868px;
     margin: 140px auto 0;
     overflow: visible;
 }
@@ -740,9 +741,10 @@ main {
 .philosophy_card {
     position: absolute;
     top: 0;
-    width: 512px;
-    height: 820px;
+    width: 96px;
+    height: 868px;
     will-change: auto;
+    transition: left 0.45s ease, width 0.45s ease, height 0.45s ease, opacity 0.3s ease;
 }
 
 .philosophy_card_comfort {
@@ -752,17 +754,17 @@ main {
 
 .philosophy_card_eco {
     z-index: 3;
-    left: 364px;
+    left: 96px;
 }
 
 .philosophy_card_science {
     z-index: 2;
-    left: 728px;
+    left: 192px;
 }
 
 .philosophy_card_life {
     z-index: 1;
-    left: 1092px;
+    left: 288px;
 }
 
 .philosophy_shell {
@@ -772,9 +774,14 @@ main {
 }
 
 .philosophy_svg {
-    width: 100%;
-    height: 100%;
+    width: 96px;
+    height: 868px;
     display: block;
+    flex: 0 0 auto;
+}
+
+.philosophy_svg image {
+    display: none;
 }
 
 .philosophy_trigger {
@@ -784,6 +791,9 @@ main {
     border: 0;
     background: transparent;
     cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .philosophy_card_comfort {
@@ -804,57 +814,30 @@ main {
 
 .philosophy_expanded {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 96px;
     display: none;
-    width: 1670px;
-    height: 1145px;
+    width: 1320px;
+    height: 868px;
 }
 
 .philosophy_expanded_frame {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
-    filter: drop-shadow(-4px 0 30px rgba(0, 0, 0, 0.2));
-}
-
-.philosophy_expanded_frame .expanded-fill {
-    fill: var(--phil-card-color);
-}
-
-.philosophy_expanded::after {
-    content: '';
-    position: absolute;
-    top: 111px;
-    left: 0;
-    width: 1670px;
-    height: 1033px;
-    border-radius: 0 0 0 0;
-    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.2);
     pointer-events: none;
     z-index: 1;
-}
-
-.philosophy_expanded_label {
-    position: absolute;
-    top: 16px;
-    left: 178px;
-    width: 214px;
-    margin: 0;
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    font-size: 28px;
-    line-height: 1;
-    letter-spacing: -0.025em;
-    color: #5D3136;
-    text-align: center;
+    overflow: visible;
 }
 
 .philosophy_expanded_media {
     position: absolute;
-    top: 190px;
+    top: 80px;
     left: 80px;
-    width: 649px;
-    height: 874px;
+    width: 530px;
+    height: 713px;
     overflow: hidden;
     z-index: 2;
 }
@@ -869,23 +852,24 @@ main {
 
 .philosophy_expanded_copy {
     position: absolute;
-    top: 240px;
-    left: 809px;
-    width: 781px;
-    height: 664px;
-    padding: 10px;
+    top: 80px;
+    left: 658px;
+    width: 582px;
+    height: 713px;
+    padding: 0 10px;
     box-sizing: border-box;
     z-index: 2;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 48px;
 }
 
 .philosophy_expanded_heading {
-    margin: 0 0 80px;
+    margin: 0;
     font-family: 'Source Serif 4', serif;
     font-weight: 600;
-    font-size: 52px;
+    font-size: 42px;
     line-height: 1.2;
     letter-spacing: -0.025em;
     color: #111111;
@@ -903,7 +887,7 @@ main {
     border-bottom: 1px solid rgba(17, 17, 17, 0.55);
     font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
     font-weight: 400;
-    font-size: 27px;
+    font-size: 24px;
     line-height: 1.35;
     letter-spacing: -0.025em;
     color: #111111;
@@ -917,34 +901,117 @@ main {
     font-weight: 700;
 }
 
-.philosophy_all.has-expanded {
-    width: min(1670px, calc(100% - 80px));
-    height: 1145px;
-}
-
-.philosophy_all.has-expanded .philosophy_card {
-    opacity: 0;
-    pointer-events: none;
-    left: 0;
+.philosophy_all.has_expanded .philosophy_card {
     top: 0;
-    width: 512px;
-    height: 820px;
+    width: 96px;
+    height: 868px;
+    opacity: 1;
 }
 
-.philosophy_all.has-expanded .philosophy_card.is-expanded {
-    opacity: 1;
+.philosophy_all.has_expanded .philosophy_card.is_expanded {
     pointer-events: auto;
-    width: 1670px;
-    height: 1145px;
+    width: 96px;
+    height: 868px;
     z-index: 20;
 }
 
-.philosophy_all.has-expanded .philosophy_card.is-expanded .philosophy_trigger {
-    display: none;
+.philosophy_all.has_expanded .philosophy_card:not(.is_expanded) .philosophy_trigger {
+    width: 96px;
+    height: 868px;
 }
 
-.philosophy_all.has-expanded .philosophy_card.is-expanded .philosophy_expanded {
+.philosophy_all.has_expanded .philosophy_card.is_expanded .philosophy_expanded {
     display: block;
+}
+
+.philosophy_all.has_expanded .philosophy_card.is_expanded .philosophy_trigger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 96px;
+    height: 868px;
+    z-index: 4;
+}
+
+.philosophy_all.has_expanded .philosophy_card.is_expanded .philosophy_svg {
+    width: 96px;
+    height: 868px;
+}
+
+.philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_comfort.is_expanded {
+    left: 0;
+}
+
+.philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_eco:not(.is_expanded) {
+    left: calc(100% - 288px);
+    z-index: 3;
+}
+
+.philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_science:not(.is_expanded) {
+    left: calc(100% - 192px);
+    z-index: 2;
+}
+
+.philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_life:not(.is_expanded) {
+    left: calc(100% - 96px);
+    z-index: 1;
+}
+
+.philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_comfort:not(.is_expanded) {
+    left: 0;
+    z-index: 4;
+}
+
+.philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_eco.is_expanded {
+    left: 96px;
+}
+
+.philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_science:not(.is_expanded) {
+    left: calc(100% - 192px);
+    z-index: 2;
+}
+
+.philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_life:not(.is_expanded) {
+    left: calc(100% - 96px);
+    z-index: 1;
+}
+
+.philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_comfort:not(.is_expanded) {
+    left: 0;
+    z-index: 4;
+}
+
+.philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_eco:not(.is_expanded) {
+    left: 96px;
+    z-index: 3;
+}
+
+.philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_science.is_expanded {
+    left: 192px;
+}
+
+.philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_life:not(.is_expanded) {
+    left: calc(100% - 96px);
+    z-index: 1;
+}
+
+.philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_comfort:not(.is_expanded) {
+    left: 0;
+    z-index: 4;
+}
+
+.philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_eco:not(.is_expanded) {
+    left: 96px;
+    z-index: 3;
+}
+
+.philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_science:not(.is_expanded) {
+    left: 192px;
+    z-index: 2;
+}
+
+.philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_life.is_expanded {
+    left: 288px;
 }
 
 .product {
@@ -1118,26 +1185,26 @@ main {
         min-height: auto;
     }
 
-    .card-info,
-    .card-title,
-    .card-description {
+    .card_info,
+    .card_title,
+    .card_description {
         padding-left: 80px;
         padding-right: 80px;
     }
 
-    .card-info {
+    .card_info {
         padding-top: 72px;
     }
 
-    .card-title {
+    .card_title {
         padding-top: 8px;
     }
 
-    .card-img {
+    .card_img {
         min-height: 68vh;
     }
 
-    .card-img-frame {
+    .card_img_frame {
         width: calc(100% - 160px);
         margin-bottom: 80px;
     }
@@ -1401,18 +1468,18 @@ main {
         min-height: auto;
     }
 
-    .card-info,
-    .card-title,
-    .card-description {
+    .card_info,
+    .card_title,
+    .card_description {
         padding-left: 56px;
         padding-right: 56px;
     }
 
-    .card-info {
+    .card_info {
         padding-top: 64px;
     }
 
-    .card-title {
+    .card_title {
         padding-top: 8px;
     }
 
@@ -1428,11 +1495,11 @@ main {
         font-size: 28px;
     }
 
-    .card-img {
+    .card_img {
         min-height: 54vh;
     }
 
-    .card-img-frame {
+    .card_img_frame {
         width: calc(100% - 112px);
         margin-bottom: 56px;
     }
@@ -1778,18 +1845,18 @@ main {
         min-height: auto;
     }
 
-    .card-info,
-    .card-title,
-    .card-description {
+    .card_info,
+    .card_title,
+    .card_description {
         padding-left: 24px;
         padding-right: 24px;
     }
 
-    .card-info {
+    .card_info {
         padding-top: 52px;
     }
 
-    .card-title {
+    .card_title {
         padding-top: 8px;
     }
 
@@ -1805,11 +1872,11 @@ main {
         font-size: 18px;
     }
 
-    .card-img {
+    .card_img {
         min-height: 36vh;
     }
 
-    .card-img-frame {
+    .card_img_frame {
         width: calc(100% - 48px);
         margin-bottom: 24px;
     }
@@ -1936,26 +2003,26 @@ main {
         height: auto;
     }
 
-    .card-copy {
+    .card_copy {
         padding-bottom: 24px;
     }
 
-    .card-info,
-    .card-title,
-    .card-description {
+    .card_info,
+    .card_title,
+    .card_description {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .card-info {
+    .card_info {
         padding-top: 36px;
     }
 
-    .card-title {
+    .card_title {
         padding-top: 6px;
     }
 
-    .card-description {
+    .card_description {
         padding-top: 24px;
     }
 
@@ -1973,12 +2040,12 @@ main {
         line-height: 1.55;
     }
 
-    .card-img {
+    .card_img {
         min-height: auto;
         margin-top: 20px;
     }
 
-    .card-img-frame {
+    .card_img_frame {
         width: calc(100% - 40px);
         height: auto;
         margin: 0 auto 20px;
@@ -2179,3 +2246,4 @@ main {
         height: 18px;
     }
 }
+

@@ -73,30 +73,64 @@
 }
 
 .offline_main_visual .main_pagination {
+    --anchor-size: 12px;
+    --line-width: 1px;
+    --highlight-width: 1px;
+    --highlight-height: 64px;
     position: absolute;
     top: 50%;
     left: 56px;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
     gap: 16px;
+    width: 36px;
+    height: 300px;
     z-index: 12;
 }
 
+.offline_main_visual .pagination_line {
+    position: absolute;
+    top: calc(var(--anchor-size) / 2);
+    bottom: calc(var(--anchor-size) / 2);
+    left: 50%;
+    width: var(--line-width);
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.18));
+    transform: translateX(-50%);
+}
+
+.offline_main_visual .pagination_highlight {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: var(--highlight-width);
+    height: var(--highlight-height);
+    border-radius: 999px;
+    background: #ffffff;
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.38);
+    transform: translateX(-50%);
+    transform-origin: center center;
+    will-change: transform;
+}
+
 .offline_main_visual .pagination_item {
-    width: 10px;
-    height: 10px;
+    position: relative;
+    z-index: 1;
+    width: var(--anchor-size);
+    height: var(--anchor-size);
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.35);
-    transform: scale(0.92);
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, opacity 0.35s ease;
-    opacity: 0.9;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .offline_main_visual .pagination_item.active {
-    background-color: rgba(255, 255, 255, 0.95);
-    opacity: 1;
-    transform: scale(1.24);
+    opacity: 0;
 }
 
 .offline_main_visual .main_title {
@@ -126,12 +160,13 @@
     .offline_main_visual .main_pagination {
         left: 20px;
         gap: 12px;
+        width: 28px;
+        height: 240px;
     }
 
-    .offline_main_visual .pagination_item {
-        width: 8px;
-        height: 8px;
-        transform: scale(0.92);
+    .offline_main_visual .pagination_highlight {
+        width: 1px;
+        height: 48px;
     }
 }
 
@@ -209,7 +244,7 @@
     font-weight: 400;
     /* Medium */
     font-size: 32px;
-    line-height: 1.3;
+    line-height: 1.2;
     color: var(--sub_bg3_b, #4F4F4F);
     /* opacity: 0.6; */
 }
@@ -340,7 +375,6 @@
 .part_title {
     width: 100%;
     padding: 300px 125px 0;
-    /* 300px gap from card part */
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -361,7 +395,9 @@
     margin: 0;
 }
 
-
+.part_title .description_box {
+    max-width: none;
+}
 
 .part_title .desc_text {
     font-family: var(--font-main, 'Pretendard Variable'), sans-serif;
@@ -428,6 +464,44 @@
 
 .terrace .part_title .main_title {
     text-align: right;
+}
+
+@media (min-width: 1921px) {
+    .factory .part_title .inner {
+        justify-content: space-between;
+        gap: 220px;
+    }
+
+    .factory .part_title .description_box {
+        max-width: 930px;
+        margin-left: auto;
+    }
+
+    .factory .part_image {
+        height: auto;
+        aspect-ratio: 1920 / 805;
+    }
+
+    .factory .part_image .full_img {
+        object-position: center 58%;
+    }
+
+    .terrace .part_title .inner {
+        gap: 220px;
+    }
+
+    .terrace .part_title .description_box {
+        max-width: 930px;
+    }
+
+    .terrace .part_image {
+        height: auto;
+        aspect-ratio: 1920 / 715;
+    }
+
+    .terrace .part_image .full_img {
+        object-position: center 54%;
+    }
 }
 
 /* ===================== */
@@ -737,7 +811,7 @@
 
 .info_sec .inner {
     width: 100%;
-    /* max-width: 1600px; */
+    max-width: 1920px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -784,10 +858,3 @@
     z-index: 3;
 }
 
-footer .info {
-    transition: transform 0.3s ease;
-}
-
-footer .info:hover {
-    transform: translateY(-8px);
-}

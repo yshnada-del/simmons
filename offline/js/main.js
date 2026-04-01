@@ -21,22 +21,116 @@ document.addEventListener('DOMContentLoaded', () => {
     // ===========================
     const slides = gsap.utils.toArray('.offline_main_visual .slide');
     const paginationItems = gsap.utils.toArray('.offline_main_visual .pagination_item');
+    const paginationHighlight = document.querySelector('.offline_main_visual .pagination_highlight');
+    let activePaginationIndex = 0;
+    let paginationMoveDelayCall = null;
+    let currentPaginationOffset = 0;
 
-    function updatePagination(activeIndex) {
+    function movePaginationHighlight(activeIndex, immediate = false) {
+        if (!paginationHighlight || !paginationItems[activeIndex]) {
+            return;
+        }
+
+        const activeItem = paginationItems[activeIndex];
+        const offset = activeItem.offsetTop + activeItem.offsetHeight / 2 - paginationHighlight.offsetHeight / 2;
+        gsap.killTweensOf(paginationHighlight);
+
+        if (immediate) {
+            gsap.set(paginationHighlight, {
+                xPercent: -50,
+                y: offset,
+                scaleY: 1,
+                scaleX: 1
+            });
+            currentPaginationOffset = offset;
+            return;
+        }
+
+        const previousOffset = currentPaginationOffset;
+        const travelDistance = Math.abs(offset - previousOffset);
+        const isMovingDown = offset >= previousOffset;
+        const stretchAmount = travelDistance > 24 ? 1.52 : 1.34;
+        const slimAmount = travelDistance > 24 ? 0.9 : 0.94;
+
+        gsap.set(paginationHighlight, {
+            transformOrigin: isMovingDown ? 'center top' : 'center bottom'
+        });
+
+        const timeline = gsap.timeline({
+            onComplete: () => {
+                currentPaginationOffset = offset;
+            }
+        });
+
+        timeline.to(paginationHighlight, {
+            scaleY: stretchAmount,
+            scaleX: slimAmount,
+            duration: 0.22,
+            ease: 'sine.out'
+        });
+
+        timeline.to(paginationHighlight, {
+            xPercent: -50,
+            y: offset,
+            duration: 0.52,
+            ease: 'sine.inOut'
+        }, 0.06);
+
+        timeline.to(paginationHighlight, {
+            scaleY: 1,
+            scaleX: 1,
+            duration: 0.3,
+            ease: 'sine.out'
+        }, 0.24);
+
+        timeline.to(paginationHighlight, {
+            scaleY: 1.02,
+            scaleX: 0.985,
+            duration: 0.1,
+            ease: 'sine.inOut'
+        }, '>-0.03');
+
+        timeline.to(paginationHighlight, {
+            scaleY: 1,
+            scaleX: 1,
+            duration: 0.18,
+            ease: 'sine.out'
+        });
+    }
+
+    function updatePagination(activeIndex, immediate = false) {
+        activePaginationIndex = activeIndex;
+
         paginationItems.forEach((item, index) => {
             item.classList.toggle('active', index === activeIndex);
         });
+
+        if (paginationMoveDelayCall) {
+            paginationMoveDelayCall.kill();
+            paginationMoveDelayCall = null;
+        }
+
+        if (immediate) {
+            movePaginationHighlight(activeIndex, true);
+        } else {
+            paginationMoveDelayCall = gsap.delayedCall(0.3, () => {
+                movePaginationHighlight(activeIndex, false);
+                paginationMoveDelayCall = null;
+            });
+        }
+
+        paginationHighlight?.setAttribute('data-ready', 'true');
     }
 
     if (slides.length > 0) {
         // Initial state for the first slide
         gsap.set(slides[0], { opacity: 1, zIndex: 1, scale: 1.1 });
-        updatePagination(0);
+        updatePagination(0, true);
 
         let currentIdx = 0;
         const totalSlides = slides.length;
-        const slideDuration = 3.5; // Time each slide is shown clearly
-        const fadeDuration = 1.5; // Crossfade duration
+        const slideDuration = 4.5; // Time each slide is shown clearly
+        const fadeDuration = 2.5; // Crossfade duration
 
         function nextSlide() {
             const currentSlide = slides[currentIdx];
@@ -65,6 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Schedule the very first transition
         gsap.delayedCall(slideDuration, nextSlide);
     }
+
+    window.addEventListener('resize', () => {
+        if (activePaginationIndex >= 0) {
+            movePaginationHighlight(activePaginationIndex, true);
+        }
+    });
 
 
     // ===========================
