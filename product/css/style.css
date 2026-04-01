@@ -51,7 +51,7 @@ main {
     max-height: 760px;
     object-fit: contain;
 }
-}
+
 
 
 /* =========================
@@ -109,6 +109,10 @@ main {
     font-weight: 500;
     line-height: 1.4;
     color: var(--color-burgundy);
+}
+
+.price {
+    padding-bottom: 16px;
 }
 
 /* =========================
@@ -452,7 +456,7 @@ main {
 ========================= */
 .innovation {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     padding: 0 124px;
     background: var(--color-white);
     display: flex;
