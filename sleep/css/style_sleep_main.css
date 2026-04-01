@@ -16,10 +16,6 @@ html {
   scrollbar-gutter: stable;
 }
 
-header.sleep_header_locked {
-  transform: translateY(-100%);
-}
-
 /* 폰트 및 배경 설정 */
 body {
   background-color: var(--color-burgundy);
@@ -173,16 +169,12 @@ p {
 .recipe_paper {
   width: min(690px, 100%);
   margin: 0 auto;
-  /* margin-top: -40px; removed and handled by .receipt_mask */
   position: relative;
   z-index: 4;
   /* top_bar(2)보다 위로 올라오게 조절 */
 
   /* 이미지가 아래로 오게 배경으로 설정 */
-  background-image: url("../../img/sleep_paper_short.png");
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-  background-position: bottom;
+  background-color: var(--color-cream);
   box-sizing: border-box;
 
   /* Shadow 조절: X:0, Y:40, Blur:100, Spread:-15, Color:rgba(0,0,0,0.4) */
@@ -191,6 +183,20 @@ p {
   transform: translateY(-99.6%);
   transform-origin: top center;
   will-change: transform;
+}
+
+.recipe_paper::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -16px;
+  width: 100%;
+  height: 20px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpolygon fill='%23F6F3EE' points='0,0 40,0 40,8 30,20 20,8 10,20 0,8'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-size: 40px 20px;
+  pointer-events: none;
 }
 
 /* Animation Mask Wrapper */
@@ -203,6 +209,7 @@ p {
 
 .paper_mask {
   width: 100%;
+  position: relative;
   overflow: hidden;
   padding-bottom: 82px;
 }
@@ -210,7 +217,7 @@ p {
 .scroll_indicator {
   position: absolute;
   left: 50%;
-  top: calc(100% + 20px);
+  top: calc(100% + 40px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -334,9 +341,9 @@ p {
 
 /* 선 장식 */
 .line_box {
-  border-top: 2px solid var(--color-dark-grey);
-  border-bottom: 2px solid var(--color-dark-grey);
-  height: 13px;
+  border-top: 1.5px solid var(--color-dark-grey);
+  border-bottom: 1.5px solid var(--color-dark-grey);
+  height: 14px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -344,8 +351,8 @@ p {
 }
 
 .c_line_box {
-  border: 1px solid var(--color-dark-grey);
-  height: 5px;
+  background-color: var(--color-dark-grey);
+  height: 1px;
   width: 100%;
   box-sizing: border-box;
 }

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sleep solution recommand mattress</title>
-      <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="simmons" />
     <meta property="og:description"
         content="A refined sleep experience shaped by heritage, innovation, and lasting comfort." />
@@ -14,35 +14,30 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt"
-        content="We aimed to convey Simmons’ “unshakable comfort” through simple, impactful imagery." />
+        content="We aimed to convey Simmons unwavering comfort through simple, impactful imagery." />
     <meta property="og:site_name" content="simmons" />
-        <link rel="icon" href="../simmons_favicon_io/favicon.ico" />
+    <link rel="icon" href="../simmons_favicon_io/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="../simmons_favicon_io/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../simmons_favicon_io/apple-touch-icon.png" />
-    <!-- ?�트4�? -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
     <link rel="stylesheet" as="style" crossorigin
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
-    <!-- common -> ?�더, reset -> 기본�?-->
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style_sleep_match.css">
 
-    <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <!-- ?�의 js -->
     <script src="../js/common.js"></script>
     <script src="js/main_sleep.js"></script>
-
+    <script src="js/sleep_match.js"></script>
 </head>
 
 <body class="match_page">
-    <div class="wrap main-shell">
-        <!-- header start -->
+    <div class="wrap">
         <header>
             <div class="inner">
                 <div class="logo">
@@ -54,265 +49,173 @@
                         <li><a href="#">Products</a></li>
                         <li><a href="#">Sleep Solution</a></li>
                         <li><a href="#">Visit</a></li>
-                        <li><a href="#">Community</a></li>
-                    </ul><!-- //.gnb -->
+                        <li><a href="#">Contact us</a></li>
+                    </ul>
                 </nav>
                 <div class="right">
                     <ul>
-                        <li>
-                            <a href="#" class="search_link" aria-label="Search">
-                                <span class="search_hint" aria-hidden="true"></span>
-                                <img src="../icon/search.svg" alt="">
-                            </a>
-                        </li>
-                        <li><a href="#" class="menu_toggle" aria-label="Open menu"><img src="../icon/menu.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/search.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
                     </ul>
                 </div>
             </div>
-            <div class="sub_tab_backdrop" aria-hidden="true"></div>
-            <div class="sub_tab" aria-hidden="true">
-                <div class="sub_tab_inner">
-                    <div class="sub_tab_btn">
-                        <div class="sub_tab_lang_box">
-                            <div class="sub_tab_lang" aria-label="Language options">
-                                <button type="button" class="sub_tab_lang_option is-active" data-lang="en">EN</button>
-                                <button type="button" class="sub_tab_lang_option" data-lang="kr">KR</button>
-                                <span class="sub_tab_lang_highlight" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <button type="button" class="sub_tab_close" aria-label="Close menu"><img src="../icon/header_x.svg"
-                                alt="" aria-hidden="true"></button>
-                    </div>
-                    <div class="sub_tab_top">
-                        <div class="tab_gnb">
-                            <a href="#" class="tab_gnb_link is-default" data-tab="about">About Us</a>
-                            <a href="#" class="tab_gnb_link" data-tab="products">Products</a>
-                            <a href="#" class="tab_gnb_link" data-tab="sleep">Sleep Solution</a>
-                            <a href="#" class="tab_gnb_link" data-tab="visit">Visit</a>
-                            <a href="#" class="tab_gnb_link" data-tab="community">Community</a>
-                        </div>
-                        <div class="tab_sub" aria-label="Sub menu">
-                            <div class="tab_sub_panel is-default" data-tab="about">
-                                <a href="#">Simmons</a>
-                                <a href="#">Hotel Story</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="products">
-                                <a href="#">Mattresses</a>
-                                <a href="#">Bed Frames</a>
-                                <a href="#">Bedding</a>
-                                <a href="#">Livving Collections</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="sleep">
-                                <a href="#">Sleep Match</a>
-                                <a href="#">Sleep Test</a>
-                                <a href="#">Sleep Report</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="visit">
-                                <a href="#">Factorium</a>
-                                <a href="#">Location</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="community">
-                                <a href="#">Notice</a>
-                                <a href="#">Event</a>
-                                <a href="#">Customer Service</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sub_tab_bottom">
-                        <div class="bt_top">
-                            <p>CONTACT</p>
-                            <div class="info">
-                                <div class="con_left">
-                                    <p>Customer Service: 1899-8182</p>
-                                    <p>Mon-Fri 9AM-6PM</p>
-                                    <p>master@simmons.co.kr</p>
-                                </div>
-                                <div class="con_right">
-                                    <a href="#" aria-label="Kakao">
-                                        <img src="../icon/kakao.svg" alt="Kakao">
-                                    </a>
-                                    <a href="#" aria-label="Instagram">
-                                        <img src="../icon/insta.svg" alt="Instagram">
-                                    </a>
-                                    <a href="#" aria-label="Youtube">
-                                        <img src="../icon/youtube.svg" alt="Youtube">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bt_bottom">
-                            <div class="bt_bottom_left">
-                                <a href="#">Privacy Policy</a>
-                                <a href="#">Terms of Use</a>
-                            </div>
-                            <p class="bt_bottom_copy">@2026 Simmons</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </header>
-        <!-- //header end -->
 
-        <!-- ?�더 ?�외??모든 ?�션 메인 ?�에???�작 -->
         <main>
             <div class="page_inner">
-                <!-- ?�단 ?�?��? -->
                 <h1 class="match_title">Your Perfect Match</h1>
 
-                <!-- ?�수�??�션 -->
-                <div class="receipt_wrap">
-                    <!-- ?�린??�?(solution_start ?��????�단 �? -->
-                    <div class="top_bar">
-                        <div class="top_bar_line"></div>
-                    </div>
-
-                    <!-- ?�수�??�니메이??마스??-->
-                    <div class="receipt_mask">
-                        <!-- ?�수�?본체 -->
-                        <div class="receipt_inner">
-                            <!-- 1) receipt_top -->
-                            <div class="receipt_top">
-                                <!-- Match Badge -->
-                                <div class="match_badge">
-                                    <span class="badge_text">MATCH</span>
-                                    <span class="badge_percent">96%</span>
-                                </div>
-
-                                <p class="logo">SIMMONS</p>
-
-                                <div class="dashed_line"></div>
-
-                                <div class="sub_line_box">
-                                    <span>PERSONALIZED RECOMMENDATION FOR</span>
-                                </div>
-
-                                <div class="state">
-                                    <p>SAD :(</p>
-                                </div>
-
-                                <div class="dashed_line"></div>
+                <div class="contents_wrap">
+                    <div class="receipt_stage">
+                        <div class="receipt_wrap">
+                            <div class="top_bar">
+                                <div class="top_bar_line"></div>
                             </div>
 
-                            <!-- 2) receipt_visual -->
-                            <div class="receipt_visual">
-                                <img src="../img/sleep_receiptLauren.png" alt="BEAUTYREST LAUREN" class="product_img">
-                            </div>
-
-                            <!-- 3) receipt_bottom -->
-                            <div class="receipt_bottom">
-                                <!-- Triple Line Decorator -->
-                                <div class="triple_line">
-                                    <div class="line_outer"></div>
-                                    <div class="line_inner"></div>
-                                    <div class="line_outer"></div>
-                                </div>
-
-                                <!-- Info ?�역 -->
-                                <div class="info">
-                                    <p class="collection">Wellness Collection</p>
-                                    <h2 class="product_name">BEAUTYREST LAUREN</h2>
-
-                                    <!-- Level Meters -->
-                                    <div class="level_area">
-                                        <div class="level_row">
-                                            <span class="level_label">Soft</span>
-                                            <div class="level_meter">
-                                                <div class="level_cell is_active"></div>
-                                                <div class="level_cell is_active"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
+                            <div class="receipt_mask">
+                                <div class="paper_mask">
+                                    <div class="receipt_inner">
+                                        <div class="receipt_top">
+                                            <div class="match_badge">
+                                                <span class="badge_text">MATCH</span>
+                                                <span class="badge_percent">96%</span>
                                             </div>
-                                        </div><!-- //.level_row -->
-                                        <div class="level_row">
-                                            <span class="level_label">Regular</span>
-                                            <div class="level_meter">
-                                                <div class="level_cell is_active"></div>
-                                                <div class="level_cell is_active"></div>
-                                                <div class="level_cell is_active"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
+
+                                            <p class="logo">SIMMONS</p>
+
+                                            <div class="dashed_line"></div>
+
+                                            <div class="sub_line_box">
+                                                <span>PERSONALIZED RECOMMENDATION FOR</span>
+                                            </div>
+
+                                            <div class="state">
+                                                <p>SAD :(</p>
+                                            </div>
+
+                                            <div class="dashed_line"></div>
+                                        </div>
+
+                                        <div class="receipt_visual">
+                                            <img src="../img/sleep_receiptLauren.png" alt="BEAUTYREST LAUREN" class="product_img">
+                                        </div>
+
+                                        <div class="receipt_bottom">
+                                            <div class="triple_line">
+                                                <div class="line_outer"></div>
+                                                <div class="line_inner"></div>
+                                                <div class="line_outer"></div>
+                                            </div>
+
+                                            <div class="info">
+                                                <p class="collection">Wellness Collection</p>
+                                                <h2 class="product_name">BEAUTYREST LAUREN</h2>
+
+                                                <div class="level_area">
+                                                    <div class="level_row">
+                                                        <span class="level_label">Soft</span>
+                                                        <div class="level_meter">
+                                                            <div class="level_cell is_active"></div>
+                                                            <div class="level_cell is_active"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="level_row">
+                                                        <span class="level_label">Regular</span>
+                                                        <div class="level_meter">
+                                                            <div class="level_cell is_active"></div>
+                                                            <div class="level_cell is_active"></div>
+                                                            <div class="level_cell is_active"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="level_row">
+                                                        <span class="level_label">Hard</span>
+                                                        <div class="level_meter">
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                            <div class="level_cell"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <p class="description">Sustainable Luxury with Firm Support</p>
+
+                                                <ul class="check_list">
+                                                    <li>
+                                                        <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
+                                                        <span>Eco-friendly materials</span>
+                                                    </li>
+                                                    <li>
+                                                        <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
+                                                        <span>Firm responsive support</span>
+                                                    </li>
+                                                    <li>
+                                                        <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
+                                                        <span>Advanced pressure relief</span>
+                                                    </li>
+                                                    <li>
+                                                        <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
+                                                        <span>Breathable comfort layers</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="price_area">
+                                                <span class="price_label">RECOMMENDED MATTRESS</span>
+                                                <span class="price_value">$9,999</span>
+                                            </div>
+
+                                            <div class="sku_barcode">
+                                                <p class="sku_text">SKU: BR-HAR-2026</p>
+                                                <img src="../img/sleep_code04.png" alt="barcode" class="barcode_img">
+                                            </div>
+
+                                            <div class="star_area">
+                                                <span class="star">&#9733;</span>
+                                                <span class="star">&#9733;</span>
+                                                <span class="star">&#9733;</span>
+                                                <span class="star">&#9733;</span>
+                                                <span class="star">&#9733;</span>
+                                            </div>
+
+                                            <div class="btn_group">
+                                                <a href="../product/product.html" class="receipt_btn fill">Go Product Page <img src="../icon/arrow-right.svg" alt=""></a>
+                                                <button class="receipt_btn outline" type="button">View Sleep Guide <img src="../icon/arrow-right.svg" alt=""></button>
+                                            </div>
+
+                                            <div class="back_link">
+                                                <a href="sleep_ox.html"><img src="../icon/arrow-left.svg" alt=""> Back</a>
+                                            </div>
+
+                                            <div class="receipt_footer">
+                                                <div class="footer_line"></div>
+                                                <p class="thanks">THANK YOU!</p>
+                                                <p class="sweet">Sweet dreams await</p>
                                             </div>
                                         </div>
-                                        <div class="level_row">
-                                            <span class="level_label">Hard</span>
-                                            <div class="level_meter">
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
-                                                <div class="level_cell"></div>
-                                            </div>
-                                        </div>
+
+                                        <div class="zigzag_bottom"></div>
+
+                                        <section class="section07 scroll_indicator" aria-label="Scroll indicator">
+                                            <a href="#footer" class="scroll_indicator_link" aria-label="Scroll down">
+                                                <span></span>
+                                                <span></span>
+                                                <span></span>
+                                                Scroll
+                                            </a>
+                                        </section>
                                     </div>
-
-                                    <p class="description">Sustainable Luxury with Firm Support</p>
-
-                                    <!-- Check List -->
-                                    <ul class="check_list">
-                                        <li>
-                                            <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
-                                            <span>Eco-friendly materials</span>
-                                        </li>
-                                        <li>
-                                            <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
-                                            <span>Firm responsive support</span>
-                                        </li>
-                                        <li>
-                                            <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
-                                            <span>Advanced pressure relief</span>
-                                        </li>
-                                        <li>
-                                            <img src="../icon/sleep_dot.svg" alt="dot" class="dot_icon">
-                                            <span>Breathable comfort layers</span>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <!-- Price ?�역 -->
-                                <div class="price_area">
-                                    <span class="price_label">RECOMMENDED MATTRESS</span>
-                                    <span class="price_value">$9,999</span>
-                                </div>
-
-                                <!-- SKU & Barcode -->
-                                <div class="sku_barcode">
-                                    <p class="sku_text">SKU: BR-HAR-2026</p>
-                                    <img src="../img/sleep_code04.png" alt="barcode" class="barcode_img">
-                                </div>
-
-                                <!-- Stars -->
-                                <div class="star_area">
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                    <span class="star">★</span>
-                                </div>
-
-                                <!-- Button Group -->
-                                <div class="btn_group">
-                                    <a href="../product/product.html" class="receipt_btn fill">Go Product Page <img src="../icon/arrow-right.svg" alt=""></a>
-                                    <button class="receipt_btn outline" type="button">View Sleep Guide <img src="../icon/arrow-right.svg" alt=""></button>
-                                </div>
-
-                                <!-- Back Link -->
-                                <div class="back_link">
-                                    <a href="sleep_ox.html"><img src="../icon/arrow-left.svg" alt=""> Back</a>
-                                </div>
-
-                                <!-- Thank You Footer -->
-                                <div class="receipt_footer">
-                                    <div class="footer_line"></div>
-                                    <p class="thanks">THANK YOU!</p>
-                                    <p class="sweet">Sweet dreams await</p>
                                 </div>
                             </div>
-
-                            <!-- Zigzag Bottom Edge -->
-                            <div class="zigzag_bottom"></div>
                         </div>
                     </div>
+                    <div class="receipt_stage_settled" aria-hidden="true"></div>
                 </div>
             </div>
 
@@ -325,10 +228,8 @@
                 </button>
             </div>
         </main>
-        <!-- //main end -->
 
-        <!-- footer start -->
-        <footer>
+        <footer id="footer">
             <div class="footer_inner">
                 <section class="info">
                     <ul class="sns_list">
@@ -371,7 +272,6 @@
                 </section>
             </div>
         </footer>
-        <!-- //footer end -->
     </div>
 </body>
 

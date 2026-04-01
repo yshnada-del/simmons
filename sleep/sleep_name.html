@@ -58,6 +58,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
     <script src="js/main_sleep.js"></script>
+    <script src="js/sleep_name.js"></script>
   </head>
 
   <body class="name_page_body">
@@ -107,7 +108,22 @@
 
           <!-- 5. Button -->
           <div class="start_btn_link_wrap">
-            <a href="sleep_ox.html" class="start_btn_link">
+            <a href="sleep_main.html" class="back_btn_link" data-fallback-href="sleep_main.html">
+              <div class="start_btn back_btn">
+                <img
+                  src="../icon/arrow-right.svg"
+                  alt="back"
+                  class="btn_icon btn_icon_left"
+                />
+                <span>Back</span>
+              </div>
+            </a>
+            <a
+              href="sleep_ox.html"
+              class="start_btn_link is-disabled"
+              aria-disabled="true"
+              tabindex="-1"
+            >
               <div class="start_btn">
                 <span>Continue</span>
                 <img

@@ -148,6 +148,12 @@ body.yor_n_page {
   color: var(--color-burgundy);
 }
 
+.tit .single_line_title {
+  width: min(1040px, 100%);
+  font-size: 36px;
+  white-space: nowrap;
+}
+
 .tit p {
   font-size: 16px;
   font-weight: 400;
@@ -259,16 +265,16 @@ body.yor_n_page {
 .btn_wrap {
   display: flex;
   gap: 18px;
+  justify-content: center;
 }
 
 .btn_link {
-  flex: 1;
   display: flex;
+  justify-content: center;
   text-decoration: none;
 }
 
 .start_btn {
-  flex: 1;
   height: 76px;
   display: flex;
   justify-content: center;
@@ -284,11 +290,19 @@ body.yor_n_page {
 }
 
 .start_btn span {
+  font-family: "Pretendard Variable", sans-serif;
   font-size: 22px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: 3.2px;
   text-transform: uppercase;
+}
+
+.prev_btn {
+  width: 328px;
+  padding: 0 36px;
+  background-color: transparent;
+  color: var(--color-burgundy);
 }
 
 .start_btn.outline {
@@ -328,12 +342,22 @@ body.yor_n_page {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
+.btn_link:hover .prev_btn {
+  background-color: var(--color-burgundy);
+  color: var(--color-cream);
+}
+
+.btn_link:hover .prev_btn .btn_icon_l {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%)
+    hue-rotate(302deg) brightness(102%) contrast(92%);
+}
+
 .next_step_link.is-disabled {
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .next_step_link.is-disabled .start_btn {
-  cursor: not-allowed;
+  cursor: pointer;
 }
 
 .next_step_link .start_btn.is-shaking {
@@ -436,6 +460,12 @@ body.yor_n_page {
     font-size: 28px;
   }
 
+  .tit .single_line_title {
+    width: 100%;
+    font-size: 28px;
+    white-space: normal;
+  }
+
   .tit p {
     font-size: 14px;
   }
@@ -464,6 +494,10 @@ body.yor_n_page {
 
   .start_btn {
     height: 64px;
+  }
+
+  .prev_btn {
+    width: min(100%, 300px);
   }
 
   .start_btn span {

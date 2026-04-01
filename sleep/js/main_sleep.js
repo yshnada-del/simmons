@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const initialYPercent = -99.6;
-  const initialRevealPx = 140;
+  const initialRevealPx = 165;
 
   let indicatorHidden = false;
   let revealComplete = false;
@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let partialYPercent = initialYPercent;
   let revealTween = null;
   let pinTrigger = null;
+  let revealEventDispatched = false;
 
   const getPinTopOffset = () => {
     if (window.innerWidth <= 767) {
@@ -71,6 +72,21 @@ document.addEventListener("DOMContentLoaded", () => {
       ease: "power2.out",
       overwrite: true,
     });
+  };
+
+  const notifyRevealComplete = () => {
+    if (revealEventDispatched) {
+      return;
+    }
+
+    revealEventDispatched = true;
+    document.dispatchEvent(
+      new CustomEvent("sleep:receipt-revealed", {
+        detail: {
+          section: receiptSection,
+        },
+      }),
+    );
   };
 
   const buildSettledStage = () => {
@@ -193,13 +209,14 @@ document.addEventListener("DOMContentLoaded", () => {
       end: `+=${pinDistance}`,
       pin: receiptStage,
       pinSpacing: true,
-      anticipatePin: 1,
+      anticipatePin: 0,
       invalidateOnRefresh: true,
       onUpdate: () => {
         hideScrollIndicator();
       },
       onLeave: () => {
         revealComplete = true;
+        notifyRevealComplete();
         freezeReveal();
         maybeSettleReveal();
       },
@@ -212,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
         trigger: receiptSection,
         start: `top top+=${pinTopOffset}`,
         end: `+=${pinDistance}`,
-        scrub: 1,
+        scrub: 0.35,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           hideScrollIndicator();
@@ -220,11 +237,6 @@ document.addEventListener("DOMContentLoaded", () => {
           if (revealComplete) {
             gsap.set(receipt, { yPercent: 0 });
             return;
-          }
-
-          if (self.progress >= 0.999) {
-            revealComplete = true;
-            freezeReveal();
           }
         },
       },

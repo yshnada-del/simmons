@@ -266,10 +266,13 @@ body {
 .start_btn_link_wrap {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 4px;
 }
 
-.start_btn_link {
+.start_btn_link,
+.back_btn_link {
   text-decoration: none;
 }
 
@@ -299,6 +302,10 @@ body {
   transition: filter 0.28s ease;
 }
 
+.start_btn .btn_icon_left {
+  transform: rotate(180deg);
+}
+
 .start_btn span {
   font-family: "Pretendard Variable", sans-serif;
   font-size: 22px;
@@ -316,6 +323,56 @@ body {
 .start_btn_link:hover .btn_icon {
   filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%)
     hue-rotate(302deg) brightness(102%) contrast(92%);
+}
+
+.back_btn {
+  background-color: transparent;
+  color: var(--color-burgundy);
+}
+
+.back_btn_link:hover .back_btn {
+  background-color: var(--color-burgundy);
+  color: var(--color-cream);
+}
+
+.back_btn_link:hover .btn_icon {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%)
+    hue-rotate(302deg) brightness(102%) contrast(92%);
+}
+
+.start_btn_link.is-disabled {
+  cursor: pointer;
+}
+
+.start_btn_link.is-disabled .start_btn {
+  cursor: pointer;
+}
+
+.start_btn_link .start_btn.is-shaking {
+  animation: name-button-shake 0.32s ease-in-out;
+}
+
+@keyframes name-button-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-5px);
+  }
+
+  40% {
+    transform: translateX(4px);
+  }
+
+  60% {
+    transform: translateX(-3px);
+  }
+
+  80% {
+    transform: translateX(2px);
+  }
 }
 
 .bottom_divider {
@@ -431,6 +488,13 @@ body {
   .start_btn {
     width: min(100%, 300px);
     height: 64px;
+  }
+
+  .start_btn_link,
+  .back_btn_link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .start_btn span {

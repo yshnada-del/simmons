@@ -1,35 +1,56 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>sleep solution</title>
     <meta property="og:type" content="website" />
     <meta property="og:title" content="simmons" />
-    <meta property="og:description"
-        content="A refined sleep experience shaped by heritage, innovation, and lasting comfort." />
+    <meta
+      property="og:description"
+      content="A refined sleep experience shaped by heritage, innovation, and lasting comfort."
+    />
     <meta property="og:url" content="https://yshnada-del.github.io/simmons/" />
-    <meta property="og:image" content="https://yshnada-del.github.io/simmons/img/og.png" />
+    <meta
+      property="og:image"
+      content="https://yshnada-del.github.io/simmons/img/og.png"
+    />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt"
-        content="We aimed to convey Simmons???쐕nshakable comfort??through simple, impactful imagery." />
+    <meta
+      property="og:image:alt"
+      content="We aimed to convey Simmons???쐕nshakable comfort??through simple, impactful imagery."
+    />
     <meta property="og:site_name" content="simmons" />
     <link rel="icon" href="../simmons_favicon_io/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="../simmons_favicon_io/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="../simmons_favicon_io/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../simmons_favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../simmons_favicon_io/apple-touch-icon.png"
+    />
     <!-- ?고듃4媛? -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap">
-    <link rel="stylesheet" as="style" crossorigin
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css"
+    />
     <!-- common -> ?ㅻ뜑, reset -> 湲곕낯媛?-->
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="css/style_sleep_main.css">
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="css/style_sleep_main.css" />
 
     <!-- js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -38,266 +59,203 @@
     <!-- ?섏쓽 js -->
     <script src="../js/common.js"></script>
     <script src="js/main_sleep.js"></script>
+  </head>
 
-</head>
+  <body>
+    <div class="wrap">
+      <!-- header start -->
+      <header>
+        <div class="inner">
+          <div class="logo">
+            <img src="../icon/logo.svg" alt="simmons" />
+          </div>
+          <nav>
+            <ul class="gnb">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Products</a></li>
+              <li><a href="#">Sleep Solution</a></li>
+              <li><a href="#">Visit</a></li>
+              <li><a href="#">Contact us</a></li>
+            </ul>
+            <!-- //.gnb -->
+          </nav>
+          <div class="right">
+            <ul>
+              <li>
+                <a href="#"><img src="../icon/search.svg" alt="" /></a>
+              </li>
+              <li>
+                <a href="#"><img src="../icon/menu.svg" alt="" /></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <!-- //header end -->
 
-<body>
-    <div class="wrap main-shell">
-        <!-- header start -->
-        <header>
-            <div class="inner">
-                <div class="logo">
-                    <img src="../icon/logo.svg" alt="simmons">
-                </div>
-                <nav>
-                    <ul class="gnb">
-                        <li><a href="#">About Us</a>
-                        </li>
-                        <li><a href="#">Products</a>
-
-                        </li>
-                        <li><a href="#">Sleep Solution</a>
-
-                        </li>
-                        <li><a href="#">Visit</a>
-
-                        </li>
-                        <li><a href="#">Community</a>
-                        </li>
-                    </ul><!-- //.gnb -->
-                </nav>
-                <div class="right">
-                    <ul>
-                        <li>
-                            <a href="#" class="search_link" aria-label="Search">
-                                <span class="search_hint" aria-hidden="true"></span>
-                                <img src="../icon/search.svg" alt="">
-                            </a>
-                        </li>
-                        <li><a href="#" class="menu_toggle" aria-label="Open menu"><img src="../icon/menu.svg" alt=""></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="sub_tab_backdrop" aria-hidden="true"></div>
-            <div class="sub_tab" aria-hidden="true">
-                <div class="sub_tab_inner">
-                    <div class="sub_tab_btn">
-                        <div class="sub_tab_lang_box">
-                            <div class="sub_tab_lang" aria-label="Language options">
-                                <button type="button" class="sub_tab_lang_option is-active" data-lang="en">EN</button>
-                                <button type="button" class="sub_tab_lang_option" data-lang="kr">KR</button>
-                                <span class="sub_tab_lang_highlight" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <button type="button" class="sub_tab_close" aria-label="Close menu"><img src="../icon/header_x.svg"
-                                alt="" aria-hidden="true"></button>
-                    </div>
-                    <div class="sub_tab_top">
-                        <div class="tab_gnb">
-                            <a href="#" class="tab_gnb_link is-default" data-tab="about">About Us</a>
-                            <a href="#" class="tab_gnb_link" data-tab="products">Products</a>
-                            <a href="#" class="tab_gnb_link" data-tab="sleep">Sleep Solution</a>
-                            <a href="#" class="tab_gnb_link" data-tab="visit">Visit</a>
-                            <a href="#" class="tab_gnb_link" data-tab="community">Community</a>
-                        </div>
-                        <div class="tab_sub" aria-label="Sub menu">
-                            <div class="tab_sub_panel is-default" data-tab="about">
-                                <a href="#">Simmons</a>
-                                <a href="#">Hotel Story</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="products">
-                                <a href="#">Mattresses</a>
-                                <a href="#">Bed Frames</a>
-                                <a href="#">Bedding</a>
-                                <a href="#">Livving Collections</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="sleep">
-                                <a href="#">Sleep Match</a>
-                                <a href="#">Sleep Test</a>
-                                <a href="#">Sleep Report</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="visit">
-                                <a href="#">Factorium</a>
-                                <a href="#">Location</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="community">
-                                <a href="#">Notice</a>
-                                <a href="#">Event</a>
-                                <a href="#">Customer Service</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sub_tab_bottom">
-                        <div class="bt_top">
-                            <p>CONTACT</p>
-                            <div class="info">
-                                <div class="con_left">
-                                    <p>Customer Service: 1899-8182</p>
-                                    <p>Mon-Fri 9AM-6PM</p>
-                                    <p>master@simmons.co.kr</p>
-                                </div>
-                                <div class="con_right">
-                                    <a href="#" aria-label="Kakao">
-                                        <img src="../icon/kakao.svg" alt="Kakao">
-                                    </a>
-                                    <a href="#" aria-label="Instagram">
-                                        <img src="../icon/insta.svg" alt="Instagram">
-                                    </a>
-                                    <a href="#" aria-label="Youtube">
-                                        <img src="../icon/youtube.svg" alt="Youtube">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bt_bottom">
-                            <div class="bt_bottom_left">
-                                <a href="#">Privacy Policy</a>
-                                <a href="#">Terms of Use</a>
-                            </div>
-                            <p class="bt_bottom_copy">@2026 Simmons</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- //header end -->
-
-        <!-- ?ㅻ뜑 ?쒖쇅??紐⑤뱺 ?뱀뀡 硫붿씤 ?덉뿉???쒖옉 -->
-        <main>
-            <div class="inner_wrap">
-                <div class="title_wrap">
-                    <h2>Find Your Perfect Sleep</h2>
-                    <p>150 Years of Sleep Excellence</p>
-                </div>
-                <!-- <div class="step_wrap">
+      <!-- ?ㅻ뜑 ?쒖쇅??紐⑤뱺 ?뱀뀡 硫붿씤 ?덉뿉???쒖옉 -->
+      <main>
+        <div class="inner_wrap">
+          <div class="title_wrap">
+            <h2>Find Your Perfect Sleep</h2>
+            <p>150 Years of Sleep Excellence</p>
+          </div>
+          <!-- <div class="step_wrap">
             <p><img src="./asset/img/step01.png" alt="step1" class="step_icon" />Get your personalized sleep guide.</p>
             <p><img src="./asset/img/step02.png" alt="step2" class="step_icon" />Find products matched to your sleep
                 style.</p>
             <p><img src="./asset/img/step03.png" alt="step3" class="step_icon" />Discover your ideal sleep position</p>
         </div> -->
-                <div class="contents_wrap">
-                    <div class="receipt_stage">
-                        <div class="top_bar">
-                            <div class="top_bar_line"></div>
-                        </div>
-                        <div class="receipt_mask">
-                            <div class="paper_mask">
-                                <div class="recipe_paper">
-                                    <img src="../img/sleep_paper_short.png" alt="Recipe Paper" class="paper_bg" />
-                                    <div class="p_inner">
-                                        <div class="name">simmons</div>
-                                        <img src="../icon/sleep_sleeping.svg" alt="sleeping" class="sleep_img" />
+          <div class="contents_wrap">
+            <div class="receipt_stage">
+              <div class="top_bar">
+                <div class="top_bar_line"></div>
+              </div>
+              <div class="receipt_mask">
+                <div class="paper_mask">
+                  <div class="recipe_paper">
+                    <img
+                      src="../img/sleep_paper_short.png"
+                      alt="Recipe Paper"
+                      class="paper_bg"
+                    />
+                    <div class="p_inner">
+                      <div class="name">SIMMONS</div>
+                      <img
+                        src="../icon/sleep_sleeping.svg"
+                        alt="sleeping"
+                        class="sleep_img"
+                      />
 
-                                        <div class="line_box">
-                                            <div class="c_line_box"></div>
-                                        </div>
+                      <div class="line_box">
+                        <div class="c_line_box"></div>
+                      </div>
 
-                                        <div class="star_wrap">
-                                            <span class="star">&#9733;</span>
-                                            <span class="star">&#9733;</span>
-                                            <span class="star">&#9733;</span>
-                                            <span class="star">&#9733;</span>
-                                            <span class="star">&#9733;</span>
-                                        </div>
+                      <div class="star_wrap">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                      </div>
 
-                                        <div class="txt_box">
-                                            <h2 class="sol_title">sleep solution</h2>
-                                            <p class="sol_desc">"The personalized sleep experience you've been searching
-                                                for.
-                                                Tailored
-                                                recommendations crafted specifically for your unique needs."</p>
-                                            <img src="../img/sleep_code.png" alt="barcode" class="barcode_img" />
+                      <div class="txt_box">
+                        <h2 class="sol_title">sleep solution</h2>
+                        <p class="sol_desc">
+                          "The personalized sleep experience you've been
+                          searching for.<br />
+                          Tailored recommendations crafted specifically for your
+                          unique needs."
+                        </p>
+                        <img
+                          src="../img/sleep_code.png"
+                          alt="barcode"
+                          class="barcode_img"
+                        />
 
-                                            <a href="sleep_name.html" class="start_btn_link">
-                                                <div class="start_btn">
-                                                    <span>Start Now</span>
-                                                    <img src="../icon/arrow-right.svg" alt="arrow" class="btn_icon" />
-                                                </div>
-                                            </a>
+                        <a href="sleep_name.html" class="start_btn_link">
+                          <div class="start_btn">
+                            <span>Start Now</span>
+                            <img
+                              src="../icon/arrow-right.svg"
+                              alt="arrow"
+                              class="btn_icon"
+                            />
+                          </div>
+                        </a>
 
-                                            <p class="time_desc">Takes less than 2 minutes</p>
-                                        </div>
-                                    </div>
-                                    <section class="section07 scroll_indicator" aria-label="Scroll indicator">
-                                        <a href="#footer" class="scroll_indicator_link" aria-label="Scroll down">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>
-                                            Scroll
-                                        </a>
-                                    </section>
-                                </div>
-                            </div>
-                        </div>
+                        <p class="time_desc">Takes less than 2 minutes</p>
+                      </div>
                     </div>
-                    <div class="receipt_stage_settled" aria-hidden="true"></div>
+                    <section
+                      class="section07 scroll_indicator"
+                      aria-label="Scroll indicator"
+                    >
+                      <a
+                        href="#footer"
+                        class="scroll_indicator_link"
+                        aria-label="Scroll down"
+                      >
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Scroll
+                      </a>
+                    </section>
+                  </div>
                 </div>
+              </div>
             </div>
+            <div class="receipt_stage_settled" aria-hidden="true"></div>
+          </div>
+        </div>
 
-            <div class="float_buttons">
-                <button type="button" class="float_button float_button_ai">
-                    <img src="../icon/AI_button.svg" alt="AI button">
-                </button>
-                <button type="button" class="float_button float_button_top">
-                    <img src="../icon/top_button.svg" alt="Top button">
-                </button>
-            </div>
-        </main>
-        <!-- //main end -->
+        <div class="float_buttons">
+          <button type="button" class="float_button float_button_ai">
+            <img src="../icon/AI_button.svg" alt="AI button" />
+          </button>
+          <button type="button" class="float_button float_button_top">
+            <img src="../icon/top_button.svg" alt="Top button" />
+          </button>
+        </div>
+      </main>
+      <!-- //main end -->
 
-        <!-- footer start -->
-        <footer id="footer">
-            <div class="footer_inner">
-                <section class="info">
-                    <ul class="sns_list">
-                        <li>
-                            <a href="#" aria-label="kakao">
-                                <img src="../icon/kakao.svg" alt="kakao">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="instagram">
-                                <img src="../icon/insta.svg" alt="instagram">
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" aria-label="youtube">
-                                <img src="../icon/youtube.svg" alt="youtube">
-                            </a>
-                        </li>
-                    </ul>
+      <!-- footer start -->
+      <footer id="footer">
+        <div class="footer_inner">
+          <section class="info">
+            <ul class="sns_list">
+              <li>
+                <a href="#" aria-label="kakao">
+                  <img src="../icon/kakao.svg" alt="kakao" />
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="instagram">
+                  <img src="../icon/insta.svg" alt="instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="#" aria-label="youtube">
+                  <img src="../icon/youtube.svg" alt="youtube" />
+                </a>
+              </li>
+            </ul>
 
-                    <p class="info_text">
-                        Terms of Use | Privacy Policy<br>
-                        SIMMONS Co., Ltd.<br>
-                        CEOs: Minsoo Kim, Jeongho Ahn | Address: 1000 Sasil-ro, Moga-myeon, Icheon-si, Gyeonggi-do,
-                        Republic of Korea | Customer Service: +82-1899-8182<br>
-                        Business Registration No.: 126-81-24808 | Verify Business Information | Mail-Order Sales
-                        Registration No.: 2014-Gyeonggi-Icheon-0135<br>
-                        Chief Privacy Officer: Jonguk Jin | Hosting Service Provider: NHN Commerce Co., Ltd.<br>
-                        Contact: master@simmons.co.kr<br>
-                        For secure transactions, customers paying by cash may use the consumer damage compensation
-                        insurance service covering the full payment amount through the purchase safety service
-                        subscribed to by this shopping mall.
-                    </p>
-                    <p class="info_text info_text_mobile">
-                        Terms of Use | Privacy Policy<br>
-                        SIMMONS Co., Ltd.<br>
-                        Contact: master@simmons.co.kr
-                    </p>
-                </section>
+            <p class="info_text">
+              Terms of Use | Privacy Policy<br />
+              SIMMONS Co., Ltd.<br />
+              CEOs: Minsoo Kim, Jeongho Ahn | Address: 1000 Sasil-ro,
+              Moga-myeon, Icheon-si, Gyeonggi-do, Republic of Korea | Customer
+              Service: +82-1899-8182<br />
+              Business Registration No.: 126-81-24808 | Verify Business
+              Information | Mail-Order Sales Registration No.:
+              2014-Gyeonggi-Icheon-0135<br />
+              Chief Privacy Officer: Jonguk Jin | Hosting Service Provider: NHN
+              Commerce Co., Ltd.<br />
+              Contact: master@simmons.co.kr<br />
+              For secure transactions, customers paying by cash may use the
+              consumer damage compensation insurance service covering the full
+              payment amount through the purchase safety service subscribed to
+              by this shopping mall.
+            </p>
+            <p class="info_text info_text_mobile">
+              Terms of Use | Privacy Policy<br />
+              SIMMONS Co., Ltd.<br />
+              Contact: master@simmons.co.kr
+            </p>
+          </section>
 
-                <section class="bottom">
-                    <p class="brand_text">SIMMONS</p>
-                    <p class="copy">
-                        Copyright &copy; 2025 SIMMONS-K Co., Ltd. All Rights Reserved.
-                    </p>
-                </section>
-            </div>
-        </footer>
-        <!-- //footer end -->
+          <section class="bottom">
+            <p class="brand_text">SIMMONS</p>
+            <p class="copy">
+              Copyright &copy; 2025 SIMMONS-K Co., Ltd. All Rights Reserved.
+            </p>
+          </section>
+        </div>
+      </footer>
+      <!-- //footer end -->
     </div>
-
-</body>
-
+  </body>
 </html>

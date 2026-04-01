@@ -1,734 +1,1026 @@
 @charset "utf-8";
 
 html {
-    scrollbar-gutter: stable;
+  scrollbar-gutter: stable;
 }
 
 header.sleep_header_locked {
-    transform: translateY(-100%);
+  transform: translateY(-100%);
 }
 
 /* Reset & Base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body.match_page {
-    background-color: var(--color-burgundy);
-    font-family: 'Pretendard Variable', sans-serif;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
+  background-color: var(--color-burgundy);
+  font-family: "Pretendard Variable", sans-serif;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* wrap: 전체 페이지 컨테이너 */
 .wrap {
-    width: 100%;
-    position: relative;
+  width: 100%;
+  position: relative;
 }
 
 /* main: 헤더와 푸터 사이의 실질적 콘텐츠 영역 */
 main {
-    padding-top: 98px;
-    /* header height */
-    min-height: calc(100vh - 98px);
-    /* 최소 높이 확보 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding-bottom: 100px;
-    /* 푸터와의 간격 */
+  padding: 200px 0;
+  min-height: calc(100vh - 98px);
+  /* 최소 높이 확보 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 1. Inner Container */
 .page_inner {
-    width: calc(100% - 200px);
-    max-width: 1620px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 21px;
-    margin: 0 auto;
+  width: calc(100% - 200px);
+  max-width: 1620px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 21px;
+  margin: 0 auto;
+}
+
+.contents_wrap {
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.receipt_stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.receipt_stage.is-hidden {
+  display: none;
+}
+
+.receipt_stage_settled {
+  display: none;
+}
+
+.receipt_stage_settled.is-visible {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.receipt_stage_settled .scroll_indicator {
+  display: none;
 }
 
 /* Top Title */
 .match_title {
-    width: 100%;
-    font-family: 'DM Serif Display', serif;
-    font-size: 120px;
-    font-style: italic;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: 1px;
-    text-align: center;
-    color: var(--color-cream);
-    padding-bottom: 30px;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards;
+  width: 100%;
+  font-family: "DM Serif Display", serif;
+  font-size: 120px;
+  font-style: italic;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--color-cream);
+  padding-bottom: 30px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
 }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
+  to {
+    opacity: 1;
+  }
 }
 
 /* 2. Receipt Wrap */
 .receipt_wrap {
-    width: 768px;
-    /* Fixed width matching start page bar */
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 768px;
+  /* Fixed width matching start page bar */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* top_bar (Printer Roll Cap) */
 .top_bar {
-    width: 768px;
-    height: 80px;
-    margin: 0 auto;
-    position: relative;
-    background: linear-gradient(to bottom, #B0B0B0, #888888);
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
-    z-index: 2;
-    /* Lower than paper */
+  width: 768px;
+  height: 80px;
+  margin: 0 auto;
+  position: relative;
+  background: linear-gradient(to bottom, #b0b0b0, #888888);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+  /* Lower than paper */
 }
 
 .top_bar_line {
-    width: 690px;
-    height: 8px;
-    background: #111;
-    border-radius: 2px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    /* Slot Inner Shadow for Depth (Effect 3) */
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 1);
+  width: 690px;
+  height: 8px;
+  background: #111;
+  border-radius: 2px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Slot Inner Shadow for Depth (Effect 3) */
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 1);
 }
 
 /* 3. Receipt Animation Mask */
 .receipt_mask {
-    width: 100%;
-    overflow: hidden;
-    /* Mask the sliding paper */
-    position: relative;
-    margin-top: -40px;
-    /* Bring up to top_bar slot */
+  width: 100%;
+  position: relative;
+  margin-top: -40px;
+  /* Bring up to top_bar slot */
+}
+
+.paper_mask {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 88px;
 }
 
 /* Receipt Inner (The Paper) */
 .receipt_inner {
-    width: 690px;
-    /* Match top_bar_line width */
-    margin: 0 auto;
-    background-color: var(--color-cream);
-    box-shadow: 0 40px 100px -15px rgba(0, 0, 0, 0.4);
-    /* Refined shadow to match start page */
-    position: relative;
-    padding-bottom: 40px;
-    z-index: 4;
-    /* Higher than top_bar (2) */
+  width: 690px;
+  /* Match top_bar_line width */
+  margin: 0 auto;
+  background-color: var(--color-cream);
+  box-shadow: 0 40px 100px -15px rgba(0, 0, 0, 0.4);
+  /* Refined shadow to match start page */
+  position: relative;
+  padding-bottom: 40px;
+  z-index: 4;
+  /* Higher than top_bar (2) */
 
-    transform: translateY(-99.6%);
-    transform-origin: top center;
-    will-change: transform;
-    /* Zigzag will be positioned absolutely inside or outside */
+  transform: translateY(-99.6%);
+  transform-origin: top center;
+  will-change: transform;
+  /* Zigzag will be positioned absolutely inside or outside */
+}
+
+.scroll_indicator {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 40px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  opacity: 0;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+  z-index: 5;
+}
+
+.scroll_indicator.is-visible {
+  opacity: 1;
+}
+
+.scroll_indicator.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section07 .scroll_indicator_link {
+  position: relative;
+  display: inline-block;
+  padding-top: 80px;
+  color: rgba(248, 241, 232, 0.92);
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.section07 .scroll_indicator_link:hover {
+  opacity: 0.78;
+}
+
+.section07 .scroll_indicator_link span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid rgba(248, 241, 232, 0.92);
+  border-bottom: 1px solid rgba(248, 241, 232, 0.92);
+  transform: rotate(-45deg);
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+.section07 .scroll_indicator_link span:nth-of-type(1) {
+  animation-delay: 0s;
+}
+
+.section07 .scroll_indicator_link span:nth-of-type(2) {
+  top: 16px;
+  animation-delay: 0.15s;
+}
+
+.section07 .scroll_indicator_link span:nth-of-type(3) {
+  top: 32px;
+  animation-delay: 0.3s;
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Content Appearance (Immediate with Paper) */
 .receipt_top,
 .receipt_visual,
 .receipt_bottom {
-    opacity: 1;
-    /* No individual reveal animations */
+  opacity: 1;
+  /* No individual reveal animations */
 }
 
 /* Header/Top Layout */
 .receipt_top {
-    width: 100%;
-    padding: 60px 48px 20px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Vertical gap adjusted to 16px */
-    gap: 16px;
+  width: 100%;
+  padding: 60px 48px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Vertical gap adjusted to 16px */
+  gap: 16px;
 }
 
 /* Match Badge */
 .match_badge {
-    position: absolute;
-    top: 40px;
-    right: 48px;
-    width: 110px;
-    height: 110px;
-    border: 2px solid #C0A080;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transform: rotate(15deg);
-    color: #C0A080;
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  width: 110px;
+  height: 110px;
+  border: 2px solid #c0a080;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(15deg);
+  color: #c0a080;
 }
 
 .badge_text {
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }
 
 .badge_percent {
-    font-size: 28px;
-    font-weight: 700;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .receipt_top .logo {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 9.6px;
-    color: #2c2c2c;
-    text-align: center;
-    width: 100%;
-    height: 44px;
-    line-height: 44px;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 9.6px;
+  color: #2c2c2c;
+  text-align: center;
+  width: 100%;
+  height: 44px;
+  line-height: 44px;
 }
 
 .dashed_line {
-    width: 100%;
-    border-top: 1px dashed #ddd;
-    margin: 10px 0;
+  width: 100%;
+  border-top: 1px dashed #ddd;
+  margin: 10px 0;
 }
 
 .sub_line_box {
-    width: 100%;
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  width: 100%;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .sub_line_box span {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 2.4px;
-    line-height: normal;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 2.4px;
+  line-height: normal;
 }
 
 .state {
-    font-family: 'DM Serif Display', serif;
-    font-style: italic;
-    font-size: 44px;
-    letter-spacing: 2px;
-    color: var(--color-burgundy);
-    text-align: center;
-    width: 100%;
-    height: auto;
-    /* Hug content */
-    margin: 0;
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  font-size: 44px;
+  letter-spacing: 2px;
+  color: var(--color-burgundy);
+  text-align: center;
+  width: 100%;
+  height: auto;
+  /* Hug content */
+  margin: 0;
 }
 
-.receipt_top>.dashed_line:last-child {
-    margin-bottom: 20px;
+.receipt_top > .dashed_line:last-child {
+  margin-bottom: 20px;
 }
 
 /* Visual Area */
 .receipt_visual {
-    width: 100%;
-    padding: 0 48px 30px;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  padding: 0 48px 30px;
+  display: flex;
+  justify-content: center;
 }
 
 .product_img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: contain;
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
 }
 
 /* Bottom Area */
 .receipt_bottom {
-    padding: 0 48px 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  padding: 0 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .triple_line {
-    width: 100%;
-    height: 13px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 100%;
+  height: 13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .line_outer {
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-burgundy);
-    opacity: 0.8;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-burgundy);
+  opacity: 0.8;
 }
 
 .line_inner {
-    width: 100%;
-    height: 1px;
-    background-color: var(--color-burgundy);
-    opacity: 0.8;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-burgundy);
+  opacity: 0.8;
 }
 
 .info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .collection {
-    font-size: 12px;
-    letter-spacing: 3px;
-    color: #666;
-    text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #666;
+  text-transform: uppercase;
 }
 
 .product_name {
-    font-family: 'DM Serif Display', serif;
-    font-size: 39px;
-    color: var(--color-burgundy);
+  font-family: "DM Serif Display", serif;
+  font-size: 39px;
+  color: var(--color-burgundy);
 }
 
 /* Level Meters */
 .level_area {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .level_row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /* Adjusted to space-between */
-    width: 100%;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Adjusted to space-between */
+  width: 100%;
+  gap: 10px;
 }
 
 .level_label {
-    width: 76px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Source Serif 4', serif;
-    font-size: 16px;
-    font-style: italic;
-    color: var(--color-grey-333);
-    text-align: center;
-    border: 1px solid var(--color-grey-333);
-    /* Added 1px outline */
-    background-color: transparent;
-    text-transform: capitalize;
-    /* Ensure Title Case */
+  width: 76px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Source Serif 4", serif;
+  font-size: 16px;
+  font-style: italic;
+  color: var(--color-grey-333);
+  text-align: center;
+  border: 1px solid var(--color-grey-333);
+  /* Added 1px outline */
+  background-color: transparent;
+  text-transform: capitalize;
+  /* Ensure Title Case */
 }
 
 .level_meter {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 
 .level_cell {
-    width: 90px;
-    height: 30px;
-    background-color: transparent;
-    /* Changed to transparent */
-    border: 2px solid var(--color-grey-333);
-    /* Added 2px outline */
-    transition: background-color 0.22s ease, transform 0.22s ease;
-    transform-origin: center;
+  width: 90px;
+  height: 30px;
+  background-color: transparent;
+  /* Changed to transparent */
+  border: 2px solid var(--color-grey-333);
+  /* Added 2px outline */
+  transition:
+    background-color 0.22s ease,
+    transform 0.22s ease;
+  transform-origin: center;
 }
 
 .level_cell.is_active {
-    background-color: var(--color-grey-333);
-    /* Active state fill */
+  background-color: var(--color-grey-333);
+  /* Active state fill */
 }
 
 .description {
-    font-family: 'Source Serif 4', serif;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--color-burgundy);
+  font-family: "Source Serif 4", serif;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--color-burgundy);
 }
 
 .check_list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .check_list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .dot_icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .check_list li span {
-    font-size: 18px;
-    color: var(--color-burgundy);
+  font-size: 18px;
+  color: var(--color-burgundy);
 }
 
 .price_area {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
 }
 
 .price_label {
-    font-size: 20px;
-    letter-spacing: 0.7px;
-    color: var(--color-grey-333);
+  font-size: 20px;
+  letter-spacing: 0.7px;
+  color: var(--color-grey-333);
 }
 
 .price_value {
-    font-family: 'Source Serif 4', serif;
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--color-grey-333);
+  font-family: "Source Serif 4", serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--color-grey-333);
 }
 
 .sku_barcode {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
 }
 
 .sku_text {
-    font-size: 12px;
-    letter-spacing: 1.2px;
-    color: #999;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  color: #999;
 }
 
 .barcode_img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .star_area {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
 }
 
 .star {
-    font-size: 24px;
-    color: var(--color-burgundy);
+  font-size: 24px;
+  color: var(--color-burgundy);
 }
 
 .btn_group {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
 }
 
 .receipt_btn {
-    width: 100%;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 18px;
-    /* Adjusted to 18px */
-    font-weight: 600;
-    /* SemiBold */
-    letter-spacing: 3px;
-    /* Adjusted to 3px */
-    cursor: pointer;
-    transition: transform 0.22s ease, box-shadow 0.22s ease;
-    border: 2px solid var(--color-burgundy);
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 18px;
+  /* Adjusted to 18px */
+  font-weight: 600;
+  /* SemiBold */
+  letter-spacing: 3px;
+  /* Adjusted to 3px */
+  cursor: pointer;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+  border: 2px solid var(--color-burgundy);
 }
 
 .receipt_btn img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .receipt_btn.fill {
-    background-color: var(--color-burgundy);
-    color: var(--color-cream);
+  background-color: var(--color-burgundy);
+  color: var(--color-cream);
 }
 
 .receipt_btn.fill img {
-    filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%) hue-rotate(302deg) brightness(102%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(96%) sepia(15%) saturate(171%)
+    hue-rotate(302deg) brightness(102%) contrast(92%);
 }
 
 .receipt_btn.outline {
-    background-color: transparent;
-    color: var(--color-burgundy);
+  background-color: transparent;
+  color: var(--color-burgundy);
 }
 
 .receipt_btn.outline img {
-    filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
+  filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg)
+    brightness(92%) contrast(92%);
 }
 
 .receipt_btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 
 .back_link {
-    text-align: center;
+  text-align: center;
 }
 
 .back_link a {
-    text-decoration: underline;
-    /* Added underline */
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 20px;
-    color: var(--color-burgundy);
-    font-weight: 600;
-    letter-spacing: 3px;
-    transition: transform 0.22s ease;
+  text-decoration: underline;
+  /* Added underline */
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 20px;
+  color: var(--color-burgundy);
+  font-weight: 600;
+  letter-spacing: 3px;
+  transition: transform 0.22s ease;
 }
 
 .back_link a img {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
-      filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg) brightness(92%) contrast(92%);
-  }
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+  filter: invert(21%) sepia(18%) saturate(1633%) hue-rotate(307deg)
+    brightness(92%) contrast(92%);
+}
 
 .back_link a:hover {
-    transform: translateY(-1px);
+  transform: translateY(-1px);
 }
 
 .receipt_footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    padding-top: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+  text-align: center;
 }
 
 .footer_line {
-    width: 100%;
-    border-top: 1px solid #ddd;
-    margin-bottom: 20px;
+  width: 100%;
+  border-top: 1px solid #ddd;
+  margin-bottom: 20px;
 }
 
 .thanks {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 600;
-    /* SemiBold-like weight */
-    font-size: 18px;
-    /* Adjusted to 18px */
-    color: var(--color-burgundy);
-    text-align: center;
-    letter-spacing: 0;
+  font-family: "DM Serif Display", serif;
+  font-weight: 600;
+  /* SemiBold-like weight */
+  font-size: 18px;
+  /* Adjusted to 18px */
+  color: var(--color-burgundy);
+  text-align: center;
+  letter-spacing: 0;
 }
 
 .sweet {
-    font-family: 'Pretendard Variable', sans-serif;
-    font-size: 12px;
-    /* Adjusted to 12px */
-    font-weight: 400;
-    /* Regular */
-    color: #888;
-    text-align: center;
+  font-family: "Pretendard Variable", sans-serif;
+  font-size: 12px;
+  /* Adjusted to 12px */
+  font-weight: 400;
+  /* Regular */
+  color: #888;
+  text-align: center;
 }
 
 /* Zigzag Bottom Edge (Using pattern to cut the paper) */
 .zigzag_bottom {
-    display: block;
-    width: 100%;
-    height: 15px;
-    /* Size of the zigzag spikes */
-    background-color: transparent;
-    /* Remove cream background to eliminate extra block */
-    position: absolute;
-    bottom: -15px;
-    /* Protrude from the bottom of the content */
-    left: 0;
+  display: block;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'%3E%3Cpolygon fill='%23F6F3EE' points='0,0 40,0 40,8 30,20 20,8 10,20 0,8'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: left top;
+  background-size: 40px 20px;
+  pointer-events: none;
 }
 
 .zigzag_bottom::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: -15px;
-    /* Offset to align the pattern over the bottom of the cream content */
-    width: 100%;
-    height: 15px;
-    background: linear-gradient(-45deg, var(--color-burgundy) 7px, transparent 0),
-        linear-gradient(45deg, var(--color-burgundy) 7px, transparent 0);
-    background-position: left bottom;
-    background-repeat: repeat-x;
-    background-size: 14px 15px;
-    /* Sharp spikes */
+  content: none;
 }
 
 @media (max-width: 1024px) {
-    main {
-        min-height: auto;
-        padding-top: 140px;
-        padding-bottom: 120px;
-    }
+  main {
+    min-height: auto;
+    padding-top: 140px;
+    padding-bottom: 120px;
+  }
 
-    .page_inner {
-        width: calc(100% - 64px);
-        gap: 18px;
-    }
+  .page_inner {
+    width: calc(100% - 64px);
+    gap: 18px;
+  }
 
-    .match_title {
-        font-size: 92px;
-        padding-bottom: 20px;
-    }
+  .match_title {
+    font-size: 92px;
+    padding-bottom: 20px;
+  }
 
-    .receipt_wrap {
-        width: min(680px, 100%);
-    }
+  .receipt_wrap {
+    width: min(680px, 100%);
+  }
 
-    .top_bar {
-        width: min(680px, 100%);
-        height: 72px;
-    }
+  .top_bar {
+    width: min(680px, 100%);
+    height: 72px;
+  }
 
-    .top_bar_line {
-        width: calc(100% - 48px);
-    }
+  .top_bar_line {
+    width: calc(100% - 48px);
+  }
 
-    .receipt_mask {
-        margin-top: -32px;
-    }
+  .receipt_mask {
+    margin-top: -32px;
+  }
 
-    .receipt_inner {
-        width: min(620px, 100%);
-        padding-bottom: 32px;
-    }
+  .paper_mask {
+    padding-bottom: 120px;
+  }
 
-    .receipt_top {
-        padding: 52px 32px 18px;
-        gap: 14px;
-    }
+  .receipt_inner {
+    width: min(620px, 100%);
+    padding-bottom: 32px;
+  }
 
-    .match_badge {
-        top: 32px;
-        right: 32px;
-        width: 96px;
-        height: 96px;
-    }
+  .receipt_top {
+    padding: 52px 32px 18px;
+    gap: 14px;
+  }
 
-    .badge_text {
-        font-size: 12px;
-    }
+  .match_badge {
+    top: 32px;
+    right: 32px;
+    width: 96px;
+    height: 96px;
+  }
 
-    .badge_percent {
-        font-size: 24px;
-    }
+  .badge_text {
+    font-size: 12px;
+  }
 
-    .receipt_top .logo {
-        font-size: 24px;
-        letter-spacing: 8px;
-    }
+  .badge_percent {
+    font-size: 24px;
+  }
 
-    .state {
-        font-size: 40px;
-    }
+  .receipt_top .logo {
+    font-size: 24px;
+    letter-spacing: 8px;
+  }
 
-    .receipt_visual {
-        padding: 0 32px 24px;
-    }
+  .state {
+    font-size: 40px;
+  }
 
-    .product_img {
-        max-height: 340px;
-    }
+  .receipt_visual {
+    padding: 0 32px 24px;
+  }
 
-    .receipt_bottom {
-        padding: 0 32px 32px;
-        gap: 32px;
-    }
+  .product_img {
+    max-height: 340px;
+  }
 
-    .info {
-        gap: 16px;
-    }
+  .receipt_bottom {
+    padding: 0 32px 32px;
+    gap: 32px;
+  }
 
-    .product_name {
-        font-size: 34px;
-    }
+  .info {
+    gap: 16px;
+  }
 
-    .level_row {
-        gap: 10px;
-    }
+  .product_name {
+    font-size: 34px;
+  }
 
-    .level_label {
-        width: 76px;
-        min-width: 76px;
-        flex: 0 0 76px;
-    }
+  .level_row {
+    gap: 10px;
+  }
 
-    .level_meter {
-        gap: 5px;
-    }
+  .level_label {
+    width: 76px;
+    min-width: 76px;
+    flex: 0 0 76px;
+  }
 
-    .level_cell {
-        width: 90px;
-        min-width: 90px;
-        flex: 0 0 90px;
-    }
+  .level_meter {
+    gap: 5px;
+  }
 
-    .description {
-        font-size: 18px;
-    }
+  .level_cell {
+    width: 90px;
+    min-width: 90px;
+    flex: 0 0 90px;
+  }
 
-    .check_list li span {
-        font-size: 17px;
-    }
+  .description {
+    font-size: 18px;
+  }
 
-    .price_label {
-        font-size: 20px;
-    }
+  .check_list li span {
+    font-size: 17px;
+  }
 
-    .price_value {
-        font-size: 30px;
-    }
+  .price_label {
+    font-size: 20px;
+  }
 
-    .receipt_btn {
-        height: 58px;
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
+  .price_value {
+    font-size: 30px;
+  }
 
-    .receipt_btn img,
-    .back_link a img {
-        width: 28px;
-        height: 28px;
-    }
+  .receipt_btn {
+    height: 58px;
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
 
-    .back_link a {
-        font-size: 18px;
-        letter-spacing: 2px;
-    }
+  .receipt_btn img,
+  .back_link a img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .back_link a {
+    font-size: 18px;
+    letter-spacing: 2px;
+  }
+}
+
+@media (max-width: 767px) {
+  main {
+    padding-top: 126px;
+    padding-bottom: 100px;
+  }
+
+  .page_inner {
+    width: calc(100% - 32px);
+    gap: 16px;
+  }
+
+  .match_title {
+    font-size: clamp(42px, 12vw, 56px);
+    padding-bottom: 12px;
+  }
+
+  .receipt_wrap {
+    width: min(100%, 520px);
+  }
+
+  .top_bar {
+    width: 100%;
+    height: 64px;
+  }
+
+  .top_bar_line {
+    width: calc(100% - 32px);
+  }
+
+  .receipt_mask {
+    margin-top: -28px;
+  }
+
+  .paper_mask {
+    padding-bottom: 100px;
+  }
+
+  .receipt_inner {
+    width: min(100%, 460px);
+    padding-bottom: 28px;
+  }
+
+  .receipt_top {
+    padding: 88px 20px 18px;
+  }
+
+  .match_badge {
+    top: 26px;
+    right: 20px;
+    width: 82px;
+    height: 82px;
+  }
+
+  .badge_text {
+    font-size: 10px;
+  }
+
+  .badge_percent {
+    font-size: 20px;
+  }
+
+  .receipt_top .logo {
+    font-size: 18px;
+    letter-spacing: 6px;
+    height: 36px;
+    line-height: 36px;
+  }
+
+  .state {
+    font-size: 32px;
+  }
+
+  .receipt_visual {
+    padding: 0 20px 20px;
+  }
+
+  .product_img {
+    max-height: 250px;
+  }
+
+  .receipt_bottom {
+    padding: 0 20px 26px;
+    gap: 24px;
+  }
+
+  .product_name {
+    font-size: 28px;
+  }
+
+  .level_row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .level_label {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+
+  .level_meter {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .level_cell {
+    width: auto;
+    min-width: 0;
+    flex: 1;
+    height: 24px;
+  }
+
+  .description {
+    font-size: 17px;
+  }
+
+  .check_list li span {
+    font-size: 15px;
+  }
+
+  .price_area {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price_label {
+    font-size: 16px;
+  }
+
+  .price_value {
+    font-size: 24px;
+  }
+
+  .receipt_btn {
+    height: 54px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+  }
+
+  .receipt_btn img,
+  .back_link a img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .back_link a {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+  }
+
+  .section07 .scroll_indicator_link {
+    padding-top: 66px;
+    font-size: 12px;
+  }
+
+  .section07 .scroll_indicator_link span {
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+  }
+
+  .section07 .scroll_indicator_link span:nth-of-type(2) {
+    top: 14px;
+  }
+
+  .section07 .scroll_indicator_link span:nth-of-type(3) {
+    top: 28px;
+  }
 }
