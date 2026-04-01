@@ -91,30 +91,35 @@ body.intro-complete #intro-overlay {
 
 .intro_skip_button {
     position: absolute;
-    top: clamp(12px, 1.6vw, 24px);
-    right: clamp(12px, 1.8vw, 24px);
+    top: clamp(50px, 4vw, 62px);
+    right: clamp(20px, 2.4vw, 40px);
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 0 0 4px;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    background: transparent;
-    color: rgba(var(--color-black-rgb, 0, 0, 0), 0.7);
+    justify-content: center;
+    gap: 12px;
+    min-width: clamp(168px, 16vw, 220px);
+    height: clamp(50px, 4.6vw, 64px);
+    padding: 0 24px;
+    border: 2px solid rgba(255, 255, 255, 0.92);
+    background: rgba(0, 0, 0, 0.22);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    color: #fff;
     font-family: var(--font-main);
-    font-size: 18px;
+    font-size: clamp(16px, 1.2vw, 18px);
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
     z-index: 5;
-    transition: color 0.24s ease, border-color 0.24s ease, opacity 0.24s ease;
+    transition: color 0.24s ease, border-color 0.24s ease, background-color 0.24s ease, opacity 0.24s ease;
 }
 
 .intro_skip_button:hover,
 .intro_skip_button:focus-visible {
-    color: rgba(var(--color-black-rgb, 0, 0, 0), 0.88);
-    border-bottom-color: rgba(var(--color-burgundy-rgb), 0.4);
+    color: #fff;
+    border-color: #fff;
+    background-color: rgba(0, 0, 0, 0.34);
 }
 
 .intro_skip_button:focus-visible {
@@ -128,15 +133,16 @@ body.intro-complete #intro-overlay {
 
 .intro_skip_label {
     line-height: 1;
+    font-weight: 400;
 }
 
 .intro_skip_icon {
-    width: 26px;
-    height: 26px;
-    flex: 0 0 26px;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
     background-color: currentColor;
-    -webkit-mask: url("../icon/arrow-up-right.svg") center / contain no-repeat;
-    mask: url("../icon/arrow-up-right.svg") center / contain no-repeat;
+    -webkit-mask: url("../icon/skip-next.svg") center / contain no-repeat;
+    mask: url("../icon/skip-next.svg") center / contain no-repeat;
 }
 
 .intro_stage {
@@ -267,17 +273,20 @@ body.intro-complete #intro-overlay {
 
 @media (max-width: 768px) {
     .intro_skip_button {
-        top: 12px;
-        right: 12px;
-        gap: 6px;
-        padding-bottom: 3px;
+        top: 46px;
+        right: 16px;
+        gap: 10px;
+        min-width: 140px;
+        height: 44px;
+        padding: 0 16px;
         font-size: 14px;
+        border-width: 1.5px;
     }
 
     .intro_skip_icon {
-        width: 16px;
-        height: 16px;
-        flex-basis: 16px;
+        width: 18px;
+        height: 18px;
+        flex-basis: 18px;
     }
 
     .intro_logo_mark {
