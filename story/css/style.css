@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 
 :root {
     --story-shell-max: 1920px;
@@ -87,31 +87,47 @@ main {
 .about_title {
     position: absolute;
     top: 50%;
-    left: 0;
+    left: 50%;
     width: 100%;
     margin: 0;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: 300px;
-    line-height: 2.12;
+    line-height: 1;
     letter-spacing: 0.05em;
     color: #F9ECDF;
-    white-space: pre;
-    transform: translateY(-50%);
+    white-space: nowrap;
+    transform: translate(-50%, -50%);
+}
+
+.about_title_part {
+    position: relative;
+    flex: 0 0 auto;
+    z-index: 2;
+}
+
+.about_title_gap {
+    position: relative;
+    flex: 0 0 clamp(240px, 13vw, 340px);
+    height: 1em;
 }
 
 .about .img_all {
     position: absolute;
-    top: 50.5%;
-    left: 61%;
+    top: 50%;
+    left: 46%;
     width: 548px;
     height: 648px;
+    display: block;
     transform: translate(-50%, -50%);
     transform-origin: center;
     z-index: 1;
     overflow: visible;
+    pointer-events: none;
 }
 
 .about_circle {
@@ -1014,6 +1030,136 @@ main {
     left: 288px;
 }
 
+@media (max-width: 1684px) and (min-width: 1281px) {
+    .philosophy {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .philosophy_inner {
+        width: 100%;
+        max-width: 824px;
+    }
+
+    .philosophy_title {
+        width: 100%;
+        font-size: 84px;
+    }
+
+    .philosophy_all {
+        width: 100%;
+        max-width: 824px;
+        height: auto;
+        margin-top: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 80px;
+    }
+
+    .philosophy_card {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(512px, 100%);
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .philosophy_shell {
+        aspect-ratio: 512 / 820;
+    }
+}
+
+@media (max-width: 1280px) {
+    .philosophy {
+        min-height: auto;
+        padding: 180px 24px;
+    }
+
+    .philosophy_inner {
+        width: 100%;
+        max-width: 824px;
+        margin: 0 auto;
+    }
+
+    .philosophy_title {
+        width: 100%;
+        font-size: 72px;
+    }
+
+    .philosophy_all {
+        width: min(824px, 100%);
+        height: auto;
+        margin-top: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 80px;
+    }
+
+    .philosophy_card {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: min(512px, 100%);
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .philosophy_shell {
+        aspect-ratio: 512 / 820;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 768px) {
+    .philosophy {
+        padding: 120px 20px;
+    }
+
+    .philosophy_title {
+        font-size: 48px;
+    }
+
+    .philosophy_all {
+        margin-top: 80px;
+        gap: 48px;
+    }
+
+    .philosophy_card {
+        width: min(360px, 100%);
+    }
+}
+
+@media (max-width: 402px) {
+    .philosophy {
+        padding: 90px 20px;
+    }
+
+    .philosophy_inner {
+        max-width: 362px;
+    }
+
+    .philosophy_title {
+        font-size: 36px;
+        line-height: 1.08;
+    }
+
+    .philosophy_all {
+        margin-top: 56px;
+        gap: 36px;
+    }
+
+    .philosophy_card {
+        width: min(320px, 100%);
+    }
+
+    .philosophy_shell {
+        min-height: auto;
+    }
+}
+
 .product {
     position: relative;
     width: 100%;
@@ -1108,6 +1254,111 @@ main {
     margin-top: 160px;
     display: flex;
     justify-content: center;
+}
+
+.product_cta_button {
+    --product-btn-fill: transparent;
+    --product-btn-ring-fill: #5D3136;
+    --product-btn-stroke: #5D3136;
+    --product-btn-text-color: #5D3136;
+    --product-btn-icon-color: #F9ECDF;
+    width: 530px;
+    height: 126px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: block;
+    position: relative;
+    overflow: visible;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.product_cta_button_svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.product_cta_button_shape,
+.product_cta_button_ring {
+    transition: fill 0.35s ease, stroke 0.35s ease, transform 0.35s ease;
+}
+
+.product_cta_button_shape {
+    fill: var(--product-btn-fill);
+    stroke: var(--product-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.product_cta_button_ring {
+    fill: var(--product-btn-ring-fill);
+    stroke: var(--product-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.product_cta_button_text {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+    right: 144px;
+    z-index: 2;
+    width: auto;
+    font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 33px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--product-btn-text-color);
+    white-space: nowrap;
+    text-align: center;
+    transform: translateY(-50%);
+    transition: color 0.35s ease;
+}
+
+.product_cta_button_icon {
+    position: absolute;
+    top: 50%;
+    right: 84px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: var(--product-btn-icon-color);
+    transition: color 0.35s ease;
+}
+
+.product_cta_button_icon svg {
+    width: 108px;
+    height: 108px;
+    display: block;
+}
+
+.product_cta_button_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.product_cta_button:hover,
+.product_cta_button:focus-visible {
+    --product-btn-fill: #5D3136;
+    --product-btn-ring-fill: #F9ECDF;
+    --product-btn-text-color: #F9ECDF;
+    --product-btn-icon-color: #5D3136;
+    outline: none;
+    transform: none;
 }
 
 .button_all {
@@ -1417,17 +1668,18 @@ main {
     .about_title {
         position: relative;
         top: auto;
-        left: auto;
+        left: 50%;
         width: 100%;
         font-size: clamp(150px, 17vw, 190px);
         line-height: 1;
-        text-align: center;
-        transform: none;
+        transform: translateX(-50%);
+    }
+
+    .about_title_gap {
+        flex-basis: clamp(170px, 12vw, 240px);
     }
 
     .about .img_all {
-        top: 382px;
-        left: 62%;
         width: 340px;
         height: 402px;
     }
@@ -1760,6 +2012,23 @@ main {
         margin-top: 120px;
     }
 
+    .product_cta_button {
+        width: 430px;
+        height: 106px;
+    }
+
+    .product_cta_button_text {
+        left: 64px;
+        right: 122px;
+        font-size: 28px;
+    }
+
+    .product_cta_button_icon {
+        right: 68px;
+        width: 46px;
+        height: 46px;
+    }
+
     .button_all {
         width: 320px;
         height: 84px;
@@ -1969,9 +2238,11 @@ main {
         line-height: 0.95;
     }
 
+    .about_title_gap {
+        flex-basis: 64px;
+    }
+
     .about .img_all {
-        top: 238px;
-        left: 60%;
         width: 182px;
         height: 216px;
     }
@@ -2227,6 +2498,30 @@ main {
 
     .product_button_wrap {
         margin-top: 56px;
+    }
+
+    .product_cta_button {
+        width: 100%;
+        max-width: 362px;
+        height: 86px;
+    }
+
+    .product_cta_button_text {
+        left: 46px;
+        right: 92px;
+        width: auto;
+        font-size: 24px;
+    }
+
+    .product_cta_button_icon {
+        right: 48px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .product_cta_button_icon svg {
+        width: 76px;
+        height: 76px;
     }
 
     .button_all {

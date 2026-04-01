@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+﻿document.addEventListener('DOMContentLoaded', () => {
     if (!window.gsap || !window.ScrollTrigger) {
         return;
     }
@@ -65,11 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const activeCardName = Array.from(card.classList).find((className) => className.startsWith('philosophy_card_') && className !== 'philosophy_card');
 
             closeAll();
-
             philosophyStage.classList.add('has_expanded');
+
             if (activeCardName) {
                 philosophyStage.setAttribute('data-active-card', activeCardName.replace('philosophy_card_', ''));
             }
+
             card.classList.add('is_expanded');
 
             if (trigger) {
@@ -80,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 expanded.hidden = false;
             }
         };
-
-        const defaultCard = philosophyStage.querySelector('.philosophy_card_comfort');
 
         philosophyCards.forEach((card) => {
             const trigger = card.querySelector('.philosophy_trigger');
@@ -97,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isExpanded = card.classList.contains('is_expanded');
 
                 if (isExpanded) {
+                    const defaultCard = philosophyStage.querySelector('.philosophy_card_comfort');
                     if (defaultCard) {
                         activateCard(defaultCard);
                     }
@@ -108,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             expanded.addEventListener('click', (event) => {
                 if (event.target === expanded) {
+                    const defaultCard = philosophyStage.querySelector('.philosophy_card_comfort');
                     if (defaultCard) {
                         activateCard(defaultCard);
                     }
@@ -115,11 +116,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        const defaultCard = philosophyStage.querySelector('.philosophy_card_comfort');
+
         if (defaultCard) {
             activateCard(defaultCard);
         }
     };
-
     setupPhilosophyInteraction();
 
     if (!storyTransition || !storyScene || !aboutSection || !collage || !historySection || pieces.length !== 6) {
