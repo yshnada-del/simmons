@@ -2156,22 +2156,16 @@ body {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 0;
 }
 
-.star_all::before {
-    content: '★★★★★';
-    font-size: 15px;
-    line-height: 1;
-    color: currentColor;
+.star_all img {
+    width: 17px;
+    height: 17px;
+    display: block;
 }
 
-.star_all span {
-    display: none;
-}
-
-.star_all::before {
-    content: '\2605\2605\2605\2605\2605';
+.review_card_dark .star_all img {
+    filter: brightness(0) invert(1);
 }
 
 .review_filter_button {
@@ -2258,6 +2252,36 @@ body {
     width: min(1120px, calc(100% - 48px));
     max-width: 100%;
     height: 690px;
+}
+
+.event_backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.event_backdrop_word {
+    position: absolute;
+    margin: 0;
+    font-family: var(--font-title);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 320px;
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    color: rgba(var(--color-burgundy-rgb), 0.42);
+}
+
+.event_backdrop_word_simmons {
+    top: -126px;
+    left: -800px;
+}
+
+.event_backdrop_word_event {
+    right: -800px;
+    bottom: -135px;
 }
 
 .event_click_zone {
@@ -3147,9 +3171,9 @@ body {
         gap: 2px;
     }
 
-    .star_all::before {
-        font-size: 12px;
-        letter-spacing: 1px;
+    .star_all img {
+        width: 13px;
+        height: 13px;
     }
 
     .review_card_image {
@@ -3176,6 +3200,20 @@ body {
 
     .event_card_stack {
         height: 360px;
+    }
+
+    .event_backdrop_word {
+        font-size: 192px;
+    }
+
+    .event_backdrop_word_simmons {
+        top: -82px;
+        left: -136px;
+    }
+
+    .event_backdrop_word_event {
+        right: -114px;
+        bottom: 24px;
     }
 
     .event_card {
