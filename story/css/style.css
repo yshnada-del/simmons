@@ -752,6 +752,7 @@ main {
     height: 868px;
     margin: 140px auto 0;
     overflow: visible;
+    --phil-tab-overlap: 38px;
 }
 
 .philosophy_card {
@@ -765,22 +766,22 @@ main {
 
 .philosophy_card_comfort {
     z-index: 4;
-    left: 0;
+    left: calc(var(--phil-tab-overlap) * 3);
 }
 
 .philosophy_card_eco {
     z-index: 3;
-    left: 96px;
+    left: calc(var(--phil-tab-overlap) * 2);
 }
 
 .philosophy_card_science {
     z-index: 2;
-    left: 192px;
+    left: var(--phil-tab-overlap);
 }
 
 .philosophy_card_life {
     z-index: 1;
-    left: 288px;
+    left: 0;
 }
 
 .philosophy_shell {
@@ -918,7 +919,6 @@ main {
 }
 
 .philosophy_all.has_expanded .philosophy_card {
-    top: 0;
     width: 96px;
     height: 868px;
     opacity: 1;
@@ -955,79 +955,79 @@ main {
 }
 
 .philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_comfort.is_expanded {
-    left: 0;
+    left: calc(var(--phil-tab-overlap) * 3);
 }
 
 .philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_eco:not(.is_expanded) {
-    left: calc(100% - 288px);
+    left: calc(var(--phil-tab-overlap) * 2);
     z-index: 3;
 }
 
 .philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_science:not(.is_expanded) {
-    left: calc(100% - 192px);
+    left: var(--phil-tab-overlap);
     z-index: 2;
 }
 
 .philosophy_all.has_expanded[data-active-card="comfort"] .philosophy_card_life:not(.is_expanded) {
-    left: calc(100% - 96px);
+    left: 0;
     z-index: 1;
 }
 
 .philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_comfort:not(.is_expanded) {
-    left: 0;
+    left: calc(var(--phil-tab-overlap) * 2);
     z-index: 4;
 }
 
 .philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_eco.is_expanded {
-    left: 96px;
+    left: calc(var(--phil-tab-overlap) * 3);
 }
 
 .philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_science:not(.is_expanded) {
-    left: calc(100% - 192px);
+    left: var(--phil-tab-overlap);
     z-index: 2;
 }
 
 .philosophy_all.has_expanded[data-active-card="eco"] .philosophy_card_life:not(.is_expanded) {
-    left: calc(100% - 96px);
+    left: 0;
     z-index: 1;
 }
 
 .philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_comfort:not(.is_expanded) {
-    left: 0;
+    left: calc(var(--phil-tab-overlap) * 2);
     z-index: 4;
 }
 
 .philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_eco:not(.is_expanded) {
-    left: 96px;
+    left: var(--phil-tab-overlap);
     z-index: 3;
 }
 
 .philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_science.is_expanded {
-    left: 192px;
+    left: calc(var(--phil-tab-overlap) * 3);
 }
 
 .philosophy_all.has_expanded[data-active-card="science"] .philosophy_card_life:not(.is_expanded) {
-    left: calc(100% - 96px);
+    left: 0;
     z-index: 1;
 }
 
 .philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_comfort:not(.is_expanded) {
-    left: 0;
+    left: calc(var(--phil-tab-overlap) * 2);
     z-index: 4;
 }
 
 .philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_eco:not(.is_expanded) {
-    left: 96px;
+    left: var(--phil-tab-overlap);
     z-index: 3;
 }
 
 .philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_science:not(.is_expanded) {
-    left: 192px;
+    left: 0;
     z-index: 2;
 }
 
 .philosophy_all.has_expanded[data-active-card="life"] .philosophy_card_life.is_expanded {
-    left: 288px;
+    left: calc(var(--phil-tab-overlap) * 3);
 }
 
 @media (max-width: 1684px) and (min-width: 1281px) {
