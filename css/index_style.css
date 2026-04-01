@@ -479,7 +479,7 @@ body {
 .story {
     width: 100%;
     min-height: 100vh;
-    background-color: #fbfbf7;
+    background-color: var(--color-cream);
     overflow: hidden;
     position: relative;
     padding: 100px 0 100px 0;
@@ -501,7 +501,7 @@ body {
     font-size: clamp(88px, 8.5vw, 163px);
     line-height: 1.3;
     letter-spacing: 0;
-    color: #5d3136;
+    color: var(--color-burgundy);
     text-align: center;
     white-space: nowrap;
     transform: translateX(-50%);
@@ -531,7 +531,7 @@ body {
     font-weight: 400;
     line-height: 1.3;
     letter-spacing: -0.02em;
-    color: #5d3136;
+    color: var(--color-burgundy);
     white-space: nowrap;
     z-index: 2;
     will-change: transform;
@@ -592,19 +592,58 @@ body {
 }
 
 .story_button {
+    --story-btn-fill: transparent;
+    --story-btn-ring-fill: var(--color-burgundy);
+    --story-btn-stroke: var(--color-burgundy);
+    --story-btn-text-color: var(--color-burgundy);
+    --story-btn-icon-color: var(--color-ivory);
     position: absolute;
     left: 50%;
-    bottom: 166px;
-    width: 327px;
-    height: 72px;
+    bottom: 140px;
+    width: 490px;
+    height: 118px;
     padding: 0;
     border: 0;
     background-color: transparent;
     display: block;
     cursor: pointer;
     overflow: visible;
-    transition: none;
+    isolation: isolate;
     transform: translateX(-50%);
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.story_button_svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.story_button_shape,
+.story_button_ring {
+    transition:
+        fill 0.35s ease,
+        stroke 0.35s ease,
+        transform 0.35s ease;
+}
+
+.story_button_shape {
+    fill: var(--story-btn-fill);
+    stroke: var(--story-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.story_button_ring {
+    fill: var(--story-btn-ring-fill);
+    stroke: var(--story-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
 }
 
 .story_keyword_classic .story_keyword_label {
@@ -646,40 +685,59 @@ body {
 .story_button_text {
     position: absolute;
     top: 50%;
-    left: 0;
-    width: 220px;
-    font-family: 'Pretendard', sans-serif;
+    left: 103px;
+    z-index: 2;
+    width: 240px;
+    font-family: var(--font-main);
     font-weight: 500;
-    font-size: 32px;
+    font-size: 34px;
     line-height: 1;
-    letter-spacing: 0;
-    color: #5d3136;
-    text-align: center;
+    letter-spacing: -0.03em;
+    color: var(--story-btn-text-color);
+    text-align: left;
+    white-space: nowrap;
     transform: translateY(-50%);
-    z-index: 1;
+    transition: color 0.35s ease;
 }
 
 .story_button_icon {
     position: absolute;
     top: 50%;
-    right: 10px;
-    width: 59px;
-    height: 59px;
+    right: 78px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 2;
+    color: var(--story-btn-icon-color);
+    transition: color 0.35s ease;
 }
 
-.story_button_icon img {
-    width: 40px;
-    height: 40px;
+.story_button_icon svg {
+    width: 100px;
+    height: 100px;
     display: block;
-    object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(92%) sepia(13%) saturate(295%) hue-rotate(334deg) brightness(102%) contrast(95%);
+}
+
+.story_button_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.story_button:hover,
+.story_button:focus-visible {
+    --story-btn-fill: var(--color-burgundy);
+    --story-btn-ring-fill: var(--color-ivory);
+    --story-btn-text-color: var(--color-ivory);
+    --story-btn-icon-color: var(--color-burgundy);
+    outline: none;
+    transform: translateX(-50%);
 }
 
 @keyframes storyKeywordFade {
@@ -1241,63 +1299,120 @@ body {
     left: 0;
     right: 0;
     margin: 0 auto;
-    width: 327px;
-    height: 72px;
+    width: 490px;
+    height: 118px;
     z-index: 20;
     will-change: transform, opacity;
 }
 
 .sleep_solution_button {
-    width: 327px;
-    height: 72px;
+    --sleep-btn-fill: transparent;
+    --sleep-btn-ring-fill: var(--color-burgundy);
+    --sleep-btn-stroke: var(--color-burgundy);
+    --sleep-btn-text-color: var(--color-burgundy);
+    --sleep-btn-icon-color: var(--color-ivory);
+    width: 490px;
+    height: 118px;
     padding: 0;
     border: 0;
     background-color: transparent;
     display: block;
     cursor: pointer;
     position: relative;
-    overflow: hidden;
-    transition: none;
+    overflow: visible;
+    text-decoration: none;
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+}
+
+.sleep_solution_button_svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.sleep_solution_button_shape,
+.sleep_solution_button_ring {
+    transition:
+        fill 0.35s ease,
+        stroke 0.35s ease,
+        transform 0.35s ease;
+}
+
+.sleep_solution_button_shape {
+    fill: var(--sleep-btn-fill);
+    stroke: var(--sleep-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.sleep_solution_button_ring {
+    fill: var(--sleep-btn-ring-fill);
+    stroke: var(--sleep-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
 }
 
 .sleep_solution_button_text {
     position: absolute;
     top: 50%;
-    left: 0;
+    left: 108px;
+    z-index: 2;
     width: 220px;
-    font-family: 'Pretendard', sans-serif;
+    font-family: var(--font-main);
     font-weight: 500;
-    font-size: 32px;
+    font-size: 38px;
     line-height: 1;
-    letter-spacing: 0;
-    color: #5d3136;
+    letter-spacing: -0.03em;
+    color: var(--sleep-btn-text-color);
     white-space: nowrap;
-    text-align: center;
+    text-align: left;
     transform: translateY(-50%);
-    z-index: 1;
+    transition: color 0.35s ease;
 }
 
 .sleep_solution_button_icon {
     position: absolute;
     top: 50%;
-    right: 10px;
-    width: 59px;
-    height: 59px;
+    right: 78px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     transform: translateY(-50%);
-    z-index: 1;
+    z-index: 2;
+    color: var(--sleep-btn-icon-color);
+    transition: color 0.35s ease;
 }
 
-.sleep_solution_button_icon img {
-    width: 40px;
-    height: 40px;
+.sleep_solution_button_icon svg {
+    width: 100px;
+    height: 100px;
     display: block;
-    object-fit: contain;
-    filter: brightness(0) saturate(100%) invert(92%) sepia(13%) saturate(295%) hue-rotate(334deg) brightness(102%) contrast(95%);
+}
+
+.sleep_solution_button_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.sleep_solution_button:hover,
+.sleep_solution_button:focus-visible {
+    --sleep-btn-fill: var(--color-burgundy);
+    --sleep-btn-ring-fill: var(--color-ivory);
+    --sleep-btn-text-color: var(--color-ivory);
+    --sleep-btn-icon-color: var(--color-burgundy);
+    outline: none;
+    transform: none;
 }
 
 /* Offline Section */
@@ -1549,8 +1664,8 @@ body {
 .offline_title {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 48px;
+    justify-content: center;
+    gap: 1200px;
     position: relative;
     z-index: 4;
 }
@@ -1582,6 +1697,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-left: 40px;
     /* gap: 6px; */
 }
 
@@ -1675,54 +1791,111 @@ body {
 }
 
 .offline_card_button {
+    --offline-card-btn-fill: var(--color-white);
+    --offline-card-btn-ring-fill: var(--color-burgundy);
+    --offline-card-btn-stroke: var(--color-burgundy);
+    --offline-card-btn-text-color: var(--color-burgundy);
+    --offline-card-btn-icon-color: var(--color-ivory);
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 2;
-    width: 233px;
-    height: 66px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 30px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #000000;
-    transform: translate(-50%, -50%) rotate(-6.8deg);
+    width: 380px;
+    height: 100px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    display: block;
+    transform: translate(-50%, -50%) rotate(-2.8deg);
     cursor: pointer;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    overflow: visible;
+    transition: color 0.3s ease;
+}
+
+.offline_card_button_svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: visible;
+}
+
+.offline_card_button_shape,
+.offline_card_button_ring {
+    transition:
+        fill 0.35s ease,
+        stroke 0.35s ease;
+}
+
+.offline_card_button_shape {
+    fill: var(--offline-card-btn-fill);
+    stroke: var(--offline-card-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
+}
+
+.offline_card_button_ring {
+    fill: var(--offline-card-btn-ring-fill);
+    stroke: var(--offline-card-btn-stroke);
+    stroke-width: 1.5;
+    stroke-miterlimit: 10;
 }
 
 .offline_card_button:hover,
 .offline_card_button:focus-visible {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: #5d3136;
+    --offline-card-btn-fill: var(--color-burgundy);
+    --offline-card-btn-ring-fill: var(--color-ivory);
+    --offline-card-btn-text-color: var(--color-ivory);
+    --offline-card-btn-icon-color: var(--color-burgundy);
+    outline: none;
 }
 
 .offline_card_button_text {
+    position: absolute;
+    top: 50%;
+    left: 79px;
+    z-index: 2;
+    width: 124px;
+    transform: translateY(-50%);
     font-family: 'Pretendard', sans-serif;
     font-weight: 500;
-    font-size: 22px;
-    line-height: 1.3;
-    letter-spacing: 0;
-    color: #000000;
+    font-size: 28px;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--offline-card-btn-text-color);
+    text-align: left;
+    white-space: nowrap;
+    transition: color 0.35s ease;
 }
 
 .offline_card_button_icon {
-    width: 14px;
-    height: 14px;
+    position: absolute;
+    top: 50%;
+    right: 31px;
+    width: 80px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+    color: var(--offline-card-btn-icon-color);
+    transition: color 0.35s ease;
 }
 
-.offline_card_button_icon img {
-    width: 24px;
-    height: 24px;
+.offline_card_button_icon svg {
+    width: 50px;
+    height: 50px;
     display: block;
-    object-fit: contain;
+}
+
+.offline_card_button_icon path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 /* Review Section */
@@ -2465,8 +2638,6 @@ body {
     outline: none;
 }
 
-.story_button:hover .button_image_default,
-.story_button:focus-visible .button_image_default,
 .sleep_solution_button:hover .button_image_default,
 .sleep_solution_button:focus-visible .button_image_default,
 .event_more_button:hover .button_image_default,
@@ -2474,8 +2645,6 @@ body {
     opacity: 0;
 }
 
-.story_button:hover .button_image_hover,
-.story_button:focus-visible .button_image_hover,
 .sleep_solution_button:hover .button_image_hover,
 .sleep_solution_button:focus-visible .button_image_hover,
 .event_more_button:hover .button_image_hover,
@@ -3219,8 +3388,20 @@ body {
     }
 
     .story_button_text {
-        width: 92px;
+        left: 13px;
+        width: 72px;
         font-size: 11px;
+    }
+
+    .story_button_icon {
+        right: 6px;
+        width: 28px;
+        height: 28px;
+    }
+
+    .story_button_icon svg {
+        width: 16px;
+        height: 16px;
     }
 
     .product {
@@ -3417,6 +3598,7 @@ body {
     .sleep_solution .btn_test {
         bottom: 34px;
         width: 120px;
+        height: 40px;
     }
 
     .sleep_solution_button {
@@ -3425,19 +3607,20 @@ body {
     }
 
     .sleep_solution_button_text {
-        width: 82px;
-        font-size: 13px;
+        left: 18px;
+        width: 62px;
+        font-size: 11px;
     }
 
     .sleep_solution_button_icon {
         right: 6px;
-        width: 30px;
-        height: 30px;
+        width: 28px;
+        height: 28px;
     }
 
-    .sleep_solution_button_icon img {
-        width: 20px;
-        height: 20px;
+    .sleep_solution_button_icon svg {
+        width: 16px;
+        height: 16px;
     }
 
     .offline {

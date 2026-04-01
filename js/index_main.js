@@ -1515,15 +1515,15 @@ document.addEventListener('DOMContentLoaded', () => {
             gsap.killTweensOf([currentCard, nextCard, currentInfo, nextInfo]);
 
             gsap.set(nextCard, {
-                xPercent: direction > 0 ? 165 : -165,
-                rotation: direction > 0 ? 14 : -14,
-                autoAlpha: 1
+                xPercent: direction > 0 ? 188 : -188,
+                rotation: direction > 0 ? 12 : -12,
+                autoAlpha: 0
             });
 
             if (nextInfo) {
                 gsap.set(nextInfo, {
                     autoAlpha: 0,
-                    x: direction > 0 ? 40 : -40
+                    x: direction > 0 ? 28 : -28
                 });
             }
 
@@ -1545,8 +1545,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             gsap.timeline({
                 defaults: {
-                    duration: prefersReducedMotion ? 0 : 0.72,
-                    ease: 'power3.inOut'
+                    duration: prefersReducedMotion ? 0 : 0.56,
+                    ease: 'none'
                 },
                 onComplete: () => {
                     activeOfflineIndex = nextIndex;
@@ -1577,37 +1577,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
                 .to(nextCard, {
-                    xPercent: direction > 0 ? -4 : 4,
-                    rotation: direction > 0 ? 8.5 : -8.5,
-                    duration: prefersReducedMotion ? 0 : 0.42,
-                    ease: 'power4.in'
-                }, 0)
-                .to(currentCard, {
-                    xPercent: direction > 0 ? -165 : 165,
-                    rotation: direction > 0 ? -4 : 4,
-                    autoAlpha: 0.88,
-                    duration: prefersReducedMotion ? 0 : 0.52,
-                    ease: 'power3.in'
-                }, 0.16)
-                .to(currentInfo ? [currentInfo] : [], {
-                    autoAlpha: 0,
-                    x: direction > 0 ? -48 : 48,
-                    duration: prefersReducedMotion ? 0 : 0.3,
-                    ease: 'power2.out'
-                }, 0.12)
-                .to(nextCard, {
                     xPercent: 0,
                     rotation: 3.8,
                     autoAlpha: 1,
-                    duration: prefersReducedMotion ? 0 : 0.3,
+                    duration: prefersReducedMotion ? 0 : 0.54,
+                    ease: 'none'
+                }, 0)
+                .to(currentCard, {
+                    xPercent: direction > 0 ? -168 : 168,
+                    rotation: 3.8,
+                    autoAlpha: 0,
+                    duration: prefersReducedMotion ? 0 : 0.54,
+                    ease: 'none'
+                }, 0.24)
+                .to(currentInfo ? [currentInfo] : [], {
+                    autoAlpha: 0,
+                    x: direction > 0 ? -28 : 28,
+                    duration: prefersReducedMotion ? 0 : 0.28,
                     ease: 'power2.out'
-                }, 0.4)
+                }, 0.18)
                 .to(nextInfo ? [nextInfo] : [], {
                     autoAlpha: 1,
                     x: 0,
-                    duration: prefersReducedMotion ? 0 : 0.28,
+                    duration: prefersReducedMotion ? 0 : 0.3,
                     ease: 'power2.out'
-                }, 0.3);
+                }, 0.22);
         };
 
         setOfflineTrackState(activeOfflineIndex);
