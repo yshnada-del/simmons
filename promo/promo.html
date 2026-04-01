@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>simmons</title>
-      <meta property="og:type" content="website" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="simmons" />
     <meta property="og:description"
         content="A refined sleep experience shaped by heritage, innovation, and lasting comfort." />
@@ -16,7 +16,7 @@
     <meta property="og:image:alt"
         content="We aimed to convey Simmons’ “unshakable comfort” through simple, impactful imagery." />
     <meta property="og:site_name" content="simmons" />
-        <link rel="icon" href="../simmons_favicon_io/favicon.ico" />
+    <link rel="icon" href="../simmons_favicon_io/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="../simmons_favicon_io/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../simmons_favicon_io/apple-touch-icon.png" />
     <!-- 폰트4개  -->
@@ -30,9 +30,6 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- 나의 js -->
     <script src="../js/common.js"></script>
     <script src="js/main.js"></script>
@@ -40,7 +37,7 @@
 </head>
 
 <body>
-    <div class="wrap main-shell">
+    <div class="wrap">
         <!-- header start -->
         <header>
             <div class="inner">
@@ -72,89 +69,8 @@
                                 <img src="../icon/search.svg" alt="">
                             </a>
                         </li>
-                        <li><a href="#" class="menu_toggle" aria-label="Open menu"><img src="../icon/menu.svg" alt=""></a></li>
+                        <li><a href="#"><img src="../icon/menu.svg" alt=""></a></li>
                     </ul>
-                </div>
-            </div>
-            <div class="sub_tab_backdrop" aria-hidden="true"></div>
-            <div class="sub_tab" aria-hidden="true">
-                <div class="sub_tab_inner">
-                    <div class="sub_tab_btn">
-                        <div class="sub_tab_lang_box">
-                            <div class="sub_tab_lang" aria-label="Language options">
-                                <button type="button" class="sub_tab_lang_option is-active" data-lang="en">EN</button>
-                                <button type="button" class="sub_tab_lang_option" data-lang="kr">KR</button>
-                                <span class="sub_tab_lang_highlight" aria-hidden="true"></span>
-                            </div>
-                        </div>
-                        <button type="button" class="sub_tab_close" aria-label="Close menu"><img src="../icon/header_x.svg"
-                                alt="" aria-hidden="true"></button>
-                    </div>
-                    <div class="sub_tab_top">
-                        <div class="tab_gnb">
-                            <a href="#" class="tab_gnb_link is-default" data-tab="about">About Us</a>
-                            <a href="#" class="tab_gnb_link" data-tab="products">Products</a>
-                            <a href="#" class="tab_gnb_link" data-tab="sleep">Sleep Solution</a>
-                            <a href="#" class="tab_gnb_link" data-tab="visit">Visit</a>
-                            <a href="#" class="tab_gnb_link" data-tab="community">Community</a>
-                        </div>
-                        <div class="tab_sub" aria-label="Sub menu">
-                            <div class="tab_sub_panel is-default" data-tab="about">
-                                <a href="#">Simmons</a>
-                                <a href="#">Hotel Story</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="products">
-                                <a href="#">Mattresses</a>
-                                <a href="#">Bed Frames</a>
-                                <a href="#">Bedding</a>
-                                <a href="#">Livving Collections</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="sleep">
-                                <a href="#">Sleep Match</a>
-                                <a href="#">Sleep Test</a>
-                                <a href="#">Sleep Report</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="visit">
-                                <a href="#">Factorium</a>
-                                <a href="#">Location</a>
-                            </div>
-                            <div class="tab_sub_panel" data-tab="community">
-                                <a href="#">Notice</a>
-                                <a href="#">Event</a>
-                                <a href="#">Customer Service</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sub_tab_bottom">
-                        <div class="bt_top">
-                            <p>CONTACT</p>
-                            <div class="info">
-                                <div class="con_left">
-                                    <p>Customer Service: 1899-8182</p>
-                                    <p>Mon-Fri 9AM-6PM</p>
-                                    <p>master@simmons.co.kr</p>
-                                </div>
-                                <div class="con_right">
-                                    <a href="#" aria-label="Kakao">
-                                        <img src="../icon/kakao.svg" alt="Kakao">
-                                    </a>
-                                    <a href="#" aria-label="Instagram">
-                                        <img src="../icon/insta.svg" alt="Instagram">
-                                    </a>
-                                    <a href="#" aria-label="Youtube">
-                                        <img src="../icon/youtube.svg" alt="Youtube">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bt_bottom">
-                            <div class="bt_bottom_left">
-                                <a href="#">Privacy Policy</a>
-                                <a href="#">Terms of Use</a>
-                            </div>
-                            <p class="bt_bottom_copy">@2026 Simmons</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </header>
@@ -164,6 +80,14 @@
         <main>
             <div class="main_visual">
                 <div class="main_visual_inner">
+                    <div class="main_visual_meta main_visual_meta_left">
+                        <span>Support Desk</span>
+                        <span>Always On</span>
+                    </div>
+                    <div class="main_visual_meta main_visual_meta_right">
+                        <span>Event Calendar</span>
+                        <span>Sleep Service</span>
+                    </div>
                     <img class="main_visual_object object_phone" src="../img/promo_main_visual_img_1.png"
                         alt="Vintage phone object">
                     <img class="main_visual_object object_bell" src="../img/promo_main_visual_img_2.png"
@@ -172,7 +96,18 @@
                         alt="Letter Q object">
                     <img class="main_visual_object object_gift" src="../img/promo_main_visual_img_4.png"
                         alt="Gift box object">
-                    <h1>Support &amp; Events</h1>
+                    <div class="main_visual_heading">
+                        <h1>
+                            <span>Support</span>
+                            <span>&amp; Events</span>
+                        </h1>
+                    </div>
+                    <div class="main_visual_bottom_note">
+                        <span aria-hidden="true">Scroll</span>
+                        <span class="main_visual_scroll_arrow" aria-hidden="true">
+                            <img src="../icon/chevron-down.svg" alt="">
+                        </span>
+                    </div>
                 </div>
             </div>
             <section class="event">
@@ -211,9 +146,9 @@
                             <div class="txt_box">
                                 <p>Browse frequently asked questions to find what you need.</p>
                                 <div class="button">
-                                    <a href="#" class="view_all_btn">
+                                    <span class="view_all_btn is-disabled" aria-disabled="true">
                                         <img src="../icon/promo_view_all_button.svg" alt="View all">
-                                    </a>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -230,8 +165,7 @@
                                     <div class="accordion_panel">
                                         <p>
                                             Simmons mattresses are made with flame-retardant materials to help ensure
-                                            fire safety. To prevent damage to the materials, use heating appliances only
-                                            at a low temperature below 40°C (104°F) and for short periods.
+                                            fire safety.
                                         </p>
                                     </div>
                                 </li>
@@ -246,8 +180,7 @@
                                     <div class="accordion_panel">
                                         <p>
                                             The delivery confirmation call is typically made one day before your
-                                            scheduled delivery date. The exact timing may vary depending on the local
-                                            delivery center.
+                                            scheduled delivery date.
                                         </p>
                                     </div>
                                 </li>
@@ -262,7 +195,7 @@
                                     <div class="accordion_panel">
                                         <p>
                                             You can experience Simmons mattresses at selected Simmons Gallery and
-                                            dedicated retail stores. Store availability may differ by region.
+                                            dedicated retail stores.
                                         </p>
                                     </div>
                                 </li>
@@ -277,8 +210,7 @@
                                     <div class="accordion_panel">
                                         <p>
                                             Online and offline models can differ in fabric, firmness, and showroom
-                                            availability. Some collections are designed exclusively for one sales
-                                            channel.
+                                            availability.
                                         </p>
                                     </div>
                                 </li>
@@ -292,7 +224,7 @@
                     <h2>Review</h2>
                     <div class="review_box">
                         <ul class="contents_top">
-                            <li class="review_card review_card_wide">
+                            <li class="review_card review_card_wide" tabindex="0" aria-label="Review from Good sleeper">
                                 <img src="../img/promo_review_list1.png" alt="Bedroom review image">
                                 <div class="review_overlay">
                                     <div class="review_meta">
@@ -314,7 +246,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="review_card review_card_tall">
+                            <li class="review_card review_card_tall" tabindex="0" aria-label="Review from Emily R">
                                 <img src="../img/promo_review_list2.png" alt="Mattress review image">
                                 <div class="review_overlay">
                                     <div class="review_meta">
@@ -337,7 +269,7 @@
                             </li>
                         </ul>
                         <ul class="contents_bottom">
-                            <li class="review_card review_card_tall">
+                            <li class="review_card review_card_tall" tabindex="0" aria-label="Review from James">
                                 <img src="../img/promo_review_list3.png" alt="Showroom review image">
                                 <div class="review_overlay">
                                     <div class="review_meta">
@@ -358,7 +290,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="review_card review_card_wide">
+                            <li class="review_card review_card_wide" tabindex="0" aria-label="Review from Ella K">
                                 <img src="../img/promo_review_list4.png" alt="Luxury bedroom review image">
                                 <div class="review_overlay">
                                     <div class="review_meta">
@@ -383,6 +315,17 @@
                     </div>
                 </div>
             </section>
+            <a href="#" class="inquiry_link">
+                <section class="inquiry">
+                    <div class="inner">
+                        <h2>Inquiry</h2>
+                        <p>
+                            We’re Ready To Respond To Any Questions Or Requests You May Have.<br>
+                            Please Send Us Your Inquiry, And We’ll Get Back To You As Soon As Possible.
+                        </p>
+                    </div>
+                </section>
+            </a>
             <section class="notice">
                 <div class="inner">
                     <div class="notice_heading">
@@ -405,7 +348,7 @@
                             </span>
                             <span class="notice_card_text">
                                 <strong>We've renewed the Simmons website.</strong>
-                                <span>2026.02.30</span>
+                                <span>2026.02.24</span>
                             </span>
                         </a>
                         <a href="#" class="notice_card">
@@ -457,18 +400,7 @@
                     </ul>
                 </div>
             </section>
-            <section class="inquiry">
-                <div class="inner">
-                    <h2>Inquiry</h2>
-                    <p>
-                        We’re Ready To Respond To Any Questions Or Requests You May Have.<br>
-                        Please Send Us Your Inquiry, And We’ll Get Back To You As Soon As Possible.
-                    </p>
-                    <a href="#" class="inquiry_btn">
-                        <img src="../icon/promo_inquiry_button.svg" alt="Send Inquiry">
-                    </a>
-                </div>
-            </section>
+
 
             <div class="float_buttons">
                 <button type="button" class="float_button float_button_ai">
